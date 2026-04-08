@@ -1,0 +1,32 @@
+name: Auto-Sync Documentation
+
+on:
+  schedule:
+    # Runs at 04:00 UTC every day
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    # Allows manual triggering from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Sync Script
+        run: |
+          chmod +x scripts/sync-docs.sh
+          sh scripts/sync-docs.sh
+
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-sync documentation from upstream"
+          file_pattern: 'references/**'
+          commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"

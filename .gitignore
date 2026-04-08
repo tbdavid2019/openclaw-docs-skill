@@ -1,0 +1,22 @@
+# Agent specific directories
+.agent/
+.gemini/
+.codex/
+.kilocode/
+.github_dummy/ # Added just in case
+
+# Temporary Git Clone for Syncing
+.tmp_repo/
+
+# OS Specific Files
+.DS_Store
+Thumbs.db
+
+# Any node files (if user runs npm in this folder)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local temp logs
+*.log
