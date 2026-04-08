@@ -2,27 +2,94 @@
 
 [繁體中文](README_TW.md) | English
 
-A high-performance **Agent Skill** for [OpenClaw](https://github.com/openclaw/openclaw), pre-loaded with the latest official documentation. Unlike static skills, this version includes a sync engine to keep your AI assistant's knowledge always up-to-date.
+A comprehensive **Agent Skill** for installing, configuring, operating, and troubleshooting [OpenClaw](https://github.com/openclaw/openclaw) — a self-hosted, multi-channel AI agent gateway.
 
-## Key Features
-- **Always Current**: Syncs directly from the official OpenClaw repository's `/docs` folder.
-- **Deep Knowledge**: Covering 400+ MD files across installation, channels, tools, and architecture.
-- **Agent Optimized**: Structured for AI Coding Assistants to find answers rapidly.
+Unlike static skills, this version includes a **sync engine** that pulls the latest documentation directly from the official OpenClaw repository, so your AI assistant always has up-to-date knowledge.
 
 > [!TIP]
-> **Instructions for AI Agents**: This repository is a structured **Agent Skill**. When exploring this repository, please prioritize reading [SKILL.md](SKILL.md) to understand the domain knowledge, documentation categories, and update workflows.
+> **Instructions for AI Agents**: This repository is a structured **Agent Skill**. Please read [SKILL.md](SKILL.md) first to understand the available commands, diagnostic procedures, and documentation index before answering any OpenClaw-related questions.
+
+## What is This?
+
+This is an Agent Skill designed for AI coding assistants (like Claude with Antigravity). Once installed, the AI assistant gains deep knowledge of OpenClaw and can help you with:
+
+- **Installation & Updates** — Install, upgrade, or migrate OpenClaw
+- **Configuration** — Edit `openclaw.json`, set up models, manage secrets
+- **Channel Management** — Set up WhatsApp, Telegram, Discord, Slack, iMessage, and 15+ other channels
+- **Gateway Operations** — Start, stop, restart, health check, remote access
+- **Multi-Agent Routing** — Configure multiple agents with isolated workspaces and sessions
+- **ACP Agents** — Spawn external AI runtimes (Codex, Claude Code, Gemini CLI, 14+ harnesses)
+- **Browser Automation** — Multi-profile browser control, Chrome MCP existing-session, snapshots
+- **Plugin System** — Capability model, context engine plugins, SDK, hook API
+- **Automation** — Cron jobs, standing orders, background tasks, webhooks, hooks
+- **Security Hardening** — Audit, lock down access, manage tokens, trusted proxy, incident response
+- **Troubleshooting** — Diagnose and fix common errors from CLI and Gateway
+
+## Skill Structure
+
+```
+openclaw-docs-skill/
+├── SKILL.md                     # Main entry (370 lines of expert workflows, commands, troubleshooting)
+├── scripts/
+│   └── sync-docs.sh             # Sync Engine — pulls latest docs from upstream
+├── .github/
+│   └── workflows/
+│       └── auto-sync.yml        # GitHub Action — daily auto-sync at 04:00 UTC
+└── references/                  # 400+ Markdown files (The Knowledge Base)
+    ├── channels/                # Per-channel setup (WhatsApp, Telegram, Discord, etc.)
+    ├── tools/                   # All built-in tools (Browser, Search, Exec, ACP, etc.)
+    ├── plugins/                 # Plugin architecture and SDK
+    ├── providers/               # 35+ model providers (Anthropic, OpenAI, Google, Ollama, etc.)
+    ├── concepts/                # Core concepts: agent loop, memory, queue, streaming
+    ├── gateway/                 # Gateway config, operations, security, sandboxing
+    ├── security/                # Security hardening policies
+    ├── nodes/                   # Nodes (iOS/Android/macOS/headless)
+    ├── automation/              # Cron jobs, webhooks, background tasks, standing orders
+    ├── install/                 # Installation, updating, rollback, migration, uninstall
+    ├── platforms/               # Platform guides (macOS, iOS, Android, Linux, Windows)
+    ├── web/                     # Web surfaces: Dashboard, Control UI, WebChat, TUI
+    ├── diagnostics/             # Troubleshooting and failure walkthroughs
+    └── cli/                     # CLI reference
+```
+
+## Setup for AI Agents
+
+### For Antigravity (Claude)
+
+Copy the skill folder to your Antigravity skills directory:
+
+```bash
+# Clone this repo
+git clone https://github.com/tbdavid2019/openclaw-docs-skill.git
+
+# Copy to your skills directory
+cp -r openclaw-docs-skill ~/.gemini/antigravity/skills/openclaw-docs
+```
+
+The skill will be automatically detected and triggered when you ask about OpenClaw-related tasks.
+
+### For Other AI Assistants
+
+The `SKILL.md` and `references/` files contain structured documentation that can be adapted for any AI assistant that supports skill/knowledge injection.
 
 ## Usage Examples
-Once installed, your AI Agent can handle complex scenarios using this knowledge base:
 
-| What You Say | What the AI Agent Does |
+Once installed, just ask naturally:
+
+| What You Say | What the AI Does |
 |---|---|
-| "Help me upgrade OpenClaw" | Identifies the latest version, runs `npm install`, and verifies service health. |
-| "Set up a Telegram bot" | Walks you through token acquisition and `openclaw.json` configuration. |
-| "Gateway is not responding" | Executes a diagnostic ladder: `status` → `logs` → `doctor`. |
-| "Add a second agent for work" | Configures a new agent workspace with isolated bindings. |
+| "Help me upgrade OpenClaw" | Runs `openclaw update`, then `openclaw doctor` to apply migrations, restarts Gateway |
+| "Set up a Telegram bot" | Walks through bot token creation, `openclaw channels add`, and QR verification |
+| "Gateway is not responding" | Runs diagnostic ladder: `status` → `logs` → `doctor` → `channels status --probe` |
+| "Lock down my OpenClaw security" | Runs `openclaw security audit --fix`, applies hardened baseline, fixes permissions |
+| "Add a second agent for work" | Creates agent, sets up workspace, configures bindings, restarts |
+| "Spawn a Claude Code ACP session" | Configures `acp-agents` plugin, sets permissions, spawns bound session |
+| "Attach browser to my Chrome" | Sets up browser profile with Chrome MCP existing-session driver |
+| `EADDRINUSE` error | Runs `openclaw gateway --force` or helps change port in config |
+| "Embedding provider 401 error" | Finds placeholder API key in `~/.openclaw/.env`, guides replacement |
 
 ## Key Commands Quick Reference
+
 ```bash
 # Status & Health
 openclaw status                    # Overall status
@@ -30,48 +97,65 @@ openclaw gateway status            # Gateway daemon status
 openclaw doctor                    # Diagnose issues
 openclaw channels status --probe   # Channel health
 
-# Management
+# Gateway Management
+openclaw gateway install           # Install as system service
 openclaw gateway start/stop/restart
+openclaw gateway --force           # Kill existing and restart
+
+# Configuration
+openclaw config get <path>         # Read config value
+openclaw config set <path> <value> # Set config value
 openclaw configure                 # Interactive wizard
+
+# Security
 openclaw security audit            # Check security posture
+openclaw security audit --fix      # Auto-fix issues
+openclaw secrets reload            # Reload secret refs
+
+# Channels
+openclaw channels add              # Add channel (wizard)
+openclaw channels login            # WhatsApp QR pairing
+openclaw channels list             # Show configured channels
+
+# Models
+openclaw models set <model>        # Set default model
+openclaw models status --probe     # Check auth status
 ```
-
-## Skill Structure
-```
-openclaw-docs-skill/
-├── SKILL.md             # Main entry point (Agent instructions & roadmap)
-├── scripts/             
-│   └── sync-docs.sh     # The Sync Engine (Run to update references)
-└── references/          # 400+ Markdown files (The actual Knowledge Base)
-    ├── getting-started/ # Installation & Onboarding
-    ├── channels/        # WhatsApp, Telegram, Discord, etc.
-    ├── tools/           # Browser, Search, Code, Media tools
-    └── advanced/        # Plugins, Architecture, Memory, etc.
-```
-
-## Setup for AI Agents
-If you are using **Antigravity (Claude)**, follow these steps:
-
-1. **Clone this repository** to your local machine:
-   ```bash
-   git clone https://github.com/tbdavid2019/openclaw-docs-skill.git
-   ```
-
-2. **Register the skill**:
-   Copy the folder to your agent's skills directory:
-   ```bash
-   cp -r openclaw-docs-skill ~/.gemini/antigravity/skills/openclaw-docs
-   ```
-
-3. **Verify**:
-   Ask the agent: *"What are the latest requirements for setting up a WhatsApp channel in OpenClaw?"*
 
 ## Updating the Documentation
-To ensure your Agent has the latest information (new features, changed APIs), run:
+
+This skill's `references/` folder is synced from the official OpenClaw repository. To get the latest docs:
+
 ```bash
 sh scripts/sync-docs.sh
 ```
-Or trigger the **Auto-Sync** workflow on GitHub Actions.
+
+Or trigger the **Auto-Sync Documentation** workflow in the [GitHub Actions](https://github.com/tbdavid2019/openclaw-docs-skill/actions) tab.
+
+The GitHub Action runs automatically every day at 04:00 UTC — no manual intervention needed.
+
+## Documentation Source
+
+This skill's knowledge base is built from the official [OpenClaw Documentation](https://docs.openclaw.ai/), covering:
+
+- [Install](https://docs.openclaw.ai/install)
+- [Gateway Architecture](https://docs.openclaw.ai/concepts/architecture)
+- [Channels](https://docs.openclaw.ai/channels)
+- [Model Providers](https://docs.openclaw.ai/providers)
+- [Tools](https://docs.openclaw.ai/tools)
+- [Plugin Architecture](https://docs.openclaw.ai/plugins/architecture)
+- [Multi-Agent Routing](https://docs.openclaw.ai/concepts/multi-agent)
+- [Security](https://docs.openclaw.ai/gateway/security)
+- [Troubleshooting](https://docs.openclaw.ai/gateway/troubleshooting)
+- [CLI Reference](https://docs.openclaw.ai/cli)
+
+## Contributing
+
+Issues and PRs welcome! Contributions that improve:
+- `SKILL.md` — the agent's reasoning and diagnostic logic
+- `scripts/sync-docs.sh` — the sync engine efficiency
+- `references/` — curated documentation quality
 
 ## License
-AGPL-3.0 License. OpenClaw documentation is sourced from the official [OpenClaw repository](https://github.com/openclaw/openclaw).
+
+[AGPL-3.0](LICENSE) — Any derivative work must also be open-sourced under the same license. OpenClaw documentation is sourced from the official [OpenClaw repository](https://github.com/openclaw/openclaw).
