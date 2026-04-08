@@ -181,3 +181,9 @@ Issues and PRs welcome! Contributions that improve:
 ## License
 
 [AGPL-3.0](LICENSE) — Any derivative work must also be open-sourced under the same license. OpenClaw documentation is sourced from the official [OpenClaw repository](https://github.com/openclaw/openclaw).
+
+## Acknowledgments
+
+Special thanks to **[win4r/OpenClaw-Skill](https://github.com/win4r/OpenClaw-Skill)** — the original inspiration for this project.
+
+Their pioneering work on structuring OpenClaw knowledge as an Agent Skill showed what was possible. This repository builds on that idea by adding an **auto-sync engine** and **daily GitHub Actions** to ensure the documentation never goes stale.
