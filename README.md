@@ -156,6 +156,28 @@ Issues and PRs welcome! Contributions that improve:
 - `scripts/sync-docs.sh` — the sync engine efficiency
 - `references/` — curated documentation quality
 
+
+```
+┌─────────────────────────────────────────────────┐
+│           openclaw/openclaw (官方源頭)            │
+│              /docs 資料夾每日更新                  │
+└────────────────────┬────────────────────────────┘
+                     │ GitHub Action 每日 04:00 UTC
+                     ▼
+┌─────────────────────────────────────────────────┐
+│    tbdavid2019/openclaw-docs-skill (你的 repo)   │
+│    400+ 個最新文件永遠保持同步                      │
+└────────────────────┬────────────────────────────┘
+                     │ 使用者 git clone 一次
+                     ▼
+┌─────────────────────────────────────────────────┐
+│   LLM 本地 Skill (~/.gemini/.../openclaw-docs)  │
+│   每次被呼叫 → 自動 git pull → 永遠最新           │
+│   使用者無需任何手動操作                            │
+└─────────────────────────────────────────────────┘
+
+```
+
 ## License
 
 [AGPL-3.0](LICENSE) — Any derivative work must also be open-sourced under the same license. OpenClaw documentation is sourced from the official [OpenClaw repository](https://github.com/openclaw/openclaw).
