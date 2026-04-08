@@ -50,4 +50,4 @@ This script uses `sparse-checkout` to pull the latest changes from the official 
 Since this repository is a documentation skill, contributions that improve the `SKILL.md` (the agent's reasoning guide) or the `sync-docs.sh` (the performance engine) are highly welcome!
 
 ## License
-MIT License. OpenClaw documentation is sourced from the official [OpenClaw repository](https://github.com/openclaw/openclaw).
+AGPL-3.0 License. OpenClaw documentation is sourced from the official [OpenClaw repository](https://github.com/openclaw/openclaw).

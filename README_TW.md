@@ -50,4 +50,4 @@ sh scripts/sync-docs.sh
 歡迎提交 Pull Request 或 Issue！特別是如果你發現 `SKILL.md`（Agent 的導引邏輯）有改進空間，或者同步腳本有更好的寫法。
 
 ## 授權
-MIT License. OpenClaw 文件來源於官方 [OpenClaw 倉庫](https://github.com/openclaw/openclaw)。
+AGPL-3.0 License. OpenClaw 文件來源於官方 [OpenClaw 倉庫](https://github.com/openclaw/openclaw)。
