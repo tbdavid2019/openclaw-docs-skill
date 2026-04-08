@@ -165,7 +165,7 @@ Issues and PRs welcome! Contributions that improve:
                      │ GitHub Action 每日 04:00 UTC
                      ▼
 ┌─────────────────────────────────────────────────┐
-│    tbdavid2019/openclaw-docs-skill (你的 repo)   │
+│    tbdavid2019/openclaw-docs-skill              │
 │    400+ 個最新文件永遠保持同步                      │
 └────────────────────┬────────────────────────────┘
                      │ 使用者 git clone 一次
