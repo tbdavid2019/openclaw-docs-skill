@@ -12,6 +12,30 @@
 > [!TIP]
 > **AI Agent 閱讀指南**：本倉庫是一個結構化的 **Agent Skill**。當你在探索此倉庫時，請優先閱讀 [SKILL.md](SKILL.md) 以瞭解領域知識、文件分類及自動更新流程。
 
+## 使用範例
+安裝完成後，你的 AI Agent 可以利用此知識庫處理複雜場景：
+
+| 當你說... | AI Agent 會做什麼... |
+|---|---|
+| 「幫我升級 OpenClaw」 | 辨識最新版本，執行 `npm install` 並驗證服務健康狀況。 |
+| 「設定 Telegram 機器人」 | 引導你取得 Token 並完成 `openclaw.json` 配置。 |
+| 「Gateway 好像沒反應」 | 執行診斷階梯：`status` → `logs` → `doctor`。 |
+| 「幫工作環境加一個代理」 | 配置一個新的 Agent 工作空間，並設定獨立的綁定（Bindings）。 |
+
+## 快速指令參考
+```bash
+# 狀態與健康檢查
+openclaw status                    # 查看整體狀態
+openclaw gateway status            # 查看 Gateway 守護進程狀態
+openclaw doctor                    # 診斷常見問題
+openclaw channels status --probe   # 頻道連通性測試
+
+# 管理指令
+openclaw gateway start/stop/restart
+openclaw configure                 # 互動式配置精靈
+openclaw security audit            # 執行安全性稽核
+```
+
 ## Skill 結構
 ```
 openclaw-docs-skill/
@@ -43,14 +67,11 @@ openclaw-docs-skill/
    直接問你的 Agent：*"OpenClaw 目前對 WhatsApp 頻道對接有什麼最新要求？"*
 
 ## 如何更新文件？
-這本版本最大的優勢在於它可以手動更新。為了確保 Agent 擁有最新資訊（例如新出的功能或變動的 API），請隨時執行：
+為了確保 Agent 擁有最新資訊（例如新出的功能或變動的 API），請隨時執行：
 ```bash
 sh scripts/sync-docs.sh
 ```
-該腳本使用 `sparse-checkout` 技術，只抓取官方倉庫中的文件變更，不會下載多餘的程式碼，速度極快。
-
-## 貢獻
-歡迎提交 Pull Request 或 Issue！特別是如果你發現 `SKILL.md`（Agent 的導引邏輯）有改進空間，或者同步腳本有更好的寫法。
+或者在 GitHub Actions 頁面觸發 **Auto-Sync** 工作流。
 
 ## 授權
 AGPL-3.0 License. OpenClaw 文件來源於官方 [OpenClaw 倉庫](https://github.com/openclaw/openclaw)。

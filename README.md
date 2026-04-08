@@ -12,6 +12,30 @@ A high-performance **Agent Skill** for [OpenClaw](https://github.com/openclaw/op
 > [!TIP]
 > **Instructions for AI Agents**: This repository is a structured **Agent Skill**. When exploring this repository, please prioritize reading [SKILL.md](SKILL.md) to understand the domain knowledge, documentation categories, and update workflows.
 
+## Usage Examples
+Once installed, your AI Agent can handle complex scenarios using this knowledge base:
+
+| What You Say | What the AI Agent Does |
+|---|---|
+| "Help me upgrade OpenClaw" | Identifies the latest version, runs `npm install`, and verifies service health. |
+| "Set up a Telegram bot" | Walks you through token acquisition and `openclaw.json` configuration. |
+| "Gateway is not responding" | Executes a diagnostic ladder: `status` → `logs` → `doctor`. |
+| "Add a second agent for work" | Configures a new agent workspace with isolated bindings. |
+
+## Key Commands Quick Reference
+```bash
+# Status & Health
+openclaw status                    # Overall status
+openclaw gateway status            # Gateway daemon status
+openclaw doctor                    # Diagnose issues
+openclaw channels status --probe   # Channel health
+
+# Management
+openclaw gateway start/stop/restart
+openclaw configure                 # Interactive wizard
+openclaw security audit            # Check security posture
+```
+
 ## Skill Structure
 ```
 openclaw-docs-skill/
@@ -43,14 +67,11 @@ If you are using **Antigravity (Claude)**, follow these steps:
    Ask the agent: *"What are the latest requirements for setting up a WhatsApp channel in OpenClaw?"*
 
 ## Updating the Documentation
-This is the most important part. To ensure your Agent has the latest information (new features, changed APIs), run:
+To ensure your Agent has the latest information (new features, changed APIs), run:
 ```bash
 sh scripts/sync-docs.sh
 ```
-This script uses `sparse-checkout` to pull the latest changes from the official repo without downloading thousands of unnecessary files.
-
-## Contributing
-Since this repository is a documentation skill, contributions that improve the `SKILL.md` (the agent's reasoning guide) or the `sync-docs.sh` (the performance engine) are highly welcome!
+Or trigger the **Auto-Sync** workflow on GitHub Actions.
 
 ## License
 AGPL-3.0 License. OpenClaw documentation is sourced from the official [OpenClaw repository](https://github.com/openclaw/openclaw).
