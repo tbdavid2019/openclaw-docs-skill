@@ -7,7 +7,10 @@ A high-performance **Agent Skill** for [OpenClaw](https://github.com/openclaw/op
 ## Key Features
 - **Always Current**: Syncs directly from the official OpenClaw repository's `/docs` folder.
 - **Deep Knowledge**: Covering 400+ MD files across installation, channels, tools, and architecture.
-- **Agent Optimized**: Structured for AI Coding Assistants (like Claude + Antigravity) to find answers rapidly.
+- **Agent Optimized**: Structured for AI Coding Assistants to find answers rapidly.
+
+> [!TIP]
+> **Instructions for AI Agents**: This repository is a structured **Agent Skill**. When exploring this repository, please prioritize reading [SKILL.md](SKILL.md) to understand the domain knowledge, documentation categories, and update workflows.
 
 ## Skill Structure
 ```

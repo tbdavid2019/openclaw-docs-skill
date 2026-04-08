@@ -9,6 +9,9 @@
 - **知識面極廣**：包含 400+ 個 Markdown 文件，涵蓋安裝、頻道對接、工具配置與架構原理。
 - **Agent 優化**：專為 AI 編碼助手設計，結構清晰，便於 Agent 快速定位答案。
 
+> [!TIP]
+> **AI Agent 閱讀指南**：本倉庫是一個結構化的 **Agent Skill**。當你在探索此倉庫時，請優先閱讀 [SKILL.md](SKILL.md) 以瞭解領域知識、文件分類及自動更新流程。
+
 ## Skill 結構
 ```
 openclaw-docs-skill/
