@@ -41,54 +41,24 @@ This skill's GitHub repository (`tbdavid2019/openclaw-docs-skill`) is automatica
 > **Key principle**: The user never needs to manually sync or update. The LLM handles this autonomously.
 
 
-Use `view_file` or `grep_search` to read these references as needed:
+Use `view_file` or `grep_search` to read these references as needed.
+
+**MANDATORY: Always check [references/INDEX.md](references/INDEX.md) first to locate the exact documentation needed for any OpenClaw task.**
 
 | Reference | Coverage |
 |---|---|
-| [channels/](references/channels/) | Per-channel setup (WhatsApp, Telegram, Discord, Slack, iMessage, etc.) |
-| [channels/index.md](references/channels/index.md) | Channel overview and selection guide |
-| [tools/index.md](references/tools/index.md) | Tools inventory (profiles, groups, all built-in tools) |
-| [tools/exec.md](references/tools/exec.md) | Exec tool: parameters, config, PATH, security |
-| [tools/exec-approvals.md](references/tools/exec-approvals.md) | Exec approvals: allowlists, safe bins, approval flow |
-| [tools/browser.md](references/tools/browser.md) | Browser plugin: profiles, CDP, Chrome MCP, snapshots, SSRF |
-| [tools/web.md](references/tools/web.md) | Web tools: Brave, Perplexity, Gemini search providers |
-| [tools/pdf.md](references/tools/pdf.md) | PDF tool: native/fallback modes, config, page filtering |
-| [tools/elevated.md](references/tools/elevated.md) | Elevated mode: /elevated directives, sandbox breakout |
-| [tools/subagents.md](references/tools/subagents.md) | Sub-agents: nested spawning, thread binding, tool policy |
-| [tools/llm-task.md](references/tools/llm-task.md) | LLM Task: JSON-only LLM step for structured output |
-| [tools/acp-agents.md](references/tools/acp-agents.md) | ACP agents: spawn Codex, Claude Code, Gemini CLI, 14+ harnesses |
-| [tools/skills.md](references/tools/skills.md) | Skills: locations, config, ClawHub, watcher, token impact |
-| [tools/skills-config.md](references/tools/skills-config.md) | Skills config schema and JSON5 examples |
-| [tools/slash-commands.md](references/tools/slash-commands.md) | Chat slash commands (/new, /model, /acp, etc.) |
-| [tools/thinking.md](references/tools/thinking.md) | Thinking levels, verbose directives, reasoning visibility |
-| [tools/firecrawl.md](references/tools/firecrawl.md) | Firecrawl anti-bot fallback |
-| [tools/diffs.md](references/tools/diffs.md) | Diffs plugin for patch workflows |
-| [tools/plugin.md](references/tools/plugin.md) | Plugin system: install, author, distribute |
-| [tools/clawhub.md](references/tools/clawhub.md) | ClawHub: public skill registry, CLI commands, publish/install |
-| [tools/reactions.md](references/tools/reactions.md) | Message reactions (emoji responses) |
-| [tools/tts.md](references/tools/tts.md) | Text-to-speech (Talk Mode) |
-| [tools/image-generation.md](references/tools/image-generation.md) | Image generation tool |
-| [tools/video-generation.md](references/tools/video-generation.md) | Video generation tool |
-| [tools/music-generation.md](references/tools/music-generation.md) | Music generation tool |
-| [tools/btw.md](references/tools/btw.md) | BTW tool: background thoughts/notes |
-| [tools/loop-detection.md](references/tools/loop-detection.md) | Loop detection and prevention |
-| [plugins/](references/plugins/) | Plugin architecture and SDK |
+| [INDEX.md](references/INDEX.md) | **Directory of ALL available documentation (Start here)** |
+| [channels/](references/channels/) | Channel setup (WhatsApp, Telegram, Discord, Slack, iMessage, etc.) |
 | [providers/](references/providers/) | Model provider setup (Anthropic, OpenAI, Google, Ollama, etc.) |
-| [concepts/](references/concepts/) | Core concepts: agent loop, memory, queue, streaming, sessions |
-| [gateway/](references/gateway/) | Gateway operations, config, security, sandboxing |
-| [gateway/configuration.md](references/gateway/configuration.md) | Full config field reference |
-| [gateway/security.md](references/gateway/security.md) | Security hardening |
-| [security/](references/security/) | Security policies and audit guides |
-| [nodes/](references/nodes/) | Nodes (iOS/Android/macOS/headless) |
-| [automation/](references/automation/) | Cron jobs, webhooks, background tasks, standing orders |
-| [install/](references/install/) | Installation, updating, rollback, migration, uninstall |
-| [platforms/](references/platforms/) | Platform-specific guides (macOS, iOS, Android, Linux, Windows) |
-| [web/](references/web/) | Web surfaces: Dashboard, Control UI, WebChat, TUI |
-| [web/tui.md](references/web/tui.md) | TUI: keyboard shortcuts, slash commands, pickers, local shell |
-| [web/dashboard.md](references/web/dashboard.md) | Dashboard and Control UI |
+| [tools/](references/tools/) | Detailed per-tool documentation (exec, browser, web, etc.) |
+| [gateway/](references/gateway/) | Gateway operations, config, and security |
+| [automation/](references/automation/) | Cron jobs, webhooks, and background tasks |
+| [concepts/](references/concepts/) | Core concepts: agent loop, memory, queue, sessions |
 | [diagnostics/](references/diagnostics/) | Troubleshooting guides and failure walkthroughs |
-| [cli/](references/cli/) | CLI reference |
-| [reference/](references/reference/) | API and config reference |
+| [cli/](references/cli/) | Full CLI command reference |
+| [install/](references/install/) | Installation, updating, and migration |
+| [platforms/](references/platforms/) | OS-specific guides (macOS, Linux, Windows, etc.) |
+| [web/](references/web/) | Web Surfaces: Dashboard, Control UI, TUI, nodes |
 
 ## Quick Reference
 

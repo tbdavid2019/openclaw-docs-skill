@@ -1,196 +1,453 @@
----
-summary: "OpenClaw is a multi-channel gateway for AI agents that runs on any OS."
-read_when:
-  - Introducing OpenClaw to newcomers
-title: "OpenClaw"
----
+# OpenClaw Documentation Index
 
-# OpenClaw 🦞
+Last Updated: 2026-04-14 13:20:22
 
-<p align="center">
-    <img
-        src="/assets/openclaw-logo-text-dark.png"
-        alt="OpenClaw"
-        width="500"
-        class="dark:hidden"
-    />
-    <img
-        src="/assets/openclaw-logo-text.png"
-        alt="OpenClaw"
-        width="500"
-        class="hidden dark:block"
-    />
-</p>
+This is a comprehensive index of all available OpenClaw documentation, organized by category.
 
-> _"EXFOLIATE! EXFOLIATE!"_ — A space lobster, probably
+## General
+- [Auth Credential Semantics](auth-credential-semantics.md)
+- [Brave Search (legacy path)](brave-search.md)
+- [CI Pipeline](ci.md)
+- [Date and Time](date-time.md)
+- [Logging Overview](logging.md)
+- [Network](network.md)
+- [Perplexity Search (legacy path)](perplexity.md)
+- [Pi Development Workflow](pi-dev.md)
+- [Pi Integration Architecture](pi.md)
+- [OpenProse](prose.md)
+- [Text-to-Speech](tts.md)
+- [Linux Server](vps.md)
 
-<p align="center">
-  <strong>Any OS gateway for AI agents across Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo, and more.</strong><br />
-  Send a message, get an agent response from your pocket. Run one Gateway across built-in channels, bundled channel plugins, WebChat, and mobile nodes.
-</p>
+## Automation
+- [Auth Monitoring](automation/auth-monitoring.md)
+- [ClawFlow](automation/clawflow.md)
+- [Scheduled Tasks](automation/cron-jobs.md)
+- [Cron vs Heartbeat](automation/cron-vs-heartbeat.md)
+- [Gmail PubSub](automation/gmail-pubsub.md)
+- [Hooks](automation/hooks.md)
+- [Polls](automation/poll.md)
+- [Standing Orders](automation/standing-orders.md)
+- [Task Flow](automation/taskflow.md)
+- [Background Tasks](automation/tasks.md)
+- [Automation Troubleshooting](automation/troubleshooting.md)
+- [Webhooks](automation/webhook.md)
 
-<Columns>
-  <Card title="Get Started" href="/start/getting-started" icon="rocket">
-    Install OpenClaw and bring up the Gateway in minutes.
-  </Card>
-  <Card title="Run Onboarding" href="/start/wizard" icon="sparkles">
-    Guided setup with `openclaw onboard` and pairing flows.
-  </Card>
-  <Card title="Open the Control UI" href="/web/control-ui" icon="layout-dashboard">
-    Launch the browser dashboard for chat, config, and sessions.
-  </Card>
-</Columns>
+## Channels
+- [BlueBubbles](channels/bluebubbles.md)
+- [Broadcast Groups](channels/broadcast-groups.md)
+- [Channel Routing](channels/channel-routing.md)
+- [Discord](channels/discord.md)
+- [Feishu](channels/feishu.md)
+- [Google Chat](channels/googlechat.md)
+- [Group Messages](channels/group-messages.md)
+- [Groups](channels/groups.md)
+- [iMessage](channels/imessage.md)
+- [IRC](channels/irc.md)
+- [LINE](channels/line.md)
+- [Channel Location Parsing](channels/location.md)
+- [Matrix](channels/matrix.md)
+- [Mattermost](channels/mattermost.md)
+- [Microsoft Teams](channels/msteams.md)
+- [Nextcloud Talk](channels/nextcloud-talk.md)
+- [Nostr](channels/nostr.md)
+- [Pairing](channels/pairing.md)
+- [QA Channel](channels/qa-channel.md)
+- [QQ Bot](channels/qqbot.md)
+- [Signal](channels/signal.md)
+- [Slack](channels/slack.md)
+- [Synology Chat](channels/synology-chat.md)
+- [Telegram](channels/telegram.md)
+- [Tlon](channels/tlon.md)
+- [Channel Troubleshooting](channels/troubleshooting.md)
+- [Twitch](channels/twitch.md)
+- [WhatsApp](channels/whatsapp.md)
+- [Zalo](channels/zalo.md)
+- [Zalo Personal](channels/zalouser.md)
 
-## What is OpenClaw?
+## Cli
+- [acp](cli/acp.md)
+- [agent](cli/agent.md)
+- [agents](cli/agents.md)
+- [approvals](cli/approvals.md)
+- [backup](cli/backup.md)
+- [browser](cli/browser.md)
+- [channels](cli/channels.md)
+- [clawbot](cli/clawbot.md)
+- [completion](cli/completion.md)
+- [config](cli/config.md)
+- [configure](cli/configure.md)
+- [cron](cli/cron.md)
+- [daemon](cli/daemon.md)
+- [dashboard](cli/dashboard.md)
+- [devices](cli/devices.md)
+- [directory](cli/directory.md)
+- [dns](cli/dns.md)
+- [docs](cli/docs.md)
+- [doctor](cli/doctor.md)
+- [flows (redirect)](cli/flows.md)
+- [gateway](cli/gateway.md)
+- [health](cli/health.md)
+- [hooks](cli/hooks.md)
+- [Inference CLI](cli/infer.md)
+- [logs](cli/logs.md)
+- [mcp](cli/mcp.md)
+- [memory](cli/memory.md)
+- [message](cli/message.md)
+- [models](cli/models.md)
+- [node](cli/node.md)
+- [nodes](cli/nodes.md)
+- [onboard](cli/onboard.md)
+- [pairing](cli/pairing.md)
+- [plugins](cli/plugins.md)
+- [qr](cli/qr.md)
+- [reset](cli/reset.md)
+- [Sandbox CLI](cli/sandbox.md)
+- [secrets](cli/secrets.md)
+- [security](cli/security.md)
+- [sessions](cli/sessions.md)
+- [setup](cli/setup.md)
+- [skills](cli/skills.md)
+- [status](cli/status.md)
+- [system](cli/system.md)
+- [tui](cli/tui.md)
+- [uninstall](cli/uninstall.md)
+- [update](cli/update.md)
+- [voicecall](cli/voicecall.md)
+- [webhooks](cli/webhooks.md)
+- [wiki](cli/wiki.md)
 
-OpenClaw is a **self-hosted gateway** that connects your favorite chat apps and channel surfaces — built-in channels plus bundled or external channel plugins such as Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
+## Concepts
+- [Agent Loop](concepts/agent-loop.md)
+- [Agent Workspace](concepts/agent-workspace.md)
+- [Agent Runtime](concepts/agent.md)
+- [Gateway Architecture](concepts/architecture.md)
+- [Compaction](concepts/compaction.md)
+- [Context Engine](concepts/context-engine.md)
+- [Context](concepts/context.md)
+- [Delegate Architecture](concepts/delegate-architecture.md)
+- [Dreaming (experimental)](concepts/dreaming.md)
+- [Features](concepts/features.md)
+- [Markdown Formatting](concepts/markdown-formatting.md)
+- [Builtin Memory Engine](concepts/memory-builtin.md)
+- [Honcho Memory](concepts/memory-honcho.md)
+- [QMD Memory Engine](concepts/memory-qmd.md)
+- [Memory Search](concepts/memory-search.md)
+- [Memory Overview](concepts/memory.md)
+- [Messages](concepts/messages.md)
+- [Model Failover](concepts/model-failover.md)
+- [Model Providers](concepts/model-providers.md)
+- [Models CLI](concepts/models.md)
+- [Multi-Agent Routing](concepts/multi-agent.md)
+- [OAuth](concepts/oauth.md)
+- [Presence](concepts/presence.md)
+- [QA E2E Automation](concepts/qa-e2e-automation.md)
+- [Command Queue](concepts/queue.md)
+- [Retry Policy](concepts/retry.md)
+- [Session Pruning](concepts/session-pruning.md)
+- [Session Tools](concepts/session-tool.md)
+- [Session Management](concepts/session.md)
+- [SOUL.md Personality Guide](concepts/soul.md)
+- [Streaming and Chunking](concepts/streaming.md)
+- [System Prompt](concepts/system-prompt.md)
+- [Timezones](concepts/timezone.md)
+- [TypeBox](concepts/typebox.md)
+- [Typing Indicators](concepts/typing-indicators.md)
+- [Usage Tracking](concepts/usage-tracking.md)
 
-**Who is it for?** Developers and power users who want a personal AI assistant they can message from anywhere — without giving up control of their data or relying on a hosted service.
+## Debug
+- [Node + tsx Crash](debug/node-issue.md)
 
-**What makes it different?**
+## Diagnostics
+- [Diagnostics Flags](diagnostics/flags.md)
 
-- **Self-hosted**: runs on your hardware, your rules
-- **Multi-channel**: one Gateway serves built-in channels plus bundled or external channel plugins simultaneously
-- **Agent-native**: built for coding agents with tool use, sessions, memory, and multi-agent routing
-- **Open source**: MIT licensed, community-driven
+## Gateway
+- [Authentication](gateway/authentication.md)
+- [Background Exec and Process Tool](gateway/background-process.md)
+- [Bonjour Discovery](gateway/bonjour.md)
+- [Bridge Protocol](gateway/bridge-protocol.md)
+- [CLI Backends](gateway/cli-backends.md)
+- [Configuration Examples](gateway/configuration-examples.md)
+- [Configuration Reference](gateway/configuration-reference.md)
+- [Configuration](gateway/configuration.md)
+- [Discovery and Transports](gateway/discovery.md)
+- [Doctor](gateway/doctor.md)
+- [Gateway Lock](gateway/gateway-lock.md)
+- [Health Checks](gateway/health.md)
+- [Heartbeat](gateway/heartbeat.md)
+- [Local Models](gateway/local-models.md)
+- [Gateway Logging](gateway/logging.md)
+- [Multiple Gateways](gateway/multiple-gateways.md)
+- [Network model](gateway/network-model.md)
+- [OpenAI Chat Completions](gateway/openai-http-api.md)
+- [OpenResponses API](gateway/openresponses-http-api.md)
+- [OpenShell](gateway/openshell.md)
+- [Gateway-Owned Pairing](gateway/pairing.md)
+- [Gateway Protocol](gateway/protocol.md)
+- [Remote Gateway Setup](gateway/remote-gateway-readme.md)
+- [Remote Access](gateway/remote.md)
+- [Sandbox vs Tool Policy vs Elevated](gateway/sandbox-vs-tool-policy-vs-elevated.md)
+- [Sandboxing](gateway/sandboxing.md)
+- [Secrets Apply Plan Contract](gateway/secrets-plan-contract.md)
+- [Secrets Management](gateway/secrets.md)
+- [Tailscale](gateway/tailscale.md)
+- [Tools Invoke API](gateway/tools-invoke-http-api.md)
+- [Troubleshooting](gateway/troubleshooting.md)
+- [Trusted Proxy Auth](gateway/trusted-proxy-auth.md)
 
-**What do you need?** Node 24 (recommended), or Node 22 LTS (`22.14+`) for compatibility, an API key from your chosen provider, and 5 minutes. For best quality and security, use the strongest latest-generation model available.
+## Help
+- [Debugging](help/debugging.md)
+- [Environment Variables](help/environment.md)
+- [FAQ](help/faq.md)
+- [Scripts](help/scripts.md)
+- [Testing](help/testing.md)
+- [General Troubleshooting](help/troubleshooting.md)
 
-## How it works
+## Install
+- [Ansible](install/ansible.md)
+- [Azure](install/azure.md)
+- [Bun (Experimental)](install/bun.md)
+- [ClawDock](install/clawdock.md)
+- [Release Channels](install/development-channels.md)
+- [DigitalOcean](install/digitalocean.md)
+- [Docker VM Runtime](install/docker-vm-runtime.md)
+- [Docker](install/docker.md)
+- [exe.dev](install/exe-dev.md)
+- [Fly.io](install/fly.md)
+- [GCP](install/gcp.md)
+- [Hetzner](install/hetzner.md)
+- [Installer Internals](install/installer.md)
+- [Kubernetes](install/kubernetes.md)
+- [macOS VMs](install/macos-vm.md)
+- [Matrix migration](install/migrating-matrix.md)
+- [Migration Guide](install/migrating.md)
+- [Nix](install/nix.md)
+- [Node.js](install/node.md)
+- [Oracle Cloud](install/oracle.md)
+- [Podman](install/podman.md)
+- [Raspberry Pi](install/raspberry-pi.md)
+- [Uninstall](install/uninstall.md)
+- [Updating](install/updating.md)
 
-```mermaid
-flowchart LR
-  A["Chat apps + plugins"] --> B["Gateway"]
-  B --> C["Pi agent"]
-  B --> D["CLI"]
-  B --> E["Web Control UI"]
-  B --> F["macOS app"]
-  B --> G["iOS and Android nodes"]
-```
+## Nodes
+- [Audio and Voice Notes](nodes/audio.md)
+- [Camera Capture](nodes/camera.md)
+- [Image and Media Support](nodes/images.md)
+- [Location Command](nodes/location-command.md)
+- [Media Understanding](nodes/media-understanding.md)
+- [Talk Mode](nodes/talk.md)
+- [Node Troubleshooting](nodes/troubleshooting.md)
+- [Voice Wake](nodes/voicewake.md)
 
-The Gateway is the single source of truth for sessions, routing, and channel connections.
+## Plans
+- [refactor: Make plugin-sdk a real workspace package incrementally](plans/2026-04-05-002-refactor-real-plugin-sdk-workspace-plan.md)
 
-## Key capabilities
+## Platforms
+- [Android App](platforms/android.md)
+- [DigitalOcean (Platform)](platforms/digitalocean.md)
+- [iOS App](platforms/ios.md)
+- [Linux App](platforms/linux.md)
+- [macOS App](platforms/macos.md)
+- [Oracle Cloud (Platform)](platforms/oracle.md)
+- [Raspberry Pi (Platform)](platforms/raspberry-pi.md)
+- [Windows](platforms/windows.md)
 
-<Columns>
-  <Card title="Multi-channel gateway" icon="network">
-    Discord, iMessage, Signal, Slack, Telegram, WhatsApp, WebChat, and more with a single Gateway process.
-  </Card>
-  <Card title="Plugin channels" icon="plug">
-    Bundled plugins add Matrix, Nostr, Twitch, Zalo, and more in normal current releases.
-  </Card>
-  <Card title="Multi-agent routing" icon="route">
-    Isolated sessions per agent, workspace, or sender.
-  </Card>
-  <Card title="Media support" icon="image">
-    Send and receive images, audio, and documents.
-  </Card>
-  <Card title="Web Control UI" icon="monitor">
-    Browser dashboard for chat, config, sessions, and nodes.
-  </Card>
-  <Card title="Mobile nodes" icon="smartphone">
-    Pair iOS and Android nodes for Canvas, camera, and voice-enabled workflows.
-  </Card>
-</Columns>
+## Platforms > mac
+- [Gateway on macOS](platforms/mac/bundled-gateway.md)
+- [Canvas](platforms/mac/canvas.md)
+- [Gateway Lifecycle](platforms/mac/child-process.md)
+- [macOS Dev Setup](platforms/mac/dev-setup.md)
+- [Health Checks (macOS)](platforms/mac/health.md)
+- [Menu Bar Icon](platforms/mac/icon.md)
+- [macOS Logging](platforms/mac/logging.md)
+- [Menu Bar](platforms/mac/menu-bar.md)
+- [Peekaboo Bridge](platforms/mac/peekaboo.md)
+- [macOS Permissions](platforms/mac/permissions.md)
+- [Remote Control](platforms/mac/remote.md)
+- [macOS Signing](platforms/mac/signing.md)
+- [Skills (macOS)](platforms/mac/skills.md)
+- [Voice Overlay](platforms/mac/voice-overlay.md)
+- [Voice Wake (macOS)](platforms/mac/voicewake.md)
+- [WebChat (macOS)](platforms/mac/webchat.md)
+- [macOS IPC](platforms/mac/xpc.md)
 
-## Quick start
+## Plugins
+- [Registering Tools](plugins/agent-tools.md)
+- [Plugin Internals](plugins/architecture.md)
+- [Building Plugins (redirect)](plugins/building-extensions.md)
+- [Building Plugins](plugins/building-plugins.md)
+- [Plugin Bundles](plugins/bundles.md)
+- [Community Plugins](plugins/community.md)
+- [Plugin Manifest](plugins/manifest.md)
+- [Memory Wiki](plugins/memory-wiki.md)
+- [Building Channel Plugins](plugins/sdk-channel-plugins.md)
+- [Plugin Entry Points](plugins/sdk-entrypoints.md)
+- [Plugin SDK Migration](plugins/sdk-migration.md)
+- [Plugin SDK Overview](plugins/sdk-overview.md)
+- [Building Provider Plugins](plugins/sdk-provider-plugins.md)
+- [Plugin Runtime Helpers](plugins/sdk-runtime.md)
+- [Plugin Setup and Config](plugins/sdk-setup.md)
+- [Plugin Testing](plugins/sdk-testing.md)
+- [Voice Call Plugin](plugins/voice-call.md)
+- [Webhooks Plugin](plugins/webhooks.md)
+- [Zalo Personal Plugin](plugins/zalouser.md)
 
-<Steps>
-  <Step title="Install OpenClaw">
-    ```bash
-    npm install -g openclaw@latest
-    ```
-  </Step>
-  <Step title="Onboard and install the service">
-    ```bash
-    openclaw onboard --install-daemon
-    ```
-  </Step>
-  <Step title="Chat">
-    Open the Control UI in your browser and send a message:
+## Providers
+- [Alibaba Model Studio](providers/alibaba.md)
+- [Anthropic](providers/anthropic.md)
+- [Arcee AI](providers/arcee.md)
+- [Amazon Bedrock Mantle](providers/bedrock-mantle.md)
+- [Amazon Bedrock](providers/bedrock.md)
+- [Chutes](providers/chutes.md)
+- [Claude Max API Proxy](providers/claude-max-api-proxy.md)
+- [Cloudflare AI Gateway](providers/cloudflare-ai-gateway.md)
+- [ComfyUI](providers/comfy.md)
+- [Deepgram](providers/deepgram.md)
+- [DeepSeek](providers/deepseek.md)
+- [fal](providers/fal.md)
+- [Fireworks](providers/fireworks.md)
+- [GitHub Copilot](providers/github-copilot.md)
+- [GLM Models](providers/glm.md)
+- [Google (Gemini)](providers/google.md)
+- [Groq](providers/groq.md)
+- [Hugging Face (Inference)](providers/huggingface.md)
+- [inferrs](providers/inferrs.md)
+- [Kilo Gateway](providers/kilocode.md)
+- [LiteLLM](providers/litellm.md)
+- [MiniMax](providers/minimax.md)
+- [Mistral](providers/mistral.md)
+- [Model Provider Quickstart](providers/models.md)
+- [Moonshot AI](providers/moonshot.md)
+- [NVIDIA](providers/nvidia.md)
+- [Ollama](providers/ollama.md)
+- [OpenAI](providers/openai.md)
+- [OpenCode Go](providers/opencode-go.md)
+- [OpenCode](providers/opencode.md)
+- [OpenRouter](providers/openrouter.md)
+- [Perplexity (Provider)](providers/perplexity-provider.md)
+- [Qianfan](providers/qianfan.md)
+- [Qwen](providers/qwen.md)
+- [Qwen / Model Studio](providers/qwen_modelstudio.md)
+- [Runway](providers/runway.md)
+- [SGLang](providers/sglang.md)
+- [StepFun](providers/stepfun.md)
+- [Synthetic](providers/synthetic.md)
+- [Together AI](providers/together.md)
+- [Venice AI](providers/venice.md)
+- [Vercel AI Gateway](providers/vercel-ai-gateway.md)
+- [vLLM](providers/vllm.md)
+- [Volcengine (Doubao)](providers/volcengine.md)
+- [Vydra](providers/vydra.md)
+- [xAI](providers/xai.md)
+- [Xiaomi MiMo](providers/xiaomi.md)
+- [Z.AI](providers/zai.md)
 
-    ```bash
-    openclaw dashboard
-    ```
+## Refactor
+- [QA Refactor](refactor/qa.md)
 
-    Or connect a channel ([Telegram](/channels/telegram) is fastest) and chat from your phone.
+## Reference
+- [Default AGENTS.md](reference/AGENTS.default.md)
+- [Release Policy](reference/RELEASING.md)
+- [API Usage and Costs](reference/api-usage-costs.md)
+- [Credits](reference/credits.md)
+- [Device Model Database](reference/device-models.md)
+- [Memory configuration reference](reference/memory-config.md)
+- [Prompt Caching](reference/prompt-caching.md)
+- [RPC Adapters](reference/rpc.md)
+- [SecretRef Credential Surface](reference/secretref-credential-surface.md)
+- [Session Management Deep Dive](reference/session-management-compaction.md)
+- [Tests](reference/test.md)
+- [Token Use and Costs](reference/token-use.md)
+- [Transcript Hygiene](reference/transcript-hygiene.md)
+- [Onboarding Reference](reference/wizard.md)
 
-  </Step>
-</Steps>
+## Reference > templates
+- [AGENTS.dev Template](reference/templates/AGENTS.dev.md)
+- [AGENTS.md Template](reference/templates/AGENTS.md)
+- [BOOT.md Template](reference/templates/BOOT.md)
+- [BOOTSTRAP.md Template](reference/templates/BOOTSTRAP.md)
+- [AGENTS.md Template](reference/templates/CLAUDE.md)
+- [HEARTBEAT.md Template](reference/templates/HEARTBEAT.md)
+- [IDENTITY.dev Template](reference/templates/IDENTITY.dev.md)
+- [IDENTITY Template](reference/templates/IDENTITY.md)
+- [SOUL.dev Template](reference/templates/SOUL.dev.md)
+- [SOUL.md Template](reference/templates/SOUL.md)
+- [TOOLS.dev Template](reference/templates/TOOLS.dev.md)
+- [TOOLS.md Template](reference/templates/TOOLS.md)
+- [USER.dev Template](reference/templates/USER.dev.md)
+- [USER Template](reference/templates/USER.md)
 
-Need the full install and dev setup? See [Getting Started](/start/getting-started).
+## Security
+- [Contributing to the Threat Model](security/CONTRIBUTING-THREAT-MODEL.md)
+- [Threat Model (MITRE ATLAS)](security/THREAT-MODEL-ATLAS.md)
+- [Formal Verification (Security Models)](security/formal-verification.md)
 
-## Dashboard
+## Start
+- [Agent Bootstrapping](start/bootstrapping.md)
+- [Docs directory](start/docs-directory.md)
+- [Getting Started](start/getting-started.md)
+- [Docs Hubs](start/hubs.md)
+- [OpenClaw Lore](start/lore.md)
+- [Onboarding Overview](start/onboarding-overview.md)
+- [Onboarding (macOS App)](start/onboarding.md)
+- [Personal Assistant Setup](start/openclaw.md)
+- [Quick start](start/quickstart.md)
+- [Setup](start/setup.md)
+- [Showcase](start/showcase.md)
+- [CLI Automation](start/wizard-cli-automation.md)
+- [CLI Setup Reference](start/wizard-cli-reference.md)
+- [Onboarding (CLI)](start/wizard.md)
 
-Open the browser Control UI after the Gateway starts.
+## Tools
+- [ACP Agents](tools/acp-agents.md)
+- [Agent Send](tools/agent-send.md)
+- [apply_patch Tool](tools/apply-patch.md)
+- [Brave Search](tools/brave-search.md)
+- [Browser Troubleshooting](tools/browser-linux-troubleshooting.md)
+- [Browser Login](tools/browser-login.md)
+- [WSL2 + Windows + remote Chrome CDP troubleshooting](tools/browser-wsl2-windows-remote-cdp-troubleshooting.md)
+- [Browser (OpenClaw-managed)](tools/browser.md)
+- [BTW Side Questions](tools/btw.md)
+- [Adding Capabilities (Contributor Guide)](tools/capability-cookbook.md)
+- [ClawHub](tools/clawhub.md)
+- [Code Execution](tools/code-execution.md)
+- [Creating Skills](tools/creating-skills.md)
+- [Diffs](tools/diffs.md)
+- [DuckDuckGo Search](tools/duckduckgo-search.md)
+- [Elevated Mode](tools/elevated.md)
+- [Exa Search](tools/exa-search.md)
+- [Exec Approvals](tools/exec-approvals.md)
+- [Exec Tool](tools/exec.md)
+- [Firecrawl](tools/firecrawl.md)
+- [Gemini Search](tools/gemini-search.md)
+- [Grok Search](tools/grok-search.md)
+- [Image Generation](tools/image-generation.md)
+- [Kimi Search](tools/kimi-search.md)
+- [LLM Task](tools/llm-task.md)
+- [Lobster](tools/lobster.md)
+- [Tool-loop detection](tools/loop-detection.md)
+- [Media Overview](tools/media-overview.md)
+- [MiniMax Search](tools/minimax-search.md)
+- [Multi-Agent Sandbox & Tools](tools/multi-agent-sandbox-tools.md)
+- [Music Generation](tools/music-generation.md)
+- [Ollama Web Search](tools/ollama-search.md)
+- [PDF Tool](tools/pdf.md)
+- [Perplexity Search](tools/perplexity-search.md)
+- [Plugins](tools/plugin.md)
+- [Reactions](tools/reactions.md)
+- [SearXNG Search](tools/searxng-search.md)
+- [Skills Config](tools/skills-config.md)
+- [Skills](tools/skills.md)
+- [Slash Commands](tools/slash-commands.md)
+- [Sub-Agents](tools/subagents.md)
+- [Tavily](tools/tavily.md)
+- [Thinking Levels](tools/thinking.md)
+- [Text-to-Speech](tools/tts.md)
+- [Video Generation](tools/video-generation.md)
+- [Web Fetch](tools/web-fetch.md)
+- [Web Search](tools/web.md)
 
-- Local default: [http://127.0.0.1:18789/](http://127.0.0.1:18789/)
-- Remote access: [Web surfaces](/web) and [Tailscale](/gateway/tailscale)
-
-<p align="center">
-  <img src="/whatsapp-openclaw.jpg" alt="OpenClaw" width="420" />
-</p>
-
-## Configuration (optional)
-
-Config lives at `~/.openclaw/openclaw.json`.
-
-- If you **do nothing**, OpenClaw uses the bundled Pi binary in RPC mode with per-sender sessions.
-- If you want to lock it down, start with `channels.whatsapp.allowFrom` and (for groups) mention rules.
-
-Example:
-
-```json5
-{
-  channels: {
-    whatsapp: {
-      allowFrom: ["+15555550123"],
-      groups: { "*": { requireMention: true } },
-    },
-  },
-  messages: { groupChat: { mentionPatterns: ["@openclaw"] } },
-}
-```
-
-## Start here
-
-<Columns>
-  <Card title="Docs hubs" href="/start/hubs" icon="book-open">
-    All docs and guides, organized by use case.
-  </Card>
-  <Card title="Configuration" href="/gateway/configuration" icon="settings">
-    Core Gateway settings, tokens, and provider config.
-  </Card>
-  <Card title="Remote access" href="/gateway/remote" icon="globe">
-    SSH and tailnet access patterns.
-  </Card>
-  <Card title="Channels" href="/channels/telegram" icon="message-square">
-    Channel-specific setup for Feishu, Microsoft Teams, WhatsApp, Telegram, Discord, and more.
-  </Card>
-  <Card title="Nodes" href="/nodes" icon="smartphone">
-    iOS and Android nodes with pairing, Canvas, camera, and device actions.
-  </Card>
-  <Card title="Help" href="/help" icon="life-buoy">
-    Common fixes and troubleshooting entry point.
-  </Card>
-</Columns>
-
-## Learn more
-
-<Columns>
-  <Card title="Full feature list" href="/concepts/features" icon="list">
-    Complete channel, routing, and media capabilities.
-  </Card>
-  <Card title="Multi-agent routing" href="/concepts/multi-agent" icon="route">
-    Workspace isolation and per-agent sessions.
-  </Card>
-  <Card title="Security" href="/gateway/security" icon="shield">
-    Tokens, allowlists, and safety controls.
-  </Card>
-  <Card title="Troubleshooting" href="/gateway/troubleshooting" icon="wrench">
-    Gateway diagnostics and common errors.
-  </Card>
-  <Card title="About and credits" href="/reference/credits" icon="info">
-    Project origins, contributors, and license.
-  </Card>
-</Columns>
+## Web
+- [Control UI](web/control-ui.md)
+- [Dashboard](web/dashboard.md)
+- [TUI](web/tui.md)
+- [WebChat](web/webchat.md)

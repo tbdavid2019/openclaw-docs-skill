@@ -42,4 +42,9 @@ cp -R "$TEMP_DIR/$SOURCE_FOLDER/"* "$DEST_FOLDER/"
 # Summary
 FILE_COUNT=$(find "$DEST_FOLDER" -name "*.md" | wc -l)
 echo "✅ Sync complete! $FILE_COUNT markdown files synced."
+
+# Generate index
+echo "🗂️ Generating documentation index..."
+python3 scripts/generate_index.py
+
 echo "💡 Tip: Run this script whenever you want to update the documentation."

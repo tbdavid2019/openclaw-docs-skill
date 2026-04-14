@@ -1,13 +1,21 @@
 # OpenClaw 文件 Skill（自動同步版）
 
+> [!IMPORTANT]
+> ### 🤖 Instructions for AI Agent Installation / AI 助手安裝指引
+>
+> **English:** If a user provides you with this repository URL and asks you to "install" or "setup" this skill, follow these steps:
+> 1.  **Clone the Repository**: Run `git clone https://github.com/tbdavid2019/openclaw-docs-skill.git` in the user's working directory.
+> 2.  **Load Skill Metadata**: Read `SKILL.md` to understand the specialized workflows and knowledge contained here.
+> 3.  **Initialize Context**: Acknowledge that you now have access to the comprehensive OpenClaw documentation. **Always consult `references/INDEX.md` first to locate specific documentation files.**
+>
+> **繁體中文：** 如果使用者提供此倉庫網址並要求你「安裝」或「設定」此技能服務，請遵循以下步驟：
+> 1.  **複製倉庫**：執行 `git clone https://github.com/tbdavid2019/openclaw-docs-skill.git` 將代碼庫下載至本地集。
+> 2.  **載入技能**：讀取 `SKILL.md` 以了解此技能的專業工作流程與知識範圍。
+> 3.  **初始化環境**：確認你已具備存取完整 OpenClaw 官方文檔的能力。**每當需要查詢特定功能或維護指引時，請優先參考 `references/INDEX.md`。**
+
+---
+
 [English](README.md) | 繁體中文
-
-一個完整的 **Agent Skill**，涵蓋 [OpenClaw](https://github.com/openclaw/openclaw) 的安裝、設定、操作與故障排除——OpenClaw 是一個自主架設、支援多頻道的 AI Agent 閘道器。
-
-與靜態 Skill 不同，本版本內建了**同步引擎**，可直接從 OpenClaw 官方倉庫拉取最新文件，確保你的 AI 助手永遠掌握最新資訊。
-
-> [!TIP]
-> **AI Agent 閱讀指南**：本倉庫是一個結構化的 **Agent Skill**。在回答任何與 OpenClaw 相關的問題前，請優先閱讀 [SKILL.md](SKILL.md)，以了解可用指令、診斷流程與文件索引。
 
 ## 這是什麼？
 
