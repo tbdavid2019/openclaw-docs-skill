@@ -1,6 +1,6 @@
 # OpenClaw Documentation Index
 
-Last Updated: 2026-04-14 05:56:45
+Last Updated: 2026-04-15 05:56:22
 
 This is a comprehensive index of all available OpenClaw documentation, organized by category.
 
