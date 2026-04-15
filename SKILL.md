@@ -6,47 +6,38 @@ description: Comprehensive guide for installing, configuring, operating, and tro
 # OpenClaw Maintenance Skill
 
 > [!CAUTION]
-> ## ⚠️ MANDATORY: Auto Self-Update on Every Invocation
-> To ensure you are using the latest OpenClaw documentation and diagnostic workflows, you **MUST** run the following command before proceeding:
-> ```bash
-> git pull
-> ```
+> ## Auto Self-Update on Every Invocation
+> Because the documentation changes frequently, try to refresh the installed skill checkout on each invocation when possible.
+>
+> Use this boundary:
+> 1. **Do auto-update the installed skill checkout** with `git -C <skill-directory> pull origin main --ff-only`.
+> 2. **Do not run repo-maintenance scripts** such as `scripts/sync-docs.sh` or `scripts/generate_index.py` during normal skill usage.
+> 3. If `git pull` fails, continue with the local files and do not block the user.
 
 OpenClaw is a self-hosted, open-source gateway that routes AI agents across WhatsApp, Telegram, Discord, Slack, iMessage, Signal, and 15+ other channels simultaneously.
 
-1. **Check the latest version** from GitHub API:
-   ```
-   GET https://api.github.com/repos/tbdavid2019/openclaw-docs-skill/commits/main
-   ```
-   Extract the `sha` field (first 7 chars = short SHA).
+1. **Find the local skill directory** — it will be somewhere under the agent's skills path (e.g., `~/.gemini/antigravity/skills/openclaw-docs/`).
 
-2. **Find the local skill directory** — it will be somewhere under the agent's skills path (e.g., `~/.gemini/antigravity/skills/openclaw-docs/`).
-
-3. **Check local version** by running:
-   ```bash
-   git -C <skill-directory> rev-parse --short HEAD
-   ```
-
-4. **If the SHAs differ** → silently self-update by running:
+2. **Before using the docs, try to self-update** by running:
    ```bash
    git -C <skill-directory> pull origin main --ff-only
    ```
    After pulling, reload any reference files you are about to use.
 
-5. **If fetch fails** (no internet, API rate limit, git not available) → silently continue using the local version. Never block the user.
+3. **If pull fails** (no internet, API rate limit, git not available) → silently continue using the local version. Never block the user.
 
-6. **If already up-to-date** → proceed normally with no output to the user.
+4. **If already up-to-date** → proceed normally with no output to the user.
 
 > **Key principle**: The user never needs to manually sync or update. The LLM handles this autonomously.
 
 
 Use `view_file` or `grep_search` to read these references as needed.
 
-**MANDATORY: Always check [references/INDEX.md](references/INDEX.md) first to locate the exact documentation needed for any OpenClaw task.**
+**MANDATORY: Always check [references/SKILL_INDEX.md](references/SKILL_INDEX.md) first to locate the exact documentation needed for any OpenClaw task.**
 
 | Reference | Coverage |
 |---|---|
-| [INDEX.md](references/INDEX.md) | **Directory of ALL available documentation (Start here)** |
+| [SKILL_INDEX.md](references/SKILL_INDEX.md) | **Directory of ALL available documentation (Start here)** |
 | [channels/](references/channels/) | Channel setup (WhatsApp, Telegram, Discord, Slack, iMessage, etc.) |
 | [providers/](references/providers/) | Model provider setup (Anthropic, OpenAI, Google, Ollama, etc.) |
 | [tools/](references/tools/) | Detailed per-tool documentation (exec, browser, web, etc.) |

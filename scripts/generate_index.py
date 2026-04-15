@@ -84,7 +84,7 @@ def generate_index(root_dir):
 
 if __name__ == "__main__":
     base_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'references')
-    output_file = os.path.join(base_dir, 'INDEX.md')
+    output_file = os.path.join(base_dir, 'SKILL_INDEX.md')
     
     print(f"🔍 Scanning {base_dir}...")
     index_content = generate_index(base_dir)
