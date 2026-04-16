@@ -1,6 +1,6 @@
 # OpenClaw Documentation Index
 
-Last Updated: 2026-04-15 05:56:22
+Last Updated: 2026-04-16 05:57:49
 
 This is a comprehensive index of all available OpenClaw documentation, organized by category.
 
@@ -128,7 +128,8 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Context Engine](concepts/context-engine.md)
 - [Context](concepts/context.md)
 - [Delegate Architecture](concepts/delegate-architecture.md)
-- [Dreaming (experimental)](concepts/dreaming.md)
+- [Dreaming](concepts/dreaming.md)
+- [Experimental Features](concepts/experimental-features.md)
 - [Features](concepts/features.md)
 - [Markdown Formatting](concepts/markdown-formatting.md)
 - [Builtin Memory Engine](concepts/memory-builtin.md)
@@ -348,6 +349,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Z.AI](providers/zai.md)
 
 ## Refactor
+- [Async Exec Duplicate Completion Investigation](refactor/async-exec-duplicate-completion-investigation.md)
 - [QA Refactor](refactor/qa.md)
 
 ## Reference
