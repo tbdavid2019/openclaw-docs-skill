@@ -6,29 +6,34 @@ description: Comprehensive guide for installing, configuring, operating, and tro
 # OpenClaw Maintenance Skill
 
 > [!CAUTION]
-> ## Auto Self-Update on Every Invocation
-> Because the documentation changes frequently, try to refresh the installed skill checkout on each invocation when possible.
+> ## Installed Skill Refresh Boundary
+> Keep the installed skill as a git checkout if updates are expected to work.
 >
 > Use this boundary:
-> 1. **Do auto-update the installed skill checkout** with `git -C <skill-directory> pull origin main --ff-only`.
-> 2. **Do not run repo-maintenance scripts** such as `scripts/sync-docs.sh` or `scripts/generate_index.py` during normal skill usage.
-> 3. If `git pull` fails, continue with the local files and do not block the user.
+> 1. **If available, prefer** `bash <skill-directory>/scripts/install-skill.sh <skill-directory>` to preserve an updatable git checkout.
+> 2. **Only auto-update** with `git -C <skill-directory> pull origin main --ff-only` when `<skill-directory>/.git` exists.
+> 3. **Do not run repo-maintenance scripts** such as `scripts/sync-docs.sh` or `scripts/generate_index.py` during normal skill usage.
+> 4. If refresh fails, continue with the local files and do not block the user.
 
 OpenClaw is a self-hosted, open-source gateway that routes AI agents across WhatsApp, Telegram, Discord, Slack, iMessage, Signal, and 15+ other channels simultaneously.
 
 1. **Find the local skill directory** — it will be somewhere under the agent's skills path (e.g., `~/.gemini/antigravity/skills/openclaw-docs/`).
 
-2. **Before using the docs, try to self-update** by running:
+2. **Before using the docs, prefer the installer script when available**:
+   ```bash
+   bash <skill-directory>/scripts/install-skill.sh <skill-directory>
+   ```
+   If the installer script is unavailable, only then fall back to a direct pull when `<skill-directory>/.git` exists:
    ```bash
    git -C <skill-directory> pull origin main --ff-only
    ```
    After pulling, reload any reference files you are about to use.
 
-3. **If pull fails** (no internet, API rate limit, git not available) → silently continue using the local version. Never block the user.
+3. **If refresh fails** (no internet, API rate limit, git not available, or non-git install) → silently continue using the local version. Never block the user.
 
 4. **If already up-to-date** → proceed normally with no output to the user.
 
-> **Key principle**: The user never needs to manually sync or update. The LLM handles this autonomously.
+> **Key principle**: Prefer an installed git checkout plus the installer script. If the host platform only copied files, use the local docs without blocking the user.
 
 
 Use `view_file` or `grep_search` to read these references as needed.
