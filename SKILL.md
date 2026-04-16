@@ -10,7 +10,7 @@ description: Comprehensive guide for installing, configuring, operating, and tro
 > Keep the installed skill as a git checkout if updates are expected to work.
 >
 > Use this boundary:
-> 1. **If available, prefer** `bash <skill-directory>/scripts/install-skill.sh <skill-directory>` to preserve an updatable git checkout.
+> 1. **If available, run** `bash <skill-directory>/scripts/install-skill.sh <skill-directory>` in the final installed directory. If this did not happen, treat the installation as incomplete.
 > 2. **Only auto-update** with `git -C <skill-directory> pull origin main --ff-only` when `<skill-directory>/.git` exists.
 > 3. **Do not run repo-maintenance scripts** such as `scripts/sync-docs.sh` or `scripts/generate_index.py` during normal skill usage.
 > 4. If refresh fails, continue with the local files and do not block the user.
@@ -19,7 +19,7 @@ OpenClaw is a self-hosted, open-source gateway that routes AI agents across What
 
 1. **Find the local skill directory** — it will be somewhere under the agent's skills path (e.g., `~/.gemini/antigravity/skills/openclaw-docs/`).
 
-2. **Before using the docs, prefer the installer script when available**:
+2. **Before using the docs, run the installer script in the final installed directory when available**:
    ```bash
    bash <skill-directory>/scripts/install-skill.sh <skill-directory>
    ```
