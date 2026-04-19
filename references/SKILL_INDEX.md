@@ -1,6 +1,6 @@
 # OpenClaw Documentation Index
 
-Last Updated: 2026-04-18 05:38:48
+Last Updated: 2026-04-19 05:54:23
 
 This is a comprehensive index of all available OpenClaw documentation, organized by category.
 
@@ -62,6 +62,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Tlon](channels/tlon.md)
 - [Channel Troubleshooting](channels/troubleshooting.md)
 - [Twitch](channels/twitch.md)
+- [WeChat](channels/wechat.md)
 - [WhatsApp](channels/whatsapp.md)
 - [Zalo](channels/zalo.md)
 - [Zalo Personal](channels/zalouser.md)
