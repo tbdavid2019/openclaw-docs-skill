@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import os
 import re
-from datetime import datetime
 
 def extract_title(file_path):
     """
@@ -65,8 +64,6 @@ def generate_index(root_dir):
     # Build the Markdown content
     lines = [
         "# OpenClaw Documentation Index",
-        "",
-        f"Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
         "",
         "This is a comprehensive index of all available OpenClaw documentation, organized by category.",
         ""

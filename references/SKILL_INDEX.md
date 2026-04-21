@@ -1,12 +1,11 @@
 # OpenClaw Documentation Index
 
-Last Updated: 2026-04-20 06:10:17
-
 This is a comprehensive index of all available OpenClaw documentation, organized by category.
 
 ## General
 - [Docs Guide](AGENTS.md)
 - [Docs Guide](CLAUDE.md)
+- [OpenClaw Documentation Index](SKILL_INDEX.md)
 - [Auth Credential Semantics](auth-credential-semantics.md)
 - [Brave Search (legacy path)](brave-search.md)
 - [CI Pipeline](ci.md)
