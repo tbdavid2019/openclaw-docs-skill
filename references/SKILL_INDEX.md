@@ -5,7 +5,6 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 ## General
 - [Docs Guide](AGENTS.md)
 - [Docs Guide](CLAUDE.md)
-- [OpenClaw Documentation Index](SKILL_INDEX.md)
 - [Auth Credential Semantics](auth-credential-semantics.md)
 - [Brave Search (legacy path)](brave-search.md)
 - [CI Pipeline](ci.md)
