@@ -229,10 +229,23 @@ API key auth, and dynamic model resolution.
             baseUrl: "https://api.acme-ai.com/v1",
             models: [{ id: "acme-large", name: "Acme Large" }],
           }),
+          buildStaticProvider: () => ({
+            api: "openai-completions",
+            baseUrl: "https://api.acme-ai.com/v1",
+            models: [{ id: "acme-large", name: "Acme Large" }],
+          }),
         },
       },
     });
     ```
+
+    `buildProvider` is the live catalog path used when OpenClaw can resolve real
+    provider auth. It may perform provider-specific discovery. Use
+    `buildStaticProvider` only for offline rows that are safe to show before auth
+    is configured; it must not require credentials or make network requests.
+    OpenClaw's `models list --all` display currently executes static catalogs
+    only for bundled provider plugins, with an empty config, empty env, and no
+    agent/workspace paths.
 
     If your auth flow also needs to patch `models.providers.*`, aliases, and
     the agent default model during onboarding, use the preset helpers from
@@ -533,10 +546,10 @@ API key auth, and dynamic model resolution.
       | 29 | `buildMissingAuthMessage` | Custom missing-auth hint |
       | 30 | `suppressBuiltInModel` | Hide stale upstream rows |
       | 31 | `augmentModelCatalog` | Synthetic forward-compat rows |
-      | 32 | `isBinaryThinking` | Binary thinking on/off |
-      | 33 | `supportsXHighThinking` | `xhigh` reasoning support |
-      | 34 | `supportsAdaptiveThinking` | Adaptive thinking support |
-      | 35 | `resolveDefaultThinkingLevel` | Default `/think` policy |
+      | 32 | `resolveThinkingProfile` | Model-specific `/think` option set |
+      | 33 | `isBinaryThinking` | Binary thinking on/off compatibility |
+      | 34 | `supportsXHighThinking` | `xhigh` reasoning support compatibility |
+      | 35 | `resolveDefaultThinkingLevel` | Default `/think` policy compatibility |
       | 36 | `isModernModelRef` | Live/smoke model matching |
       | 37 | `prepareRuntimeAuth` | Token exchange before inference |
       | 38 | `resolveUsageAuth` | Custom usage credential parsing |

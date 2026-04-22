@@ -202,7 +202,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Environment Variables](help/environment.md)
 - [FAQ](help/faq.md)
 - [GPT-5.4 / Codex Parity Maintainer Notes](help/gpt54-codex-agentic-parity-maintainers.md)
-- [GPT-5.4 / Codex Agentic Parity in OpenClaw](help/gpt54-codex-agentic-parity.md)
+- [GPT-5.4 / Codex Agentic Parity](help/gpt54-codex-agentic-parity.md)
 - [Scripts](help/scripts.md)
 - [Testing](help/testing.md)
 - [General Troubleshooting](help/troubleshooting.md)
@@ -244,6 +244,9 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Node Troubleshooting](nodes/troubleshooting.md)
 - [Voice Wake](nodes/voicewake.md)
 
+## Plan
+- [Channel Presentation Refactor Plan](plan/ui-channels.md)
+
 ## Platforms
 - [Android App](platforms/android.md)
 - [DigitalOcean (Platform)](platforms/digitalocean.md)
@@ -283,6 +286,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Community Plugins](plugins/community.md)
 - [Plugin Manifest](plugins/manifest.md)
 - [Memory Wiki](plugins/memory-wiki.md)
+- [Message Presentation](plugins/message-presentation.md)
 - [Agent Harness Plugins](plugins/sdk-agent-harness.md)
 - [Building Channel Plugins](plugins/sdk-channel-plugins.md)
 - [Plugin Entry Points](plugins/sdk-entrypoints.md)
@@ -292,6 +296,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Plugin Runtime Helpers](plugins/sdk-runtime.md)
 - [Plugin Setup and Config](plugins/sdk-setup.md)
 - [Plugin Testing](plugins/sdk-testing.md)
+- [Skill Workshop Plugin](plugins/skill-workshop.md)
 - [Voice Call Plugin](plugins/voice-call.md)
 - [Webhooks Plugin](plugins/webhooks.md)
 - [Zalo Personal Plugin](plugins/zalouser.md)
@@ -337,6 +342,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [SGLang](providers/sglang.md)
 - [StepFun](providers/stepfun.md)
 - [Synthetic](providers/synthetic.md)
+- [Tencent Cloud (TokenHub)](providers/tencent.md)
 - [Together AI](providers/together.md)
 - [Venice AI](providers/venice.md)
 - [Vercel AI Gateway](providers/vercel-ai-gateway.md)
