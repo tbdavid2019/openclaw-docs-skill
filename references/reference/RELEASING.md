@@ -1,12 +1,10 @@
 ---
-title: "Release Policy"
 summary: "Public release channels, version naming, and cadence"
+title: "Release policy"
 read_when:
   - Looking for public release channel definitions
   - Looking for version naming and cadence
 ---
-
-# Release Policy
 
 OpenClaw has three public release lanes:
 
@@ -90,6 +88,9 @@ OpenClaw has three public release lanes:
   `node --import tsx scripts/openclaw-npm-postpublish-verify.ts YYYY.M.D`
   (or the matching beta/correction version) to verify the published registry
   install path in a fresh temp prefix
+- After a beta publish, run `OPENCLAW_NPM_TELEGRAM_PACKAGE_SPEC=openclaw@YYYY.M.D-beta.N pnpm test:docker:npm-telegram-live`
+  to verify installed-package onboarding, Telegram setup, and real Telegram E2E
+  against the published npm package.
 - Maintainer release automation now uses preflight-then-promote:
   - real npm publish must pass a successful npm `preflight_run_id`
   - the real npm publish must be dispatched from the same `main` or
@@ -112,6 +113,11 @@ OpenClaw has three public release lanes:
 - npm release preflight fails closed unless the tarball includes both
   `dist/control-ui/index.html` and a non-empty `dist/control-ui/assets/` payload
   so we do not ship an empty browser dashboard again
+- Post-publish verification also checks that the published registry install
+  contains non-empty bundled plugin runtime deps under the root `dist/*`
+  layout. A release that ships with missing or empty bundled plugin
+  dependency payloads fails the postpublish verifier and cannot be promoted
+  to `latest`.
 - `pnpm test:install:smoke` also enforces the npm pack `unpackedSize` budget on
   the candidate update tarball, so installer e2e catches accidental pack bloat
   before the release publish path
@@ -201,3 +207,7 @@ documented and operator-visible.
 Maintainers use the private release docs in
 [`openclaw/maintainers/release/README.md`](https://github.com/openclaw/maintainers/blob/main/release/README.md)
 for the actual runbook.
+
+## Related
+
+- [Release channels](/install/development-channels)
