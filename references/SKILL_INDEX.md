@@ -123,6 +123,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 ## Concepts
 - [Active memory](concepts/active-memory.md)
 - [Agent loop](concepts/agent-loop.md)
+- [Agent runtimes](concepts/agent-runtimes.md)
 - [Agent workspace](concepts/agent-workspace.md)
 - [Agent runtime](concepts/agent.md)
 - [Gateway architecture](concepts/architecture.md)
@@ -299,7 +300,9 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Plugin bundles](plugins/bundles.md)
 - [Codex harness](plugins/codex-harness.md)
 - [Community plugins](plugins/community.md)
+- [Plugin compatibility](plugins/compatibility.md)
 - [Google Meet plugin](plugins/google-meet.md)
+- [Plugin hooks](plugins/hooks.md)
 - [Plugin manifest](plugins/manifest.md)
 - [Memory wiki](plugins/memory-wiki.md)
 - [Message presentation](plugins/message-presentation.md)
@@ -336,6 +339,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [GitHub Copilot](providers/github-copilot.md)
 - [GLM (Zhipu)](providers/glm.md)
 - [Google (Gemini)](providers/google.md)
+- [Gradium](providers/gradium.md)
 - [Groq](providers/groq.md)
 - [Hugging Face (inference)](providers/huggingface.md)
 - [Inferrs](providers/inferrs.md)
@@ -427,6 +431,9 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [CLI automation](start/wizard-cli-automation.md)
 - [CLI setup reference](start/wizard-cli-reference.md)
 - [Onboarding (CLI)](start/wizard.md)
+
+## Superpowers > specs
+- [Tweakcn Custom Theme Import Design](superpowers/specs/2026-04-22-tweakcn-custom-theme-import-design.md)
 
 ## Tools
 - [ACP agents — setup](tools/acp-agents-setup.md)
