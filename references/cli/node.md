@@ -104,6 +104,7 @@ Manage the service:
 
 ```bash
 openclaw node status
+openclaw node start
 openclaw node stop
 openclaw node restart
 openclaw node uninstall
@@ -122,6 +123,25 @@ Approve it via:
 openclaw devices list
 openclaw devices approve <requestId>
 ```
+
+On tightly controlled node networks, the Gateway operator can explicitly opt in
+to auto-approving first-time node pairing from trusted CIDRs:
+
+```json5
+{
+  gateway: {
+    nodes: {
+      pairing: {
+        autoApproveCidrs: ["192.168.1.0/24"],
+      },
+    },
+  },
+}
+```
+
+This is disabled by default. It only applies to fresh `role: node` pairing with
+no requested scopes. Operator/browser clients, Control UI, WebChat, and role,
+scope, metadata, or public-key upgrades still require manual approval.
 
 If the node retries pairing with changed auth details (role/scopes/public key),
 the previous pending request is superseded and a new `requestId` is created.

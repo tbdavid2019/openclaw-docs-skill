@@ -72,6 +72,7 @@ Disables automatic creation of workspace bootstrap files (`AGENTS.md`, `SOUL.md`
 Controls when workspace bootstrap files are injected into the system prompt. Default: `"always"`.
 
 - `"continuation-skip"`: safe continuation turns (after a completed assistant response) skip workspace bootstrap re-injection, reducing prompt size. Heartbeat runs and post-compaction retries still rebuild context.
+- `"never"`: disable workspace bootstrap and context-file injection on every turn. Use this only for agents that fully own their prompt lifecycle (custom context engines, native runtimes that build their own context, or specialized bootstrap-free workflows). Heartbeat and compaction-recovery turns also skip injection.
 
 ```json5
 {
@@ -341,12 +342,12 @@ Time format in system prompt. Default: `auto` (OS preference).
   - Also used as fallback routing when the selected/default model cannot accept image input.
 - `imageGenerationModel`: accepts either a string (`"provider/model"`) or an object (`{ primary, fallbacks }`).
   - Used by the shared image-generation capability and any future tool/plugin surface that generates images.
-  - Typical values: `google/gemini-3.1-flash-image-preview` for native Gemini image generation, `fal/fal-ai/flux/dev` for fal, or `openai/gpt-image-2` for OpenAI Images.
-  - If you select a provider/model directly, configure matching provider auth too (for example `GEMINI_API_KEY` or `GOOGLE_API_KEY` for `google/*`, `OPENAI_API_KEY` or OpenAI Codex OAuth for `openai/gpt-image-2`, `FAL_KEY` for `fal/*`).
+  - Typical values: `google/gemini-3.1-flash-image-preview` for native Gemini image generation, `fal/fal-ai/flux/dev` for fal, `openai/gpt-image-2` for OpenAI Images, or `openai/gpt-image-1.5` for transparent-background OpenAI PNG/WebP output.
+  - If you select a provider/model directly, configure matching provider auth too (for example `GEMINI_API_KEY` or `GOOGLE_API_KEY` for `google/*`, `OPENAI_API_KEY` or OpenAI Codex OAuth for `openai/gpt-image-2` / `openai/gpt-image-1.5`, `FAL_KEY` for `fal/*`).
   - If omitted, `image_generate` can still infer an auth-backed provider default. It tries the current default provider first, then the remaining registered image-generation providers in provider-id order.
 - `musicGenerationModel`: accepts either a string (`"provider/model"`) or an object (`{ primary, fallbacks }`).
   - Used by the shared music-generation capability and the built-in `music_generate` tool.
-  - Typical values: `google/lyria-3-clip-preview`, `google/lyria-3-pro-preview`, or `minimax/music-2.5+`.
+  - Typical values: `google/lyria-3-clip-preview`, `google/lyria-3-pro-preview`, or `minimax/music-2.6`.
   - If omitted, `music_generate` can still infer an auth-backed provider default. It tries the current default provider first, then the remaining registered music-generation providers in provider-id order.
   - If you select a provider/model directly, configure the matching provider auth/API key too.
 - `videoGenerationModel`: accepts either a string (`"provider/model"`) or an object (`{ primary, fallbacks }`).
@@ -362,14 +363,16 @@ Time format in system prompt. Default: `auto` (OS preference).
 - `pdfMaxPages`: default maximum pages considered by extraction fallback mode in the `pdf` tool.
 - `verboseDefault`: default verbose level for agents. Values: `"off"`, `"on"`, `"full"`. Default: `"off"`.
 - `elevatedDefault`: default elevated-output level for agents. Values: `"off"`, `"on"`, `"ask"`, `"full"`. Default: `"on"`.
-- `model.primary`: format `provider/model` (e.g. `openai/gpt-5.4` for API-key access or `openai-codex/gpt-5.5` for Codex OAuth). If you omit the provider, OpenClaw tries an alias first, then a unique configured-provider match for that exact model id, and only then falls back to the configured default provider (deprecated compatibility behavior, so prefer explicit `provider/model`). If that provider no longer exposes the configured default model, OpenClaw falls back to the first configured provider/model instead of surfacing a stale removed-provider default.
-- `models`: the configured model catalog and allowlist for `/model`. Each entry can include `alias` (shortcut) and `params` (provider-specific, for example `temperature`, `maxTokens`, `cacheRetention`, `context1m`, `responsesServerCompaction`, `responsesCompactThreshold`, `extra_body`/`extraBody`).
+- `model.primary`: format `provider/model` (e.g. `openai/gpt-5.5` for API-key access or `openai-codex/gpt-5.5` for Codex OAuth). If you omit the provider, OpenClaw tries an alias first, then a unique configured-provider match for that exact model id, and only then falls back to the configured default provider (deprecated compatibility behavior, so prefer explicit `provider/model`). If that provider no longer exposes the configured default model, OpenClaw falls back to the first configured provider/model instead of surfacing a stale removed-provider default.
+- `models`: the configured model catalog and allowlist for `/model`. Each entry can include `alias` (shortcut) and `params` (provider-specific, for example `temperature`, `maxTokens`, `cacheRetention`, `context1m`, `responsesServerCompaction`, `responsesCompactThreshold`, `chat_template_kwargs`, `extra_body`/`extraBody`).
   - Safe edits: use `openclaw config set agents.defaults.models '<json>' --strict-json --merge` to add entries. `config set` refuses replacements that would remove existing allowlist entries unless you pass `--replace`.
   - Provider-scoped configure/onboarding flows merge selected provider models into this map and preserve unrelated providers already configured.
   - For direct OpenAI Responses models, server-side compaction is enabled automatically. Use `params.responsesServerCompaction: false` to stop injecting `context_management`, or `params.responsesCompactThreshold` to override the threshold. See [OpenAI server-side compaction](/providers/openai#server-side-compaction-responses-api).
 - `params`: global default provider parameters applied to all models. Set at `agents.defaults.params` (e.g. `{ cacheRetention: "long" }`).
 - `params` merge precedence (config): `agents.defaults.params` (global base) is overridden by `agents.defaults.models["provider/model"].params` (per-model), then `agents.list[].params` (matching agent id) overrides by key. See [Prompt Caching](/reference/prompt-caching) for details.
 - `params.extra_body`/`params.extraBody`: advanced pass-through JSON merged into `api: "openai-completions"` request bodies for OpenAI-compatible proxies. If it collides with generated request keys, the extra body wins; non-native completions routes still strip OpenAI-only `store` afterward.
+- `params.chat_template_kwargs`: vLLM/OpenAI-compatible chat-template arguments merged into top-level `api: "openai-completions"` request bodies. For `vllm/nemotron-3-*` with thinking off, OpenClaw automatically sends `enable_thinking: false` and `force_nonempty_content: true`; explicit `chat_template_kwargs` override those defaults, and `extra_body.chat_template_kwargs` still has final precedence.
+- `params.preserveThinking`: Z.AI-only opt-in for preserved thinking. When enabled and thinking is on, OpenClaw sends `thinking.clear_thinking: false` and replays prior `reasoning_content`; see [Z.AI thinking and preserved thinking](/providers/zai#thinking-and-preserved-thinking).
 - `embeddedHarness`: default low-level embedded agent runtime policy. Omitted runtime defaults to OpenClaw Pi. Use `runtime: "pi"` to force the built-in PI harness, `runtime: "auto"` to let registered plugin harnesses claim supported models, or a registered harness id such as `runtime: "codex"`. Set `fallback: "none"` to disable automatic PI fallback. Explicit plugin runtimes such as `codex` fail closed by default unless you set `fallback: "pi"` in the same override scope. Keep model refs canonical as `provider/model`; select Codex, Claude CLI, Gemini CLI, and other execution backends through runtime config instead of legacy runtime provider prefixes. See [Agent runtimes](/concepts/agent-runtimes) for how this differs from provider/model selection.
 - Config writers that mutate these fields (for example `/models set`, `/models set-image`, and fallback add/remove commands) save canonical object form and preserve existing fallback lists when possible.
 - `maxConcurrent`: max parallel agent runs across sessions (each session still serialized). Default: 4.
@@ -405,16 +408,16 @@ Codex app-server harness. For the mental model, see
 
 **Built-in alias shorthands** (only apply when the model is in `agents.defaults.models`):
 
-| Alias               | Model                                              |
-| ------------------- | -------------------------------------------------- |
-| `opus`              | `anthropic/claude-opus-4-6`                        |
-| `sonnet`            | `anthropic/claude-sonnet-4-6`                      |
-| `gpt`               | `openai/gpt-5.4` or configured Codex OAuth GPT-5.5 |
-| `gpt-mini`          | `openai/gpt-5.4-mini`                              |
-| `gpt-nano`          | `openai/gpt-5.4-nano`                              |
-| `gemini`            | `google/gemini-3.1-pro-preview`                    |
-| `gemini-flash`      | `google/gemini-3-flash-preview`                    |
-| `gemini-flash-lite` | `google/gemini-3.1-flash-lite-preview`             |
+| Alias               | Model                                      |
+| ------------------- | ------------------------------------------ |
+| `opus`              | `anthropic/claude-opus-4-6`                |
+| `sonnet`            | `anthropic/claude-sonnet-4-6`              |
+| `gpt`               | `openai/gpt-5.5` or `openai-codex/gpt-5.5` |
+| `gpt-mini`          | `openai/gpt-5.4-mini`                      |
+| `gpt-nano`          | `openai/gpt-5.4-nano`                      |
+| `gemini`            | `google/gemini-3.1-pro-preview`            |
+| `gemini-flash`      | `google/gemini-3-flash-preview`            |
+| `gemini-flash-lite` | `google/gemini-3.1-flash-lite-preview`     |
 
 Your configured aliases always win over defaults.
 
@@ -442,6 +445,7 @@ Optional CLI backends for text-only fallback runs (no tool calls). Useful as a b
           sessionArg: "--session",
           sessionMode: "existing",
           systemPromptArg: "--system",
+          // Or use systemPromptFileArg when the CLI accepts a prompt file flag.
           systemPromptWhen: "first",
           imageArg: "--image",
           imageMode: "repeat",
@@ -880,7 +884,7 @@ noVNC observer access uses VNC auth by default and OpenClaw emits a short-lived 
   - `--renderer-process-limit=2` can be changed with
     `OPENCLAW_BROWSER_RENDERER_PROCESS_LIMIT=<N>`; set `0` to use Chromium's
     default process limit.
-  - plus `--no-sandbox` and `--disable-setuid-sandbox` when `noSandbox` is enabled.
+  - plus `--no-sandbox` when `noSandbox` is enabled.
   - Defaults are the container image baseline; use a custom browser image with a custom
     entrypoint to change container defaults.
 
@@ -896,6 +900,14 @@ scripts/sandbox-browser-setup.sh   # optional browser image
 ```
 
 ### `agents.list` (per-agent overrides)
+
+Use `agents.list[].tts` to give an agent its own TTS provider, voice, model,
+style, or auto-TTS mode. The agent block deep-merges over global
+`messages.tts`, so shared credentials can stay in one place while individual
+agents override only the voice or provider fields they need. The active agent's
+override applies to automatic spoken replies, `/tts audio`, `/tts status`, and
+the `tts` agent tool. See [Text-to-speech](/tools/tts#per-agent-voice-overrides)
+for provider examples and precedence.
 
 ```json5
 {
@@ -913,6 +925,11 @@ scripts/sandbox-browser-setup.sh   # optional browser image
         fastModeDefault: false, // per-agent fast mode override
         embeddedHarness: { runtime: "auto", fallback: "pi" },
         params: { cacheRetention: "none" }, // overrides matching defaults.models params by key
+        tts: {
+          providers: {
+            elevenlabs: { voiceId: "EXAVITQu4vr4xnSDxMaL" },
+          },
+        },
         skills: ["docs-search"], // replaces agents.defaults.skills when set
         identity: {
           name: "Samantha",
@@ -948,6 +965,7 @@ scripts/sandbox-browser-setup.sh   # optional browser image
 - `default`: when multiple are set, first wins (warning logged). If none set, first list entry is default.
 - `model`: string form overrides `primary` only; object form `{ primary, fallbacks }` overrides both (`[]` disables global fallbacks). Cron jobs that only override `primary` still inherit default fallbacks unless you set `fallbacks: []`.
 - `params`: per-agent stream params merged over the selected model entry in `agents.defaults.models`. Use this for agent-specific overrides like `cacheRetention`, `temperature`, or `maxTokens` without duplicating the whole model catalog.
+- `tts`: optional per-agent text-to-speech overrides. The block deep-merges over `messages.tts`, so keep shared provider credentials and fallback policy in `messages.tts` and set only persona-specific values such as provider, voice, model, style, or auto mode here.
 - `skills`: optional per-agent skill allowlist. If omitted, the agent inherits `agents.defaults.skills` when set; an explicit list replaces defaults instead of merging, and `[]` means no skills.
 - `thinkingDefault`: optional per-agent default thinking level (`off | minimal | low | medium | high | xhigh | adaptive | max`). Overrides `agents.defaults.thinkingDefault` for this agent when no per-message or session override is set. The selected provider/model profile controls which values are valid; for Google Gemini, `adaptive` keeps provider-owned dynamic thinking (`thinkingLevel` omitted on Gemini 3/3.1, `thinkingBudget: -1` on Gemini 2.5).
 - `reasoningDefault`: optional per-agent default reasoning visibility (`on | off | stream`). Applies when no per-message or session reasoning override is set.
@@ -1160,7 +1178,7 @@ See [Multi-Agent Sandbox & Tools](/tools/multi-agent-sandbox-tools) for preceden
   - `per-channel-peer`: isolate per channel + sender (recommended for multi-user inboxes).
   - `per-account-channel-peer`: isolate per account + channel + sender (recommended for multi-account).
 - **`identityLinks`**: map canonical ids to provider-prefixed peers for cross-channel session sharing.
-- **`reset`**: primary reset policy. `daily` resets at `atHour` local time; `idle` resets after `idleMinutes`. When both configured, whichever expires first wins.
+- **`reset`**: primary reset policy. `daily` resets at `atHour` local time; `idle` resets after `idleMinutes`. When both configured, whichever expires first wins. Daily reset freshness uses the session row's `sessionStartedAt`; idle reset freshness uses `lastInteractionAt`. Background/system-event writes such as heartbeat, cron wakeups, exec notifications, and gateway bookkeeping can update `updatedAt`, but they do not keep daily/idle sessions fresh.
 - **`resetByType`**: per-type overrides (`direct`, `group`, `thread`). Legacy `dm` accepted as alias for `direct`.
 - **`parentForkMaxTokens`**: max parent-session `totalTokens` allowed when creating a forked thread session (default `100000`).
   - If parent `totalTokens` is above this value, OpenClaw starts a fresh thread session instead of inheriting parent transcript history.
@@ -1239,7 +1257,7 @@ Variables are case-insensitive. `{think}` is an alias for `{thinkingLevel}`.
 - Per-channel overrides: `channels.<channel>.ackReaction`, `channels.<channel>.accounts.<id>.ackReaction`.
 - Resolution order: account → channel → `messages.ackReaction` → identity fallback.
 - Scope: `group-mentions` (default), `group-all`, `direct`, `all`.
-- `removeAckAfterReply`: removes ack after reply on Slack, Discord, and Telegram.
+- `removeAckAfterReply`: removes ack after reply on reaction-capable channels such as Slack, Discord, Telegram, WhatsApp, and BlueBubbles.
 - `messages.statusReactions.enabled`: enables lifecycle status reactions on Slack, Discord, and Telegram.
   On Slack and Discord, unset keeps status reactions enabled when ack reactions are active.
   On Telegram, set it explicitly to `true` to enable lifecycle status reactions.
@@ -1325,7 +1343,12 @@ Defaults for Talk mode (macOS/iOS/Android).
         outputFormat: "mp3_44100_128",
         apiKey: "elevenlabs_api_key",
       },
+      mlx: {
+        modelId: "mlx-community/Soprano-80M-bf16",
+      },
+      system: {},
     },
+    speechLocale: "ru-RU",
     silenceTimeoutMs: 1500,
     interruptOnSpeech: true,
   },
@@ -1338,6 +1361,9 @@ Defaults for Talk mode (macOS/iOS/Android).
 - `providers.*.apiKey` accepts plaintext strings or SecretRef objects.
 - `ELEVENLABS_API_KEY` fallback applies only when no Talk API key is configured.
 - `providers.*.voiceAliases` lets Talk directives use friendly names.
+- `providers.mlx.modelId` selects the Hugging Face repo used by the macOS local MLX helper. If omitted, macOS uses `mlx-community/Soprano-80M-bf16`.
+- macOS MLX playback runs through the bundled `openclaw-mlx-tts` helper when present, or an executable on `PATH`; `OPENCLAW_MLX_TTS_BIN` overrides the helper path for development.
+- `speechLocale` sets the BCP 47 locale id used by iOS/macOS Talk speech recognition. Leave unset to use the device default.
 - `silenceTimeoutMs` controls how long Talk mode waits after user silence before it sends the transcript. Unset keeps the platform default pause window (`700 ms on macOS and Android, 900 ms on iOS`).
 
 ---
