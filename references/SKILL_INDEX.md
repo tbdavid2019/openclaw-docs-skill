@@ -195,6 +195,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [OpenShell](gateway/openshell.md)
 - [OpenTelemetry export](gateway/opentelemetry.md)
 - [Gateway-owned pairing](gateway/pairing.md)
+- [Prometheus metrics](gateway/prometheus.md)
 - [Gateway protocol](gateway/protocol.md)
 - [Remote gateway setup](gateway/remote-gateway-readme.md)
 - [Remote access](gateway/remote.md)
@@ -379,10 +380,6 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Xiaomi MiMo](providers/xiaomi.md)
 - [Z.AI](providers/zai.md)
 
-## Refactor
-- [Async exec duplicate completion investigation](refactor/async-exec-duplicate-completion-investigation.md)
-- [QA refactor](refactor/qa.md)
-
 ## Reference
 - [Default AGENTS.md](reference/AGENTS.default.md)
 - [Release policy](reference/RELEASING.md)
@@ -474,7 +471,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Tool-loop detection](tools/loop-detection.md)
 - [Media overview](tools/media-overview.md)
 - [MiniMax search](tools/minimax-search.md)
-- [Multi-agent sandbox & tools](tools/multi-agent-sandbox-tools.md)
+- [Multi-agent sandbox and tools](tools/multi-agent-sandbox-tools.md)
 - [Music generation](tools/music-generation.md)
 - [Ollama web search](tools/ollama-search.md)
 - [PDF tool](tools/pdf.md)
