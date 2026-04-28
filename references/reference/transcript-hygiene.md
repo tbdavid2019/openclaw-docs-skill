@@ -112,11 +112,19 @@ external end-user instructions.
 
 - Image sanitization only.
 - Drop orphaned reasoning signatures (standalone reasoning items without a following content block) for OpenAI Responses/Codex transcripts, and drop replayable OpenAI reasoning after a model route switch.
+- Preserve replayable OpenAI Responses reasoning item payloads, including encrypted empty-summary items, so manual/WebSocket replay keeps required `rs_*` state paired with assistant output items.
 - No tool call id sanitization.
 - Tool result pairing repair may move real matched outputs and synthesize Codex-style `aborted` outputs for missing tool calls.
 - No turn validation or reordering.
 - Missing OpenAI Responses-family tool outputs are synthesized as `aborted` to match Codex replay normalization.
 - No thought signature stripping.
+
+**OpenAI-compatible Gemma 4**
+
+- Historical assistant thinking/reasoning blocks are stripped before replay so local
+  OpenAI-compatible Gemma 4 servers do not receive prior-turn reasoning content.
+- Current same-turn tool-call continuations keep the assistant reasoning block
+  attached to the tool call until the tool result has been replayed.
 
 **Google (Generative AI / Gemini CLI / Antigravity)**
 
@@ -130,6 +138,8 @@ external end-user instructions.
 
 - Tool result pairing repair and synthetic tool results.
 - Turn validation (merge consecutive user turns to satisfy strict alternation).
+- Trailing assistant prefill turns are stripped from outgoing Anthropic Messages
+  payloads when thinking is enabled, including Cloudflare AI Gateway routes.
 - Thinking blocks with missing, empty, or blank replay signatures are stripped
   before provider conversion. If that empties an assistant turn, OpenClaw keeps
   turn shape with non-empty omitted-reasoning text.
