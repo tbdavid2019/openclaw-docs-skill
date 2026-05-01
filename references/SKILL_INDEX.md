@@ -402,6 +402,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Application modernization plan](reference/application-modernization-plan.md)
 - [Credits](reference/credits.md)
 - [Device model database](reference/device-models.md)
+- [Full release validation](reference/full-release-validation.md)
 - [Memory configuration reference](reference/memory-config.md)
 - [OpenClaw App SDK API design](reference/openclaw-sdk-api-design.md)
 - [Prompt caching](reference/prompt-caching.md)
