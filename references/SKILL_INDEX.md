@@ -6,7 +6,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Docs Guide](AGENTS.md)
 - [Docs Guide](CLAUDE.md)
 - [Auth credential semantics](auth-credential-semantics.md)
-- [Brave search (legacy path)](brave-search.md)
+- [Brave search](brave-search.md)
 - [CI pipeline](ci.md)
 - [Date and time](date-time.md)
 - [Logging](logging.md)
@@ -33,6 +33,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Webhooks](automation/webhook.md)
 
 ## Channels
+- [Access groups](channels/access-groups.md)
 - [BlueBubbles](channels/bluebubbles.md)
 - [Broadcast groups](channels/broadcast-groups.md)
 - [Channel routing](channels/channel-routing.md)
@@ -230,6 +231,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [GPT-5.5 / Codex agentic parity](help/gpt55-codex-agentic-parity.md)
 - [Scripts](help/scripts.md)
 - [Testing: live suites](help/testing-live.md)
+- [Testing: updates and plugins](help/testing-updates-plugins.md)
 - [Testing](help/testing.md)
 - [General troubleshooting](help/troubleshooting.md)
 
@@ -315,6 +317,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Codex harness](plugins/codex-harness.md)
 - [Community plugins](plugins/community.md)
 - [Plugin compatibility](plugins/compatibility.md)
+- [Plugin dependency resolution](plugins/dependency-resolution.md)
 - [Google Meet plugin](plugins/google-meet.md)
 - [Plugin hooks](plugins/hooks.md)
 - [Plugin manifest](plugins/manifest.md)
