@@ -142,6 +142,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Dreaming](concepts/dreaming.md)
 - [Experimental features](concepts/experimental-features.md)
 - [Features](concepts/features.md)
+- [Mantis](concepts/mantis.md)
 - [Markdown formatting](concepts/markdown-formatting.md)
 - [Builtin memory engine](concepts/memory-builtin.md)
 - [Honcho memory](concepts/memory-honcho.md)
@@ -157,6 +158,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [OpenClaw App SDK](concepts/openclaw-sdk.md)
 - [Parallel specialist lanes](concepts/parallel-specialist-lanes.md)
 - [Presence](concepts/presence.md)
+- [Progress drafts](concepts/progress-drafts.md)
 - [QA overview](concepts/qa-e2e-automation.md)
 - [Matrix QA](concepts/qa-matrix.md)
 - [Steering queue](concepts/queue-steering.md)
@@ -560,6 +562,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Contributing to the threat model](security/CONTRIBUTING-THREAT-MODEL.md)
 - [Threat model (MITRE ATLAS)](security/THREAT-MODEL-ATLAS.md)
 - [Formal verification (security models)](security/formal-verification.md)
+- [Incident response](security/incident-response.md)
 - [Network proxy](security/network-proxy.md)
 
 ## Start
@@ -625,6 +628,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Skills config](tools/skills-config.md)
 - [Skills](tools/skills.md)
 - [Slash commands](tools/slash-commands.md)
+- [Steer](tools/steer.md)
 - [Sub-agents](tools/subagents.md)
 - [Tavily](tools/tavily.md)
 - [Thinking levels](tools/thinking.md)
