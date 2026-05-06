@@ -11,7 +11,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Date and time](date-time.md)
 - [Logging](logging.md)
 - [Network](network.md)
-- [Perplexity search (legacy path)](perplexity.md)
+- [Perplexity search](perplexity.md)
 - [Pi development workflow](pi-dev.md)
 - [Pi integration architecture](pi.md)
 - [OpenProse](prose.md)
@@ -40,7 +40,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Discord](channels/discord.md)
 - [Feishu](channels/feishu.md)
 - [Google Chat](channels/googlechat.md)
-- [Group messages](channels/group-messages.md)
+- [WhatsApp group messages](channels/group-messages.md)
 - [Groups](channels/groups.md)
 - [iMessage](channels/imessage.md)
 - [IRC](channels/irc.md)
@@ -116,7 +116,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Sessions](cli/sessions.md)
 - [Setup](cli/setup.md)
 - [Skills](cli/skills.md)
-- [Status](cli/status.md)
+- [openclaw status](cli/status.md)
 - [System](cli/system.md)
 - [`openclaw tasks`](cli/tasks.md)
 - [TUI](cli/tui.md)
@@ -142,6 +142,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Dreaming](concepts/dreaming.md)
 - [Experimental features](concepts/experimental-features.md)
 - [Features](concepts/features.md)
+- [Mantis Slack desktop runbook](concepts/mantis-slack-desktop-runbook.md)
 - [Mantis](concepts/mantis.md)
 - [Markdown formatting](concepts/markdown-formatting.md)
 - [Builtin memory engine](concepts/memory-builtin.md)
@@ -149,6 +150,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [QMD memory engine](concepts/memory-qmd.md)
 - [Memory search](concepts/memory-search.md)
 - [Memory overview](concepts/memory.md)
+- [Message lifecycle refactor](concepts/message-lifecycle-refactor.md)
 - [Messages](concepts/messages.md)
 - [Model failover](concepts/model-failover.md)
 - [Model providers](concepts/model-providers.md)
@@ -224,6 +226,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Gateway > security
 - [Security audit checks](gateway/security/audit-checks.md)
+- [Secure file operations](gateway/security/secure-file-operations.md)
 
 ## Help
 - [Debugging](help/debugging.md)
@@ -294,7 +297,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 ## Platforms > mac
 - [Gateway on macOS](platforms/mac/bundled-gateway.md)
 - [Canvas](platforms/mac/canvas.md)
-- [Gateway lifecycle](platforms/mac/child-process.md)
+- [Gateway lifecycle on macOS](platforms/mac/child-process.md)
 - [macOS dev setup](platforms/mac/dev-setup.md)
 - [Health checks (macOS)](platforms/mac/health.md)
 - [Menu bar icon](platforms/mac/icon.md)
@@ -311,6 +314,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [macOS IPC](platforms/mac/xpc.md)
 
 ## Plugins
+- [Adding capabilities (contributor guide)](plugins/adding-capabilities.md)
 - [Registering tools](plugins/agent-tools.md)
 - [Plugin architecture internals](plugins/architecture-internals.md)
 - [Plugin internals](plugins/architecture.md)
@@ -332,6 +336,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Plugin inventory](plugins/plugin-inventory.md)
 - [Plugin reference](plugins/reference.md)
 - [Agent harness plugins](plugins/sdk-agent-harness.md)
+- [Channel message API](plugins/sdk-channel-message.md)
 - [Building channel plugins](plugins/sdk-channel-plugins.md)
 - [Channel turn kernel](plugins/sdk-channel-turn.md)
 - [Plugin entry points](plugins/sdk-entrypoints.md)
@@ -596,7 +601,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [WSL2 + Windows + remote Chrome CDP troubleshooting](tools/browser-wsl2-windows-remote-cdp-troubleshooting.md)
 - [Browser (OpenClaw-managed)](tools/browser.md)
 - [BTW side questions](tools/btw.md)
-- [Adding capabilities (contributor guide)](tools/capability-cookbook.md)
+- [Adding capabilities (redirect)](tools/capability-cookbook.md)
 - [ClawHub](tools/clawhub.md)
 - [Code execution](tools/code-execution.md)
 - [Creating skills](tools/creating-skills.md)
