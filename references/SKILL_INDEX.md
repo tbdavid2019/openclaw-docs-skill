@@ -495,7 +495,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Hugging Face (inference)](providers/huggingface.md)
 - [Inferrs](providers/inferrs.md)
 - [Inworld](providers/inworld.md)
-- [Kilocode](providers/kilocode.md)
+- [Kilo Gateway](providers/kilocode.md)
 - [LiteLLM](providers/litellm.md)
 - [LM Studio](providers/lmstudio.md)
 - [MiniMax](providers/minimax.md)
