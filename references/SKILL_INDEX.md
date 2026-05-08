@@ -34,7 +34,6 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Channels
 - [Access groups](channels/access-groups.md)
-- [BlueBubbles](channels/bluebubbles.md)
 - [Broadcast groups](channels/broadcast-groups.md)
 - [Channel routing](channels/channel-routing.md)
 - [Discord](channels/discord.md)
@@ -42,6 +41,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Google Chat](channels/googlechat.md)
 - [WhatsApp group messages](channels/group-messages.md)
 - [Groups](channels/groups.md)
+- [Coming from BlueBubbles](channels/imessage-from-bluebubbles.md)
 - [iMessage](channels/imessage.md)
 - [IRC](channels/irc.md)
 - [LINE](channels/line.md)
@@ -68,6 +68,9 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Yuanbao](channels/yuanbao.md)
 - [Zalo](channels/zalo.md)
 - [Zalo personal](channels/zalouser.md)
+
+## Clawhub
+- [Publishing on ClawHub](clawhub/publishing.md)
 
 ## Cli
 - [ACP](cli/acp.md)
@@ -106,6 +109,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Nodes](cli/nodes.md)
 - [Onboard](cli/onboard.md)
 - [Pairing](cli/pairing.md)
+- [Path](cli/path.md)
 - [Plugins](cli/plugins.md)
 - [Proxy](cli/proxy.md)
 - [QR](cli/qr.md)
@@ -321,6 +325,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Building plugins (redirect)](plugins/building-extensions.md)
 - [Building plugins](plugins/building-plugins.md)
 - [Plugin bundles](plugins/bundles.md)
+- [Building CLI backend plugins](plugins/cli-backend-plugins.md)
 - [Codex Computer Use](plugins/codex-computer-use.md)
 - [Codex harness](plugins/codex-harness.md)
 - [Community plugins](plugins/community.md)
@@ -361,11 +366,11 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Anthropic plugin](plugins/reference/anthropic.md)
 - [Arcee plugin](plugins/reference/arcee.md)
 - [Azure Speech plugin](plugins/reference/azure-speech.md)
-- [BlueBubbles plugin](plugins/reference/bluebubbles.md)
 - [Bonjour plugin](plugins/reference/bonjour.md)
 - [Brave plugin](plugins/reference/brave.md)
 - [Browser plugin](plugins/reference/browser.md)
 - [BytePlus plugin](plugins/reference/byteplus.md)
+- [Canvas plugin](plugins/reference/canvas.md)
 - [Cerebras plugin](plugins/reference/cerebras.md)
 - [Chutes plugin](plugins/reference/chutes.md)
 - [Cloudflare AI Gateway plugin](plugins/reference/cloudflare-ai-gateway.md)
@@ -527,6 +532,10 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Xiaomi MiMo](providers/xiaomi.md)
 - [Z.AI](providers/zai.md)
 
+## Refactor
+- [ACP lifecycle refactor](refactor/acp.md)
+- [Canvas plugin refactor](refactor/canvas.md)
+
 ## Reference
 - [Default AGENTS.md](reference/AGENTS.default.md)
 - [Release policy](reference/RELEASING.md)
@@ -602,7 +611,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Browser (OpenClaw-managed)](tools/browser.md)
 - [BTW side questions](tools/btw.md)
 - [Adding capabilities (redirect)](tools/capability-cookbook.md)
-- [ClawHub](tools/clawhub.md)
+- [ClawHub (redirect)](tools/clawhub.md)
 - [Code execution](tools/code-execution.md)
 - [Creating skills](tools/creating-skills.md)
 - [Diffs](tools/diffs.md)
