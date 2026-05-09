@@ -338,6 +338,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Memory LanceDB](plugins/memory-lancedb.md)
 - [Memory wiki](plugins/memory-wiki.md)
 - [Message presentation](plugins/message-presentation.md)
+- [OC Path plugin](plugins/oc-path.md)
 - [Plugin inventory](plugins/plugin-inventory.md)
 - [Plugin reference](plugins/reference.md)
 - [Agent harness plugins](plugins/sdk-agent-harness.md)
