@@ -18,6 +18,9 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Text-to-speech](tts.md)
 - [Linux server](vps.md)
 
+## Announcements
+- [BlueBubbles removal and the imsg iMessage path](announcements/bluebubbles-imessage.md)
+
 ## Automation
 - [Auth monitoring](automation/auth-monitoring.md)
 - [ClawFlow](automation/clawflow.md)
