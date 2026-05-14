@@ -37,6 +37,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Channels
 - [Access groups](channels/access-groups.md)
+- [Bot loop protection](channels/bot-loop-protection.md)
 - [Broadcast groups](channels/broadcast-groups.md)
 - [Channel routing](channels/channel-routing.md)
 - [ClickClack](channels/clickclack.md)
@@ -503,6 +504,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Deepgram](providers/deepgram.md)
 - [DeepInfra](providers/deepinfra.md)
 - [DeepSeek](providers/deepseek.md)
+- [ds4](providers/ds4.md)
 - [ElevenLabs](providers/elevenlabs.md)
 - [Fal](providers/fal.md)
 - [Fireworks](providers/fireworks.md)
