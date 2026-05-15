@@ -559,6 +559,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Release policy](reference/RELEASING.md)
 - [API usage and costs](reference/api-usage-costs.md)
 - [Application modernization plan](reference/application-modernization-plan.md)
+- [Code mode](reference/code-mode.md)
 - [Credits](reference/credits.md)
 - [Device model database](reference/device-models.md)
 - [Full release validation](reference/full-release-validation.md)
