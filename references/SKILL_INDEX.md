@@ -326,6 +326,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Plugins
 - [Adding capabilities (contributor guide)](plugins/adding-capabilities.md)
+- [Admin HTTP RPC plugin](plugins/admin-http-rpc.md)
 - [Registering tools](plugins/agent-tools.md)
 - [Plugin architecture internals](plugins/architecture-internals.md)
 - [Plugin internals](plugins/architecture.md)
@@ -372,6 +373,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Plugins > reference
 - [ACPx plugin](plugins/reference/acpx.md)
+- [Admin Http Rpc plugin](plugins/reference/admin-http-rpc.md)
 - [Alibaba plugin](plugins/reference/alibaba.md)
 - [Amazon Bedrock Mantle plugin](plugins/reference/amazon-bedrock-mantle.md)
 - [Amazon Bedrock plugin](plugins/reference/amazon-bedrock.md)
