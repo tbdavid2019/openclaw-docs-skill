@@ -37,6 +37,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Channels
 - [Access groups](channels/access-groups.md)
+- [Ambient room events](channels/ambient-room-events.md)
 - [Bot loop protection](channels/bot-loop-protection.md)
 - [Broadcast groups](channels/broadcast-groups.md)
 - [Channel routing](channels/channel-routing.md)
@@ -169,6 +170,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [OAuth](concepts/oauth.md)
 - [OpenClaw App SDK](concepts/openclaw-sdk.md)
 - [Parallel specialist lanes](concepts/parallel-specialist-lanes.md)
+- [Personal agent benchmark pack](concepts/personal-agent-benchmark-pack.md)
 - [Presence](concepts/presence.md)
 - [Progress drafts](concepts/progress-drafts.md)
 - [QA overview](concepts/qa-e2e-automation.md)
