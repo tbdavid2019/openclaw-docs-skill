@@ -369,6 +369,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Plugin SDK subpaths](plugins/sdk-subpaths.md)
 - [Plugin testing](plugins/sdk-testing.md)
 - [Skill workshop plugin](plugins/skill-workshop.md)
+- [Tool plugins](plugins/tool-plugins.md)
 - [Voice call plugin](plugins/voice-call.md)
 - [Webhooks plugin](plugins/webhooks.md)
 - [Zalo personal plugin](plugins/zalouser.md)
