@@ -240,6 +240,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Gateway > security
 - [Security audit checks](gateway/security/audit-checks.md)
+- [Gateway exposure runbook](gateway/security/exposure-runbook.md)
 - [Secure file operations](gateway/security/secure-file-operations.md)
 
 ## Help
@@ -283,6 +284,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Raspberry Pi](install/raspberry-pi.md)
 - [Uninstall](install/uninstall.md)
 - [Updating](install/updating.md)
+- [Upstash Box](install/upstash.md)
 
 ## Nodes
 - [Audio and voice notes](nodes/audio.md)
@@ -301,6 +303,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 ## Platforms
 - [Android app](platforms/android.md)
 - [DigitalOcean (platform)](platforms/digitalocean.md)
+- [EasyRunner](platforms/easyrunner.md)
 - [iOS app](platforms/ios.md)
 - [Linux app](platforms/linux.md)
 - [macOS app](platforms/macos.md)
@@ -516,7 +519,6 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Fal](providers/fal.md)
 - [Fireworks](providers/fireworks.md)
 - [GitHub Copilot](providers/github-copilot.md)
-- [GLM (Zhipu)](providers/glm.md)
 - [Google (Gemini)](providers/google.md)
 - [Gradium](providers/gradium.md)
 - [Groq](providers/groq.md)
