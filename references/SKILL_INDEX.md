@@ -360,6 +360,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Message presentation](plugins/message-presentation.md)
 - [OC Path plugin](plugins/oc-path.md)
 - [Plugin inventory](plugins/plugin-inventory.md)
+- [Plugin permission requests](plugins/plugin-permission-requests.md)
 - [Plugin reference](plugins/reference.md)
 - [Agent harness plugins](plugins/sdk-agent-harness.md)
 - [Channel ingress API](plugins/sdk-channel-ingress.md)
