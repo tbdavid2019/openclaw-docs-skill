@@ -299,6 +299,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Plan
 - [Codex Harness Context Engine Port](plan/codex-context-engine-harness.md)
+- [Agent-scoped policy overlays](plan/policy-agent-scoped-overlays.md)
 - [Channel presentation refactor plan](plan/ui-channels.md)
 
 ## Platforms
