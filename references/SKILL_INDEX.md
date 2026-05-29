@@ -243,6 +243,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Security audit checks](gateway/security/audit-checks.md)
 - [Gateway exposure runbook](gateway/security/exposure-runbook.md)
 - [Secure file operations](gateway/security/secure-file-operations.md)
+- [npm shrinkwrap](gateway/security/shrinkwrap.md)
 
 ## Help
 - [Debugging](help/debugging.md)
@@ -297,7 +298,6 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Plan
 - [Codex Harness Context Engine Port](plan/codex-context-engine-harness.md)
-- [Agent-scoped policy overlays](plan/policy-agent-scoped-overlays.md)
 - [Channel presentation refactor plan](plan/ui-channels.md)
 
 ## Platforms
@@ -347,6 +347,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Native Codex plugins](plugins/codex-native-plugins.md)
 - [Community plugins](plugins/community.md)
 - [Plugin compatibility](plugins/compatibility.md)
+- [Copilot SDK harness](plugins/copilot.md)
 - [Plugin dependency resolution](plugins/dependency-resolution.md)
 - [Google Meet plugin](plugins/google-meet.md)
 - [Plugin hooks](plugins/hooks.md)
@@ -400,9 +401,11 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Chutes plugin](plugins/reference/chutes.md)
 - [Clickclack plugin](plugins/reference/clickclack.md)
 - [Cloudflare AI Gateway plugin](plugins/reference/cloudflare-ai-gateway.md)
+- [Codex Supervisor plugin](plugins/reference/codex-supervisor.md)
 - [Codex plugin](plugins/reference/codex.md)
 - [ComfyUI plugin](plugins/reference/comfy.md)
 - [Copilot Proxy plugin](plugins/reference/copilot-proxy.md)
+- [Copilot plugin](plugins/reference/copilot.md)
 - [Deepgram plugin](plugins/reference/deepgram.md)
 - [DeepInfra plugin](plugins/reference/deepinfra.md)
 - [DeepSeek plugin](plugins/reference/deepseek.md)
@@ -581,6 +584,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Memory configuration reference](reference/memory-config.md)
 - [OpenClaw App SDK API design](reference/openclaw-sdk-api-design.md)
 - [Prompt caching](reference/prompt-caching.md)
+- [Release performance sweep](reference/release-performance-sweep.md)
 - [Rich output protocol](reference/rich-output-protocol.md)
 - [RPC adapters](reference/rpc.md)
 - [Secret Placeholder Conventions](reference/secret-placeholder-conventions.md)
@@ -613,6 +617,9 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Formal verification (security models)](security/formal-verification.md)
 - [Incident response](security/incident-response.md)
 - [Network proxy](security/network-proxy.md)
+
+## Specs
+- [Claw Supervisor](specs/claw-supervisor.md)
 
 ## Start
 - [Agent bootstrapping](start/bootstrapping.md)
