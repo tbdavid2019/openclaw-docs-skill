@@ -78,6 +78,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Zalo personal](channels/zalouser.md)
 
 ## Clawhub
+- [ClawHub CLI](clawhub/cli.md)
 - [Publishing on ClawHub](clawhub/publishing.md)
 
 ## Cli
