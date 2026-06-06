@@ -688,6 +688,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Multi-agent sandbox and tools](tools/multi-agent-sandbox-tools.md)
 - [Music generation](tools/music-generation.md)
 - [Ollama web search](tools/ollama-search.md)
+- [Parallel search](tools/parallel-search.md)
 - [PDF tool](tools/pdf.md)
 - [Permission modes](tools/permission-modes.md)
 - [Perplexity search](tools/perplexity-search.md)
