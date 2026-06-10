@@ -649,9 +649,6 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [CLI setup reference](start/wizard-cli-reference.md)
 - [Onboarding (CLI)](start/wizard.md)
 
-## Superpowers > specs
-- [Tweakcn Custom Theme Import Design](superpowers/specs/2026-04-22-tweakcn-custom-theme-import-design.md)
-
 ## Tools
 - [ACP agents — setup](tools/acp-agents-setup.md)
 - [ACP agents](tools/acp-agents.md)
