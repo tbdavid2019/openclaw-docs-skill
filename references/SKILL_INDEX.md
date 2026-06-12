@@ -442,7 +442,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Kimi plugin](plugins/reference/kimi.md)
 - [LINE plugin](plugins/reference/line.md)
 - [LiteLLM plugin](plugins/reference/litellm.md)
-- [llama-cpp plugin](plugins/reference/llama-cpp.md)
+- [Llama Cpp plugin](plugins/reference/llama-cpp.md)
 - [LLM Task plugin](plugins/reference/llm-task.md)
 - [LM Studio plugin](plugins/reference/lmstudio.md)
 - [Lobster plugin](plugins/reference/lobster.md)
