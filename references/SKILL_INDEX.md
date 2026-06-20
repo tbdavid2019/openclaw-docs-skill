@@ -75,6 +75,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [WhatsApp](channels/whatsapp.md)
 - [Yuanbao](channels/yuanbao.md)
 - [Zalo](channels/zalo.md)
+- [Zalo ClawBot](channels/zaloclawbot.md)
 - [Zalo personal](channels/zalouser.md)
 
 ## Clawhub
