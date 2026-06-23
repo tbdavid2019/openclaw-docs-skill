@@ -291,6 +291,10 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Updating](install/updating.md)
 - [Upstash Box](install/upstash.md)
 
+## Maturity
+- [Maturity scorecard](maturity/scorecard.md)
+- [Maturity taxonomy](maturity/taxonomy.md)
+
 ## Nodes
 - [Audio and voice notes](nodes/audio.md)
 - [Camera capture](nodes/camera.md)
