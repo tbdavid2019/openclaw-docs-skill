@@ -10,6 +10,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Brave search](brave-search.md)
 - [CI pipeline](ci.md)
 - [Date and time](date-time.md)
+- [Docs map](docs_map.md)
 - [Logging](logging.md)
 - [Network](network.md)
 - [OpenClaw agent runtime workflow](openclaw-agent-runtime.md)
