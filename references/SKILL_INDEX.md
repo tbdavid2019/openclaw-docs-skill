@@ -633,6 +633,9 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [USER.dev template](reference/templates/USER.dev.md)
 - [USER template](reference/templates/USER.md)
 
+## Releases
+- [v2026.6.11](releases/2026.6.11.md)
+
 ## Security
 - [Contributing to the threat model](security/CONTRIBUTING-THREAT-MODEL.md)
 - [Threat model (MITRE ATLAS)](security/THREAT-MODEL-ATLAS.md)
