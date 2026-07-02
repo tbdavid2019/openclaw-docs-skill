@@ -89,6 +89,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Agent](cli/agent.md)
 - [Agents](cli/agents.md)
 - [Approvals](cli/approvals.md)
+- [Attach CLI](cli/attach.md)
 - [Backup](cli/backup.md)
 - [Browser](cli/browser.md)
 - [Channels](cli/channels.md)
