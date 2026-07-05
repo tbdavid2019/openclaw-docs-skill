@@ -608,6 +608,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Device model database](reference/device-models.md)
 - [Full release validation](reference/full-release-validation.md)
 - [Memory configuration reference](reference/memory-config.md)
+- [@openclaw/ai package](reference/openclaw-ai.md)
 - [Prompt caching](reference/prompt-caching.md)
 - [Release performance sweep](reference/release-performance-sweep.md)
 - [Rich output protocol](reference/rich-output-protocol.md)
