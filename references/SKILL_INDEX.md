@@ -235,7 +235,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [OpenShell](gateway/openshell.md)
 - [OpenTelemetry export](gateway/opentelemetry.md)
 - [Operator scopes](gateway/operator-scopes.md)
-- [Gateway-owned pairing](gateway/pairing.md)
+- [Node pairing](gateway/pairing.md)
 - [Prometheus metrics](gateway/prometheus.md)
 - [Gateway protocol](gateway/protocol.md)
 - [Remote gateway setup](gateway/remote-gateway-readme.md)
@@ -303,6 +303,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 ## Nodes
 - [Audio and voice notes](nodes/audio.md)
 - [Camera capture](nodes/camera.md)
+- [Computer use](nodes/computer-use.md)
 - [Image and media support](nodes/images.md)
 - [Location command](nodes/location-command.md)
 - [Media understanding](nodes/media-understanding.md)
@@ -311,7 +312,6 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Voice wake](nodes/voicewake.md)
 
 ## Plan
-- [Codex Harness Context Engine Port](plan/codex-context-engine-harness.md)
 - [Channel presentation refactor plan](plan/ui-channels.md)
 
 ## Platforms
@@ -393,6 +393,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Plugin SDK subpaths](plugins/sdk-subpaths.md)
 - [Plugin testing](plugins/sdk-testing.md)
 - [Tool plugins](plugins/tool-plugins.md)
+- [Vault SecretRefs](plugins/vault.md)
 - [Voice call plugin](plugins/voice-call.md)
 - [Webhooks plugin](plugins/webhooks.md)
 - [Workboard plugin](plugins/workboard.md)
@@ -468,6 +469,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Memory Core plugin](plugins/reference/memory-core.md)
 - [Memory Lancedb plugin](plugins/reference/memory-lancedb.md)
 - [Memory Wiki plugin](plugins/reference/memory-wiki.md)
+- [Meta plugin](plugins/reference/meta.md)
 - [Microsoft Foundry plugin](plugins/reference/microsoft-foundry.md)
 - [Microsoft plugin](plugins/reference/microsoft.md)
 - [Migrate Claude plugin](plugins/reference/migrate-claude.md)
@@ -516,6 +518,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Tokenjuice plugin](plugins/reference/tokenjuice.md)
 - [TTS Local CLI plugin](plugins/reference/tts-local-cli.md)
 - [Twitch plugin](plugins/reference/twitch.md)
+- [Vault plugin](plugins/reference/vault.md)
 - [Venice plugin](plugins/reference/venice.md)
 - [Vercel AI Gateway plugin](plugins/reference/vercel-ai-gateway.md)
 - [vLLM plugin](plugins/reference/vllm.md)
@@ -567,6 +570,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [LiteLLM](providers/litellm.md)
 - [LM Studio](providers/lmstudio.md)
 - [LongCat](providers/longcat.md)
+- [Meta](providers/meta.md)
 - [MiniMax](providers/minimax.md)
 - [Mistral](providers/mistral.md)
 - [Model provider quickstart](providers/models.md)
@@ -601,17 +605,14 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Z.AI](providers/zai.md)
 
 ## Refactor
-- [Channel access cleanup](refactor/access.md)
 - [ACP lifecycle refactor](refactor/acp.md)
 - [Canvas plugin refactor](refactor/canvas.md)
 - [Database-first state refactor](refactor/database-first.md)
-- [Ingress core deletion plan](refactor/ingress-core.md)
 
 ## Reference
 - [Default AGENTS.md](reference/AGENTS.default.md)
 - [Release policy](reference/RELEASING.md)
 - [API usage and costs](reference/api-usage-costs.md)
-- [Application modernization plan](reference/application-modernization-plan.md)
 - [Code mode](reference/code-mode.md)
 - [Credits](reference/credits.md)
 - [Device model database](reference/device-models.md)
@@ -720,6 +721,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Plugins](tools/plugin.md)
 - [Reactions](tools/reactions.md)
 - [SearXNG search](tools/searxng-search.md)
+- [Show widget](tools/show-widget.md)
 - [Skill Workshop](tools/skill-workshop.md)
 - [Skills config](tools/skills-config.md)
 - [Skills](tools/skills.md)
@@ -739,5 +741,6 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 ## Web
 - [Control UI](web/control-ui.md)
 - [Dashboard](web/dashboard.md)
+- [The Lobster](web/lobster.md)
 - [TUI](web/tui.md)
 - [WebChat](web/webchat.md)
