@@ -240,6 +240,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Gateway protocol](gateway/protocol.md)
 - [Remote gateway setup](gateway/remote-gateway-readme.md)
 - [Remote access](gateway/remote.md)
+- [Restart recovery](gateway/restart-recovery.md)
 - [Sandbox vs tool policy vs elevated](gateway/sandbox-vs-tool-policy-vs-elevated.md)
 - [Sandboxing](gateway/sandboxing.md)
 - [Secrets apply plan contract](gateway/secrets-plan-contract.md)

@@ -862,6 +862,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Media, chunking, and delivery
   - H2: Commands and slash behavior
   - H2: Native charts
+  - H2: Native tables
   - H2: Interactive replies
   - H3: Plugin-owned modal submissions
   - H2: Native approvals in Slack
@@ -1439,6 +1440,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: openclaw devices approve [requestId] [--latest]
   - H3: openclaw devices reject &lt;requestId&gt;
   - H3: openclaw devices remove &lt;deviceId&gt;
+  - H3: openclaw devices rename --device &lt;id&gt; --name &lt;label&gt;
   - H3: openclaw devices clear --yes [--pending]
   - H3: openclaw devices rotate --device &lt;id&gt; --role &lt;role&gt; [--scope &lt;scope...&gt;]
   - H3: openclaw devices revoke --device &lt;id&gt; --role &lt;role&gt;
@@ -1714,6 +1716,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Gateway auth for node host
   - H2: Service (background)
   - H2: Pairing
+  - H3: Identity and pairing state
   - H2: Exec approvals
   - H2: Related
 
@@ -2719,6 +2722,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Detail mode
   - H3: Command/exec text
   - H3: Commentary lane
+  - H3: Narrated status
   - H3: Line limits
   - H3: Rich rendering (Slack)
   - H3: Hide tool/task lines
@@ -3337,6 +3341,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: What is available today
   - H2: Recommended path
+  - H2: Cooperative host suspension
   - H2: App code vs plugin code
   - H2: Related
 
@@ -3585,6 +3590,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: API surface (gateway protocol)
   - H2: Node command gating (2026.3.31+)
   - H2: Node event trust boundaries (2026.3.31+)
+  - H2: SSH-verified device auto-approval (default)
   - H2: Auto-approval (macOS app)
   - H2: Trusted-CIDR device auto-approval
   - H2: Silent pairing supersede cleanup
@@ -3667,6 +3673,20 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H4: Step 5: load the LaunchAgent
   - H4: Troubleshooting
   - H2: Related
+
+## gateway/restart-recovery.md
+
+- Route: /gateway/restart-recovery
+- Headings:
+  - H2: What survives a restart
+  - H2: Graceful restarts drain first
+  - H2: How interrupted work is detected
+  - H2: Automatic resume
+  - H3: Subagents
+  - H3: Background tasks
+  - H3: Agent-requested restarts
+  - H2: Safety valves and observability
+  - H2: What is not resumed
 
 ## gateway/sandbox-vs-tool-policy-vs-elevated.md
 
@@ -4106,6 +4126,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /
 - Headings:
   - H1: OpenClaw 🦞
+  - H2: Browse docs
   - H2: What is OpenClaw?
   - H2: How it works
   - H2: Key capabilities
@@ -4214,6 +4235,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Manual flow
   - H3: Upgrading container images
   - H3: Environment variables
+  - H3: Source-built images with selected plugins
   - H3: Observability
   - H3: Health checks
   - H3: LAN vs loopback
@@ -4719,6 +4741,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Remote gateway via SSH tunnel (loopback bind)
   - H3: Start a node host (service)
   - H3: Pair + name
+  - H3: Headless identity state
   - H3: Allowlist the commands
   - H3: Point exec at the node
   - H3: Local model inference
@@ -5583,6 +5606,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /plugins/manage-plugins
 - Headings:
+  - H2: Use the Control UI
   - H2: List and search plugins
   - H2: Enable and disable plugins
   - H2: Install plugins
@@ -5601,6 +5625,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Minimal example
   - H2: Rich example
   - H2: Top-level field reference
+  - H2: catalog reference
   - H2: Generation provider metadata reference
   - H2: Tool metadata reference
   - H2: providerAuthChoices reference
@@ -9922,11 +9947,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Gateway host status
   - H2: Language support
   - H2: Appearance themes
-  - H2: Navigation
+  - H2: Manage plugins
+  - H2: Sidebar navigation
+  - H2: New session dialog
   - H2: What it can do (today)
   - H2: MCP page
   - H2: Activity tab
   - H2: Operator terminal
+  - H2: Browser panel
   - H2: Chat behavior
   - H2: Connection loss and reconnect
   - H2: PWA install and web push
