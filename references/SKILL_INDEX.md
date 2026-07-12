@@ -108,6 +108,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [DNS](cli/dns.md)
 - [Docs](cli/docs.md)
 - [Doctor](cli/doctor.md)
+- [Fleet](cli/fleet.md)
 - [Flows (redirect)](cli/flows.md)
 - [Gateway](cli/gateway.md)
 - [Health](cli/health.md)
@@ -207,6 +208,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Diagnostics flags](diagnostics/flags.md)
 
 ## Gateway
+- [Audit history](gateway/audit.md)
 - [Authentication](gateway/authentication.md)
 - [Background exec and process tool](gateway/background-process.md)
 - [Bonjour discovery](gateway/bonjour.md)
@@ -228,6 +230,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Local model services](gateway/local-model-services.md)
 - [Local models](gateway/local-models.md)
 - [Gateway logging](gateway/logging.md)
+- [Multi-tenant hosting](gateway/multi-tenant-hosting.md)
 - [Multiple gateways](gateway/multiple-gateways.md)
 - [Network model](gateway/network-model.md)
 - [OpenAI chat completions](gateway/openai-http-api.md)
@@ -313,6 +316,8 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Voice wake](nodes/voicewake.md)
 
 ## Plan
+- [Cloud workers plan](plan/cloud-workers.md)
+- [Path 3 SQLite session artifact family](plan/path3-sqlite-session-artifact-family.md)
 - [Channel presentation refactor plan](plan/ui-channels.md)
 
 ## Platforms
@@ -360,6 +365,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Codex harness runtime](plugins/codex-harness-runtime.md)
 - [Codex harness](plugins/codex-harness.md)
 - [Native Codex plugins](plugins/codex-native-plugins.md)
+- [Supervise Codex sessions](plugins/codex-supervision.md)
 - [Community plugins](plugins/community.md)
 - [Plugin compatibility](plugins/compatibility.md)
 - [Copilot SDK harness](plugins/copilot.md)
@@ -420,12 +426,12 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [ClawRouter plugin](plugins/reference/clawrouter.md)
 - [Clickclack plugin](plugins/reference/clickclack.md)
 - [Cloudflare AI Gateway plugin](plugins/reference/cloudflare-ai-gateway.md)
-- [Codex Supervisor plugin](plugins/reference/codex-supervisor.md)
 - [Codex plugin](plugins/reference/codex.md)
 - [Cohere plugin](plugins/reference/cohere.md)
 - [ComfyUI plugin](plugins/reference/comfy.md)
 - [Copilot Proxy plugin](plugins/reference/copilot-proxy.md)
 - [Copilot plugin](plugins/reference/copilot.md)
+- [Crabbox plugin](plugins/reference/crabbox.md)
 - [Deepgram plugin](plugins/reference/deepgram.md)
 - [DeepInfra plugin](plugins/reference/deepinfra.md)
 - [DeepSeek plugin](plugins/reference/deepseek.md)
@@ -531,6 +537,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Webhooks plugin](plugins/reference/webhooks.md)
 - [WhatsApp plugin](plugins/reference/whatsapp.md)
 - [Workboard plugin](plugins/reference/workboard.md)
+- [Workspaces plugin](plugins/reference/workspaces.md)
 - [xAI plugin](plugins/reference/xai.md)
 - [Xiaomi plugin](plugins/reference/xiaomi.md)
 - [Z.AI plugin](plugins/reference/zai.md)
@@ -609,6 +616,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [ACP lifecycle refactor](refactor/acp.md)
 - [Canvas plugin refactor](refactor/canvas.md)
 - [Database-first state refactor](refactor/database-first.md)
+- [Multi-surface operator approvals](refactor/operator-approvals.md)
 
 ## Reference
 - [Default AGENTS.md](reference/AGENTS.default.md)
@@ -620,6 +628,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Full release validation](reference/full-release-validation.md)
 - [Memory configuration reference](reference/memory-config.md)
 - [@openclaw/ai package](reference/openclaw-ai.md)
+- [Path 3 live SQLite E2E harness](reference/path3-live-sqlite-e2e-harness.md)
 - [Prompt caching](reference/prompt-caching.md)
 - [Release performance sweep](reference/release-performance-sweep.md)
 - [Rich output protocol](reference/rich-output-protocol.md)
@@ -659,7 +668,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Network proxy](security/network-proxy.md)
 
 ## Specs
-- [Claw Supervisor](specs/claw-supervisor.md)
+- [Codex supervision](specs/codex-supervision.md)
 
 ## Start
 - [Agent bootstrapping](start/bootstrapping.md)
@@ -745,3 +754,4 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [The Lobster](web/lobster.md)
 - [TUI](web/tui.md)
 - [WebChat](web/webchat.md)
+- [Workspaces](web/workspaces.md)
