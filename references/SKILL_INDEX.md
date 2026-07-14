@@ -65,6 +65,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [QA channel](channels/qa-channel.md)
 - [QQ bot](channels/qqbot.md)
 - [Raft](channels/raft.md)
+- [Reef](channels/reef.md)
 - [Signal](channels/signal.md)
 - [Slack](channels/slack.md)
 - [SMS](channels/sms.md)
@@ -148,6 +149,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Webhooks](cli/webhooks.md)
 - [Wiki](cli/wiki.md)
 - [Workboard CLI](cli/workboard.md)
+- [Worker](cli/worker.md)
 
 ## Concepts
 - [Active memory](concepts/active-memory.md)
@@ -210,12 +212,14 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Diagnostics flags](diagnostics/flags.md)
 
 ## Gateway
+- [1Password](gateway/1password.md)
 - [Audit history](gateway/audit.md)
 - [Authentication](gateway/authentication.md)
 - [Background exec and process tool](gateway/background-process.md)
 - [Bonjour discovery](gateway/bonjour.md)
 - [Bridge protocol](gateway/bridge-protocol.md)
 - [CLI backends](gateway/cli-backends.md)
+- [Cloud Workers](gateway/cloud-workers.md)
 - [Configuration — agents](gateway/config-agents.md)
 - [Configuration — channels](gateway/config-channels.md)
 - [Configuration — tools and custom providers](gateway/config-tools.md)
@@ -385,6 +389,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Memory wiki](plugins/memory-wiki.md)
 - [Message presentation](plugins/message-presentation.md)
 - [OC Path plugin](plugins/oc-path.md)
+- [1Password secrets broker](plugins/onepassword.md)
 - [Plugin inventory](plugins/plugin-inventory.md)
 - [Plugin permission requests](plugins/plugin-permission-requests.md)
 - [Plugin reference](plugins/reference.md)
@@ -496,6 +501,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [NVIDIA plugin](plugins/reference/nvidia.md)
 - [Oc Path plugin](plugins/reference/oc-path.md)
 - [Ollama plugin](plugins/reference/ollama.md)
+- [Onepassword plugin](plugins/reference/onepassword.md)
 - [Open Prose plugin](plugins/reference/open-prose.md)
 - [OpenAI plugin](plugins/reference/openai.md)
 - [OpenCode Go plugin](plugins/reference/opencode-go.md)
@@ -512,6 +518,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [QQ Bot plugin](plugins/reference/qqbot.md)
 - [Qwen plugin](plugins/reference/qwen.md)
 - [Raft plugin](plugins/reference/raft.md)
+- [Reef plugin](plugins/reference/reef.md)
 - [Runway plugin](plugins/reference/runway.md)
 - [SearXNG plugin](plugins/reference/searxng.md)
 - [Senseaudio plugin](plugins/reference/senseaudio.md)
@@ -664,6 +671,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Releases
 - [v2026.6.11](releases/2026.6.11.md)
+- [v2026.7.1](releases/2026.7.1.md)
 
 ## Security
 - [Contributing to the threat model](security/CONTRIBUTING-THREAT-MODEL.md)
@@ -736,6 +744,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Plugins](tools/plugin.md)
 - [Reactions](tools/reactions.md)
 - [SearXNG search](tools/searxng-search.md)
+- [Self-learning](tools/self-learning.md)
 - [Show widget](tools/show-widget.md)
 - [Skill Workshop](tools/skill-workshop.md)
 - [Skills config](tools/skills-config.md)

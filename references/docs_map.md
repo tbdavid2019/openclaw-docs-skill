@@ -314,6 +314,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Account config keys
   - H2: Multiple bots
   - H2: Reply modes
+  - H2: Durable media delivery
   - H2: Agent activity rows
   - H2: Targets
   - H2: Permissions
@@ -806,6 +807,18 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Verify
   - H2: Troubleshooting
   - H2: References
+
+## channels/reef.md
+
+- Route: /channels/reef
+- Headings:
+  - H2: Quick start
+  - H2: Agent-driven setup
+  - H2: Configuration
+  - H2: Adding a friend
+  - H2: Sending and receiving
+  - H2: Guards and owner review
+  - H2: Troubleshooting
 
 ## channels/signal.md
 
@@ -1427,6 +1440,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /cli/dashboard
 - Headings:
   - H1: openclaw dashboard
+  - H2: Machine-readable output
   - H2: Related
 
 ## cli/devices.md
@@ -2150,6 +2164,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: list
   - H2: create
   - H2: show
+  - H2: move
   - H2: dispatch
   - H2: Slash command parity
   - H2: Permissions
@@ -2158,6 +2173,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Dispatch says data-only
   - H3: Dispatch starts nothing
   - H2: Related
+
+## cli/worker.md
+
+- Route: /cli/worker
+- Headings:
+  - H1: openclaw worker
+  - H2: Launch contract
+  - H2: Runtime boundary
 
 ## concepts/active-memory.md
 
@@ -2546,6 +2569,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: How it works
   - H2: What goes where
+  - H2: Import from coding assistants
   - H2: Action-sensitive memories
   - H2: Inferred commitments
   - H2: Memory tools
@@ -2620,6 +2644,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /concepts/model-providers
 - Headings:
   - H2: Quick rules
+  - H2: Configure providers in the Control UI
   - H2: Plugin-owned provider behavior
   - H2: API key rotation
   - H2: Official provider plugins
@@ -2752,7 +2777,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Detail mode
   - H3: Command/exec text
   - H3: Commentary lane
-  - H3: Narrated status
+  - H3: Status headline
   - H3: Line limits
   - H3: Rich rendering (Slack)
   - H3: Hide tool/task lines
@@ -3059,6 +3084,17 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Notes
   - H2: Related
 
+## gateway/1password.md
+
+- Route: /gateway/1password
+- Headings:
+  - H2: Requirements
+  - H2: Resolve config secrets with op
+  - H2: Service account setup for headless Gateways
+  - H2: The 1password skill for agents
+  - H2: Security notes
+  - H2: Troubleshooting
+
 ## gateway/audit.md
 
 - Route: /gateway/audit
@@ -3162,6 +3198,20 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Bundle MCP overlays
   - H2: Reseed history cap
   - H2: Limitations
+  - H2: Troubleshooting
+  - H2: Related
+
+## gateway/cloud-workers.md
+
+- Route: /gateway/cloud-workers
+- Headings:
+  - H2: What runs where
+  - H2: Requirements
+  - H2: Configuration
+  - H3: The setup command
+  - H3: Install channels
+  - H2: Dispatching a session
+  - H2: Security model
   - H2: Troubleshooting
   - H2: Related
 
@@ -3341,6 +3391,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: cron.retry
   - H3: cron.failureAlert
   - H3: cron.failureDestination
+  - H2: Worktrees
   - H2: Media model template variables
   - H2: Config includes ($include)
   - H2: Related
@@ -3418,8 +3469,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /gateway/gateway-lock
 - Headings:
   - H2: Why
-  - H2: Two layers
-  - H3: File lock
+  - H2: Three layers
+  - H3: State and config locks
   - H3: Socket bind
   - H2: Operational notes
   - H2: Related
@@ -3538,7 +3589,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Trust boundary
   - H2: Isolation ladder
   - H2: Quick start
-  - H2: Deferred from the MVP
+  - H2: Current scope
   - H2: Related
 
 ## gateway/multiple-gateways.md
@@ -4834,6 +4885,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Local model inference
   - H3: Codex sessions and transcripts
   - H3: Claude sessions and transcripts
+  - H3: OpenCode and Pi sessions
   - H2: Invoking commands
   - H2: Command policy
   - H2: Config (openclaw.json)
@@ -5111,7 +5163,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /platforms/linux
 - Headings:
-  - H2: Quick path (VPS)
+  - H2: Desktop companion
+  - H2: CLI and SSH alternative
   - H2: Install
   - H2: Gateway service (systemd)
   - H2: Memory pressure and OOM kills
@@ -5908,6 +5961,19 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Safety
   - H2: Related
 
+## plugins/onepassword.md
+
+- Route: /plugins/onepassword
+- Headings:
+  - H1: 1Password secrets broker
+  - H2: Security model
+  - H2: Before you begin
+  - H2: Configure registered secrets
+  - H2: Use the agent tool
+  - H2: Policy tiers and approvals
+  - H2: Inspect status and audit history
+  - H2: 1Password CLI behavior
+
 ## plugins/plugin-inventory.md
 
 - Route: /plugins/plugin-inventory
@@ -5944,6 +6010,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H1: ACPx plugin
   - H2: Distribution
   - H2: Surface
+  - H2: Pi native sessions
   - H2: Related docs
 
 ## plugins/reference/admin-http-rpc.md
@@ -6691,6 +6758,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Surface
   - H2: Related docs
 
+## plugins/reference/onepassword.md
+
+- Route: /plugins/reference/onepassword
+- Headings:
+  - H1: Onepassword plugin
+  - H2: Distribution
+  - H2: Surface
+  - H2: Related docs
+
 ## plugins/reference/open-prose.md
 
 - Route: /plugins/reference/open-prose
@@ -6724,6 +6800,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H1: OpenCode plugin
   - H2: Distribution
   - H2: Surface
+  - H2: Native sessions
   - H2: Related docs
 
 ## plugins/reference/openrouter.md
@@ -6828,6 +6905,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /plugins/reference/raft
 - Headings:
   - H1: Raft plugin
+  - H2: Distribution
+  - H2: Surface
+  - H2: Related docs
+
+## plugins/reference/reef.md
+
+- Route: /plugins/reference/reef
+- Headings:
+  - H1: Reef plugin
   - H2: Distribution
   - H2: Surface
   - H2: Related docs
@@ -8886,6 +8972,60 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Setup and command reliability
   - H3: Tools and scheduled work
 
+## releases/2026.7.1.md
+
+- Route: /releases/2026.7.1
+- Headings:
+  - H1: OpenClaw v2026.7.1 Release Notes (2026-07-13)
+  - H2: Highlights
+  - H3: Control UI overhaul: chat, sessions, workspaces, and usage
+  - H3: Easier setup from install to first chat
+  - H3: Official apps
+  - H4: Shared app improvements
+  - H4: iOS, iPadOS, and Apple Watch
+  - H4: Android
+  - H4: macOS
+  - H3: Models and providers
+  - H4: GPT-5.6 and Codex
+  - H4: Tencent Hy3
+  - H4: Meta Model API and Muse Spark 1.1
+  - H4: Claude models
+  - H4: Other provider routes
+  - H3: Codex and connected coding agents
+  - H3: Telegram
+  - H3: Signal
+  - H3: Slack
+  - H3: Discord
+  - H3: WhatsApp
+  - H3: Apple Messages
+  - H3: Crash loops now stop for repair
+  - H3: Scheduled work, remote browser control, and workspace terminals
+  - H4: Scheduled work that wakes only when needed
+  - H4: Remote browser pairing and downloads
+  - H4: Workspace terminals in web and mobile
+  - H2: More channel improvements
+  - H3: More fixes across messaging channels
+  - H2: More model and provider improvements
+  - H3: Sign-in, model choice, media, and reliability
+  - H2: Memory and conversations
+  - H3: Recall, long chats, and session continuity
+  - H2: Agents, background work, and connections
+  - H3: Keeping work moving and replies delivered
+  - H2: Accounts, devices, and private data
+  - H3: Credentials, permissions, pairing, and file safeguards
+  - H2: Official app details
+  - H3: Shared app changes
+  - H3: More iOS, iPadOS, and Apple Watch changes
+  - H3: More Android changes
+  - H3: More macOS changes
+  - H3: Terminal UI and other clients
+  - H2: Skills, plugins, and installs
+  - H3: Skills, connected apps, packages, and repairs
+  - H2: Setup, maintenance, and tools
+  - H3: Command-line setup, updates, and administration
+  - H3: Documentation and operating guides
+  - H3: Browser, schedules, files, and coding tools
+
 ## releases/index.md
 
 - Route: /releases
@@ -9866,6 +10006,24 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Notes
   - H2: Related
 
+## tools/self-learning.md
+
+- Route: /tools/self-learning
+- Headings:
+  - H2: Enable self-learning
+  - H2: Review past sessions manually
+  - H2: What OpenClaw can learn
+  - H2: When experience review runs
+  - H2: What the reviewer receives
+  - H2: Proposal safety
+  - H2: Review learned proposals
+  - H2: Configuration
+  - H2: Troubleshooting
+  - H3: No proposal appears after a long turn
+  - H3: Doctor reports that the Workshop tool is hidden
+  - H3: Too many low-value proposals appear
+  - H2: Related
+
 ## tools/show-widget.md
 
 - Route: /tools/show-widget
@@ -9888,6 +10046,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Support files
   - H2: Agent tool
   - H2: Suggested skills
+  - H3: Scan past sessions
   - H2: Approval and autonomy
   - H2: Gateway methods
   - H2: Storage
@@ -10197,6 +10356,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Sidebar navigation
   - H2: New session page
   - H2: What it can do (today)
+  - H2: Import assistant memory
   - H2: MCP page
   - H2: Activity tab
   - H2: Operator terminal
