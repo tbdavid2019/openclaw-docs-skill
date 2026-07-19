@@ -169,6 +169,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Dreaming](concepts/dreaming.md)
 - [Experimental features](concepts/experimental-features.md)
 - [Features](concepts/features.md)
+- [The main session](concepts/main-session.md)
 - [Managed worktrees](concepts/managed-worktrees.md)
 - [Mantis Slack desktop runbook](concepts/mantis-slack-desktop-runbook.md)
 - [Mantis](concepts/mantis.md)
@@ -387,6 +388,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Logbook plugin](plugins/logbook.md)
 - [Manage plugins](plugins/manage-plugins.md)
 - [Plugin manifest](plugins/manifest.md)
+- [Meeting plugins](plugins/meeting-plugins.md)
 - [Memory LanceDB](plugins/memory-lancedb.md)
 - [Memory wiki](plugins/memory-wiki.md)
 - [Message presentation](plugins/message-presentation.md)
@@ -417,6 +419,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Webhooks plugin](plugins/webhooks.md)
 - [Workboard plugin](plugins/workboard.md)
 - [Zalo personal plugin](plugins/zalouser.md)
+- [Zoom meetings plugin](plugins/zoom-meetings.md)
 
 ## Plugins > reference
 - [ACPx plugin](plugins/reference/acpx.md)
@@ -555,12 +558,12 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Webhooks plugin](plugins/reference/webhooks.md)
 - [WhatsApp plugin](plugins/reference/whatsapp.md)
 - [Workboard plugin](plugins/reference/workboard.md)
-- [Workspaces plugin](plugins/reference/workspaces.md)
 - [xAI plugin](plugins/reference/xai.md)
 - [Xiaomi plugin](plugins/reference/xiaomi.md)
 - [Z.AI plugin](plugins/reference/zai.md)
 - [Zalo plugin](plugins/reference/zalo.md)
 - [Zalo Personal plugin](plugins/reference/zalouser.md)
+- [Zoom meetings plugin](plugins/reference/zoom-meetings.md)
 
 ## Providers
 - [Alibaba Model Studio](providers/alibaba.md)
@@ -753,6 +756,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Perplexity search](tools/perplexity-search.md)
 - [Plugins](tools/plugin.md)
 - [Reactions](tools/reactions.md)
+- [Screen](tools/screen.md)
 - [SearXNG search](tools/searxng-search.md)
 - [Self-learning](tools/self-learning.md)
 - [Show widget](tools/show-widget.md)
@@ -774,8 +778,8 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Web
 - [Control UI](web/control-ui.md)
+- [Dashboard Architecture](web/dashboard-architecture.md)
 - [Dashboard](web/dashboard.md)
 - [The Lobster](web/lobster.md)
 - [TUI](web/tui.md)
 - [WebChat](web/webchat.md)
-- [Workspaces](web/workspaces.md)
