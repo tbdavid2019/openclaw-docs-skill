@@ -328,6 +328,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 ## Plan
 - [Cloud workers plan](plan/cloud-workers.md)
 - [Path 3 SQLite session artifact family](plan/path3-sqlite-session-artifact-family.md)
+- [Swarms — agent fan-out and orchestration in code mode](plan/swarms.md)
 - [Channel presentation refactor plan](plan/ui-channels.md)
 
 ## Platforms
@@ -766,6 +767,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Slash commands](tools/slash-commands.md)
 - [Steer](tools/steer.md)
 - [Sub-agents](tools/subagents.md)
+- [Swarm](tools/swarm.md)
 - [Tavily](tools/tavily.md)
 - [Thinking levels](tools/thinking.md)
 - [Tokenjuice](tools/tokenjuice.md)
