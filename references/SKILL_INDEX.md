@@ -186,6 +186,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Model providers](concepts/model-providers.md)
 - [Models CLI](concepts/models.md)
 - [Multi-agent routing](concepts/multi-agent.md)
+- [Multi-user mode](concepts/multi-user.md)
 - [OAuth](concepts/oauth.md)
 - [Parallel specialist lanes](concepts/parallel-specialist-lanes.md)
 - [Personal agent benchmark pack](concepts/personal-agent-benchmark-pack.md)
