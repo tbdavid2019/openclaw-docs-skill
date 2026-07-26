@@ -267,10 +267,10 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 
 ## Gateway > security
 - [Security audit checks](gateway/security/audit-checks.md)
+- [Dependency locking](gateway/security/dependency-locking.md)
 - [Gateway exposure runbook](gateway/security/exposure-runbook.md)
 - [Rate limiting](gateway/security/rate-limiting.md)
 - [Secure file operations](gateway/security/secure-file-operations.md)
-- [npm shrinkwrap](gateway/security/shrinkwrap.md)
 
 ## Help
 - [Debugging](help/debugging.md)
@@ -398,7 +398,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Memory wiki](plugins/memory-wiki.md)
 - [Message presentation](plugins/message-presentation.md)
 - [OC Path plugin](plugins/oc-path.md)
-- [1Password secrets broker](plugins/onepassword.md)
+- [1Password](plugins/onepassword.md)
 - [Plugin inventory](plugins/plugin-inventory.md)
 - [Plugin permission requests](plugins/plugin-permission-requests.md)
 - [Plugin reference](plugins/reference.md)
@@ -675,7 +675,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [BOOT.md template](reference/templates/BOOT.md)
 - [BOOTSTRAP.md template](reference/templates/BOOTSTRAP.md)
 - [AGENTS.md template](reference/templates/CLAUDE.md)
-- [HEARTBEAT.md template](reference/templates/HEARTBEAT.md)
+- [Retired HEARTBEAT.md workspace file](reference/templates/HEARTBEAT.md)
 - [IDENTITY.dev template](reference/templates/IDENTITY.dev.md)
 - [IDENTITY template](reference/templates/IDENTITY.md)
 - [SOUL.dev template](reference/templates/SOUL.dev.md)
