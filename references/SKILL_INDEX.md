@@ -41,6 +41,7 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Ambient room events](channels/ambient-room-events.md)
 - [Bot loop protection](channels/bot-loop-protection.md)
 - [Broadcast groups](channels/broadcast-groups.md)
+- [Buzz](channels/buzz.md)
 - [Channel routing](channels/channel-routing.md)
 - [ClickClack](channels/clickclack.md)
 - [Discord Activities](channels/discord-activities.md)
@@ -790,4 +791,5 @@ This is a comprehensive index of all available OpenClaw documentation, organized
 - [Session Dashboards](web/dashboards.md)
 - [The Lobster](web/lobster.md)
 - [TUI](web/tui.md)
+- [Control UI URLs](web/urls.md)
 - [WebChat](web/webchat.md)
