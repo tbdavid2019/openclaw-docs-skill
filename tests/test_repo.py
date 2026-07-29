@@ -153,6 +153,110 @@ class InstallerTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertTrue((target / ".git").is_dir())
             self.assertTrue((target / "SKILL.md").is_file())
+            self.assertIn(f"Installation directory: {target.resolve()}", result.stdout)
+            self.assertRegex(result.stdout, r"Skill repository commit: [0-9a-f]{40}")
+            self.assertRegex(result.stdout, r"Upstream documentation commit: [0-9a-f]{40}")
+
+    def test_installer_rejects_an_incomplete_git_checkout(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            target = Path(temp_dir) / "openclaw-docs"
+            subprocess.run(
+                ["git", "clone", "--quiet", str(REPO_ROOT), str(target)],
+                check=True,
+                cwd=REPO_ROOT,
+            )
+            shutil.rmtree(target / "references" / "_catalog")
+
+            result = subprocess.run(
+                ["bash", str(REPO_ROOT / "scripts" / "install-skill.sh"), str(target)],
+                cwd=REPO_ROOT,
+                text=True,
+                capture_output=True,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "required installation artifact is missing: references/_catalog",
+                result.stderr,
+            )
+            self.assertNotIn("OpenClaw docs skill is ready", result.stdout)
+
+    def test_installer_fast_forwards_an_existing_checkout(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            source = Path(temp_dir) / "source"
+            target = Path(temp_dir) / "openclaw-docs"
+            subprocess.run(
+                ["git", "clone", "--quiet", str(REPO_ROOT), str(source)],
+                check=True,
+                cwd=REPO_ROOT,
+            )
+            subprocess.run(
+                ["git", "clone", "--quiet", str(source), str(target)],
+                check=True,
+                cwd=REPO_ROOT,
+            )
+            subprocess.run(
+                ["git", "-C", str(source), "config", "user.name", "Installer Test"],
+                check=True,
+            )
+            subprocess.run(
+                ["git", "-C", str(source), "config", "user.email", "installer@example.invalid"],
+                check=True,
+            )
+            marker = source / "installer-update-marker.txt"
+            marker.write_text("updated\n", encoding="utf-8")
+            subprocess.run(
+                ["git", "-C", str(source), "add", marker.name],
+                check=True,
+            )
+            subprocess.run(
+                ["git", "-C", str(source), "commit", "--quiet", "-m", "test update"],
+                check=True,
+            )
+
+            result = subprocess.run(
+                ["bash", str(REPO_ROOT / "scripts" / "install-skill.sh"), str(target)],
+                cwd=REPO_ROOT,
+                text=True,
+                capture_output=True,
+            )
+
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(
+                (target / marker.name).read_text(encoding="utf-8"),
+                "updated\n",
+            )
+            self.assertIn("Updating OpenClaw docs skill", result.stdout)
+
+    def test_installer_rejects_an_invalid_upstream_commit(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            target = Path(temp_dir) / "openclaw-docs"
+            subprocess.run(
+                ["git", "clone", "--quiet", str(REPO_ROOT), str(target)],
+                check=True,
+                cwd=REPO_ROOT,
+            )
+            source_path = target / "references" / "SOURCE.json"
+            source = json.loads(source_path.read_text(encoding="utf-8"))
+            source["upstream_commit"] = "invalid"
+            source_path.write_text(
+                json.dumps(source, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            result = subprocess.run(
+                ["bash", str(REPO_ROOT / "scripts" / "install-skill.sh"), str(target)],
+                cwd=REPO_ROOT,
+                text=True,
+                capture_output=True,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "unable to read a valid upstream commit from references/SOURCE.json",
+                result.stderr,
+            )
+            self.assertNotIn("OpenClaw docs skill is ready", result.stdout)
 
     def test_installer_refuses_an_existing_non_git_target(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -191,8 +295,8 @@ class SkillGuidanceTests(unittest.TestCase):
         self.assertNotIn("cp -r openclaw-docs-skill", combined)
         self.assertNotIn("每次被呼叫 → 自動 git pull", combined)
         self.assertNotIn("Hard Requirement", combined)
-        self.assertIn("## Instructions for AI assistants", english)
-        self.assertIn("## AI 助手安裝指引", traditional_chinese)
+        self.assertIn("## AI Agent Installation Contract", english)
+        self.assertIn("## AI Agent 安裝契約", traditional_chinese)
 
         for required_path in (
             "SKILL.md",
@@ -206,6 +310,13 @@ class SkillGuidanceTests(unittest.TestCase):
 
         self.assertIn("Do not run `scripts/sync-docs.sh`", english)
         self.assertIn("不要執行 `scripts/sync-docs.sh`", traditional_chinese)
+        self.assertIn("MUST run the installer", english)
+        self.assertIn("必須執行 installer", traditional_chinese)
+        self.assertIn("`git pull --ff-only`", combined)
+        self.assertIn("Read the installed `SKILL.md`", english)
+        self.assertIn("讀取已安裝的 `SKILL.md`", traditional_chinese)
+        self.assertIn("upstream documentation commit", english)
+        self.assertRegex(traditional_chinese, r"上游文件\s+commit")
         self.assertIn("Use $openclaw-docs", english)
         self.assertIn("Use $openclaw-docs", traditional_chinese)
         self.assertIn("Do not claim installation success", english)

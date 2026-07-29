@@ -48,7 +48,14 @@ git clone https://github.com/tbdavid2019/openclaw-docs-skill.git \
   ~/.codex/skills/openclaw-docs
 ```
 
-The installer can also clone into a new destination when run from another checkout:
+After a direct clone, run the installer once to pull with fast-forward-only semantics, validate the
+snapshot, and print its commits:
+
+```bash
+bash <skill-directory>/scripts/install-skill.sh
+```
+
+The installer can instead clone into a new destination when run from another checkout:
 
 ```bash
 bash openclaw-docs-skill/scripts/install-skill.sh <skill-directory>
@@ -66,7 +73,7 @@ update on every question; it changes only when the installer or `git pull` is ex
 If a host platform copies skills into a managed directory, use that platform's update mechanism.
 The copied snapshot remains usable but cannot update itself as a Git checkout.
 
-## Instructions for AI assistants
+## AI Agent Installation Contract
 
 When a user gives you this repository URL and asks you to install the skill:
 
@@ -75,19 +82,46 @@ When a user gives you this repository URL and asks you to install the skill:
    `~/.codex/skills/openclaw-docs`. A typical Antigravity destination is
    `~/.gemini/antigravity/skills/openclaw-docs`. For another host, inspect its configuration or
    ask the user instead of guessing.
-2. Inspect the destination. Clone into it if it does not exist. If it is already this repository's
-   Git checkout, run its installer to update it. Do not overwrite a non-Git directory; explain the
-   conflict and ask the user how to proceed.
-3. Install either with the `git clone` command above or with
-   `bash <source-checkout>/scripts/install-skill.sh <skill-directory>`.
-4. Do not run `scripts/sync-docs.sh` or `scripts/generate_index.py` as part of installation. They
-   are maintainer tools; an installation must use the repository's committed snapshot.
+2. Inspect the destination. If it does not exist, clone this repository with the final directory
+   name `openclaw-docs`. If it is already this repository's Git checkout, keep it. Do not overwrite
+   a non-Git directory; explain the conflict and ask the user how to proceed.
+3. You MUST run the installer before verification:
+   `bash <skill-directory>/scripts/install-skill.sh`. For an existing checkout, the installer MUST
+   successfully complete `git pull --ff-only`; a pull or validation failure means the installation
+   or update failed. Run the installer after a new clone as well so the same validation is applied.
+4. Read the installed `SKILL.md`. Do not run `scripts/sync-docs.sh` or
+   `scripts/generate_index.py` as part of installation. They are maintainer tools; an installation
+   must use the repository's committed snapshot.
 5. Verify that the destination contains `SKILL.md`, `agents/openai.yaml`,
    `references/SOURCE.json`, `references/SKILL_INDEX.md`, and `references/_catalog/`.
-6. Tell the user to reload or restart the host if it discovers skills only at startup. Then test
+6. Read `references/SOURCE.json`, then report the absolute installation directory, the Skill
+   repository commit, and the upstream documentation commit. The installer prints all three.
+7. Tell the user to reload or restart the host if it discovers skills only at startup. Then test
    discovery with: `Use $openclaw-docs to explain how to check OpenClaw Gateway health.`
-7. Do not claim installation success until the files have been verified and any required reload
-   instruction has been given. Never print credentials or unrelated configuration values.
+8. Do not claim installation success until pull, validation, commit reporting, and any required
+   reload instruction have completed. Never print credentials or unrelated configuration values.
+
+Copy-paste installation request:
+
+```text
+Install the following repository as the OpenClaw documentation skill:
+https://github.com/tbdavid2019/openclaw-docs-skill
+
+Follow README.md's "AI Agent Installation Contract":
+1. Clone it into your skills directory with the final directory name openclaw-docs.
+2. Run scripts/install-skill.sh. An existing checkout must complete git pull --ff-only.
+3. Read SKILL.md.
+4. Verify references/SOURCE.json, references/SKILL_INDEX.md, and references/_catalog/.
+5. Report the installation directory, Skill repository commit, and upstream documentation commit.
+
+After installation, test it with:
+Use $openclaw-docs and the locally synchronized official OpenClaw documentation to explain how
+to check Gateway health. Cite the local document paths and distinguish documentation facts from
+your inferences.
+
+The GitHub repository is synchronized daily, but an installed checkout does not update itself.
+Re-run the installer, which performs git pull --ff-only, before relying on the latest snapshot.
+```
 
 ## Repository structure
 

@@ -19,11 +19,11 @@ if [[ -e "$TARGET_DIR" ]]; then
         echo "error: installation target is not a directory: $TARGET_DIR" >&2
         exit 1
     fi
-    TARGET_DIR="$(cd "$TARGET_DIR" && pwd)"
+    TARGET_DIR="$(cd "$TARGET_DIR" && pwd -P)"
 else
     TARGET_PARENT="$(dirname "$TARGET_DIR")"
     mkdir -p "$TARGET_PARENT"
-    TARGET_PARENT="$(cd "$TARGET_PARENT" && pwd)"
+    TARGET_PARENT="$(cd "$TARGET_PARENT" && pwd -P)"
     TARGET_DIR="$TARGET_PARENT/$(basename "$TARGET_DIR")"
 fi
 
@@ -52,9 +52,45 @@ else
     exit 1
 fi
 
-if [[ ! -f "$TARGET_DIR/SKILL.md" ]]; then
-    echo "error: installation completed without SKILL.md" >&2
+REQUIRED_FILES=(
+    "SKILL.md"
+    "agents/openai.yaml"
+    "references/SOURCE.json"
+    "references/SKILL_INDEX.md"
+)
+
+for REQUIRED_FILE in "${REQUIRED_FILES[@]}"; do
+    if [[ ! -f "$TARGET_DIR/$REQUIRED_FILE" ]]; then
+        echo "error: required installation artifact is missing: $REQUIRED_FILE" >&2
+        exit 1
+    fi
+done
+
+if [[ ! -d "$TARGET_DIR/references/_catalog" ]]; then
+    echo "error: required installation artifact is missing: references/_catalog" >&2
+    exit 1
+fi
+
+SKILL_COMMIT="$(git -C "$TARGET_DIR" rev-parse HEAD)"
+if ! UPSTREAM_COMMIT="$(
+    python3 - "$TARGET_DIR/references/SOURCE.json" <<'PY'
+import json
+from pathlib import Path
+import re
+import sys
+
+source = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+commit = source.get("upstream_commit", "")
+if not re.fullmatch(r"[0-9a-f]{40}", commit):
+    raise SystemExit("SOURCE.json does not contain a valid upstream_commit")
+print(commit)
+PY
+)"; then
+    echo "error: unable to read a valid upstream commit from references/SOURCE.json" >&2
     exit 1
 fi
 
 echo "OpenClaw docs skill is ready at $TARGET_DIR"
+echo "Installation directory: $TARGET_DIR"
+echo "Skill repository commit: $SKILL_COMMIT"
+echo "Upstream documentation commit: $UPSTREAM_COMMIT"

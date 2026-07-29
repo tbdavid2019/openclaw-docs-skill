@@ -92,10 +92,19 @@ SKILL.md
 - 新增英文與繁體中文的 AI 助手安裝契約，要求：
   - 先辨識宿主平台與實際 Skills 目錄。
   - 安裝前檢查目的地，避免覆蓋非 Git 內容。
+  - 新 clone 與既有 checkout 都必須執行 installer。
+  - 既有 checkout 必須成功完成 `git pull --ff-only`，失敗時不得回報成功。
+  - 安裝完成後讀取 `SKILL.md`。
   - 安裝時使用 committed snapshot，不執行維護者同步工具。
   - 驗證 Skill、來源資訊與分層 catalog 均已安裝。
+  - 回報絕對安裝目錄、Skill repository commit 與上游文件 commit。
   - 必要時提醒 reload 或 restart，並提供 Skill discovery 測試 prompt。
   - 驗證完成前不得宣稱安裝成功。
+- `scripts/install-skill.sh` 現在會：
+  - 使用實體路徑判斷 Git checkout，避免 macOS `/var` 與 `/private/var` 誤判。
+  - 驗證必要 Skill metadata、來源資訊、主索引及 catalog。
+  - 驗證 `SOURCE.json` 內的 upstream commit。
+  - 輸出安裝目錄、Skill repository commit 與上游文件 commit。
 
 ### Agent metadata
 
@@ -107,12 +116,15 @@ SKILL.md
 - GitHub Actions 加入 concurrency control。
 - 每次同步前執行 repository tests。
 - 同步後驗證 `SOURCE.json`、`SKILL_INDEX.md` 與 catalog 一致性。
-- 新增 9 個回歸測試，涵蓋：
+- 新增 12 個回歸測試，涵蓋：
   - `.mdx`、分類首頁與 metadata 索引
   - 大分類切分
   - 隱藏文件與 symlink 排除
   - 生成連結與來源文件數量
   - 新目標安裝
+  - 既有 checkout 的 fast-forward-only 更新
+  - 不完整 checkout 的安裝失敗
+  - 無效 upstream commit 的安裝失敗
   - 非 Git 目標保護
   - 漸進式披露與安全指引
   - 同步失敗資料保護
