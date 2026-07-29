@@ -89,6 +89,13 @@ SKILL.md
 - 移除「每次使用 Skill 都自動更新」行為。
 - 統一英文與繁體中文安裝說明。
 - 說明受管 Skill 目錄與 Git checkout 的更新差異。
+- 新增英文與繁體中文的 AI 助手安裝契約，要求：
+  - 先辨識宿主平台與實際 Skills 目錄。
+  - 安裝前檢查目的地，避免覆蓋非 Git 內容。
+  - 安裝時使用 committed snapshot，不執行維護者同步工具。
+  - 驗證 Skill、來源資訊與分層 catalog 均已安裝。
+  - 必要時提醒 reload 或 restart，並提供 Skill discovery 測試 prompt。
+  - 驗證完成前不得宣稱安裝成功。
 
 ### Agent metadata
 

@@ -66,6 +66,29 @@ update on every question; it changes only when the installer or `git pull` is ex
 If a host platform copies skills into a managed directory, use that platform's update mechanism.
 The copied snapshot remains usable but cannot update itself as a Git checkout.
 
+## Instructions for AI assistants
+
+When a user gives you this repository URL and asks you to install the skill:
+
+1. Detect the host and resolve its actual skills directory before writing. For Codex, prefer
+   `$CODEX_HOME/skills/openclaw-docs` when `CODEX_HOME` is set; otherwise use
+   `~/.codex/skills/openclaw-docs`. A typical Antigravity destination is
+   `~/.gemini/antigravity/skills/openclaw-docs`. For another host, inspect its configuration or
+   ask the user instead of guessing.
+2. Inspect the destination. Clone into it if it does not exist. If it is already this repository's
+   Git checkout, run its installer to update it. Do not overwrite a non-Git directory; explain the
+   conflict and ask the user how to proceed.
+3. Install either with the `git clone` command above or with
+   `bash <source-checkout>/scripts/install-skill.sh <skill-directory>`.
+4. Do not run `scripts/sync-docs.sh` or `scripts/generate_index.py` as part of installation. They
+   are maintainer tools; an installation must use the repository's committed snapshot.
+5. Verify that the destination contains `SKILL.md`, `agents/openai.yaml`,
+   `references/SOURCE.json`, `references/SKILL_INDEX.md`, and `references/_catalog/`.
+6. Tell the user to reload or restart the host if it discovers skills only at startup. Then test
+   discovery with: `Use $openclaw-docs to explain how to check OpenClaw Gateway health.`
+7. Do not claim installation success until the files have been verified and any required reload
+   instruction has been given. Never print credentials or unrelated configuration values.
+
 ## Repository structure
 
 ```text

@@ -63,6 +63,27 @@ installer 或 `git pull` 才會改變。
 若 AI 平台會把 Skill 複製進受管目錄，請使用該平台的更新機制。複製的 snapshot 仍可使用，
 但無法以 Git checkout 方式自行更新。
 
+## AI 助手安裝指引
+
+當使用者提供這個 repository URL 並要求安裝 Skill 時：
+
+1. 寫入前先辨識宿主平台，確認實際的 Skills 目錄。Codex 若有設定 `CODEX_HOME`，優先使用
+   `$CODEX_HOME/skills/openclaw-docs`，否則使用 `~/.codex/skills/openclaw-docs`。
+   Antigravity 常見位置是 `~/.gemini/antigravity/skills/openclaw-docs`。其他宿主應先檢查
+   設定；無法確認時詢問使用者，不要猜測。
+2. 檢查目的地。不存在時才 clone；若已是本 repository 的 Git checkout，執行其中的
+   installer 更新。若是非 Git 目錄，不得覆蓋，應說明衝突並詢問使用者如何處理。
+3. 使用上方的 `git clone`，或執行
+   `bash <source-checkout>/scripts/install-skill.sh <skill-directory>` 安裝。
+4. 安裝時不要執行 `scripts/sync-docs.sh` 或 `scripts/generate_index.py`。這些是維護者工具；
+   安裝程序應使用 repository 已提交的文件 snapshot。
+5. 驗證目的地包含 `SKILL.md`、`agents/openai.yaml`、`references/SOURCE.json`、
+   `references/SKILL_INDEX.md` 與 `references/_catalog/`。
+6. 若宿主只在啟動時探索 Skills，請使用者 reload 或 restart。接著用以下 prompt 測試：
+   `Use $openclaw-docs to explain how to check OpenClaw Gateway health.`
+7. 完成檔案驗證並提供必要的 reload 指示前，不要宣稱安裝成功。不得輸出憑證或不相關的
+   設定值。
+
 ## Repository 結構
 
 ```text

@@ -191,6 +191,25 @@ class SkillGuidanceTests(unittest.TestCase):
         self.assertNotIn("cp -r openclaw-docs-skill", combined)
         self.assertNotIn("每次被呼叫 → 自動 git pull", combined)
         self.assertNotIn("Hard Requirement", combined)
+        self.assertIn("## Instructions for AI assistants", english)
+        self.assertIn("## AI 助手安裝指引", traditional_chinese)
+
+        for required_path in (
+            "SKILL.md",
+            "agents/openai.yaml",
+            "references/SOURCE.json",
+            "references/SKILL_INDEX.md",
+            "references/_catalog/",
+        ):
+            self.assertIn(required_path, english)
+            self.assertIn(required_path, traditional_chinese)
+
+        self.assertIn("Do not run `scripts/sync-docs.sh`", english)
+        self.assertIn("不要執行 `scripts/sync-docs.sh`", traditional_chinese)
+        self.assertIn("Use $openclaw-docs", english)
+        self.assertIn("Use $openclaw-docs", traditional_chinese)
+        self.assertIn("Do not claim installation success", english)
+        self.assertIn("不要宣稱安裝成功", traditional_chinese)
 
 
 class SyncDocsTests(unittest.TestCase):
