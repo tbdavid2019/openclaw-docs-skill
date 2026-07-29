@@ -18,7 +18,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 46 |
 | [Clawhub](_catalog/clawhub.md) | ClawHub CLI and publishing | 2 |
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 67 |
-| [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 56 |
+| [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 57 |
 | [Debug](_catalog/debug.md) | Documentation under `debug/` | 1 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
 | [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 55 |
@@ -36,5 +36,5 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 5 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 1 |
 | [Start](_catalog/start.md) | Getting started, onboarding, and setup | 15 |
-| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 66 |
-| [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 9 |
+| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 67 |
+| [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 10 |
