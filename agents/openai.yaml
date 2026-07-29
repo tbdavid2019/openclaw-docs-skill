@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Docs"
+  short_description: "Search and troubleshoot OpenClaw with official docs"
+  default_prompt: "Use $openclaw-docs to answer this OpenClaw question from the synchronized official documentation."

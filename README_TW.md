@@ -1,174 +1,119 @@
-# OpenClaw 文件 Skill（自動同步版）
-
-> [!IMPORTANT]
-> ### 🤖 AI 助手安裝指引 / Instructions for AI Agent Installation
->
-> **繁體中文：** 如果使用者提供此倉庫網址並要求你「安裝」或「設定」此技能服務，請遵循以下步驟：
-> 1.  **請用 Git checkout 安裝，不要只複製資料夾**：執行 `git clone https://github.com/tbdavid2019/openclaw-docs-skill.git <skill-directory>`。如果只是把檔案複製進某個受管目錄，之後更新通常不會成立。
-> 2.  **優先使用安裝器腳本**：如果環境允許執行 shell，接著執行 `bash <skill-directory>/scripts/install-skill.sh <skill-directory>`。這會確保安裝結果維持為 git checkout，之後重跑同一支腳本就會變成 `git pull --ff-only`。
-> 3.  **載入技能**：讀取 `SKILL.md` 以了解此技能的專業工作流程與知識範圍。
-> 4.  **初始化環境**：確認你已具備存取完整 OpenClaw 官方文檔的能力。**每當需要查詢特定功能或維護指引時，請優先參考 `references/SKILL_INDEX.md`。**
-> 5.  **一般使用時不要執行維護腳本**：安裝 or 使用此 skill 的意思是 clone 或複製資料夾，並讀取 `SKILL.md` 與 `references/`。**除非使用者明確要求你更新這個 repo 本身，否則不要執行 `scripts/sync-docs.sh`、`scripts/generate_index.py` 或其他維護腳本。**
-> 6.  **硬性要求**：如果你沒有在最終安裝目錄執行 `scripts/install-skill.sh`，就不算安裝完成。不要只做 clone、copy、mv 就宣稱成功。
->
-> **English:** If you are an AI assistant, please follow the steps: Clone the repo, run `scripts/install-skill.sh`, read `SKILL.md`, and use `references/SKILL_INDEX.md` as your primary entry point. Do not run internal sync scripts unless asked.
-
----
+# OpenClaw 文件 Skill
 
 [English](README.md) | 繁體中文
 
-## 這是什麼？
+這個 repository 將 OpenClaw 官方文件整理成可自動更新的 Agent Skill。GitHub Actions
+每天同步上游 `docs/`，記錄精確來源版本，並依文件的 metadata 產生適合逐層披露的主題索引。
 
-本 Skill 專為 AI 編碼助手設計（如 Claude + Antigravity）。安裝後，AI 助手即可深入了解 OpenClaw，並協助你處理：
+## Skill 可以協助什麼
 
-- **安裝與更新** — 安裝、升級或遷移 OpenClaw
-- **配置管理** — 編輯 `openclaw.json`、設定模型、管理 Secrets
-- **頻道管理** — 設定 WhatsApp、Telegram、Discord、Slack、iMessage 及 15+ 個其他頻道
-- **Gateway 操作** — 啟動、停止、重啟、健康檢查、遠端存取
-- **多代理路由** — 設定多個 Agent 並隔離工作空間與會話
-- **ACP Agents** — 生成外部 AI 運行環境（Codex、Claude Code、Gemini CLI、14+ 種）
-- **瀏覽器自動化** — 多設定檔瀏覽器控制、Chrome MCP 已有會話、快照
-- **外掛系統** — 能力模型、Context Engine 外掛、SDK、Hook API
-- **自動化** — Cron 任務、常設指令、背景任務、Webhooks、Hooks
-- **安全加固** — 稽核、存取鎖定、Token 管理、受信任代理、事件響應
-- **故障排除** — 診斷並修復 CLI 與 Gateway 的常見錯誤
+- 安裝、更新、遷移與部署
+- Gateway 設定、操作、網路與安全
+- Telegram、WhatsApp、Discord、Slack、LINE、Signal 等訊息頻道
+- 模型服務商、認證、failover 與本地模型
+- Agent、Session、Memory、工具、Plugin、Node 與自動化
+- CLI 錯誤與依症狀進行的故障排除
 
-## Skill 結構
+## 逐層披露
 
+完整文件不會一次塞進模型上下文：
+
+```text
+SKILL.md
+  → 精簡的 references/SKILL_INDEX.md
+  → 一個 references/_catalog/<topic>.md
+  → 最相關的 1–3 篇文件
+  → 只讀取需要的段落
 ```
+
+若使用者提供精確錯誤、CLI 指令或設定鍵，模型會直接搜尋 `references/`，不必先載入索引。
+分類索引會利用上游文件既有的 `title`、`summary` 與 `read_when` metadata。
+
+## 安裝
+
+請用 Git checkout 安裝，才能可靠更新。依 AI Agent 使用的 Skills 目錄調整目的地：
+
+```bash
+git clone https://github.com/tbdavid2019/openclaw-docs-skill.git \
+  ~/.gemini/antigravity/skills/openclaw-docs
+```
+
+Codex 常見安裝位置：
+
+```bash
+git clone https://github.com/tbdavid2019/openclaw-docs-skill.git \
+  ~/.codex/skills/openclaw-docs
+```
+
+也可以從另一份 checkout 使用 installer 安裝到新目標：
+
+```bash
+bash openclaw-docs-skill/scripts/install-skill.sh <skill-directory>
+```
+
+日後更新已安裝的 checkout：
+
+```bash
+bash <skill-directory>/scripts/install-skill.sh
+```
+
+公開 repository 每天同步一次；本機安裝不會在每次提問時自動連網更新，只有明確執行
+installer 或 `git pull` 才會改變。
+
+若 AI 平台會把 Skill 複製進受管目錄，請使用該平台的更新機制。複製的 snapshot 仍可使用，
+但無法以 Git checkout 方式自行更新。
+
+## Repository 結構
+
+```text
 openclaw-docs-skill/
-├── SKILL.md                     # 主要入口（370 行的專家級工作流程、指令與故障排除）
+├── SKILL.md
+├── agents/openai.yaml
 ├── scripts/
-│   └── sync-docs.sh             # 同步引擎 — 從上游拉取最新文件
-├── .github/
-│   └── workflows/
-│       └── auto-sync.yml        # GitHub Action — 每日 04:00 UTC 自動同步
-└── references/                  # 400+ 個 Markdown 文件（知識庫）
-    ├── channels/                # 各頻道設定（WhatsApp、Telegram、Discord 等）
-    ├── tools/                   # 所有內建工具（瀏覽器、搜尋、Exec、ACP 等）
-    ├── plugins/                 # 外掛架構與 SDK
-    ├── providers/               # 35+ 個模型服務商（Anthropic、OpenAI、Google、Ollama 等）
-    ├── concepts/                # 核心概念：Agent 循環、記憶體、佇列、串流
-    ├── gateway/                 # Gateway 配置、操作、安全性、沙箱
-    ├── security/                # 安全加固策略
-    ├── nodes/                   # 節點（iOS/Android/macOS/無介面）
-    ├── automation/              # Cron 任務、Webhooks、背景任務、常設指令
-    ├── install/                 # 安裝、更新、回滾、遷移、解除安裝
-    ├── platforms/               # 平台指南（macOS、iOS、Android、Linux、Windows）
-    ├── web/                     # Web 介面：Dashboard、Control UI、WebChat、TUI
-    ├── diagnostics/             # 故障排除與失敗演練
-    └── cli/                     # CLI 參考
+│   ├── install-skill.sh
+│   ├── sync-docs.sh
+│   └── generate_index.py
+├── tests/test_repo.py
+├── .github/workflows/auto-sync.yml
+└── references/
+    ├── SOURCE.json
+    ├── SKILL_INDEX.md
+    ├── _catalog/
+    └── <OpenClaw 官方文件>
 ```
 
-## AI Agent 安裝指南
+`references/SOURCE.json` 會記錄上游 repository、commit、commit 日期與文件數量。
 
-### 適用於 Antigravity（Claude）
+## 維護者流程
 
-將 Skill 資料夾複製到你的 Antigravity Skills 目錄：
-
-```bash
-# 複製此倉庫
-git clone https://github.com/tbdavid2019/openclaw-docs-skill.git
-
-# 複製到你的 Skills 目錄
-cp -r openclaw-docs-skill ~/.gemini/antigravity/skills/openclaw-docs
-```
-
-安裝後，當你詢問 OpenClaw 相關問題時，Skill 將自動被觸發。
-
-### 適用於其他 AI 助手
-
-`SKILL.md` 和 `references/` 中的結構化文件可適配任何支援 Skill/知識注入的 AI 助手。
-
-## 使用範例
-
-安裝後，只需自然地提問：
-
-| 當你說... | AI 會做什麼... |
-|---|---|
-| 「幫我升級 OpenClaw」 | 執行 `openclaw update`，再用 `openclaw doctor` 套用遷移，重啟 Gateway |
-| 「設定 Telegram 機器人」 | 引導完成 Bot Token 建立、`openclaw channels add` 及 QR 驗證 |
-| 「Gateway 沒有回應」 | 執行診斷梯隊：`status` → `logs` → `doctor` → `channels status --probe` |
-| 「加強 OpenClaw 的安全性」 | 執行 `openclaw security audit --fix`，套用強化基準並修復權限 |
-| 「幫工作加一個 Agent」 | 建立 Agent、設定工作空間、配置綁定、重啟 |
-| 「啟動 Claude Code ACP 會話」 | 配置 `acp-agents` 外掛、設定權限、生成綁定會話 |
-| `EADDRINUSE` 錯誤 | 執行 `openclaw gateway --force` 或協助在配置中更改連接埠 |
-| 「Embedding provider 401 錯誤」 | 找到 `~/.openclaw/.env` 中的佔位符 API Key，引導替換 |
-
-## 快速指令參考
-
-```bash
-# 狀態與健康檢查
-openclaw status                    # 整體狀態
-openclaw gateway status            # Gateway 守護進程狀態
-openclaw doctor                    # 診斷問題
-openclaw channels status --probe   # 頻道健康檢查
-
-# Gateway 管理
-openclaw gateway install           # 安裝為系統服務
-openclaw gateway start/stop/restart
-openclaw gateway --force           # 強制關閉現有並重啟
-
-# 配置
-openclaw config get <path>         # 讀取配置值
-openclaw config set <path> <value> # 設定配置值
-openclaw configure                 # 互動式精靈
-
-# 安全性
-openclaw security audit            # 檢查安全態勢
-openclaw security audit --fix      # 自動修復問題
-openclaw secrets reload            # 重新載入 Secrets
-
-# 頻道
-openclaw channels add              # 新增頻道（精靈）
-openclaw channels login            # WhatsApp QR 配對
-openclaw channels list             # 顯示已設定的頻道
-
-# 模型
-openclaw models set <model>        # 設定預設模型
-openclaw models status --probe     # 檢查認證狀態
-```
-
-## 如何更新文件？
-
-本 Skill 的 `references/` 資料夾從 OpenClaw 官方倉庫同步。執行以下指令取得最新文件：
+從官方 repository 更新：
 
 ```bash
 sh scripts/sync-docs.sh
 ```
 
-或在 [GitHub Actions](https://github.com/tbdavid2019/openclaw-docs-skill/actions) 頁籤中觸發 **Auto-Sync Documentation** 工作流程。
+驗證 Skill 與生成內容：
 
-GitHub Action 每天 UTC 04:00（台灣/香港時間 12:00）自動執行，無需手動介入。
+```bash
+python3 -m unittest -v tests/test_repo.py
+python3 scripts/generate_index.py --check
+```
+
+同步流程會先在臨時目錄下載、產生索引並驗證，最後才替換 `references/`。下載失敗、
+文件數量異常、必要文件缺少或索引驗證失敗時，既有文件會保留。
+
+請勿手動修改同步文件、`references/SOURCE.json`、`references/SKILL_INDEX.md`
+或 `references/_catalog/`。
 
 ## 文件來源
 
-本 Skill 知識庫來自官方 [OpenClaw 文件](https://docs.openclaw.ai/)，涵蓋：
-
-- [安裝](https://docs.openclaw.ai/install)
-- [Gateway 架構](https://docs.openclaw.ai/concepts/architecture)
-- [頻道](https://docs.openclaw.ai/channels)
-- [模型服務商](https://docs.openclaw.ai/providers)
-- [工具](https://docs.openclaw.ai/tools)
-- [外掛架構](https://docs.openclaw.ai/plugins/architecture)
-- [多代理路由](https://docs.openclaw.ai/concepts/multi-agent)
-- [安全性](https://docs.openclaw.ai/gateway/security)
-- [故障排除](https://docs.openclaw.ai/gateway/troubleshooting)
-- [CLI 參考](https://docs.openclaw.ai/cli)
-
-## 貢獻
-
-歡迎提交 Issues 和 PR！特別期待以下方面的貢獻：
-- `SKILL.md` — Agent 的推理邏輯與診斷流程
-- `scripts/sync-docs.sh` — 同步引擎效率優化
-- `references/` — 精選文件品質提升
+內容同步自官方 [OpenClaw repository](https://github.com/openclaw/openclaw)
+與 [OpenClaw 文件](https://docs.openclaw.ai/)。
 
 ## 授權
 
-[AGPL-3.0](LICENSE) — 任何衍生作品均須以相同授權開源。OpenClaw 文件來源於官方 [OpenClaw 倉庫](https://github.com/openclaw/openclaw)。
+[AGPL-3.0](LICENSE)。OpenClaw 文件仍受上游授權條款約束。
 
 ## 致謝
 
-特別感謝 **[win4r/OpenClaw-Skill](https://github.com/win4r/OpenClaw-Skill)** — 本專案最初的啟發來源。
-
-他們將 OpenClaw 知識結構化為 Agent Skill 的工作展示了無限可能。本倉庫在此基礎上，增加了 **自動同步引擎** 與 **每日 GitHub Actions**，確保文件內容永遠保持最新狀態。
+本專案受到 [win4r/OpenClaw-Skill](https://github.com/win4r/OpenClaw-Skill) 啟發。

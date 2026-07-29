@@ -1,0 +1,36 @@
+# Plugins documentation catalog
+
+Plugin architecture, SDKs, and bundled integrations.
+
+Open only the entries relevant to the current request. Start with at most three documents.
+
+- [Channel message API](../plugins/sdk-channel-message.md) — Redirect to /plugins/sdk-channel-outbound.
+- [Channel outbound API](../plugins/sdk-channel-outbound.md) — Outbound message lifecycle API for channel plugins: adapters, receipts, durable sends, live preview, and reply pipeline helpers. Read when: You are building or refactoring a messaging channel plugin send path; You need durable final reply delivery, receipts, live preview finalization, or receive acknowledgement policy; You are migrating from channel-message or legacy reply dispatch helpers.
+- [Channel turn](../plugins/sdk-channel-turn.md) — Redirect to /plugins/sdk-channel-inbound.
+- [Chutes plugin](../plugins/reference/chutes.md) — Adds Chutes model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the chutes plugin.
+- [ClawRouter plugin](../plugins/reference/clawrouter.md) — Adds ClawRouter model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the clawrouter plugin.
+- [Clickclack plugin](../plugins/reference/clickclack.md) — Adds the Clickclack channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the clickclack plugin.
+- [Cloudflare AI Gateway plugin](../plugins/reference/cloudflare-ai-gateway.md) — Adds Cloudflare AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the cloudflare-ai-gateway plugin.
+- [Codex Computer Use](../plugins/codex-computer-use.md) — Set up Codex Computer Use for Codex-mode OpenClaw agents. Read when: You want Codex-mode OpenClaw agents to use Codex Computer Use; You are deciding between Codex Computer Use, PeekabooBridge, and direct cua-driver MCP; You are configuring computerUse for the bundled Codex plugin; You are troubleshooting /codex computer-use status or install.
+- [Codex harness](../plugins/codex-harness.md) — Run OpenClaw embedded agent turns through the official Codex app-server harness. Read when: You want to use the official Codex app-server harness; You need Codex harness config examples; You want Codex-only deployments to fail instead of falling back to OpenClaw.
+- [Codex harness reference](../plugins/codex-harness-reference.md) — Configuration, auth, discovery, and app-server reference for the Codex harness. Read when: You need every Codex harness config field; You are changing app-server transport, auth, discovery, or timeout behavior; You are debugging Codex harness startup, model discovery, or environment isolation.
+- [Codex harness runtime](../plugins/codex-harness-runtime.md) — Runtime boundaries, hooks, tools, permissions, and diagnostics for the Codex harness. Read when: You need the Codex harness runtime support contract; You are debugging native Codex tools, hooks, compaction, or feedback upload; You are changing plugin behavior across OpenClaw and Codex harness turns.
+- [Codex plugin](../plugins/reference/codex.md) — Codex app-server harness and native session catalog. Read when: You are installing, configuring, or auditing the codex plugin.
+- [Cohere plugin](../plugins/reference/cohere.md) — OpenClaw Cohere provider plugin. Read when: You are installing, configuring, or auditing the cohere plugin.
+- [ComfyUI plugin](../plugins/reference/comfy.md) — Adds ComfyUI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the comfy plugin.
+- [Community plugins](../plugins/community.md) — Find and publish community-maintained OpenClaw plugins. Read when: You want to find third-party OpenClaw plugins; You want to publish or list your own plugin on ClawHub.
+- [Copilot plugin](../plugins/reference/copilot.md) — Registers the GitHub Copilot agent runtime. Read when: You are installing, configuring, or auditing the copilot plugin.
+- [Copilot Proxy plugin](../plugins/reference/copilot-proxy.md) — Adds Copilot Proxy model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the copilot-proxy plugin.
+- [Copilot SDK harness](../plugins/copilot.md) — Run OpenClaw embedded agent turns through the external GitHub Copilot SDK harness. Read when: You want to use the GitHub Copilot SDK harness for an agent; You need configuration examples for the `copilot` runtime; You are wiring an agent to subscription Copilot (github / openclaw / copilot) and want it to run through the Copilot CLI.
+- [Crabbox plugin](../plugins/reference/crabbox.md) — Cloud worker provider backed by the Crabbox CLI. Read when: You are installing, configuring, or auditing the crabbox plugin.
+- [Cua Computer plugin](../plugins/reference/cua-computer.md) — Experimental cua-driver computer control for Windows and Linux node hosts. Read when: You are installing, configuring, or auditing the cua-computer plugin.
+- [Deepgram plugin](../plugins/reference/deepgram.md) — Adds media understanding provider support. Adds realtime transcription provider support. Read when: You are installing, configuring, or auditing the deepgram plugin.
+- [DeepInfra plugin](../plugins/reference/deepinfra.md) — Adds DeepInfra model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the deepinfra plugin.
+- [DeepSeek plugin](../plugins/reference/deepseek.md) — Adds DeepSeek model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the deepseek plugin.
+- [Diagnostics OpenTelemetry plugin](../plugins/reference/diagnostics-otel.md) — OpenClaw diagnostics OpenTelemetry exporter for metrics, traces, and logs. Read when: You are installing, configuring, or auditing the diagnostics-otel plugin.
+- [Diagnostics Prometheus plugin](../plugins/reference/diagnostics-prometheus.md) — OpenClaw diagnostics Prometheus exporter for runtime metrics. Read when: You are installing, configuring, or auditing the diagnostics-prometheus plugin.
+- [Diffs Language Pack plugin](../plugins/reference/diffs-language-pack.md) — Adds syntax highlighting for languages outside the default diffs viewer set. Read when: You are installing, configuring, or auditing the diffs-language-pack plugin.
+- [Diffs plugin](../plugins/reference/diffs.md) — OpenClaw read-only diff viewer plugin and file renderer for agents. Read when: You are installing, configuring, or auditing the diffs plugin.
+- [Discord plugin](../plugins/reference/discord.md) — OpenClaw Discord channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the discord plugin.
+- [Document Extract plugin](../plugins/reference/document-extract.md) — Extract text and fallback page images from local document attachments. Read when: You are installing, configuring, or auditing the document-extract plugin.
+- [DuckDuckGo plugin](../plugins/reference/duckduckgo.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the duckduckgo plugin.

@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: auto-sync-documentation
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -24,10 +28,17 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Run Repository Tests
+        run: python3 -m unittest -v tests/test_repo.py
+
       - name: Run Sync Script
+        run: sh scripts/sync-docs.sh
+
+      - name: Validate Synchronized Artifacts
         run: |
-          chmod +x scripts/sync-docs.sh
-          sh scripts/sync-docs.sh
+          python3 scripts/generate_index.py --check
+          test -s references/SOURCE.json
+          test -s references/SKILL_INDEX.md
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5

@@ -1,0 +1,12 @@
+# Tools documentation catalog
+
+Agent tools, browser, exec, web, skills, and permissions.
+
+Open only the entries relevant to the current request. Start with at most three documents.
+
+- [Tool-loop detection](../tools/loop-detection.md) — How to enable guardrails that detect repetitive tool-call loops. Read when: A user reports agents getting stuck repeating tool calls; You need to control repetitive-call protection; You are editing agent tool/runtime policies; You hit `compaction_loop_persisted` aborts after a context-overflow retry.
+- [Trajectory bundles](../tools/trajectory.md) — Export redacted trajectory bundles for debugging an OpenClaw agent session. Read when: Debugging why an agent answered, failed, or called tools a certain way; Exporting a support bundle for an OpenClaw session; Investigating prompt context, tool calls, runtime errors, or usage metadata; Disabling trajectory capture.
+- [Video generation](../tools/video-generation.md) — Generate videos via video_generate from text, image, or video references across 16 provider backends. Read when: Generating videos via the agent; Configuring video-generation providers and models; Understanding the video_generate tool parameters.
+- [Web fetch](../tools/web-fetch.md) — web_fetch tool -- HTTP fetch with readable content extraction. Read when: You want to fetch a URL and extract readable content; You need to configure web_fetch or its Firecrawl fallback; You want to understand web_fetch limits and caching.
+- [Web search](../tools/web.md) — web_search, x_search, and web_fetch -- search the web, search X posts, or fetch page content. Read when: You want to enable or configure web_search; You want to enable or configure x_search; You need to choose a search provider; You want to understand auto-detection and provider selection.
+- [WSL2 + Windows + remote Chrome CDP troubleshooting](../tools/browser-wsl2-windows-remote-cdp-troubleshooting.md) — Troubleshoot WSL2 Gateway + Windows Chrome remote CDP in layers. Read when: Running OpenClaw Gateway in WSL2 while Chrome lives on Windows; Seeing overlapping browser/control-ui errors across WSL2 and Windows; Deciding between host-local Chrome MCP and raw remote CDP in split-host setups.

@@ -1,0 +1,19 @@
+# Automation documentation catalog
+
+Cron, hooks, tasks, standing orders, and webhooks.
+
+Open only the entries relevant to the current request. Start with at most three documents.
+
+- [Auth monitoring](../automation/auth-monitoring.md) — Redirect to /gateway/authentication.
+- [Automation](../automation/index.md) — Overview of automation mechanisms: tasks, cron, hooks, standing orders, and Task Flow. Read when: Deciding how to automate work with OpenClaw; Choosing between heartbeat, cron, hooks, and standing orders; Looking for the right automation entry point.
+- [Automation troubleshooting](../automation/troubleshooting.md) — Redirect to /automation/cron-jobs.
+- [Background tasks](../automation/tasks.md) — Background task tracking for ACP runs, subagents, cron executions, and CLI operations. Read when: Inspecting background work in progress or recently completed; Debugging delivery failures for detached agent runs; Understanding how background runs relate to sessions, cron, and heartbeat.
+- [ClawFlow](../automation/clawflow.md) — Redirect to Task Flow.
+- [Cron vs heartbeat](../automation/cron-vs-heartbeat.md) — Redirect to /automation.
+- [Gmail PubSub](../automation/gmail-pubsub.md) — Redirect to /automation/cron-jobs.
+- [Hooks](../automation/hooks.md) — Hooks: event-driven automation for commands and lifecycle events. Read when: You want event-driven automation for /new, /reset, /stop, and agent lifecycle events; You want to build, install, or debug hooks.
+- [Polls](../automation/poll.md) — Redirect to /cli/message.
+- [Scheduled tasks](../automation/cron-jobs.md) — Scheduled jobs, webhooks, and Gmail PubSub triggers for the Gateway scheduler. Read when: Scheduling background jobs or wakeups; Wiring external triggers (webhooks, Gmail) into OpenClaw; Deciding between heartbeat and cron for scheduled tasks.
+- [Standing orders](../automation/standing-orders.md) — Define permanent operating authority for autonomous agent programs. Read when: Setting up autonomous agent workflows that run without per-task prompting; Defining what the agent can do independently vs. what needs human approval; Structuring multi-program agents with clear boundaries and escalation rules.
+- [Task flow](../automation/taskflow.md) — Task Flow orchestration layer above background tasks. Read when: You want to understand how Task Flow relates to background tasks; You encounter Task Flow or openclaw tasks flow in release notes or docs; You want to inspect or manage durable flow state.
+- [Webhooks](../automation/webhook.md) — Redirect to /automation/cron-jobs.

@@ -1,367 +1,131 @@
 ---
 name: openclaw-docs
-description: Comprehensive guide for installing, configuring, operating, and troubleshooting OpenClaw — a self-hosted, multi-channel AI agent gateway. Use when the user asks about OpenClaw setup, configuration, channel management (WhatsApp/Telegram/Discord/Slack/iMessage/etc.), model provider setup, Gateway operations, multi-agent routing, security hardening, troubleshooting, or any maintenance task related to their local OpenClaw installation. Also use when encountering errors from `openclaw` CLI commands or the Gateway daemon.
+description: Find authoritative guidance for installing, configuring, operating, securing, and troubleshooting OpenClaw, including channels, model providers, Gateway operations, tools, plugins, automation, nodes, multi-agent routing, and CLI errors. Use for any question or maintenance task involving an OpenClaw installation, `openclaw` CLI command, Gateway daemon, configuration key, or integration.
 ---
 
-# OpenClaw Maintenance Skill
+# OpenClaw documentation
 
-> [!CAUTION]
-> ## Installed Skill Refresh Boundary
-> Keep the installed skill as a git checkout if updates are expected to work.
->
-> Use this boundary:
-> 1. **If available, run** `bash <skill-directory>/scripts/install-skill.sh <skill-directory>` in the final installed directory. If this did not happen, treat the installation as incomplete.
-> 2. **Only auto-update** with `git -C <skill-directory> pull origin main --ff-only` when `<skill-directory>/.git` exists.
-> 3. **Do not run repo-maintenance scripts** such as `scripts/sync-docs.sh` or `scripts/generate_index.py` during normal skill usage.
-> 4. If refresh fails, continue with the local files and do not block the user.
+Use the synchronized official documentation as the source of truth. Keep context small by
+loading only the files and sections needed for the current request.
 
-OpenClaw is a self-hosted, open-source gateway that routes AI agents across WhatsApp, Telegram, Discord, Slack, iMessage, Signal, and 15+ other channels simultaneously.
+## Establish the version boundary
 
-1. **Find the local skill directory** — it will be somewhere under the agent's skills path (e.g., `~/.gemini/antigravity/skills/openclaw-docs/`).
+1. Read `references/SOURCE.json` when provenance or freshness matters.
+2. For operational work, obtain `openclaw --version` when it is available and relevant.
+3. Treat the references as documentation for the recorded upstream `main` revision. Flag a
+   possible version mismatch when the installed OpenClaw version is older.
+4. Never invent a command, flag, configuration key, default, or migration step. Search the
+   references and state uncertainty when the documentation does not establish the answer.
 
-2. **Before using the docs, run the installer script in the final installed directory when available**:
-   ```bash
-   bash <skill-directory>/scripts/install-skill.sh <skill-directory>
-   ```
-   If the installer script is unavailable, only then fall back to a direct pull when `<skill-directory>/.git` exists:
-   ```bash
-   git -C <skill-directory> pull origin main --ff-only
-   ```
-   After pulling, reload any reference files you are about to use.
+Do not update the installed skill during ordinary questions. Use the local snapshot without
+blocking the user. Refresh only when the user asks to install or update the skill.
 
-3. **If refresh fails** (no internet, API rate limit, git not available, or non-git install) → silently continue using the local version. Never block the user.
+## Find documentation progressively
 
-4. **If already up-to-date** → proceed normally with no output to the user.
+Choose the narrowest route that fits the request.
 
-> **Key principle**: Prefer an installed git checkout plus the installer script. If the host platform only copied files, use the local docs without blocking the user.
+### Exact error, command, or configuration key
 
+Search `references/` directly for:
 
-Use `view_file` or `grep_search` to read these references as needed.
+- the exact error message first;
+- the full CLI command or subcommand;
+- the complete configuration key;
+- distinctive log text, provider name, or channel name.
 
-**MANDATORY: Always check [references/SKILL_INDEX.md](references/SKILL_INDEX.md) first to locate the exact documentation needed for any OpenClaw task.**
+When shell search is available, prefer:
 
-| Reference | Coverage |
+```bash
+rg -n -i --glob '*.md' --glob '*.mdx' '<exact text>' references
+rg -l -i --glob '*.md' --glob '*.mdx' '<keyword>' references
+```
+
+Use the host's equivalent file-search tool when `rg` is unavailable. Do not load the global
+router before an exact search unless the search produces no useful candidate.
+
+### Broad topic
+
+1. Read [references/SKILL_INDEX.md](references/SKILL_INDEX.md).
+2. Open exactly one matching catalog under `references/_catalog/`.
+3. If that catalog links to alphabetical sections, open exactly one matching section.
+4. Select at most three candidate documents using their `summary` and `read_when` metadata.
+5. Inspect headings or search within those documents before reading long sections.
+6. Expand to another document, section, or catalog only when the first candidates are insufficient.
+
+### Topic routing
+
+| User intent | Start with |
 |---|---|
-| [SKILL_INDEX.md](references/SKILL_INDEX.md) | **Directory of ALL available documentation (Start here)** |
-| [channels/](references/channels/) | Channel setup (WhatsApp, Telegram, Discord, Slack, iMessage, etc.) |
-| [providers/](references/providers/) | Model provider setup (Anthropic, OpenAI, Google, Ollama, etc.) |
-| [tools/](references/tools/) | Detailed per-tool documentation (exec, browser, web, etc.) |
-| [gateway/](references/gateway/) | Gateway operations, config, and security |
-| [automation/](references/automation/) | Cron jobs, webhooks, and background tasks |
-| [concepts/](references/concepts/) | Core concepts: agent loop, memory, queue, sessions |
-| [diagnostics/](references/diagnostics/) | Troubleshooting guides and failure walkthroughs |
-| [cli/](references/cli/) | Full CLI command reference |
-| [install/](references/install/) | Installation, updating, and migration |
-| [platforms/](references/platforms/) | OS-specific guides (macOS, Linux, Windows, etc.) |
-| [web/](references/web/) | Web Surfaces: Dashboard, Control UI, TUI, nodes |
+| Installation, update, migration, deployment | [install catalog](references/_catalog/install.md) |
+| Gateway configuration, service, networking | [gateway catalog](references/_catalog/gateway.md) |
+| Telegram, WhatsApp, Discord, Slack, LINE, or other messaging | [channels catalog](references/_catalog/channels.md) |
+| Anthropic, OpenAI, Gemini, Ollama, or other models | [providers catalog](references/_catalog/providers.md) |
+| Exact `openclaw` command or flag | [CLI catalog](references/_catalog/cli.md) |
+| Exec, browser, web, skills, permissions, or agent tools | [tools catalog](references/_catalog/tools.md) |
+| Cron, hooks, tasks, or webhooks | [automation catalog](references/_catalog/automation.md) |
+| Agents, sessions, memory, routing, or architecture | [concepts catalog](references/_catalog/concepts.md) |
+| Nodes or OS-specific behavior | [nodes catalog](references/_catalog/nodes.md) and [platforms catalog](references/_catalog/platforms.md) |
+| Control UI, WebChat, dashboard, or TUI | [web catalog](references/_catalog/web.md) |
+| Security, exposure, or incident response | [security catalog](references/_catalog/security.md) and [gateway catalog](references/_catalog/gateway.md) |
+| Unclear symptom or general troubleshooting | [help catalog](references/_catalog/help.md) |
 
-## Quick Reference
+If a catalog does not exist in an older installed snapshot, search the corresponding
+`references/<topic>/` directory directly.
 
-### Key Paths
+## Diagnose from evidence
 
-| Path | Purpose |
-|---|---|
-| `~/.openclaw/openclaw.json` | Main config (JSON5) |
-| `~/.openclaw/.env` | Global env fallback |
-| `~/.openclaw/workspace` | Default agent workspace |
-| `~/.openclaw/agents/<id>/` | Per-agent state + sessions |
-| `~/.openclaw/skills/` | Managed/local skills |
-| `~/.openclaw/agents/<id>/qmd/` | QMD memory backend state |
-| `~/.openclaw/agents/<id>/agent/auth-profiles.json` | Auth profiles + OAuth tokens |
-| `OPENCLAW_CONFIG_PATH` | Override config location |
-| `OPENCLAW_STATE_DIR` | Override state directory |
-| `OPENCLAW_HOME` | Override home directory |
+Match diagnostics to the symptom instead of running a universal command ladder.
 
-### Essential Commands
+- For Gateway reachability, inspect status, service state, and relevant Gateway logs.
+- For a single channel, inspect Gateway reachability and that channel's status, policy, and
+  channel-specific troubleshooting page.
+- For model failures, inspect provider authentication, model resolution, and the exact provider
+  error without probing unrelated channels.
+- For configuration failures, identify the active config path, exact rejected key, and matching
+  configuration reference.
+- For update or migration failures, establish the installed version, install method, and target
+  version before recommending changes.
 
-```bash
-openclaw status                    # Overall status
-openclaw gateway status            # Gateway daemon status
-openclaw gateway status --deep     # Deep scan including system services
-openclaw doctor                    # Diagnose config/service issues
-openclaw doctor --fix              # Auto-fix safe issues
-openclaw logs --follow             # Tail gateway logs
-openclaw channels status --probe   # Channel health check
-openclaw security audit            # Security posture check
-openclaw security audit --fix      # Auto-fix security issues
-openclaw update                    # Self-update
-openclaw dashboard                 # Open Control UI in browser
-openclaw tui                       # Terminal UI (interactive REPL)
-openclaw agent                     # Direct agent interaction via CLI
-openclaw health                    # Health check
-openclaw usage                     # Usage tracking
-openclaw config validate           # Validate config file
-openclaw config file               # Print active config path
-openclaw sessions cleanup          # Session disk cleanup
-openclaw agents bindings           # Agent-channel bindings
-openclaw agents bind               # Bind agent to account
-openclaw agents unbind             # Unbind agent
-openclaw update --dry-run          # Preview update
-openclaw system presence           # View connected clients/nodes
-openclaw system heartbeat last     # Last heartbeat info
-openclaw system heartbeat now      # Trigger heartbeat immediately
-openclaw memory search <query>     # CLI memory search
-openclaw docs <query>              # Search OpenClaw docs
-openclaw tasks list                # List background/detached task runs
-openclaw tasks show <id>           # Show specific task details
-openclaw tasks cancel <id>         # Cancel a running task
-openclaw tasks audit               # Identify problematic task runs
-openclaw agent --message "..."     # Run single agent turn (scripted/testing)
-openclaw nodes pending             # List pending pairing requests
-openclaw nodes approve <id>        # Approve node pairing
-openclaw nodes status              # Show all paired nodes
-openclaw health --json             # Full health snapshot (JSON)
-openclaw message send --media <p>  # Send media message
-```
+Begin with read-only observations. Preserve exact errors and command output when searching the
+documentation.
 
-### Default Gateway
+## Control state-changing actions
 
-- Bind: `127.0.0.1:18789` (loopback)
-- Dashboard: `http://127.0.0.1:18789/`
-- Protocol: WebSocket (JSON text frames)
+Treat edits, installation, updates, `--fix`, `--force`, restarts, uninstalls, credential changes,
+pairing approvals, and message sends as state-changing actions.
 
-## Core Workflow
+1. Explain what will change and the likely impact.
+2. Confirm the target and scope from available evidence.
+3. Obtain the user's authorization when it is not already explicit.
+4. Prefer previews, validation, backups, and reversible operations.
+5. Re-check status after the change.
 
-### Diagnosing Issues
+Never expose tokens, passwords, session data, auth profiles, or secrets in the response. Redact
+them from copied output.
 
-Always follow this command ladder in order — do NOT skip steps:
+## Produce the answer
 
-1. `openclaw status` — quick overview
-2. `openclaw gateway status` — daemon running? RPC probe ok?
-3. `openclaw logs --follow` — watch for errors
-4. `openclaw doctor` — config/service diagnostics
-5. `openclaw channels status --probe` — per-channel health
+- Lead with the diagnosis or requested outcome.
+- Give commands only after confirming them in the synchronized references.
+- Separate documented facts from inferences.
+- Mention relevant version assumptions or mismatch risks.
+- Cite the local reference paths used so the user can verify the answer.
+- Keep unexplored alternatives out of context unless the primary route fails.
 
-### Starting / Restarting Gateway
+## Maintain this skill
 
-```bash
-# Foreground with verbose logging
-openclaw gateway --port 18789 --verbose
-
-# Force-kill existing listener then start
-openclaw gateway --force
-
-# Service management (launchd on macOS, systemd on Linux)
-openclaw gateway install
-openclaw gateway start
-openclaw gateway stop
-openclaw gateway restart
-```
-
-### Configuration
-
-Edit config via any method:
-
-```bash
-# Interactive wizard
-openclaw onboard                    # Full setup
-openclaw configure                  # Config wizard
-
-# CLI one-liners
-openclaw config get <path>          # Read value
-openclaw config set <path> <value>  # Set value (JSON5 or raw string)
-openclaw config unset <path>        # Remove value
-
-# Direct edit
-# Edit ~/.openclaw/openclaw.json (JSON5 format)
-# Gateway hot-reloads on save (if gateway.reload.mode != "off")
-```
-
-Minimal config example:
-
-```json5
-{
-  agents: { defaults: { workspace: "~/.openclaw/workspace" } },
-  channels: { whatsapp: { allowFrom: ["+15555550123"] } },
-}
-```
-
-### Channel Setup
-
-For detailed per-channel setup, see [references/channels/](references/channels/).
-For per-channel troubleshooting (failure signatures, setup walkthroughs), see [references/diagnostics/](references/diagnostics/).
-For plugins adding new channels (Matrix, Nostr, MS Teams, etc.), see [references/plugins/](references/plugins/).
-
-Quick channel add:
-
-```bash
-# Interactive wizard
-openclaw channels add
-
-# Non-interactive
-openclaw channels add --channel telegram --account default --name "My Bot" --token $BOT_TOKEN
-openclaw channels login --channel whatsapp     # QR pairing for WhatsApp
-openclaw channels status --probe               # Verify
-```
-
-### Model Provider Setup
-
-For detailed provider setup, see [references/providers/](references/providers/).
-
-```bash
-# Set default model
-openclaw models set anthropic/claude-sonnet-4-5
-
-# List available models
-openclaw models list --all
-
-# Check auth/token status
-openclaw models status --probe
-
-# Add auth interactively
-openclaw models auth add
-```
-
-Config example:
-
-```json5
-{
-  agents: {
-    defaults: {
-      model: {
-        primary: "anthropic/claude-sonnet-4-5",
-        fallbacks: ["openai/gpt-4o"],
-      },
-    },
-  },
-}
-```
-
-### Multi-Agent Routing
-
-For detailed multi-agent config, see [references/concepts/](references/concepts/).
-
-```bash
-openclaw agents add <id>                # Create agent
-openclaw agents list --bindings         # Show agent-channel bindings
-openclaw agents delete <id>             # Remove agent
-```
-
-### Nodes (iOS / Android / macOS / Headless)
-
-For detailed node setup, see [references/nodes/](references/nodes/).
-
-```bash
-openclaw nodes status                   # List connected nodes
-openclaw nodes describe --node <id>     # Node capabilities
-openclaw devices list                   # Pending device approvals
-openclaw devices approve <requestId>    # Approve a device
-openclaw node run --host <host> --port 18789  # Start headless node host
-```
-
-### Security
-
-For detailed security hardening, see [references/gateway/security.md](references/gateway/security.md) and [references/security/](references/security/).
-
-```bash
-openclaw security audit                 # Check posture
-openclaw security audit --deep          # Live gateway probe
-openclaw security audit --fix           # Auto-fix safe issues
-openclaw secrets reload                 # Re-resolve secret refs
-openclaw secrets audit                  # Scan for plaintext leaks
-```
-
-### Update / Uninstall
-
-For detailed installation, updating, rollback, and migration guide, see [references/install/](references/install/).
-
-```bash
-# Install (recommended)
-curl -fsSL https://openclaw.ai/install.sh | bash
-
-# Update
-openclaw update                    # Self-update command
-# Or: npm install -g openclaw@latest
-openclaw doctor                    # Run after update to apply migrations
-
-# Uninstall
-openclaw uninstall
-```
-
-### Keeping This Skill Up-to-Date
-
-This skill syncs its `references/` from the official OpenClaw repository. To update:
+Run maintenance only when the user explicitly asks to refresh this repository:
 
 ```bash
 sh scripts/sync-docs.sh
+python3 scripts/generate_index.py --check
+python3 -m unittest -v tests/test_repo.py
 ```
 
-Or trigger the **Auto-Sync** workflow on GitHub Actions (runs daily at 04:00 UTC).
+For an installed Git checkout, install or update with:
 
-## Tools Reference
+```bash
+bash <skill-directory>/scripts/install-skill.sh <skill-directory>
+```
 
-For detailed per-tool documentation, see [references/tools/index.md](references/tools/index.md).
-
-For specific tools:
-- [references/tools/exec.md](references/tools/exec.md) — Exec tool deep-dive
-- [references/tools/exec-approvals.md](references/tools/exec-approvals.md) — Exec approvals and allowlists
-- [references/tools/browser.md](references/tools/browser.md) — Browser automation deep-dive
-- [references/tools/web.md](references/tools/web.md) — Web search/fetch with multiple providers
-- [references/tools/plugin.md](references/tools/plugin.md) — Plugin system (install, author, distribute)
-- [references/tools/skills.md](references/tools/skills.md) — Skills system (load, config, ClawHub)
-- [references/tools/acp-agents.md](references/tools/acp-agents.md) — ACP agents (Codex, Claude Code, Gemini CLI)
-- [references/tools/firecrawl.md](references/tools/firecrawl.md) — Firecrawl anti-bot fallback
-- [references/tools/slash-commands.md](references/tools/slash-commands.md) — Chat slash commands
-- [references/tools/thinking.md](references/tools/thinking.md) — Thinking levels (/think, /verbose)
-- [references/tools/clawhub.md](references/tools/clawhub.md) — ClawHub skill registry
-- [references/web/tui.md](references/web/tui.md) — Terminal UI (TUI)
-- [references/tools/tts.md](references/tools/tts.md) — Talk Mode and Voice Wake
-
-**Tool profiles**: `minimal`, `coding`, `messaging`, `full` (default).
-
-**Tool groups** (for allow/deny):
-
-| Group | Tools Included |
-|---|---|
-| `group:runtime` | exec, bash, process |
-| `group:fs` | read, write, edit, apply_patch |
-| `group:sessions` | sessions_list/history/send/spawn, session_status |
-| `group:memory` | memory_search, memory_get |
-| `group:web` | web_search, web_fetch |
-| `group:ui` | browser, canvas |
-| `group:automation` | cron, gateway |
-| `group:messaging` | message |
-| `group:nodes` | nodes |
-| `group:openclaw` | all built-in OpenClaw tools (excludes provider plugins) |
-
-## Common Failure Signatures
-
-| Error | Cause | Fix |
-|---|---|---|
-| `refusing to bind gateway ... without auth` | Non-loopback bind without token | Set `gateway.auth.token` or `gateway.auth.password` |
-| `another gateway instance is already listening` / `EADDRINUSE` | Port conflict | `openclaw gateway --force` or change port |
-| `Gateway start blocked: set gateway.mode=local` | Local mode not enabled | Set `gateway.mode="local"` |
-| `unauthorized` / reconnect loop | Token/password mismatch | Check `OPENCLAW_GATEWAY_TOKEN` or config auth |
-| `device identity required` | Missing device auth | Ensure client completes connect.challenge flow |
-| No replies from bot | Pairing/allowlist/mention gating | Check `openclaw pairing list`, DM policy, mention patterns |
-| `Embedding provider authentication failed (401)` | Placeholder API key in `.env` | Replace with real API key in `~/.openclaw/.env`, restart Gateway |
-| `openclaw flows list` / `ClawFlow` references | ClawFlow is deprecated | Use `openclaw tasks list/show/cancel/audit` instead |
-| `config change requires gateway restart (plugins.*)` | Plugin config can't hot-reload | Full `openclaw gateway restart` or `launchctl kickstart -k` |
-| `Bootstrap failed: 5: Input/output error` | LaunchAgent plist stuck/stale | `openclaw gateway install` then `launchctl kickstart -k gui/$(id -u)/ai.openclaw.gateway` |
-| `Missing env var "X" referenced at config path: ...` | `.env` missing or variable not defined | Add variable to `~/.openclaw/.env` and restart Gateway |
-
-## Environment Variables
-
-| Variable | Purpose |
-|---|---|
-| `OPENCLAW_GATEWAY_TOKEN` | Gateway auth token |
-| `OPENCLAW_GATEWAY_PASSWORD` | Gateway auth password |
-| `OPENCLAW_GATEWAY_PORT` | Override gateway port |
-| `OPENCLAW_CONFIG_PATH` | Override config file path |
-| `OPENCLAW_STATE_DIR` | Override state directory |
-| `OPENCLAW_HOME` | Override home directory |
-| `OPENCLAW_LOAD_SHELL_ENV` | Import shell env (set to `1`) |
-| `OPENCLAW_VERBOSE` | Verbose logging |
-| `OPENCLAW_LOG_FILE` | File logging path |
-| `OPENCLAW_LOG_LEVEL` | Log level control |
-| `OPENCLAW_SHELL` | Set by OpenClaw in exec/acp/tui runtimes |
-| `BRAVE_API_KEY` | For web_search tool |
-| `FIRECRAWL_API_KEY` | For Firecrawl anti-bot fallback |
-| `ELEVENLABS_API_KEY` | For Talk Mode TTS |
-| `ELEVENLABS_VOICE_ID` | Default voice for Talk Mode |
-| `CLAWHUB_TOKEN` | ClawHub API token for CI/automation |
-| `CLAWHUB_WORKDIR` | ClawHub working directory override |
-| `OLLAMA_API_KEY` | For Ollama embeddings provider |
-| `OPENCLAW_SKIP_CRON` | Disable cron scheduler (set to `1`) |
-| `OPENCLAW_HIDE_BANNER` | Suppress banner output |
-| `OPENCLAW_SUPPRESS_NOTES` | Suppress informational notes |
+Do not run `scripts/sync-docs.sh` or regenerate indexes during normal OpenClaw assistance.
