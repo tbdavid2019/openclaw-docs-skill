@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Inworld](../providers/inworld.md) — Inworld streaming text-to-speech for OpenClaw replies. Read when: You want Inworld speech synthesis for outbound replies; You need PCM telephony or OGG_OPUS voice-note output from Inworld.
 - [Kilo Gateway](../providers/kilocode.md) — Use Kilo Gateway's unified API to access many models in OpenClaw. Read when: You want a single API key for many LLMs; You want to run models via Kilo Gateway in OpenClaw.
 - [LiteLLM](../providers/litellm.md) — Run OpenClaw through LiteLLM Proxy for unified model access and cost tracking. Read when: You want to route OpenClaw through a LiteLLM proxy; You need cost tracking, logging, or model routing through LiteLLM.
 - [LM Studio](../providers/lmstudio.md) — Run OpenClaw with LM Studio. Read when: You want to run OpenClaw with open source models via LM Studio; You want to set up and configure LM Studio.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Synthetic](../providers/synthetic.md) — Use Synthetic's Anthropic-compatible API in OpenClaw. Read when: You want to use Synthetic as a model provider; You need a Synthetic API key or base URL setup.
 - [Tencent Cloud (TokenHub / TokenPlan)](../providers/tencent.md) — Tencent Cloud TokenHub and TokenPlan setup for hy3. Read when: You want to use Tencent hy3 with OpenClaw; You need the TokenHub or TokenPlan API key setup.
 - [Together AI](../providers/together.md) — Together AI setup (auth + model selection). Read when: You want to use Together AI with OpenClaw; You need the API key env var or CLI auth choice.
-- [Venice AI](../providers/venice.md) — Use Venice AI privacy-focused models in OpenClaw. Read when: You want privacy-focused inference in OpenClaw; You want Venice AI setup guidance.

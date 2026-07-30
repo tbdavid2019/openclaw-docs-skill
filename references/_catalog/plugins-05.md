@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Novita plugin](../plugins/reference/novita.md) — Adds Novita, Novita AI, Novitaai model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the novita plugin.
 - [NVIDIA plugin](../plugins/reference/nvidia.md) — Adds NVIDIA model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the nvidia plugin.
 - [OC Path plugin](../plugins/oc-path.md) — Bundled `oc-path` plugin: ships the `openclaw path` CLI for the `oc://` workspace-file addressing scheme. Read when: You want to inspect or edit a single leaf inside a workspace file from the terminal; You are scripting against workspace state and need a stable, kind-agnostic addressing scheme; You are deciding whether to enable the optional `oc-path` plugin on a self-hosted Gateway.
 - [Oc Path plugin](../plugins/reference/oc-path.md) — Adds the openclaw path CLI for oc:// workspace file addressing. Read when: You are installing, configuring, or auditing the oc-path plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Plugin SDK migration](../plugins/sdk-migration.md) — Migrate from the legacy backwards-compatibility layer to the modern plugin SDK. Read when: You see the OPENCLAW_PLUGIN_SDK_COMPAT_DEPRECATED warning; You see the OPENCLAW_EXTENSION_API_DEPRECATED warning; You used api.registerEmbeddedExtensionFactory before OpenClaw 2026.4.25; You are updating a plugin to the modern plugin architecture; You maintain an external OpenClaw plugin.
 - [Plugin SDK overview](../plugins/sdk-overview.md) — Import map, registration API reference, and SDK architecture. Read when: You need to know which SDK subpath to import from; You want a reference for all registration methods on OpenClawPluginApi; You are looking up a specific SDK export.
 - [Plugin SDK subpaths](../plugins/sdk-subpaths.md) — Plugin SDK subpath catalog: which imports live where, grouped by area. Read when: Choosing the right plugin-sdk subpath for a plugin import; Auditing bundled-plugin subpaths and helper surfaces.
-- [Plugin setup and config](../plugins/sdk-setup.md) — Setup wizards, setup-entry.ts, config schemas, and package.json metadata. Read when: You are adding a setup wizard to a plugin; You need to understand setup-entry.ts vs index.ts; You are defining plugin config schemas or package.json openclaw metadata.

@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Plugin setup and config](../plugins/sdk-setup.md) — Setup wizards, setup-entry.ts, config schemas, and package.json metadata. Read when: You are adding a setup wizard to a plugin; You need to understand setup-entry.ts vs index.ts; You are defining plugin config schemas or package.json openclaw metadata.
 - [Plugin testing](../plugins/sdk-testing.md) — Testing utilities and patterns for OpenClaw plugins. Read when: You are writing tests for a plugin; You need test utilities from the plugin SDK; You want to understand contract tests for bundled plugins.
 - [Policy plugin](../plugins/reference/policy.md) — Adds policy-backed doctor checks for workspace conformance. Read when: You are installing, configuring, or auditing the policy plugin.
 - [QA Channel plugin](../plugins/reference/qa-channel.md) — Adds the QA Channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the qa-channel plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Tokenjuice plugin](../plugins/reference/tokenjuice.md) — Compacts exec and bash tool results with tokenjuice reducers. Read when: You are installing, configuring, or auditing the tokenjuice plugin.
 - [Tool plugins](../plugins/tool-plugins.md) — Build simple typed agent tools with defineToolPlugin and openclaw plugins init/build/validate. Read when: You want to build a simple OpenClaw plugin that only adds agent tools; You want to use defineToolPlugin instead of hand-writing plugin manifest metadata; You need to scaffold, generate, validate, test, or publish a tool-only plugin.
 - [TTS Local CLI plugin](../plugins/reference/tts-local-cli.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the tts-local-cli plugin.
-- [Twitch plugin](../plugins/reference/twitch.md) — OpenClaw Twitch channel plugin for chat and moderation workflows. Read when: You are installing, configuring, or auditing the twitch plugin.

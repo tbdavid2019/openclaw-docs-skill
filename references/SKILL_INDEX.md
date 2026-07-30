@@ -25,11 +25,11 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 11 |
 | [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 31 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
-| [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 11 |
+| [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 12 |
 | [Plan](_catalog/plan.md) | Documentation under `plan/` | 4 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 28 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 204 |
-| [Providers](_catalog/providers.md) | Model provider authentication and configuration | 67 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 205 |
+| [Providers](_catalog/providers.md) | Model provider authentication and configuration | 68 |
 | [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 4 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 34 |
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 3 |

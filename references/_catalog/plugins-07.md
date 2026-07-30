@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Twitch plugin](../plugins/reference/twitch.md) — OpenClaw Twitch channel plugin for chat and moderation workflows. Read when: You are installing, configuring, or auditing the twitch plugin.
 - [Vault plugin](../plugins/reference/vault.md) — HashiCorp Vault SecretRef provider integration. Read when: You are installing, configuring, or auditing the vault plugin.
 - [Vault SecretRefs](../plugins/vault.md) — Use the bundled Vault plugin to resolve SecretRefs from HashiCorp Vault. Read when: You want OpenClaw to read API keys from HashiCorp Vault; You are setting up SecretRefs on a local machine or server; You need to configure Vault-backed model provider credentials.
 - [Venice plugin](../plugins/reference/venice.md) — Adds Venice model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the venice plugin.

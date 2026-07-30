@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Venice AI](../providers/venice.md) — Use Venice AI privacy-focused models in OpenClaw. Read when: You want privacy-focused inference in OpenClaw; You want Venice AI setup guidance.
 - [Vercel AI gateway](../providers/vercel-ai-gateway.md) — Vercel AI Gateway setup (auth + model selection). Read when: You want to use Vercel AI Gateway with OpenClaw; You need the API key env var or CLI auth choice.
 - [vLLM](../providers/vllm.md) — Run OpenClaw with vLLM (OpenAI-compatible local server). Read when: You want to run OpenClaw against a local vLLM server; You want OpenAI-compatible /v1 endpoints with your own models.
 - [Volcengine (Doubao)](../providers/volcengine.md) — Volcano Engine setup (Doubao models, coding endpoints, and Seed Speech TTS). Read when: You want to use Volcano Engine or Doubao models with OpenClaw; You need the Volcengine API key setup; You want to use Volcengine Speech text-to-speech.

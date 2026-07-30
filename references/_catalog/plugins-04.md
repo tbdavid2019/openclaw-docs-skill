@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [LM Studio plugin](../plugins/reference/lmstudio.md) — Adds LM Studio model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the lmstudio plugin.
 - [Lobster plugin](../plugins/reference/lobster.md) — Lobster workflow tool plugin for typed pipelines and resumable approvals. Read when: You are installing, configuring, or auditing the lobster plugin.
 - [Logbook plugin](../plugins/logbook.md) — Optional automatic work journal built from periodic screen snapshots. Read when: You want a Dayflow-style timeline of your day in the Control UI; You are enabling or configuring the bundled Logbook plugin; You want standup summaries or day recall grounded in screen activity.
 - [Logbook plugin](../plugins/reference/logbook.md) — Automatic work journal: captures periodic screen snapshots from a paired node and turns them into a reviewable timeline of your day. Read when: You are installing, configuring, or auditing the logbook plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Native Codex plugins](../plugins/codex-native-plugins.md) — Configure native Codex plugins for Codex-mode OpenClaw agents. Read when: You want Codex-mode OpenClaw agents to use native Codex plugins; You are migrating source-installed openai-curated Codex plugins; You are configuring an existing workspace-directory Codex plugin; You are troubleshooting codexPlugins, app inventory, destructive actions, or plugin app diagnostics.
 - [Nextcloud Talk plugin](../plugins/reference/nextcloud-talk.md) — OpenClaw Nextcloud Talk channel plugin for conversations. Read when: You are installing, configuring, or auditing the nextcloud-talk plugin.
 - [Nostr plugin](../plugins/reference/nostr.md) — OpenClaw Nostr channel plugin for NIP-04 encrypted direct messages. Read when: You are installing, configuring, or auditing the nostr plugin.
-- [Novita plugin](../plugins/reference/novita.md) — Adds Novita, Novita AI, Novitaai model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the novita plugin.
