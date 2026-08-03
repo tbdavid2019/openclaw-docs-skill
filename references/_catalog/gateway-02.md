@@ -4,6 +4,7 @@ Gateway configuration, operations, security, and networking.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Local models](../gateway/local-models.md) — Run OpenClaw on local LLMs (LM Studio, vLLM, LiteLLM, custom OpenAI endpoints). Read when: You want to serve models from your own GPU box; You are wiring LM Studio or an OpenAI-compatible proxy; You need the safest local model guidance.
 - [Multi-tenant hosting](../gateway/multi-tenant-hosting.md) — Host multiple tenant trust domains as one isolated OpenClaw Gateway cell per tenant. Read when: You are hosting OpenClaw for multiple users or organizations; You need to choose an isolation boundary for tenant workloads.
 - [Multiple gateways](../gateway/multiple-gateways.md) — Run multiple OpenClaw Gateways on one host (isolation, ports, and profiles). Read when: Running more than one Gateway on the same machine; You need isolated config/state/ports per Gateway.
 - [Network model](../gateway/network-model.md) — Redirect to /network#core-model. Read when: You want a concise view of the Gateway networking model.
