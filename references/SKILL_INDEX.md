@@ -15,7 +15,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [General](_catalog/general.md) | Top-level concepts and cross-cutting documentation | 15 |
 | [Announcements](_catalog/announcements.md) | Breaking changes and migration announcements | 1 |
 | [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 13 |
-| [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 46 |
+| [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 47 |
 | [Clawhub](_catalog/clawhub.md) | ClawHub CLI and publishing | 2 |
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 67 |
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 57 |

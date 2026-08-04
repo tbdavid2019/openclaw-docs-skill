@@ -13,4 +13,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [The Lobster](../web/lobster.md) — A lobster sometimes visits the Control UI. This page explains just enough. Read when: You saw a small lobster in your sidebar and want answers; You want to turn lobster visits on or off; You right-clicked a lobster and feel bad about it.
 - [TUI](../web/tui.md) — Terminal UI (TUI): connect to the Gateway or run locally in embedded mode. Read when: You want a beginner-friendly walkthrough of the TUI; You need the complete list of TUI features, commands, and shortcuts.
 - [Web](../web/index.md) — Gateway web surfaces: Control UI, bind modes, and security. Read when: You want to access the Gateway over Tailscale; You want the browser Control UI and config editing.
-- [WebChat](../web/webchat.md) — Loopback WebChat static host and Gateway WS usage for chat UI. Read when: Debugging or configuring WebChat access.
+- [WebChat](../web/webchat.md) — Native and Control UI WebChat usage over the Gateway WebSocket. Read when: Debugging or configuring WebChat access.
