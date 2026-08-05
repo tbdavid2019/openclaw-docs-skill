@@ -6,6 +6,7 @@ Open only the entries relevant to the current request. Start with at most three 
 
 - [Android app](../platforms/android.md) — Android app (node): connection runbook + Connect/Chat/OpenClaw/Voice/Canvas command surface. Read when: Pairing or reconnecting the Android node; Debugging Android gateway discovery or auth; Mirroring or controlling an Android device from a remote Mac; Verifying chat history parity across clients.
 - [Canvas](../platforms/mac/canvas.md) — Agent-controlled Canvas panel embedded via WKWebView + custom URL scheme. Read when: Implementing the macOS Canvas panel; Adding agent controls for visual workspace; Debugging WKWebView canvas loads.
+- [ChromeOS](../platforms/chromeos.md) — Run the OpenClaw Gateway on ChromeOS inside a Crostini Linux container. Read when: Installing OpenClaw on a Chromebook or ChromeOS device; Debugging missing provider keys or a Gateway that is gone after a reboot.
 - [DigitalOcean (platform)](../platforms/digitalocean.md) — Redirect to /install/digitalocean.
 - [EasyRunner](../platforms/easyrunner.md) — Run the OpenClaw Gateway on EasyRunner with Podman and Caddy. Read when: Deploying OpenClaw on EasyRunner; Running the Gateway behind EasyRunner's Caddy proxy; Choosing persistent volumes and auth for a hosted Gateway.
 - [Gateway lifecycle on macOS](../platforms/mac/child-process.md) — Gateway lifecycle on macOS (launchd). Read when: Integrating the mac app with the gateway lifecycle.
