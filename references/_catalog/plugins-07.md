@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Tokenjuice plugin](../plugins/reference/tokenjuice.md) — Compacts exec and bash tool results with tokenjuice reducers. Read when: You are installing, configuring, or auditing the tokenjuice plugin.
+- [Tool plugins](../plugins/tool-plugins.md) — Build simple typed agent tools with defineToolPlugin and openclaw plugins init/build/validate. Read when: You want to build a simple OpenClaw plugin that only adds agent tools; You want to use defineToolPlugin instead of hand-writing plugin manifest metadata; You need to scaffold, generate, validate, test, or publish a tool-only plugin.
+- [TTS Local CLI plugin](../plugins/reference/tts-local-cli.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the tts-local-cli plugin.
 - [Twitch plugin](../plugins/reference/twitch.md) — OpenClaw Twitch channel plugin for chat and moderation workflows. Read when: You are installing, configuring, or auditing the twitch plugin.
 - [Vault plugin](../plugins/reference/vault.md) — HashiCorp Vault SecretRef provider integration. Read when: You are installing, configuring, or auditing the vault plugin.
 - [Vault SecretRefs](../plugins/vault.md) — Use the bundled Vault plugin to resolve SecretRefs from HashiCorp Vault. Read when: You want OpenClaw to read API keys from HashiCorp Vault; You are setting up SecretRefs on a local machine or server; You need to configure Vault-backed model provider credentials.
@@ -28,4 +31,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Zalo personal plugin](../plugins/zalouser.md) — Zalo Personal plugin: QR login + messaging via native zca-js (plugin install + channel config + tool). Read when: You want Zalo Personal (unofficial) support in OpenClaw; You are configuring or developing the zalouser plugin.
 - [Zalo plugin](../plugins/reference/zalo.md) — OpenClaw Zalo channel plugin for bot and webhook chats. Read when: You are installing, configuring, or auditing the zalo plugin.
 - [Zoom meetings plugin](../plugins/reference/zoom-meetings.md) — Join Zoom meetings as a Chrome browser guest. Read when: You are installing, configuring, or auditing the zoom-meetings plugin.
-- [Zoom meetings plugin](../plugins/zoom-meetings.md) — Zoom meetings plugin: join meetings as a Chrome browser guest. Read when: You want an OpenClaw agent to join a Zoom meeting; You are configuring Chrome, BlackHole, or SoX for Zoom meeting talk-back.
+- [Zoom meetings plugin](../plugins/zoom-meetings.md) — Zoom meetings plugin: join meetings as a Chrome browser guest. Read when: You want an OpenClaw agent to join a Zoom meeting; You are configuring Chrome or virtual audio for Zoom meeting talk-back.

@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Nextcloud Talk plugin](../plugins/reference/nextcloud-talk.md) — OpenClaw Nextcloud Talk channel plugin for conversations. Read when: You are installing, configuring, or auditing the nextcloud-talk plugin.
+- [Nostr plugin](../plugins/reference/nostr.md) — OpenClaw Nostr channel plugin for NIP-04 encrypted direct messages. Read when: You are installing, configuring, or auditing the nostr plugin.
 - [Novita plugin](../plugins/reference/novita.md) — Adds Novita, Novita AI, Novitaai model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the novita plugin.
 - [NVIDIA plugin](../plugins/reference/nvidia.md) — Adds NVIDIA model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the nvidia plugin.
 - [OC Path plugin](../plugins/oc-path.md) — Bundled `oc-path` plugin: ships the `openclaw path` CLI for the `oc://` workspace-file addressing scheme. Read when: You want to inspect or edit a single leaf inside a workspace file from the terminal; You are scripting against workspace state and need a stable, kind-agnostic addressing scheme; You are deciding whether to enable the optional `oc-path` plugin on a self-hosted Gateway.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Plugin reference](../plugins/reference.md) — Generated index of OpenClaw plugin reference pages. Read when: You need a reference page for a specific OpenClaw plugin; You are auditing plugin docs coverage.
 - [Plugin runtime helpers](../plugins/sdk-runtime.md) — api.runtime -- the injected runtime helpers available to plugins. Read when: You need to call core helpers from a plugin (TTS, STT, image gen, web search, Gateway, subagent, nodes); You want to understand what api.runtime exposes; You are accessing config, agent, or media helpers from plugin code; You are implementing model-picker persistence in a channel plugin.
 - [Plugin SDK migration](../plugins/sdk-migration.md) — Migrate from the legacy backwards-compatibility layer to the modern plugin SDK. Read when: You used api.registerEmbeddedExtensionFactory before OpenClaw 2026.4.25; You are updating a plugin to the modern plugin architecture; You maintain an external OpenClaw plugin.
-- [Plugin SDK overview](../plugins/sdk-overview.md) — Import map, registration API reference, and SDK architecture. Read when: You need to know which SDK subpath to import from; You want a reference for all registration methods on OpenClawPluginApi; You are looking up a specific SDK export.
-- [Plugin SDK subpaths](../plugins/sdk-subpaths.md) — Plugin SDK subpath catalog: which imports live where, grouped by area. Read when: Choosing the right plugin-sdk subpath for a plugin import; Auditing bundled-plugin subpaths and helper surfaces.

@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Document Extract plugin](../plugins/reference/document-extract.md) — Extract text and fallback page images from local document attachments. Read when: You are installing, configuring, or auditing the document-extract plugin.
+- [DuckDuckGo plugin](../plugins/reference/duckduckgo.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the duckduckgo plugin.
 - [Elevenlabs plugin](../plugins/reference/elevenlabs.md) — Adds media understanding provider support. Adds realtime transcription provider support. Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the elevenlabs plugin.
 - [Exa plugin](../plugins/reference/exa.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the exa plugin.
 - [fal plugin](../plugins/reference/fal.md) — Adds fal model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fal plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Linux Node plugin](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
 - [LiteLLM plugin](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.
 - [Llama Cpp plugin](../plugins/reference/llama-cpp.md) — Local GGUF text inference and embeddings through node-llama-cpp. Read when: You are installing, configuring, or auditing the llama-cpp plugin.
-- [llama.cpp Provider](../plugins/llama-cpp.md) — Run local GGUF text inference and memory embeddings in OpenClaw with llama.cpp. Read when: You want local text inference without an API key or model server; You want memory search embeddings from a local GGUF model; You are configuring memory.search.provider = "local"; You need the OpenClaw plugin that owns the node-llama-cpp runtime.
-- [LLM Task plugin](../plugins/reference/llm-task.md) — Generic JSON-only LLM tool for structured tasks callable from workflows. Read when: You are installing, configuring, or auditing the llm-task plugin.

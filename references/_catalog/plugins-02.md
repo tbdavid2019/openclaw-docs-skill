@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Channel ingress API](../plugins/sdk-channel-ingress.md) — Experimental channel ingress API for inbound message authorization. Read when: Building or migrating a messaging channel plugin; Changing DM or group allowlists, route gates, command auth, event auth, or mention activation; Reviewing channel ingress redaction or SDK compatibility boundaries.
 - [Channel message API](../plugins/sdk-channel-message.md) — Redirect to /plugins/sdk-channel-outbound.
 - [Channel outbound API](../plugins/sdk-channel-outbound.md) — Outbound message lifecycle API for channel plugins: adapters, receipts, durable sends, live preview, and reply pipeline helpers. Read when: You are building or refactoring a messaging channel plugin send path; You need durable final reply delivery, receipts, live preview finalization, or receive acknowledgement policy; You are migrating from channel-message or legacy reply dispatch helpers.
 - [Channel turn](../plugins/sdk-channel-turn.md) — Redirect to /plugins/sdk-channel-inbound.
@@ -27,10 +28,9 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Deepgram plugin](../plugins/reference/deepgram.md) — Adds media understanding provider support. Adds realtime transcription provider support. Read when: You are installing, configuring, or auditing the deepgram plugin.
 - [DeepInfra plugin](../plugins/reference/deepinfra.md) — Adds DeepInfra model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the deepinfra plugin.
 - [DeepSeek plugin](../plugins/reference/deepseek.md) — Adds DeepSeek model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the deepseek plugin.
+- [Device Pair plugin](../plugins/reference/device-pair.md) — Generate setup codes and approve device pairing requests. Read when: You are installing, configuring, or auditing the device-pair plugin.
 - [Diagnostics OpenTelemetry plugin](../plugins/reference/diagnostics-otel.md) — OpenClaw diagnostics OpenTelemetry exporter for metrics, traces, and logs. Read when: You are installing, configuring, or auditing the diagnostics-otel plugin.
 - [Diagnostics Prometheus plugin](../plugins/reference/diagnostics-prometheus.md) — OpenClaw diagnostics Prometheus exporter for runtime metrics. Read when: You are installing, configuring, or auditing the diagnostics-prometheus plugin.
 - [Diffs Language Pack plugin](../plugins/reference/diffs-language-pack.md) — Adds syntax highlighting for languages outside the default diffs viewer set. Read when: You are installing, configuring, or auditing the diffs-language-pack plugin.
 - [Diffs plugin](../plugins/reference/diffs.md) — OpenClaw read-only diff viewer plugin and file renderer for agents. Read when: You are installing, configuring, or auditing the diffs plugin.
 - [Discord plugin](../plugins/reference/discord.md) — OpenClaw Discord channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the discord plugin.
-- [Document Extract plugin](../plugins/reference/document-extract.md) — Extract text and fallback page images from local document attachments. Read when: You are installing, configuring, or auditing the document-extract plugin.
-- [DuckDuckGo plugin](../plugins/reference/duckduckgo.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the duckduckgo plugin.
