@@ -4,7 +4,6 @@ Exact OpenClaw CLI command reference.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [`openclaw commitments`](../cli/commitments.md) — CLI reference for `openclaw commitments` (inspect and dismiss inferred follow-ups). Read when: You want to inspect inferred follow-up commitments; You want to dismiss pending check-ins; You are auditing what heartbeat may deliver.
 - [`openclaw tasks`](../cli/tasks.md) — CLI reference for `openclaw tasks` (background task ledger and Task Flow state). Read when: You want to inspect, audit, or cancel background task records; You are documenting Task Flow commands under `openclaw tasks flow`.
 - [ACP](../cli/acp.md) — Run the ACP bridge for IDE integrations. Read when: Setting up ACP-based IDE integrations; Debugging ACP session routing to the Gateway.
 - [Agent](../cli/agent.md) — CLI reference for Gateway-backed `openclaw agent` turns and isolated `agent exec` runs. Read when: You want to run one agent turn from scripts (optionally deliver reply); You want a strict, ephemeral one-shot agent run for CI.
@@ -34,3 +33,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Flows (redirect)](../cli/flows.md) — Redirect: flow commands live under `openclaw tasks flow`. Read when: You encounter `openclaw flows` in older docs or release notes; You want a quick TaskFlow inspection reference.
 - [Gateway](../cli/gateway.md) — OpenClaw Gateway CLI (`openclaw gateway`) — run, query, and discover gateways. Read when: Running the Gateway from the CLI (dev or servers); Debugging Gateway auth, bind modes, and connectivity; Discovering gateways via Bonjour (local + wide-area DNS-SD); Integrating an external Gateway process supervisor.
 - [Health](../cli/health.md) — CLI reference for `openclaw health` (gateway health snapshot via RPC). Read when: You want to quickly check the running Gateway's health.
+- [Hooks](../cli/hooks.md) — CLI reference for `openclaw hooks` (agent hooks). Read when: You want to manage agent hooks; You want to inspect hook availability or enable workspace hooks.

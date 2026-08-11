@@ -4,7 +4,6 @@ Architecture, agents, sessions, memory, models, and routing.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Models CLI](../concepts/models.md) — How OpenClaw resolves provider/model refs, config keys, and the `/model` chat command. Read when: Changing model fallback behavior or selection UX; Debugging "model is not allowed" or a stale default provider fallback; Working on models.json merge/secret behavior.
 - [Multi-agent routing](../concepts/multi-agent.md) — Multi-agent routing: agent boundaries, channel accounts, and bindings. Read when: You want multiple agents with separate workspaces, auth, and sessions in one Gateway process..
 - [Multi-user mode](../concepts/multi-user.md) — How session ownership and presence work when several people operate one agent. Read when: You share one OpenClaw agent with other operators; You need to understand session owner and presence indicators; You are deciding whether one shared agent provides enough isolation.
 - [OAuth](../concepts/oauth.md) — OAuth in OpenClaw: token exchange, storage, and multi-account patterns. Read when: You want to understand OpenClaw OAuth end-to-end; You hit token invalidation / logout issues; You want Claude CLI or OAuth auth flows; You want multiple accounts or profile routing.

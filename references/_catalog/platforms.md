@@ -9,7 +9,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [ChromeOS](../platforms/chromeos.md) — Run the OpenClaw Gateway on ChromeOS inside a Crostini Linux container. Read when: Installing OpenClaw on a Chromebook or ChromeOS device; Debugging missing provider keys or a Gateway that is gone after a reboot.
 - [DigitalOcean (platform)](../platforms/digitalocean.md) — Redirect to /install/digitalocean.
 - [EasyRunner](../platforms/easyrunner.md) — Run the OpenClaw Gateway on EasyRunner with Podman and Caddy. Read when: Deploying OpenClaw on EasyRunner; Running the Gateway behind EasyRunner's Caddy proxy; Choosing persistent volumes and auth for a hosted Gateway.
-- [Gateway lifecycle on macOS](../platforms/mac/child-process.md) — Gateway lifecycle on macOS (launchd). Read when: Integrating the mac app with the gateway lifecycle.
+- [Gateway lifecycle on macOS](../platforms/mac/child-process.md) — Redirect to /platforms/mac/bundled-gateway.
 - [Gateway on macOS](../platforms/mac/bundled-gateway.md) — Gateway runtime on macOS (external launchd service). Read when: Packaging OpenClaw.app; Debugging the macOS gateway launchd service; Installing the gateway CLI for macOS.
 - [Health checks (macOS)](../platforms/mac/health.md) — How the macOS app reports gateway/channel health states. Read when: Debugging mac app health indicators.
 - [HealthKit summaries](../platforms/ios-healthkit.md) — Enable and invoke privacy-gated HealthKit summaries from an iOS node. Read when: Enabling HealthKit summaries on an iOS node; Invoking health.summary or troubleshooting missing health metrics; Reviewing what health data can leave an iOS device.

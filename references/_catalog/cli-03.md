@@ -4,7 +4,6 @@ Exact OpenClaw CLI command reference.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [TUI](../cli/tui.md) — CLI reference for `openclaw tui` (Gateway-backed or local embedded terminal UI). Read when: You want a terminal UI for the Gateway (remote-friendly); You want to pass url/token/session from scripts; You want to run the TUI in local embedded mode without a Gateway; You want to use openclaw chat or openclaw tui --local.
 - [Uninstall](../cli/uninstall.md) — CLI reference for `openclaw uninstall` (remove gateway service + local data). Read when: You want to remove the gateway service and/or local state; You want a dry-run first.
 - [Update](../cli/update.md) — CLI reference for `openclaw update` (safe-ish source update + gateway auto-restart). Read when: You want to update a source checkout safely; You are debugging `openclaw update` output or options; You need to understand `--update` shorthand behavior.
 - [Voicecall](../cli/voicecall.md) — CLI reference for `openclaw voicecall` (voice-call plugin command surface). Read when: You use the voice-call plugin and want every CLI entry point; You need flag tables and defaults for setup, smoke, call, continue, speak, dtmf, end, status, tail, latency, expose, and start.
