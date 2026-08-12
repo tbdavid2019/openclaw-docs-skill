@@ -9,7 +9,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [LiteLLM](../providers/litellm.md) — Run OpenClaw through LiteLLM Proxy for unified model access and cost tracking. Read when: You want to route OpenClaw through a LiteLLM proxy; You need cost tracking, logging, or model routing through LiteLLM.
 - [LM Studio](../providers/lmstudio.md) — Run OpenClaw with LM Studio. Read when: You want to run OpenClaw with open source models via LM Studio; You want to set up and configure LM Studio.
 - [LongCat](../providers/longcat.md) — LongCat API setup for LongCat-2.0. Read when: You want to use LongCat-2.0 with OpenClaw; You need the LongCat API key or model limits.
-- [Meta](../providers/meta.md) — Meta setup (auth + muse-spark-1.1 model selection). Read when: You want to use Meta with OpenClaw; You need the MODEL_API_KEY env var or CLI auth choice.
+- [Meta](../providers/meta.md) — Meta setup, authentication, and Muse Spark model selection. Read when: You want to use Meta with OpenClaw; You need the MODEL_API_KEY env var or CLI auth choice.
 - [MiniMax](../providers/minimax.md) — Use MiniMax models in OpenClaw. Read when: You want MiniMax models in OpenClaw; You need MiniMax setup guidance.
 - [Mistral](../providers/mistral.md) — Use Mistral models and Voxtral transcription with OpenClaw. Read when: You want to use Mistral models in OpenClaw; You want Voxtral realtime transcription for Voice Call; You need Mistral API key onboarding and model refs.
 - [Model provider quickstart](../providers/models.md) — Model providers (LLMs) supported by OpenClaw. Read when: You want to choose a model provider; You want quick setup examples for LLM auth + model selection.
