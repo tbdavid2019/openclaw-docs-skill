@@ -4,6 +4,7 @@ Exact OpenClaw CLI command reference.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Hooks](../cli/hooks.md) — CLI reference for `openclaw hooks` (agent hooks). Read when: You want to manage agent hooks; You want to inspect hook availability or enable workspace hooks.
 - [Inference CLI](../cli/infer.md) — Infer-first CLI for provider-backed model, image, audio, TTS, video, web, and embedding workflows. Read when: Adding or modifying `openclaw infer` commands; Designing stable headless capability automation.
 - [Logs](../cli/logs.md) — CLI reference for `openclaw logs` (tail gateway logs via RPC). Read when: You need to tail Gateway logs remotely (without SSH); You want JSON log lines for tooling.
 - [MCP](../cli/mcp.md) — Expose OpenClaw channel conversations over MCP and manage saved MCP server definitions. Read when: Connecting Codex, Claude Code, or another MCP client to OpenClaw-backed channels; Running `openclaw mcp serve`; Managing OpenClaw-saved MCP server definitions.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Skills](../cli/skills.md) — CLI reference for `openclaw skills` (search/install/update/verify/list/info/check/workshop). Read when: You want to see which skills are available and ready to run; You want to search ClawHub or install skills from ClawHub, Git, or local directories; You need to remove an installed ClawHub skill; You want to verify a ClawHub skill with ClawHub; You want to debug missing binaries/env/config for skills.
 - [System](../cli/system.md) — CLI reference for `openclaw system` (system events, heartbeat, presence). Read when: You want to enqueue a system event without creating a cron job; You need to enable or disable heartbeats; You want to inspect system presence entries.
 - [Transcripts CLI](../cli/transcripts.md) — CLI reference for `openclaw transcripts` (list, show, and export stored transcripts). Read when: You want to read stored transcript summaries from the terminal; You need the path to a transcripts markdown summary; You are debugging the core transcripts storage layout.
-- [TUI](../cli/tui.md) — CLI reference for `openclaw tui` (Gateway-backed or local embedded terminal UI). Read when: You want a terminal UI for the Gateway (remote-friendly); You want to pass url/token/session from scripts; You want to run the TUI in local embedded mode without a Gateway; You want to use openclaw chat or openclaw tui --local.
