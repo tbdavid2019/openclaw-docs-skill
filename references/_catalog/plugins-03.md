@@ -33,4 +33,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Linux Canvas plugin](../plugins/reference/linux-canvas.md) — Canvas rendering bridge for the OpenClaw Linux desktop app. Read when: You are installing, configuring, or auditing the linux-canvas plugin.
 - [Linux Node plugin](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
 - [LiteLLM plugin](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.
-- [Llama Cpp plugin](../plugins/reference/llama-cpp.md) — Local GGUF text inference and embeddings through node-llama-cpp. Read when: You are installing, configuring, or auditing the llama-cpp plugin.
+- [Llama Cpp plugin](../plugins/reference/llama-cpp.md) — Managed local llama.cpp server for GGUF chat and embeddings. Read when: You are installing, configuring, or auditing the llama-cpp plugin.

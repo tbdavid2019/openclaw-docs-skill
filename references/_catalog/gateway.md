@@ -5,4 +5,4 @@ Gateway configuration, operations, security, and networking.
 Choose one section by its title range, then select at most three documents from it.
 
 - [1Password – Local model services](gateway-01.md) — 30 documents.
-- [Local models – Trusted proxy auth](gateway-02.md) — 26 documents.
+- [Local models – Trusted proxy auth](gateway-02.md) — 27 documents.

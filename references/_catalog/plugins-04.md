@@ -4,7 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [llama.cpp Provider](../plugins/llama-cpp.md) — Run local GGUF text inference and memory embeddings in OpenClaw with llama.cpp. Read when: You want local text inference without an API key or model server; You want memory search embeddings from a local GGUF model; You are configuring memory.search.provider = "local"; You need the OpenClaw plugin that owns the node-llama-cpp runtime.
+- [llama.cpp Provider](../plugins/llama-cpp.md) — Run local GGUF chat and memory embeddings with an OpenClaw-managed llama.cpp server. Read when: You want local text inference without an API key or separately managed model server; You want memory search embeddings from a local GGUF model; You are configuring memory.search.provider = "local"; You need to inspect or repair OpenClaw's managed llama.cpp server.
 - [LLM Task plugin](../plugins/reference/llm-task.md) — Generic JSON-only LLM tool for structured tasks callable from workflows. Read when: You are installing, configuring, or auditing the llm-task plugin.
 - [LM Studio plugin](../plugins/reference/lmstudio.md) — Adds LM Studio model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the lmstudio plugin.
 - [Lobster plugin](../plugins/reference/lobster.md) — Lobster workflow tool plugin for typed pipelines and resumable approvals. Read when: You are installing, configuring, or auditing the lobster plugin.
