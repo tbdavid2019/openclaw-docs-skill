@@ -33,6 +33,38 @@ In the macOS app: **Settings -> Enable Peekaboo Bridge**. The toggle requires **
 
 When enabled (and Computer Control is on), OpenClaw starts a local UNIX socket server at `~/Library/Application Support/OpenClaw/<socket-name>`. If disabled, the host stops and `peekaboo` falls back to other available hosts. The coordinator also maintains legacy socket symlinks (`clawdbot`, `clawdis`, `moltbot` under Application Support) pointing at the current socket for older `peekaboo` installs.
 
+For a one-off unattended run, `--attach-only --background-only` suppresses automatic windows and GUI-owned Keychain
+loading. The persistent elevation host is a managed-deployment path for OpenClaw Foundation release operators. Its
+`package` command requires the Foundation signing identity and notarization credentials; OpenClaw does not currently
+publish a general-download elevation archive. Install only a certified, source-addressed archive supplied by an
+authorized release operator:
+
+```bash
+cd /path/to/elevation-artifact-set
+shasum -a 256 -c "OpenClaw-<full-source-sha>-stable.zip.sha256"
+shasum -a 256 -c "OpenClaw-<full-source-sha>-stable-installer.sh.sha256"
+./OpenClaw-<full-source-sha>-stable-installer.sh install \
+  --archive "OpenClaw-<full-source-sha>-stable.zip"
+./OpenClaw-<full-source-sha>-stable-installer.sh status
+```
+
+Transfer the complete artifact set: archive, receipt, portable installer, and both checksum files. The target Mac does
+not need an OpenClaw source checkout. Verify both checksums before running the installer.
+
+`--elevation-host` is implied by the installed job. It keeps the Bridge, control channel, Mac node, Gateway
+connectivity, and termination handling active while disabling automatic windows, updater startup, Dock promotion,
+pairing and exec-approval presenters, Quick Chat hotkeys, voice and cookie services, and GUI-owned Keychain reads.
+Missing Screen Recording, Accessibility, or Event Synthesizing is reported by `status`; the host never opens System
+Settings to grant it. Installation succeeds once the launchd-owned process is Bridge-ready even if those grants are
+still incomplete; `status` returns a degraded-readiness result until all required grants are present. The installer
+uses the separate `ai.openclaw.mac.elevation-host` job and refuses to race or rewrite ordinary **Launch at login**
+(`ai.openclaw.mac`).
+
+The elevation archive is Foundation-signed, notarized, stapled, named by the full OpenClaw source commit, and contains
+exactly `OpenClaw.app`. Its receipt binds the archive and installer names and digests, OpenClaw and Peekaboo source
+revisions, signer, CDHash, architectures, entitlement digests, and Apple notarization submission ID. No AppleScript or
+Apple Events entitlement is part of this workflow.
+
 ## Client discovery order
 
 Peekaboo clients typically try hosts in this order:

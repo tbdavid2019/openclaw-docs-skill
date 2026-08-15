@@ -4,7 +4,6 @@ Exact OpenClaw CLI command reference.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Health](../cli/health.md) — CLI reference for `openclaw health` (gateway health snapshot via RPC). Read when: You want to quickly check the running Gateway's health.
 - [Hooks](../cli/hooks.md) — CLI reference for `openclaw hooks` (agent hooks). Read when: You want to manage agent hooks; You want to inspect hook availability or enable workspace hooks.
 - [Inference CLI](../cli/infer.md) — Infer-first CLI for provider-backed model, image, audio, TTS, video, web, and embedding workflows. Read when: Adding or modifying `openclaw infer` commands; Designing stable headless capability automation.
 - [Logs](../cli/logs.md) — CLI reference for `openclaw logs` (tail gateway logs via RPC). Read when: You need to tail Gateway logs remotely (without SSH); You want JSON log lines for tooling.
@@ -34,3 +33,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Setup](../cli/setup.md) — CLI reference for `openclaw setup` (system-agent chat with onboarding fallback). Read when: You want to chat with OpenClaw for setup or repair; You're doing first-run setup with the onboarding wizard; You want to set the default workspace path; You need the baseline-only setup flag for scripts.
 - [Skills](../cli/skills.md) — CLI reference for `openclaw skills` (search/install/update/verify/list/info/check/workshop). Read when: You want to see which skills are available and ready to run; You want to search ClawHub or install skills from ClawHub, Git, or local directories; You need to remove an installed ClawHub skill; You want to verify a ClawHub skill with ClawHub; You want to debug missing binaries/env/config for skills.
 - [System](../cli/system.md) — CLI reference for `openclaw system` (system events, heartbeat, presence). Read when: You want to enqueue a system event without creating a cron job; You need to enable or disable heartbeats; You want to inspect system presence entries.
+- [Transcripts CLI](../cli/transcripts.md) — CLI reference for `openclaw transcripts` (list, show, and export stored transcripts). Read when: You want to read stored transcript summaries from the terminal; You need the path to a transcripts markdown summary; You are debugging the core transcripts storage layout.
