@@ -21,7 +21,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 57 |
 | [Debug](_catalog/debug.md) | Documentation under `debug/` | 1 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
-| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 57 |
+| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 58 |
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 11 |
 | [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 34 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
@@ -36,5 +36,5 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 5 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 1 |
 | [Start](_catalog/start.md) | Getting started, onboarding, and setup | 15 |
-| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 67 |
+| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 68 |
 | [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 10 |
