@@ -31,6 +31,23 @@ SKILL.md
 
 ## 安裝
 
+### 透過 SkillHub 安裝（CLI）
+
+直接使用 [SkillHub](https://skills.palebluedot.live/owner/tbdavid2019) 安裝：
+
+```bash
+# 安裝至 Codex
+npx skillhub install tbdavid2019/openclaw-docs-skill/openclaw-docs --platform codex
+
+# 安裝至目前專案
+npx skillhub install tbdavid2019/openclaw-docs-skill/openclaw-docs --project
+
+# 或全域安裝
+npx skillhub install tbdavid2019/openclaw-docs-skill/openclaw-docs -g
+```
+
+### 透過 Git Clone 安裝
+
 請用 Git checkout 安裝，才能可靠更新。依 AI Agent 使用的 Skills 目錄調整目的地：
 
 ```bash

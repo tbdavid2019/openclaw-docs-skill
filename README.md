@@ -33,6 +33,23 @@ across `references/`. The generated catalogs use each upstream page's `title`, `
 
 ## Install
 
+### Via SkillHub (CLI)
+
+Install directly using [SkillHub](https://skills.palebluedot.live/owner/tbdavid2019):
+
+```bash
+# Install for Codex
+npx skillhub install tbdavid2019/openclaw-docs-skill/openclaw-docs --platform codex
+
+# Install to current project
+npx skillhub install tbdavid2019/openclaw-docs-skill/openclaw-docs --project
+
+# Or install globally
+npx skillhub install tbdavid2019/openclaw-docs-skill/openclaw-docs -g
+```
+
+### Via Git Clone
+
 Install as a Git checkout so it can be updated reliably. Replace the destination with the skills
 directory used by your agent:
 
