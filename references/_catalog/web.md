@@ -5,7 +5,7 @@ Control UI, dashboard, WebChat, and TUI.
 Open only the entries relevant to the current request. Start with at most three documents.
 
 - [Control UI](../web/control-ui.md) — Browser-based control UI for the Gateway (chat, activity, nodes, config). Read when: You want to operate the Gateway from a browser; You want Tailnet access without SSH tunnels.
-- [Control UI URLs](../web/urls.md) — Control UI URL routes, stable session-link grammar, and connection handoff parameters. Read when: You need to bookmark or share a Control UI session; You are adding or changing a Control UI route; You need a terminal, approval, onboarding, or remote Gateway URL.
+- [Control UI URLs](../web/urls.md) — Control UI routes, focus presentations, stable session links, and connection handoff parameters. Read when: You need to bookmark or share a Control UI session; You are adding or changing a Control UI route; You need a terminal, desktop, approval, onboarding, or remote Gateway URL.
 - [Dashboard](../web/dashboard.md) — Gateway dashboard (Control UI) access and auth. Read when: Changing dashboard authentication or exposure modes.
 - [Dashboard Architecture](../web/dashboard-architecture.md) — Session dashboards: architecture and implementation plan (technical design, pre-GA). Read when: Implementing or reviewing the session dashboard (boards) feature; Changing widget hosting, the widget bridge, or board storage.
 - [Notifications](../web/notifications.md) — Enable and test browser or macOS notifications from the Control UI. Read when: Enabling notifications from Settings; Troubleshooting browser or macOS notification permission; Comparing Control UI notifications with mobile push.

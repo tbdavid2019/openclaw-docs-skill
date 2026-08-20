@@ -28,13 +28,13 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 12 |
 | [Plan](_catalog/plan.md) | Documentation under `plan/` | 4 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 29 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 208 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 207 |
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 68 |
-| [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 4 |
+| [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 3 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 33 |
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 3 |
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 5 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 1 |
 | [Start](_catalog/start.md) | Getting started, onboarding, and setup | 15 |
-| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 68 |
+| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 69 |
 | [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 10 |
