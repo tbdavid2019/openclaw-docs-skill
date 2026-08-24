@@ -21,7 +21,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 57 |
 | [Debug](_catalog/debug.md) | Documentation under `debug/` | 1 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
-| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 59 |
+| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 60 |
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 11 |
 | [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 35 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
