@@ -1,16 +1,33 @@
 ---
-summary: "Understand daily update checks, optional anonymous feature statistics, and every privacy control"
+summary: "What OpenClaw sends: a daily update check by default, optional anonymous feature statistics, and every privacy control"
 title: "Usage telemetry and update checks"
 read_when:
-  - Checking what information OpenClaw sends during its daily update check
+  - Checking what information OpenClaw sends and what it never collects
+  - Deciding whether to share anonymous feature statistics
   - Enabling or disabling anonymous feature statistics
   - Disabling all automatic update-check requests
 ---
 
-OpenClaw checks for a newer version at most once every 24 hours. By default,
-this request includes only basic software and platform information. Anonymous
-feature statistics are sent only when you explicitly opt in, and they reuse the
-same request rather than creating a second one.
+**The only thing OpenClaw sends on its own is a daily update check.** It asks
+whether a newer version exists, and the request carries nothing but the version,
+operating system, and CPU architecture already visible to any package registry.
+Everything else on this page is opt-in.
+
+Anonymous feature statistics — which channels and providers you have configured
+— are **off by default** and never turn themselves on. When you do enable them,
+they ride along with that same daily update check instead of adding a second
+request.
+
+If you turn them on: thank you. Feature statistics are the only way we learn
+which channels, providers, and plugins people actually use, and they decide what
+gets improved, what gets fixed first, and what can safely be retired. A handful
+of Discord anecdotes is otherwise the entire evidence base. We publish what we
+learn back to everyone at
+[telemetry.openclaw.ai](https://telemetry.openclaw.ai), so the data you
+contribute stays visible to you.
+
+Declining is a completely normal choice and changes nothing about how OpenClaw
+works for you.
 
 ## Inspect what is sent
 
@@ -77,7 +94,8 @@ When you explicitly enable feature statistics, the same daily request becomes a
   "features": {
     "channels": ["discord", "telegram"],
     "providerFamilies": ["anthropic", "openai"],
-    "pluginsEnabled": 7,
+    "plugins": ["codex", "diagnostics-otel"],
+    "pluginsEnabled": 9,
     "sessionsLast24h": 14
   }
 }
@@ -90,14 +108,27 @@ When you explicitly enable feature statistics, the same daily request becomes a
 | `platform`                  | Operating system and CPU architecture.                                    |
 | `node`                      | Running Node.js version.                                                  |
 | `surface`                   | Request origin: `gateway` or `cli`.                                       |
-| `features.channels`         | Enabled channel plugin names, sorted alphabetically.                      |
-| `features.providerFamilies` | Configured provider names, sorted alphabetically; never model names.      |
-| `features.pluginsEnabled`   | Number of enabled plugins, without plugin names or configuration details. |
+| `features.channels`         | Publicly known enabled channel plugin names, sorted alphabetically.       |
+| `features.providerFamilies` | Publicly known configured provider names; never model names.              |
+| `features.plugins`          | Publicly known enabled plugin names, sorted alphabetically.               |
+| `features.pluginsEnabled`   | Total enabled plugins, including privately developed plugins never named. |
 | `features.sessionsLast24h`  | Number of sessions observed during the preceding 24 hours.                |
+
+OpenClaw names only plugins and channels that are bundled with OpenClaw or
+already appear in its official plugin catalog. Privately developed plugins are
+counted but never named because a private plugin name could identify its
+organization. Subtract `features.plugins.length` from `features.pluginsEnabled`
+to find the number of unnamed private plugins.
 
 The sender and `openclaw telemetry show` use the same payload builder, so the
 JSON displayed by the CLI is the same payload the sender would use at that
 moment.
+
+Reports carry no identifier of any kind, which means they cannot be linked to
+each other. We can see that some install runs Telegram with Anthropic models; we
+cannot see that it is the same install as yesterday, and we cannot build a
+history of any single machine. That costs us retention analysis, and we consider
+it worth paying.
 
 ### What is never collected
 

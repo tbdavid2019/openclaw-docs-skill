@@ -28,7 +28,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 12 |
 | [Plan](_catalog/plan.md) | Documentation under `plan/` | 4 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 29 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 207 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 208 |
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 68 |
 | [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 3 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 33 |

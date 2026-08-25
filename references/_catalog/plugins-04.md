@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Llama Cpp plugin](../plugins/reference/llama-cpp.md) — Managed and external llama.cpp servers for GGUF chat and embeddings. Read when: You are installing, configuring, or auditing the llama-cpp plugin.
+- [llama.cpp Provider](../plugins/llama-cpp.md) — Run GGUF chat with managed or existing llama.cpp servers and managed local embeddings. Read when: You want OpenClaw to install and manage a local llama.cpp server; You want OpenClaw to connect to an existing llama-server; You want memory search embeddings from a local GGUF model; You are configuring memory.search.provider = "local".
 - [LLM Task plugin](../plugins/reference/llm-task.md) — Generic JSON-only LLM tool for structured tasks callable from workflows. Read when: You are installing, configuring, or auditing the llm-task plugin.
 - [LM Studio plugin](../plugins/reference/lmstudio.md) — Adds LM Studio model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the lmstudio plugin.
 - [Lobster plugin](../plugins/reference/lobster.md) — Lobster workflow tool plugin for typed pipelines and resumable approvals. Read when: You are installing, configuring, or auditing the lobster plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Mistral plugin](../plugins/reference/mistral.md) — Adds Mistral model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the mistral plugin.
 - [Moonshot plugin](../plugins/reference/moonshot.md) — Adds Moonshot model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the moonshot plugin.
 - [Mxc plugin](../plugins/reference/mxc.md) — OS-level sandboxed tool execution via MXC: runs commands in a Windows ProcessContainer with configured MXC policy files. Read when: You are installing, configuring, or auditing the mxc plugin.
-- [Native Codex plugins](../plugins/codex-native-plugins.md) — Configure native Codex plugins for Codex-mode OpenClaw agents. Read when: You want Codex-mode OpenClaw agents to use native Codex plugins; You are migrating source-installed openai-curated Codex plugins; You are discovering or installing a Codex marketplace plugin; You are troubleshooting codexPlugins, app inventory, destructive actions, or plugin app diagnostics.
-- [Nextcloud Talk plugin](../plugins/reference/nextcloud-talk.md) — OpenClaw Nextcloud Talk channel plugin for conversations. Read when: You are installing, configuring, or auditing the nextcloud-talk plugin.
