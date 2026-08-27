@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [LINE plugin](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
+- [Linux Node plugin](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
+- [LiteLLM plugin](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.
 - [Llama Cpp plugin](../plugins/reference/llama-cpp.md) — Managed and external llama.cpp servers for GGUF chat and embeddings. Read when: You are installing, configuring, or auditing the llama-cpp plugin.
 - [llama.cpp Provider](../plugins/llama-cpp.md) — Run GGUF chat with managed or existing llama.cpp servers and managed local embeddings. Read when: You want OpenClaw to install and manage a local llama.cpp server; You want OpenClaw to connect to an existing llama-server; You want memory search embeddings from a local GGUF model; You are configuring memory.search.provider = "local".
 - [LLM Task plugin](../plugins/reference/llm-task.md) — Generic JSON-only LLM tool for structured tasks callable from workflows. Read when: You are installing, configuring, or auditing the llm-task plugin.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Migrate Claude plugin](../plugins/reference/migrate-claude.md) — Imports Claude Code and Claude Desktop instructions, MCP servers, skills, and safe configuration into OpenClaw. Read when: You are installing, configuring, or auditing the migrate-claude plugin.
 - [Migrate Hermes plugin](../plugins/reference/migrate-hermes.md) — Imports Hermes configuration, memories, skills, and supported credentials into OpenClaw. Read when: You are installing, configuring, or auditing the migrate-hermes plugin.
 - [MiniMax plugin](../plugins/reference/minimax.md) — Adds MiniMax, MiniMax Portal model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the minimax plugin.
-- [Mistral plugin](../plugins/reference/mistral.md) — Adds Mistral model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the mistral plugin.
-- [Moonshot plugin](../plugins/reference/moonshot.md) — Adds Moonshot model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the moonshot plugin.
-- [Mxc plugin](../plugins/reference/mxc.md) — OS-level sandboxed tool execution via MXC: runs commands in a Windows ProcessContainer with configured MXC policy files. Read when: You are installing, configuring, or auditing the mxc plugin.

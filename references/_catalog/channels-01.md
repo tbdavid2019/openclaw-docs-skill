@@ -4,6 +4,7 @@ Messaging channel setup, routing, and troubleshooting.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [A2A](../channels/a2a.md) — Connect external agents to OpenClaw through the A2A 1.0 JSON-RPC protocol. Read when: You want an A2A-compliant agent to discover and message OpenClaw; You need to configure authenticated A2A peers or outbound agent messages.
 - [Access groups](../channels/access-groups.md) — Reusable sender allowlists for message channels. Read when: Configuring the same allowlist across multiple message channels; Sharing DM and group sender access rules; Reviewing message-channel access control.
 - [Ambient room events](../channels/ambient-room-events.md) — Let supported group rooms provide quiet context unless the agent sends with the message tool. Read when: Configuring always-on group or channel rooms; You want the agent to watch room chatter without posting final text automatically; Debugging typing and token usage with no visible room message.
 - [Bot loop protection](../channels/bot-loop-protection.md) — Bot-to-bot loop protection defaults and channel overrides. Read when: Configuring bot-authored channel messages; Tuning bot-to-bot loop protection.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Nostr](../channels/nostr.md) — Nostr DM channel via NIP-04 encrypted messages. Read when: You want OpenClaw to receive DMs via Nostr; You're setting up decentralized messaging.
 - [Pairing](../channels/pairing.md) — Pairing overview: approve who can DM you + which nodes can join. Read when: Setting up DM access control; Pairing a new iOS/Android node; Reviewing OpenClaw security posture.
 - [QA channel](../channels/qa-channel.md) — Synthetic Slack-class channel plugin for deterministic OpenClaw QA scenarios. Read when: You are wiring the synthetic QA transport into a local or CI test run; You need the bundled qa-channel config surface; You are iterating on end-to-end QA automation.
-- [QQ bot](../channels/qqbot.md) — QQ Bot setup, config, and usage. Read when: You want to connect OpenClaw to QQ; You need QQ Bot credential setup; You want QQ Bot group or private chat support.

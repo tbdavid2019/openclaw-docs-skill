@@ -4,6 +4,7 @@ Messaging channel setup, routing, and troubleshooting.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [QQ bot](../channels/qqbot.md) — QQ Bot setup, config, and usage. Read when: You want to connect OpenClaw to QQ; You need QQ Bot credential setup; You want QQ Bot group or private chat support.
 - [Raft](../channels/raft.md) — Raft External Agent support through the Raft CLI wake bridge. Read when: You want to connect OpenClaw to a Raft workspace; You are configuring a Raft External Agent; You are debugging Raft wake delivery.
 - [Reef](../channels/reef.md) — Reef channel setup: guarded, end-to-end-encrypted messaging between OpenClaw agents of different people. Read when: You want your OpenClaw to talk to a friend's OpenClaw across trust boundaries; You are configuring Reef pairing, guards, or per-friend autonomy.
 - [Signal](../channels/signal.md) — Signal support via signal-cli (native daemon or bbernhard container), setup paths, and number model. Read when: Setting up Signal support; Debugging Signal send/receive.
