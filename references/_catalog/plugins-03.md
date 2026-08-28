@@ -4,7 +4,6 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Diffs plugin](../plugins/reference/diffs.md) — OpenClaw read-only diff viewer plugin and file renderer for agents. Read when: You are installing, configuring, or auditing the diffs plugin.
 - [Discord plugin](../plugins/reference/discord.md) — OpenClaw Discord channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the discord plugin.
 - [Document Extract plugin](../plugins/reference/document-extract.md) — Extract text and fallback page images from local document attachments. Read when: You are installing, configuring, or auditing the document-extract plugin.
 - [DuckDuckGo plugin](../plugins/reference/duckduckgo.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the duckduckgo plugin.
@@ -34,3 +33,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [IRC plugin](../plugins/reference/irc.md) — Adds the IRC channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the irc plugin.
 - [Kilocode plugin](../plugins/reference/kilocode.md) — Adds Kilocode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kilocode plugin.
 - [Kimi plugin](../plugins/reference/kimi.md) — Adds Kimi, Kimi Coding model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kimi plugin.
+- [LINE plugin](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.

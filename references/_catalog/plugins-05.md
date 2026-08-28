@@ -4,7 +4,6 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Mistral plugin](../plugins/reference/mistral.md) — Adds Mistral model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the mistral plugin.
 - [Moonshot plugin](../plugins/reference/moonshot.md) — Adds Moonshot model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the moonshot plugin.
 - [Mxc plugin](../plugins/reference/mxc.md) — OS-level sandboxed tool execution via MXC: runs commands in a Windows ProcessContainer with configured MXC policy files. Read when: You are installing, configuring, or auditing the mxc plugin.
 - [Native Codex plugins](../plugins/codex-native-plugins.md) — Configure native Codex plugins for Codex-mode OpenClaw agents. Read when: You want Codex-mode OpenClaw agents to use native Codex plugins; You are migrating source-installed openai-curated Codex plugins; You are discovering or installing a Codex marketplace plugin; You are troubleshooting codexPlugins, app inventory, destructive actions, or plugin app diagnostics.
@@ -34,3 +33,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Plugin inventory](../plugins/plugin-inventory.md) — Generated inventory of OpenClaw plugins shipped in core, published externally, or kept source-only. Read when: You are deciding whether a plugin ships in the core npm package or installs separately; You are updating bundled plugin package metadata or release automation; You need the canonical internal vs external plugin list.
 - [Plugin manifest](../plugins/manifest.md) — Plugin manifest + JSON schema requirements (strict config validation). Read when: You are building an OpenClaw plugin; You need to ship a plugin config schema or debug plugin validation errors.
 - [Plugin permission requests](../plugins/plugin-permission-requests.md) — Ask users to approve plugin tool calls and plugin-owned permission prompts. Read when: You need a plugin hook or tool to ask before a side effect runs; You need to configure where plugin approval prompts are delivered; You are deciding between optional tools, exec approvals, and plugin approvals.
+- [Plugin reference](../plugins/reference.md) — Generated index of OpenClaw plugin reference pages. Read when: You need a reference page for a specific OpenClaw plugin; You are auditing plugin docs coverage.
