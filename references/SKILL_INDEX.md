@@ -35,6 +35,6 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 3 |
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 5 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 1 |
-| [Start](_catalog/start.md) | Getting started, onboarding, and setup | 16 |
+| [Start](_catalog/start.md) | Getting started, onboarding, and setup | 17 |
 | [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 70 |
 | [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 10 |
