@@ -11,3 +11,4 @@ Choose one section by its title range, then select at most three documents from 
 - [Moonshot plugin – Plugin reference](plugins-05.md) — 30 documents.
 - [Plugin runtime helpers – Tencent plugin](plugins-06.md) — 30 documents.
 - [Tlon plugin – Zoom meetings plugin](plugins-07.md) — 30 documents.
+- [Zoom meetings plugin – Zoom meetings plugin](plugins-08.md) — 1 documents.
