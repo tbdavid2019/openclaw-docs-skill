@@ -4,7 +4,7 @@ Symptom-first troubleshooting and support.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Debugging](../help/debugging.md) — Debugging tools: watch mode, raw model streams, and tracing reasoning leakage. Read when: You need to inspect raw model output for reasoning leakage; You want to run the Gateway in watch mode while iterating; You need a repeatable debugging workflow.
+- [Debugging](../help/debugging.md) — Debugging tools: watch mode, raw model streams, and tracing reasoning leakage. Read when: You need to inspect raw model output for reasoning leakage; You want to run the Gateway in watch mode while iterating; You need a repeatable debugging workflow; You are diagnosing Node or tsx startup errors.
 - [Environment variables](../help/environment.md) — Where OpenClaw loads environment variables and the precedence order. Read when: You need to know which env vars are loaded, and in what order; You are debugging missing API keys in the Gateway; You are documenting provider auth or deployment environments.
 - [FAQ](../help/faq.md) — Frequently asked questions about OpenClaw setup, configuration, and usage. Read when: Answering common setup, install, onboarding, or runtime support questions; Triaging user-reported issues before deeper debugging.
 - [FAQ: first-run setup](../help/faq-first-run.md) — FAQ: quick-start and first-run setup — install, onboard, auth, subscriptions, initial failures. Read when: New install, onboarding stuck, or first-run errors; Choosing auth and provider subscriptions; Cannot access docs.openclaw.ai, cannot open dashboard, install stuck.

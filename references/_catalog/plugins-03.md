@@ -4,9 +4,6 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Discord plugin](../plugins/reference/discord.md) — OpenClaw Discord channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the discord plugin.
-- [Document Extract plugin](../plugins/reference/document-extract.md) — Extract text and fallback page images from local document attachments. Read when: You are installing, configuring, or auditing the document-extract plugin.
-- [DuckDuckGo plugin](../plugins/reference/duckduckgo.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the duckduckgo plugin.
 - [Elevenlabs plugin](../plugins/reference/elevenlabs.md) — Adds media understanding provider support. Adds realtime transcription provider support. Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the elevenlabs plugin.
 - [Exa plugin](../plugins/reference/exa.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the exa plugin.
 - [fal plugin](../plugins/reference/fal.md) — Adds fal model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fal plugin.
@@ -34,3 +31,6 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Kilocode plugin](../plugins/reference/kilocode.md) — Adds Kilocode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kilocode plugin.
 - [Kimi plugin](../plugins/reference/kimi.md) — Adds Kimi, Kimi Coding model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kimi plugin.
 - [LINE plugin](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
+- [Linux Node plugin](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
+- [LiteLLM plugin](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.
+- [Llama Cpp plugin](../plugins/reference/llama-cpp.md) — Managed and external llama.cpp servers for GGUF chat and embeddings. Read when: You are installing, configuring, or auditing the llama-cpp plugin.

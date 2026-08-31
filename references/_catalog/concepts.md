@@ -4,5 +4,5 @@ Architecture, agents, sessions, memory, models, and routing.
 
 Choose one section by its title range, then select at most three documents from it.
 
-- [Active memory – Model providers](concepts-01.md) — 30 documents.
-- [Models CLI – User model](concepts-02.md) — 28 documents.
+- [Active memory – Multi-agent routing](concepts-01.md) — 30 documents.
+- [Multi-user mode – User model](concepts-02.md) — 25 documents.

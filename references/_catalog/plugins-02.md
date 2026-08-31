@@ -4,11 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Channel inbound API](../plugins/sdk-channel-inbound.md) — Inbound event helpers for channel plugins: context building, shared runner orchestration, session record, and prepared reply dispatch. Read when: You are building or refactoring a messaging channel plugin receive path; You need shared inbound context construction, session recording, or prepared reply dispatch; You are migrating old channel turn helpers to inbound/message APIs.
 - [Channel ingress API](../plugins/sdk-channel-ingress.md) — Experimental channel ingress API for inbound message authorization. Read when: Building or migrating a messaging channel plugin; Changing DM or group allowlists, route gates, command auth, event auth, or mention activation; Reviewing channel ingress redaction or SDK compatibility boundaries.
-- [Channel message API](../plugins/sdk-channel-message.md) — Redirect to /plugins/sdk-channel-outbound.
 - [Channel outbound API](../plugins/sdk-channel-outbound.md) — Outbound message lifecycle API for channel plugins: adapters, receipts, durable sends, live preview, and reply pipeline helpers. Read when: You are building or refactoring a messaging channel plugin send path; You need durable final reply delivery, receipts, live preview finalization, or receive acknowledgement policy; You are migrating from channel-message or legacy reply dispatch helpers.
-- [Channel turn](../plugins/sdk-channel-turn.md) — Redirect to /plugins/sdk-channel-inbound.
 - [Chutes plugin](../plugins/reference/chutes.md) — Adds Chutes model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the chutes plugin.
 - [ClawRouter plugin](../plugins/reference/clawrouter.md) — Adds ClawRouter model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the clawrouter plugin.
 - [Clickclack plugin](../plugins/reference/clickclack.md) — Adds the Clickclack channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the clickclack plugin.
@@ -34,3 +31,6 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Diagnostics Prometheus plugin](../plugins/reference/diagnostics-prometheus.md) — OpenClaw diagnostics Prometheus exporter for runtime metrics. Read when: You are installing, configuring, or auditing the diagnostics-prometheus plugin.
 - [Diffs Language Pack plugin](../plugins/reference/diffs-language-pack.md) — Adds syntax highlighting for languages outside the default diffs viewer set. Read when: You are installing, configuring, or auditing the diffs-language-pack plugin.
 - [Diffs plugin](../plugins/reference/diffs.md) — OpenClaw read-only diff viewer plugin and file renderer for agents. Read when: You are installing, configuring, or auditing the diffs plugin.
+- [Discord plugin](../plugins/reference/discord.md) — OpenClaw Discord channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the discord plugin.
+- [Document Extract plugin](../plugins/reference/document-extract.md) — Extract text and fallback page images from local document attachments. Read when: You are installing, configuring, or auditing the document-extract plugin.
+- [DuckDuckGo plugin](../plugins/reference/duckduckgo.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the duckduckgo plugin.

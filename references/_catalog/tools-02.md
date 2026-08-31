@@ -4,8 +4,6 @@ Agent tools, browser, exec, web, skills, and permissions.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Image generation](../tools/image-generation.md) — Generate and edit images via image_generate across OpenAI, Google, fal, Microsoft Foundry, MiniMax, ComfyUI, DeepInfra, OpenRouter, LiteLLM, xAI, Vydra. Read when: Generating or editing images via the agent; Configuring image-generation providers and models; Understanding the image_generate tool parameters.
-- [Kimi search](../tools/kimi-search.md) — Kimi web search via Moonshot web search. Read when: You want to use Kimi for web_search; You need a KIMI_API_KEY or MOONSHOT_API_KEY.
 - [LLM task](../tools/llm-task.md) — JSON-only LLM tasks for workflows (optional plugin tool). Read when: You want a JSON-only LLM step inside workflows; You need schema-validated LLM output for automation.
 - [Lobster](../tools/lobster.md) — Typed workflow runtime for OpenClaw with resumable approval gates. Read when: You want deterministic multi-step workflows with explicit approvals; You need to resume a workflow without re-running earlier steps.
 - [Media overview](../tools/media-overview.md) — Image, video, music, speech, and media-understanding capabilities at a glance. Read when: Looking for an overview of OpenClaw's media capabilities; Deciding which media provider to configure; Understanding how async media generation works.
@@ -34,3 +32,5 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Sub-agents](../tools/subagents.md) — Spawn isolated background agent runs that announce results back to the requester chat. Read when: You want background or parallel work via the agent; You are changing sessions_spawn or sub-agent tool policy; You are implementing or troubleshooting thread-bound subagent sessions.
 - [Swarm](../tools/swarm.md) — Orchestrate concurrent sub-agents from Code Mode scripts with structured results, bounded fan-out, and live progress. Read when: You want a Code Mode script to fan out work across several agents; You need structured child results, decision gates, or first-completion pipelines; You are enabling or tuning tools.swarm limits; You want to observe collector children in chat.
 - [Tavily](../tools/tavily.md) — Tavily search and extract tools. Read when: You want Tavily-backed web search; You need a Tavily API key; You want Tavily as a web_search provider; You want content extraction from URLs.
+- [Text-to-speech](../tools/tts.md) — Text-to-speech for outbound replies — providers, personas, slash commands, and per-channel output. Read when: Enabling text-to-speech for replies; Configuring a TTS provider, fallback chain, or persona; Using /tts commands or directives.
+- [Thinking levels](../tools/thinking.md) — Directive syntax for /think, /fast, /verbose, /trace, and reasoning visibility. Read when: Adjusting thinking, fast-mode, or verbose directive parsing or defaults.

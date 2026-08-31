@@ -4,8 +4,6 @@ Agent tools, browser, exec, web, skills, and permissions.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Text-to-speech](../tools/tts.md) — Text-to-speech for outbound replies — providers, personas, slash commands, and per-channel output. Read when: Enabling text-to-speech for replies; Configuring a TTS provider, fallback chain, or persona; Using /tts commands or directives.
-- [Thinking levels](../tools/thinking.md) — Directive syntax for /think, /fast, /verbose, /trace, and reasoning visibility. Read when: Adjusting thinking, fast-mode, or verbose directive parsing or defaults.
 - [Tokenjuice](../tools/tokenjuice.md) — Compact noisy exec and bash tool results with the optional Tokenjuice plugin. Read when: You want shorter `exec` or `bash` tool results in OpenClaw; You want to install or enable the Tokenjuice plugin; You need to understand what tokenjuice changes and what it leaves raw.
 - [Tool Search](../tools/tool-search.md) — Tool Search: compact large OpenClaw tool catalogs behind search, describe, and call. Read when: You want OpenClaw agents to use a large tool catalog without adding every tool schema to the prompt; You want OpenClaw tools, MCP tools, and client tools exposed through one compact runtime surface; You are implementing or debugging tool discovery for OpenClaw runs.
 - [Tool-loop detection](../tools/loop-detection.md) — How to enable guardrails that detect repetitive tool-call loops. Read when: A user reports agents getting stuck repeating tool calls; You need to control repetitive-call protection; You are editing agent tool/runtime policies; You hit `compaction_loop_persisted` aborts after a context-overflow retry.

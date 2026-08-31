@@ -6,7 +6,6 @@ Open only the entries relevant to the current request. Start with at most three 
 
 - [Agent runtime architecture](../agent-runtime-architecture.md) — How OpenClaw structures the built-in agent runtime: code layout, boundaries, resource manifests, and runtime selection.
 - [Auth credential semantics](../auth-credential-semantics.md) — Canonical credential eligibility and resolution semantics for auth profiles. Read when: Working on auth profile resolution or credential routing; Debugging model auth failures or profile order.
-- [Brave search](../brave-search.md) — Redirect to /tools/brave-search.
 - [CI pipeline](../ci.md) — CI job graph, scope gates, release umbrellas, and local command equivalents. Read when: You need to understand why a CI job did or did not run; You are debugging a failing GitHub Actions check; You are coordinating a release validation run or rerun; You are changing ClawSweeper dispatch or GitHub activity forwarding.
 - [Date and time](../date-time.md) — Date and time handling across envelopes, prompts, tools, and connectors. Read when: You are changing how timestamps are shown to the model or users; You are debugging time formatting in messages or system prompt output.
 - [Docs Guide](../AGENTS.md)
@@ -17,5 +16,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [OpenClaw](../index.md) — OpenClaw is a multi-channel gateway for AI agents that runs on any OS. Read when: Introducing OpenClaw to newcomers.
 - [OpenClaw agent runtime workflow](../openclaw-agent-runtime.md) — Developer workflow for OpenClaw agent runtime: build, test, and live validation. Read when: Working on OpenClaw agent runtime code or tests; Running agent-runtime lint, typecheck, and live test flows.
 - [OpenProse removal and migration](../prose.md) — OpenClaw no longer bundles OpenProse or the /prose command. Move to the maintained upstream Agent Skill and clean stale plugin configuration. Read when: You used the bundled OpenProse plugin or /prose command; You need to clean OpenProse configuration after upgrading OpenClaw; You want to install the maintained upstream OpenProse Agent Skill.
-- [Perplexity search](../perplexity.md) — Redirect to /tools/perplexity-search.
-- [Text-to-speech](../tts.md) — Redirect to /tools/tts.
