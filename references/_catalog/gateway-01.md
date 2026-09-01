@@ -4,7 +4,7 @@ Gateway configuration, operations, security, and networking.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [1Password](../gateway/1password.md) — Use the 1Password plugin, bundled skill, or official MCP with OpenClaw. Read when: You want API keys out of openclaw.json and inside 1Password; You run the Gateway headless and need service account auth for op; You want agents to read, inject, or maintain secrets with 1Password.
+- [1Password](../gateway/1password.md) — Use the 1Password plugin, bundled skill, or official MCP with OpenClaw. Read when: You want API keys out of openclaw.json and inside 1Password; You run the Gateway headless and need service account auth for op; A Homebrew upgrade broke a manual 1Password exec provider; You want agents to read, inject, or maintain secrets with 1Password.
 - [Audit history](../gateway/audit.md) — Metadata-only activity history plus durable run identity and decision receipts. Read when: You need a durable record of what the Gateway did without storing content; You are deciding whether to enable message lifecycle auditing; You need to explain what audit records do and do not prove.
 - [Authentication](../gateway/authentication.md) — Model authentication: OAuth, API keys, Claude CLI reuse, and Anthropic setup-token. Read when: Debugging model auth or OAuth expiry; Documenting authentication or credential storage.
 - [Background exec and process tool](../gateway/background-process.md) — Background exec execution and process management. Read when: Adding or modifying background exec behavior; Debugging long-running exec tasks.
