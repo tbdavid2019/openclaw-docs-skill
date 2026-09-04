@@ -121,6 +121,12 @@ or mark the AppImage executable and run it directly. The AppImage runtime
 needs FUSE 2 (`sudo apt install libfuse2`, or `libfuse2t64` on Ubuntu 24.04+);
 without it, run the AppImage with `APPIMAGE_EXTRACT_AND_RUN=1`.
 
+Published AMD64 AppImages are built on Ubuntu 22.04 and require glibc 2.35 or
+newer plus a `libstdc++` that provides `GLIBCXX_3.4.30`. Ubuntu 22.04 and
+Debian 12 meet that ABI floor. RHEL 9 and Rocky Linux 9 ship glibc 2.34, so
+they cannot run the published AppImage. Extracting the AppImage does not bypass
+this requirement.
+
 ### Media codecs
 
 The companion uses GStreamer plugins for audio and video playback.
@@ -300,7 +306,7 @@ ExecStart=/usr/local/bin/openclaw gateway --port 18789
 Restart=always
 RestartSec=5
 RestartPreventExitStatus=78
-TimeoutStopSec=30
+TimeoutStopSec=330
 TimeoutStartSec=30
 SuccessExitStatus=0 143
 OOMPolicy=continue

@@ -8,7 +8,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Plugin setup and config](../plugins/sdk-setup.md) — Setup wizards, setup-entry.ts, config schemas, and package.json metadata. Read when: You are adding a setup wizard to a plugin; You need to understand setup-entry.ts vs index.ts; You are defining plugin config schemas or package.json openclaw metadata.
 - [Plugin testing](../plugins/sdk-testing.md) — Testing utilities and patterns for OpenClaw plugins. Read when: You are writing tests for a plugin; You need test utilities from the plugin SDK; You want to understand contract tests for bundled plugins.
 - [Policy plugin](../plugins/reference/policy.md) — Adds policy-backed doctor checks for workspace conformance. Read when: You are installing, configuring, or auditing the policy plugin.
-- [QA Channel plugin](../plugins/reference/qa-channel.md) — Adds the QA Channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the qa-channel plugin.
+- [QA Channel plugin](../plugins/reference/qa-channel.md) — OpenClaw QA synthetic channel plugin. Read when: You are installing, configuring, or auditing the qa-channel plugin.
 - [QA Lab plugin](../plugins/reference/qa-lab.md) — OpenClaw QA lab plugin with private debugger UI and scenario runner. Read when: You are installing, configuring, or auditing the qa-lab plugin.
 - [Qianfan plugin](../plugins/reference/qianfan.md) — Adds Qianfan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qianfan plugin.
 - [QQ Bot plugin](../plugins/reference/qqbot.md) — OpenClaw QQ Bot channel plugin for group and direct-message workflows. Read when: You are installing, configuring, or auditing the qqbot plugin.
@@ -19,7 +19,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [SearXNG plugin](../plugins/reference/searxng.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the searxng plugin.
 - [Senseaudio plugin](../plugins/reference/senseaudio.md) — Adds media understanding provider support. Read when: You are installing, configuring, or auditing the senseaudio plugin.
 - [SGLang plugin](../plugins/reference/sglang.md) — Adds SGLang model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the sglang plugin.
-- [Signal plugin](../plugins/reference/signal.md) — Adds the Signal channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the signal plugin.
+- [Signal plugin](../plugins/reference/signal.md) — OpenClaw Signal channel plugin. Read when: You are installing, configuring, or auditing the signal plugin.
 - [Slack plugin](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
 - [Sms plugin](../plugins/reference/sms.md) — Twilio SMS/MMS channel plugin for OpenClaw messages. Read when: You are installing, configuring, or auditing the sms plugin.
 - [StepFun plugin](../plugins/reference/stepfun.md) — Adds StepFun, StepFun Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the stepfun plugin.
@@ -28,7 +28,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Synthetic plugin](../plugins/reference/synthetic.md) — Adds Synthetic model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the synthetic plugin.
 - [Talk Voice plugin](../plugins/reference/talk-voice.md) — Manage Talk voice selection (list/set). Read when: You are installing, configuring, or auditing the talk-voice plugin.
 - [Tavily plugin](../plugins/reference/tavily.md) — Adds agent-callable tools. Adds web search provider support. Read when: You are installing, configuring, or auditing the tavily plugin.
-- [Telegram plugin](../plugins/reference/telegram.md) — Adds the Telegram channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the telegram plugin.
+- [Telegram plugin](../plugins/reference/telegram.md) — OpenClaw Telegram channel plugin. Read when: You are installing, configuring, or auditing the telegram plugin.
 - [Tencent plugin](../plugins/reference/tencent.md) — Adds Tencent TokenHub, Tencent Tokenplan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the tencent plugin.
 - [Tlon plugin](../plugins/reference/tlon.md) — OpenClaw Tlon/Urbit channel plugin for chat workflows. Read when: You are installing, configuring, or auditing the tlon plugin.
 - [Together plugin](../plugins/reference/together.md) — Adds Together model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the together plugin.

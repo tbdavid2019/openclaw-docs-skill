@@ -25,9 +25,9 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Groq plugin](../plugins/reference/groq.md) — Adds Groq model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the groq plugin.
 - [Hugging Face plugin](../plugins/reference/huggingface.md) — Adds Hugging Face model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the huggingface plugin.
 - [Imap plugin](../plugins/reference/imap.md) — Watch IMAP mailboxes and dispatch authenticated incoming email to isolated agent sessions. Read when: You are installing, configuring, or auditing the imap plugin.
-- [iMessage plugin](../plugins/reference/imessage.md) — Adds the iMessage channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the imessage plugin.
+- [iMessage plugin](../plugins/reference/imessage.md) — OpenClaw iMessage channel plugin using imsg on a signed-in Mac. Read when: You are installing, configuring, or auditing the imessage plugin.
 - [Inworld plugin](../plugins/reference/inworld.md) — Inworld streaming text-to-speech (MP3, OGG_OPUS, PCM telephony). Read when: You are installing, configuring, or auditing the inworld plugin.
-- [IRC plugin](../plugins/reference/irc.md) — Adds the IRC channel surface for sending and receiving OpenClaw messages. Read when: You are installing, configuring, or auditing the irc plugin.
+- [IRC plugin](../plugins/reference/irc.md) — OpenClaw IRC channel plugin. Read when: You are installing, configuring, or auditing the irc plugin.
 - [Kilocode plugin](../plugins/reference/kilocode.md) — Adds Kilocode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kilocode plugin.
 - [Kimi plugin](../plugins/reference/kimi.md) — Adds Kimi, Kimi Coding model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kimi plugin.
 - [LINE plugin](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
