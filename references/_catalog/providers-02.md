@@ -4,9 +4,9 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Inworld](../providers/inworld.md) — Inworld streaming text-to-speech for OpenClaw replies. Read when: You want Inworld speech synthesis for outbound replies; You need PCM telephony or OGG_OPUS voice-note output from Inworld.
 - [Kilo Gateway](../providers/kilocode.md) — Use Kilo Gateway's unified API to access many models in OpenClaw. Read when: You want a single API key for many LLMs; You want to run models via Kilo Gateway in OpenClaw.
 - [LiteLLM](../providers/litellm.md) — Run OpenClaw through LiteLLM Proxy for unified model access and cost tracking. Read when: You want to route OpenClaw through a LiteLLM proxy; You need cost tracking, logging, or model routing through LiteLLM.
+- [llmman](../providers/llmman.md) — Run OpenClaw through llmman (OpenAI-compatible local server). Read when: You want to run OpenClaw against a local llmman server; You are serving Gemma or another model through llmman; You need the exact OpenClaw compat flags for llmman.
 - [LM Studio](../providers/lmstudio.md) — Run OpenClaw with LM Studio. Read when: You want to run OpenClaw with open source models via LM Studio; You want to set up and configure LM Studio.
 - [LongCat](../providers/longcat.md) — LongCat API setup for LongCat-2.0. Read when: You want to use LongCat-2.0 with OpenClaw; You need the LongCat API key or model limits.
 - [Meta](../providers/meta.md) — Meta setup, authentication, and Muse Spark model selection. Read when: You want to use Meta with OpenClaw; You need the MODEL_API_KEY env var or CLI auth choice.
@@ -18,7 +18,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [NVIDIA](../providers/nvidia.md) — Use NVIDIA's OpenAI-compatible API in OpenClaw. Read when: You want to use open models in OpenClaw for free; You need NVIDIA_API_KEY setup; You want to use Nemotron 3 Ultra through NVIDIA.
 - [Ollama](../providers/ollama.md) — Run OpenClaw with Ollama (cloud and local models). Read when: You want to run OpenClaw with cloud or local models via Ollama; You need Ollama setup and configuration guidance; You want Ollama vision models for image understanding.
 - [Ollama Cloud](../providers/ollama-cloud.md) — Use Ollama Cloud directly with OpenClaw. Read when: You want to use hosted Ollama models without a local Ollama server; You need the ollama-cloud provider id, key, or endpoint.
-- [OpenAI](../providers/openai.md) — Use OpenAI via API keys or Codex subscription in OpenClaw. Read when: You want to use OpenAI models in OpenClaw; You want Codex subscription auth instead of API keys; You need stricter GPT-5 agent execution behavior.
+- [OpenAI](../providers/openai.md) — Use OpenAI via API keys or Codex subscription in OpenClaw. Read when: You want to use OpenAI models in OpenClaw; You want Codex subscription auth instead of API keys; You want Astra async tools, mid-turn steering, or cached reasoning changes; You need stricter GPT-5 agent execution behavior.
 - [OpenCode](../providers/opencode.md) — Use OpenCode Zen and Go catalogs with OpenClaw. Read when: You want OpenCode-hosted model access; You want to pick between the Zen and Go catalogs.
 - [OpenCode Go](../providers/opencode-go.md) — Use the OpenCode Go catalog with the shared OpenCode setup. Read when: You want the OpenCode Go catalog; You need the runtime model refs for Go-hosted models.
 - [OpenRouter](../providers/openrouter.md) — Use OpenRouter's unified API to access many models in OpenClaw. Read when: You want a single API key for many LLMs; You want to run models via OpenRouter in OpenClaw; You want to use OpenRouter for image generation; You want to use OpenRouter for music generation; You want to use OpenRouter for video generation.

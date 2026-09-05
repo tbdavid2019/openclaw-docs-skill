@@ -16,7 +16,6 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Announcements](_catalog/announcements.md) | Breaking changes and migration announcements | 1 |
 | [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 7 |
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 48 |
-| [Clawhub](_catalog/clawhub.md) | ClawHub CLI and publishing | 2 |
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 67 |
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 55 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
@@ -26,7 +25,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 12 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 25 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 207 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 208 |
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 68 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 32 |
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 6 |

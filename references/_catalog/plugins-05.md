@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Native Codex plugins](../plugins/codex-native-plugins.md) — Configure native Codex plugins for Codex-mode OpenClaw agents. Read when: You want Codex-mode OpenClaw agents to use native Codex plugins; You are migrating source-installed openai-curated Codex plugins; You are discovering or installing a Codex marketplace plugin; You are troubleshooting codexPlugins, app inventory, destructive actions, or plugin app diagnostics.
 - [Nextcloud Talk plugin](../plugins/reference/nextcloud-talk.md) — OpenClaw Nextcloud Talk channel plugin for conversations. Read when: You are installing, configuring, or auditing the nextcloud-talk plugin.
 - [Nostr plugin](../plugins/reference/nostr.md) — OpenClaw Nostr channel plugin for NIP-04 encrypted direct messages. Read when: You are installing, configuring, or auditing the nostr plugin.
 - [Novita plugin](../plugins/reference/novita.md) — Adds Novita, Novita AI, Novitaai model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the novita plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Plugin reference](../plugins/reference.md) — Generated index of OpenClaw plugin reference pages. Read when: You need a reference page for a specific OpenClaw plugin; You are auditing plugin docs coverage.
 - [Plugin runtime helpers](../plugins/sdk-runtime.md) — api.runtime -- the injected runtime helpers available to plugins. Read when: You need to call core helpers from a plugin (TTS, STT, image gen, web search, Gateway, subagent, nodes); You want to understand what api.runtime exposes; You are accessing config, agent, or media helpers from plugin code; You are implementing model-picker persistence in a channel plugin.
 - [Plugin SDK migration](../plugins/sdk-migration.md) — Migrate from the legacy backwards-compatibility layer to the modern plugin SDK. Read when: You used api.registerEmbeddedExtensionFactory before OpenClaw 2026.4.25; You are updating a plugin to the modern plugin architecture; You maintain an external OpenClaw plugin.
-- [Plugin SDK overview](../plugins/sdk-overview.md) — Import map, registration API reference, and SDK architecture. Read when: You need to know which SDK subpath to import from; You want a reference for all registration methods on OpenClawPluginApi; You are looking up a specific SDK export.
