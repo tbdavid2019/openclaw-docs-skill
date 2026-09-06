@@ -22,8 +22,8 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Menu bar icon](../platforms/mac/icon.md) — Menu bar icon states and animations for OpenClaw on macOS. Read when: Changing menu bar icon behavior.
 - [Peekaboo bridge](../platforms/mac/peekaboo.md) — PeekabooBridge integration for macOS UI automation. Read when: Hosting PeekabooBridge in OpenClaw.app; Integrating Peekaboo via Swift Package Manager; Changing PeekabooBridge protocol/paths; Deciding between PeekabooBridge, Codex Computer Use, and cua-driver MCP.
 - [Platforms](../platforms/index.md) — Platform support overview (Gateway + companion apps). Read when: Looking for OS support or install paths; Deciding where to run the Gateway.
-- [Remote control](../platforms/mac/remote.md) — macOS app flow for controlling a remote OpenClaw gateway. Read when: Setting up or debugging remote mac control.
-- [Skills (macOS)](../platforms/mac/skills.md) — macOS Skills settings UI and gateway-backed status. Read when: Updating the macOS Skills settings UI; Changing skills gating or install behavior.
+- [Remote control](../platforms/mac/remote.md) — macOS app flow for controlling a remote OpenClaw gateway. Read when: Setting up or debugging remote mac control; Signing in to a Gateway from the Mac app or opening it from a website.
+- [Skills (macOS)](../platforms/mac/skills.md) — Manage Gateway skills from the macOS app's Dashboard. Read when: Managing skills from the macOS app; Changing skills gating or install behavior.
 - [Voice overlay](../platforms/mac/voice-overlay.md) — Voice overlay lifecycle when wake-word and push-to-talk overlap. Read when: Adjusting voice overlay behavior.
 - [Voice wake (macOS)](../platforms/mac/voicewake.md) — Voice wake and push-to-talk modes plus routing details in the mac app. Read when: Working on voice wake or PTT pathways.
 - [WebChat (macOS)](../platforms/mac/webchat.md) — How the mac app embeds the gateway WebChat and how to debug it. Read when: Debugging mac WebChat view or loopback port; Choosing colors for native chat sessions.
