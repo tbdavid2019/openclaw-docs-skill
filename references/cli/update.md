@@ -42,6 +42,27 @@ launcher scripts).
 Failed update and repair attempts enter [recovery triage](/cli/update#recover-a-failed-update)
 after service recovery and cleanup finish.
 
+After a final interactive update failure, **Diagnose update failure** and
+**Report update failure** are separate choices. Reporting first shows the exact
+sanitized issue body and defaults confirmation to **No**. After confirmation,
+OpenClaw checks the GitHub CLI's active `github.com` account with a silent,
+read-only request before issue creation. Fallback and pending outcomes retain the
+sanitized report locally; a confirmed issue keeps only its durable issue URL.
+If the CLI is missing or that check cannot confirm authentication, OpenClaw
+provides a prefilled issue link without starting issue creation. If the exact
+report exceeds the browser URL limit, OpenClaw keeps the sanitized body locally
+and returns to the action menu, where reporting can be chosen and confirmed
+again. A report preparation or submission
+error also returns to that menu; Diagnose runs only when selected explicitly.
+In the Control UI, an interrupted
+pre-create preparation becomes retryable after its local reservation expires.
+After an uncertain creation result, OpenClaw checks for an issue matching the
+exact report. If neither a verified issue URL nor a definitive rejection is
+available, the report stays pending with no replay link because an issue may
+already exist.
+`--yes`, `--json`, non-interactive runs, and managed-service handoffs never
+submit a report.
+
 ## Options
 
 | Flag                                             | Description                                                                                                                                                                                                                                                                                                                                   |
@@ -64,7 +85,10 @@ file log level (`logging.level: "debug"`/`"trace"`) are independent knobs; see
 Interactive updates show phase transitions, the current step, and elapsed time.
 The phases match the Control UI: requested, staging, validating, optional
 repairing, activating, restarting, verifying, and finished. When output is
-piped or captured in a log, progress prints without animation.
+piped or captured in a log, progress prints without animation. `repairing` can
+follow failed candidate validation or failed post-activation verification when
+rollback is unsafe or has failed; successful repair returns to validation or
+verification. The Control UI shows this optional phase only after it starts.
 Failed steps include the final diagnostics from both output streams; timeouts
 are labeled explicitly. The final report includes the outcome, recorded phase durations, failed steps,
 verification facts, and recovery guidance. `--json` keeps stdout machine-readable and does not
@@ -110,7 +134,9 @@ state, config, and default workspace paths remain pinned for the repair.
 
 Updates using `--yes`, `--json`, or a non-interactive session (including piped
 input or output) collect diagnostics and print handoff commands without starting
-a coding agent. With `--json`, triage output goes to stderr so stdout retains
+an external coding agent. The updater's earlier
+[unattended repair slot](/install/updating#unattended-repair-on-your-own-inference)
+can still run on configured inference. With `--json`, triage output goes to stderr so stdout retains
 the original update result. Diagnostic collection failures never hide the update
 failure.
 
@@ -176,6 +202,9 @@ the outcome. Post-core finalization children report back to their parent without
 creating a separate update run, including when an older updater cannot forward
 a run ID.
 
+Triage preserves the original update report. Any update launched during repair
+gets a separate `runId`.
+
 `openclaw update --json` includes `runId` and the `run` record. `openclaw update status --json`
 includes `activeRun` when a run is active and `lastRun` when history exists.
 Human output, chat completion notices, the Control UI update view, and the
@@ -194,16 +223,21 @@ fields and adds optional `activeRun` and `lastRun` records. While a run is activ
 the Gateway broadcasts `update.run.changed` with `runId`, `phase`, `status`, and
 `updatedAtMs`. Reconnect and read the row to recover changes missed during restart.
 
+Native service-stop observations do not advance the update's recorded phase.
+If the Control UI cannot read fresh progress, it shows the read error alongside
+the last recorded run; use **Check status** to retry without starting another update.
+
 Phases are `requested`, `staging`, `validating`, optional `repairing`, `activating`,
 `restarting`, `verifying`, and `finished`. Status is `running`, `succeeded`,
-`failed`, `rolled-back`, or `skipped`. Phase timings and verification facts are
-included only when observed. Chat reports are limited to 1,500 characters;
+`failed`, `rolled-back`, or `skipped`. Repair may also follow `verifying` when
+automatic rollback cannot complete. Phase timings, repair attempts, and
+verification facts are included only when observed. Chat reports are limited to 1,500 characters;
 `update.runs.get` preserves the bounded record for detailed inspection.
 
 The run records `downtimeMs` from the service stop request until a Gateway is
-verified running. Staging and candidate validation are excluded. Verification
+verified running. Staging, candidate validation, and pre-activation repair are excluded. Verification
 records include service PID/port, version/build identity, settled health,
-plugin activation errors, channel readiness, `/readyz`, and the inference probe.
+plugin activation errors, channel readiness, and `/readyz`.
 
 After a live database migration, a fresh process from the candidate completes
 verification and writes the final outcome to the same run. It carries forward
@@ -229,7 +263,7 @@ openclaw update repair --accept-capabilities
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `--channel <stable\|extended-stable\|beta\|dev>` | Persist the core update channel before repair. For extended-stable, eligible official npm and trusted official ClawHub plugins that follow bare/default or `latest` intent target the exact installed core version. Extended-stable repair is rejected on Git checkouts without changing config. |
 | `--json`                                         | Print machine-readable finalization JSON.                                                                                                                                                                                                                                                        |
-| `--timeout <seconds>`                            | Timeout for repair steps. Default `1800`.                                                                                                                                                                                                                                                        |
+| `--timeout <seconds>`                            | Override each repair phase deadline in seconds. Defaults vary by phase (see below).                                                                                                                                                                                                              |
 | `--yes`                                          | Skip confirmation prompts.                                                                                                                                                                                                                                                                       |
 | `--accept-capabilities`                          | Accept each plugin's reviewed capability changes while repairing plugin state.                                                                                                                                                                                                                   |
 | `--no-restart`                                   | Accepted for parity; repair never restarts the Gateway.                                                                                                                                                                                                                                          |
@@ -268,6 +302,27 @@ With `--json`, stdout contains one JSON document. Doctor panels and other
 diagnostics go to stderr, so stdout can be parsed directly. Failed doctor or
 plugin finalization steps still exit non-zero.
 
+Finalization (including the supervisor-facing `update finalize` command) records
+phase starts and finishes immediately on stderr and in the update run ledger.
+The defaults are 30 seconds for preflight admission, config validation, config backup, and completion
+cache work; 120 seconds for Doctor migrations; 600 seconds for plugin registry
+and installation work; and 180 seconds for post-plugin Doctor and validation.
+`--timeout` overrides each phase budget.
+
+A phase deadline produces exit code 1 and JSON with `status: "failed"`,
+`stuckPhase`, `elapsedMs`, `error`, and the existing `phaseTimings` array. Owned
+command trees are stopped before the finalizer exits so the supervisor can
+recover. Preserve the phase diagnostic when reporting a stalled update.
+Shared CLI disposers have individual five-second deadlines. If the finalizer
+remains alive ten seconds after its terminal JSON, stderr and the ledger
+record active resource types and unsettled disposer names, then the process
+exits with its recorded outcome. A retained handle cannot withhold the
+supervisor's result indefinitely.
+Human repair can still wait for a recovery choice or repair agent; its exit grace
+starts after recovery finishes. Completion-cache refresh remains best effort
+when its child can be stopped within the phase budget. A phase that exceeds its
+overall deadline still fails finalization.
+
 Plugin artifacts that require capability consent are not installed without an
 interactive review or explicit `--accept-capabilities`. `--yes` alone does not
 accept capability changes, and JSON mode does not prompt. An unresolved review
@@ -304,8 +359,14 @@ listed separately as requiring verification. Protected and blocked artifacts
 include reason codes.
 
 Before applying, stop the Gateway for that same profile/state directory and wait
-for other SQLite maintenance commands to finish. Cleanup requires exclusive
-offline state ownership and never stops or restarts a service itself.
+for other SQLite maintenance commands to finish. Stop database readers too,
+including watchers that repeatedly run `openclaw sessions --all-agents --json`,
+and keep them stopped until cleanup exits. Read-only SQLite connections can
+create or change WAL/SHM sidecars, invalidating cleanup's destination check even
+when session content is unchanged. If cleanup reports `Recovery destination
+database changed; preview cleanup again.`, stop those readers, preview again,
+and retry. Cleanup requires exclusive offline state ownership and never stops
+or restarts a service itself.
 
 <Warning>
 Cleanup permanently removes the selected rollback originals, including branches
@@ -389,11 +450,13 @@ aligned:
 
 ### Validation and activation
 
-If the resolved package version equals the installed version, or the Git target
-SHA equals `HEAD`, the run finishes `skipped` with reason `already-current`.
-It does not stop, replace, or restart the Gateway. Read-only plugin convergence
-checks can still report repair needs; use `openclaw update repair` to apply them.
-An explicit `--channel` selection still persists the channel for future updates.
+If the resolved package version equals the installed version without changing
+the selected channel or installation method, or the Git target SHA equals
+`HEAD`, the run finishes `skipped` with reason `already-current`. A same-version
+explicit `--channel` or installation-method change finishes successfully.
+Neither path stops or restarts the Gateway unless the installation method
+changes. Read-only plugin convergence checks can still report repair needs; use
+`openclaw update repair` to apply them.
 
 For targets that support candidate validation, the old Gateway keeps serving through `staging` and
 `validating`. The updater uses the candidate entrypoint for Doctor lint
@@ -420,14 +483,30 @@ The database-schema preflight still refuses incompatible downgrades. These older
 targets do not support automatic schema-neutral rollback; see
 [Downgrade finalization](/install/updating#roll-back-a-package-install).
 
+Candidate Doctor, config, plugin, or canary validation failures enter a bounded
+`repairing` phase using configured inference. The updater reruns the failed
+check after each attempt and activates only after it passes. Failed or unavailable
+repair discards the candidate and leaves the serving Gateway untouched.
+Pre-activation repair uses disposable rehearsal state and configuration, then
+independently validates surviving candidate changes before activation, and
+`repair-requires-config-change` reports changed top-level keys that require
+operator-run `openclaw doctor --fix` or `openclaw triage`; post-activation repair
+uses the live installation. See
+[Unattended repair](/install/updating#unattended-repair-on-your-own-inference) for
+budgets, permitted repairs, and attempt reports.
+
 Only `activating` stops the managed service. Its offline work includes the package
 or checkout swap, required `doctor --fix` migrations, and state compatibility
 inspection, followed by service start
-in `restarting`. In `verifying`, the updater requires the normal 12-probe settle,
-the expected version and Git build identity, no plugin activation errors,
-channel readiness, and HTTP 200 from `/readyz`. A separate inference probe has a
-15-second budget. Provider unavailability records `inference: unavailable` as a
-warning; it does not trigger rollback by itself.
+in `restarting`. Update verification does not use model inference. In `verifying`,
+the updater checks that the managed service is running and owns its port, requires
+the normal 12-probe health settle and a Gateway hello handshake matching the
+expected version and Git build identity, checks for plugin activation errors and
+channel readiness, and requires HTTP 200 from `/readyz`.
+
+A candidate can be running while verification fails. Recovery guidance uses the
+latest observed service state and names the running version when known; an
+earlier activation stop does not mean the service remains stopped.
 
 Plugin packages download and sync after the core Gateway is serving. When the
 plugin snapshot changes, the updater stops the service for a second measured
@@ -440,17 +519,28 @@ is verified. If activation fails before a working package is confirmed and rollb
 cannot be verified, finalization retains the backup and reports its location. Keep
 that backup and repair the installation before restarting, including for older
 targets without migration continuation. Automatic rollback requires that retained package, its pre-update verification, unchanged
-configuration content, and unchanged shared and affected per-agent SQLite
-`user_version` values. The updater restores the previous generation and verifies
+configuration content, and unchanged pre-existing shared and affected per-agent
+SQLite `user_version` values. A database first created during activation or
+verification is schema-neutral only at the candidate's supported version for its
+database kind; a missing pre-existing database or a new database at a foreign
+version blocks rollback. Newly created databases must also be readable by the
+previous package; unknown or incompatible support refuses rollback with
+`rollback-state-unverified`. The updater restores the previous generation and verifies
 it running before finishing `rolled-back`, preserving the failing check as its
 reason. See [Automatic rollback](/install/updating#automatic-schema-neutral-rollback)
 for the restoration and package-manager guards. A failure alone does not
 authorize restarting the candidate.
 
-If configuration content or a schema version changed, automatic rollback is refused with
-`state-migrated-no-rollback`. A reachable candidate stays running for diagnosis;
-an unreachable candidate stays stopped. Use the recorded diagnostics and
-[Triage](/cli/triage), preserving the migrated state. These temporary validation
+If configuration content changed or the databases are not schema-neutral, automatic rollback is refused with
+`state-migrated-no-rollback`. The updater enters `repairing` on the installed
+candidate, also used if rollback itself fails. If the previous package was
+already restored, repair targets that version. Between repair attempts, the
+updater starts or restarts a stopped or unhealthy service once and reruns the
+post-restart verification checks. Successful verification finishes the run as
+`succeeded` for the candidate, or `rolled-back` for the restored release with a
+nonzero command exit. Failed repair preserves the original failure and attempt summaries.
+Use the recorded diagnostics and [Triage](/cli/triage) for remaining failures,
+preserving migrated state. These temporary validation
 snapshots are not a full-state backup; see [Rollback](/install/updating#rollback).
 If schema state cannot be verified, rollback is refused with
 `rollback-state-unverified`; unknown state never counts as schema-neutral.
@@ -462,7 +552,8 @@ LaunchAgent Gateway, the CLI hands the update to the same managed-service helper
 before stopping the Gateway. It prints the helper log path and follow-up commands
 for update status and Gateway health, then exits; this acknowledges the handoff,
 not a completed update. The helper launches staging and validation outside the
-Gateway process tree while the old Gateway keeps serving. It parks the Gateway
+Gateway process tree while the old Gateway keeps serving, including during
+bounded candidate repair. It parks the Gateway
 only when the orchestrator reaches `activating`, then completes the existing
 commit-or-cancel handoff. Keep stdout connected to the agent: stopping the service
 can terminate the surrounding exec shell (SIGTERM or exit 143), including commands
@@ -521,11 +612,12 @@ the service is absent and the selected Gateway has no active lock or listener.
 The command reports that there is no Gateway to restart. Existing service files,
 manager runtime state, or failed filesystem inspection still require service access.
 
-If service inspection is unavailable, a restart-enabled code update refuses to
-mutate the checkout or package tree; it does not assume that no service exists.
-Run `openclaw gateway status --deep` and retry when access is restored. Use
-`--no-restart` only after manually stopping the Gateway, then restart it
-manually after the update. Services owned by another install remain untouched.
+If service inspection is unavailable or installation ownership is unresolved,
+the update refuses to mutate the checkout or package tree, including with
+`--no-restart`. It cannot assess another service-owned profile's databases from
+the invoking profile alone. Run `openclaw gateway status --deep` and retry when
+ownership can be inspected. Proven-absent services and inspectable stopped
+services remain supported. Services owned by another install remain untouched.
 
 The published 2026.8.2 CLI also refuses updates on service-less Linux installs.
 Use `openclaw update --no-restart` for that upgrade after confirming that no Gateway
@@ -610,7 +702,7 @@ the sentinel.
     Selects the channel's tag or branch and fetches upstream as needed. If the resolved target SHA equals `HEAD`, finishes `skipped` with reason `already-current` before staging or stopping the service.
   </Step>
   <Step title="Build a candidate">
-    Stable, beta, and dev updates install dependencies and build in a temporary worktree while the old Gateway serves. Dev rebases the candidate first so local commits are preserved and the build validates the exact source that will be activated. On POSIX, staging uses a private directory in the checkout's existing ignored `.artifacts` area. By default, the full workspace stays on the checkout filesystem, not a potentially small system temporary filesystem. An existing `.artifacts` redirect is honored as an operator storage choice, just like the build cache. Existing checkout, parent, and artifact directory permissions are not changed. Windows keeps its short system-drive staging path.
+    Stable, beta, and dev updates install dependencies and build in a temporary worktree while the old Gateway serves. Dev rebases the candidate first so local commits are preserved and the build validates the exact source that will be activated. On POSIX, staging uses a private directory in the checkout's existing ignored `.artifacts` area. By default, the full workspace stays on the checkout filesystem, not a potentially small system temporary filesystem. An existing `.artifacts` redirect is honored as an operator storage choice, just like the build cache. Existing checkout, parent, and artifact directory permissions are not changed. Windows keeps its short system-drive staging path. Only dev updates walk back through earlier commits; stable and beta updates validate their selected target.
 
     The updater prepares the built runtime on the destination filesystem and removes the temporary Git worktree registration before changing the live checkout. Cleanup failures remain visible in the update result. If an interruption leaves staging behind, artifact-area staging does not dirty the checkout or block the next update's clean check.
 

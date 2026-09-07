@@ -11,7 +11,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Docs hubs](../start/hubs.md) — Hubs that link to every OpenClaw doc. Read when: You want a complete map of the documentation.
 - [Getting started](../start/getting-started.md) — Get OpenClaw installed and run your first chat in minutes. Read when: First time setup from zero; You want the fastest path to a working chat.
 - [Onboarding (CLI)](../start/wizard.md) — CLI onboarding: quick start with detected AI access or choose custom setup. Read when: Running or configuring CLI onboarding; Setting up a new machine.
-- [Onboarding (macOS app)](../start/onboarding.md) — First-run setup flow for OpenClaw (macOS app). Read when: Designing the macOS onboarding assistant; Implementing auth or identity setup.
+- [Onboarding (macOS app)](../start/onboarding.md) — First-run setup flow for OpenClaw (macOS app). Read when: Setting up the macOS app for the first time; Choosing between a local and a remote Gateway during macOS setup; Connecting an AI provider from the macOS app.
 - [Onboarding overview](../start/onboarding-overview.md) — Overview of OpenClaw onboarding options and flows. Read when: Choosing an onboarding path; Setting up a new environment.
 - [OpenClaw lore](../start/lore.md) — Backstory and lore of OpenClaw for context and tone. Read when: Writing docs or UX copy that reference lore.
 - [Personal assistant setup](../start/openclaw.md) — End-to-end guide for running OpenClaw as a personal assistant with safety cautions. Read when: Onboarding a new assistant instance; Reviewing safety/permission implications.
