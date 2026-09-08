@@ -4,6 +4,13 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Diagnostics OpenTelemetry plugin reference](../plugins/reference/diagnostics-otel.md) — OpenClaw diagnostics OpenTelemetry exporter for metrics, traces, and logs. Read when: You are installing, configuring, or auditing the diagnostics-otel plugin.
+- [Diagnostics Prometheus plugin reference](../plugins/reference/diagnostics-prometheus.md) — OpenClaw diagnostics Prometheus exporter for runtime metrics. Read when: You are installing, configuring, or auditing the diagnostics-prometheus plugin.
+- [Diffs Language Pack plugin reference](../plugins/reference/diffs-language-pack.md) — Adds syntax highlighting for languages outside the default diffs viewer set. Read when: You are installing, configuring, or auditing the diffs-language-pack plugin.
+- [Diffs plugin reference](../plugins/reference/diffs.md) — OpenClaw read-only diff viewer plugin and file renderer for agents. Read when: You are installing, configuring, or auditing the diffs plugin.
+- [Discord plugin reference](../plugins/reference/discord.md) — OpenClaw Discord channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the discord plugin.
+- [Document Extract plugin reference](../plugins/reference/document-extract.md) — Extract text and fallback page images from local document attachments. Read when: You are installing, configuring, or auditing the document-extract plugin.
+- [DuckDuckGo plugin reference](../plugins/reference/duckduckgo.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the duckduckgo plugin.
 - [Elevenlabs plugin reference](../plugins/reference/elevenlabs.md) — Adds media understanding provider support. Adds realtime transcription provider support. Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the elevenlabs plugin.
 - [Exa plugin reference](../plugins/reference/exa.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the exa plugin.
 - [fal plugin reference](../plugins/reference/fal.md) — Adds fal model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fal plugin.
@@ -27,10 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Hugging Face plugin reference](../plugins/reference/huggingface.md) — Adds Hugging Face model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the huggingface plugin.
 - [Imap plugin reference](../plugins/reference/imap.md) — Watch IMAP mailboxes and dispatch authenticated incoming email to isolated agent sessions. Read when: You are installing, configuring, or auditing the imap plugin.
 - [iMessage plugin reference](../plugins/reference/imessage.md) — OpenClaw iMessage channel plugin using imsg on a signed-in Mac. Read when: You are installing, configuring, or auditing the imessage plugin.
-- [Inworld plugin reference](../plugins/reference/inworld.md) — Inworld streaming text-to-speech (MP3, OGG_OPUS, PCM telephony). Read when: You are installing, configuring, or auditing the inworld plugin.
-- [IRC plugin reference](../plugins/reference/irc.md) — OpenClaw IRC channel plugin. Read when: You are installing, configuring, or auditing the irc plugin.
-- [Kilocode plugin reference](../plugins/reference/kilocode.md) — Adds Kilocode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kilocode plugin.
-- [Kimi plugin reference](../plugins/reference/kimi.md) — Adds Kimi, Kimi Coding model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kimi plugin.
-- [LINE plugin reference](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
-- [Linux Node plugin reference](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
-- [LiteLLM plugin reference](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.
