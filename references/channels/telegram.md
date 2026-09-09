@@ -446,6 +446,7 @@ curl "https://api.telegram.org/bot<bot_token>/getUpdates"
 
   <Accordion title="Rich message formatting">
     Outbound text uses standard Telegram HTML messages by default, readable across current clients: bold, italic, links, code, spoilers, quotes — not Bot API 10.3 rich-only blocks (native tables, details, rich media, formulas).
+    Fenced code retains its literal content and spacing, including fence examples inside the block.
 
     Opt into Bot API 10.3 rich messages:
 
@@ -769,6 +770,8 @@ curl "https://api.telegram.org/bot<bot_token>/getUpdates"
     Inbound: static WEBP is downloaded and processed (placeholder `<media:sticker>`); animated TGS and video WEBM are skipped.
 
     Sticker context fields: `Sticker.emoji`, `Sticker.setName`, `Sticker.fileId`, `Sticker.fileUniqueId`, `Sticker.cachedDescription`. Descriptions are cached in OpenClaw SQLite plugin state to reduce repeated vision calls.
+
+    Sticker descriptions use the configured `agents.defaults.imageModel` before shared automatic image-model selection, including the provider's MiniMax image routing. The sticker description uses one selected model and does not try the configured fallback list if that model fails. A failed description is not cached; general media analysis can still run separately with its normal fallback handling.
 
     Enable sticker actions:
 

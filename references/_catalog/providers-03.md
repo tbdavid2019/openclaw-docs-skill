@@ -4,6 +4,14 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Qwen](../providers/qwen.md) — Use Qwen Cloud through its OpenClaw plugin. Read when: You want to use Qwen with OpenClaw; You have an Alibaba Cloud Token Plan subscription.
+- [Runway](../providers/runway.md) — Runway video generation setup in OpenClaw. Read when: You want to use Runway video generation in OpenClaw; You need the Runway API key/env setup; You want to make Runway the default video provider.
+- [SenseAudio](../providers/senseaudio.md) — SenseAudio batch speech-to-text for inbound voice notes. Read when: You want SenseAudio speech-to-text for audio attachments; You need the SenseAudio API key env var or audio config path.
+- [SGLang](../providers/sglang.md) — Run OpenClaw with SGLang (OpenAI-compatible self-hosted server). Read when: You want to run OpenClaw against a local SGLang server; You want OpenAI-compatible /v1 endpoints with your own models.
+- [StepFun](../providers/stepfun.md) — Use StepFun models with OpenClaw. Read when: You want StepFun models in OpenClaw; You need StepFun setup guidance.
+- [Synthetic](../providers/synthetic.md) — Use Synthetic's Anthropic-compatible API in OpenClaw. Read when: You want to use Synthetic as a model provider; You need a Synthetic API key or base URL setup.
+- [Tencent Cloud (TokenHub / TokenPlan)](../providers/tencent.md) — Tencent Cloud TokenHub and TokenPlan setup for hy4-preview. Read when: You want to use Tencent hy4-preview with OpenClaw; You need the TokenHub or TokenPlan API key setup.
+- [Together AI](../providers/together.md) — Together AI setup (auth + model selection). Read when: You want to use Together AI with OpenClaw; You need the API key env var or CLI auth choice.
 - [Venice AI](../providers/venice.md) — Use Venice AI privacy-focused models in OpenClaw. Read when: You want privacy-focused inference in OpenClaw; You want Venice AI setup guidance.
 - [Vercel AI gateway](../providers/vercel-ai-gateway.md) — Vercel AI Gateway setup (auth + model selection). Read when: You want to use Vercel AI Gateway with OpenClaw; You need the API key env var or CLI auth choice.
 - [vLLM](../providers/vllm.md) — Run OpenClaw with vLLM (OpenAI-compatible local server). Read when: You want to run OpenClaw against a local vLLM server; You want OpenAI-compatible /v1 endpoints with your own models.

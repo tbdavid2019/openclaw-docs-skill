@@ -4,6 +4,16 @@ Messaging channel setup, routing, and troubleshooting.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Matrix](../channels/matrix.md) — Matrix support status, setup, and configuration examples. Read when: Setting up Matrix in OpenClaw; Configuring Matrix E2EE and verification.
+- [Matrix migration](../channels/matrix-migration.md) — How OpenClaw upgrades the previous Matrix plugin in place, including encrypted-state recovery limits and manual recovery steps. Read when: Upgrading an existing Matrix installation; Migrating encrypted Matrix history and device state.
+- [Matrix presentation metadata](../channels/matrix-presentation.md) — Matrix MessagePresentation metadata for OpenClaw-aware clients. Read when: Building Matrix clients that render OpenClaw rich responses; Debugging com.openclaw.presentation event content.
+- [Matrix push rules for quiet previews](../channels/matrix-push-rules.md) — Per-recipient Matrix push rules for quiet finalized preview edits. Read when: Setting up Matrix quiet streaming for self-hosted Synapse or Tuwunel; Users want notifications only on finished blocks, not on every preview edit.
+- [Mattermost](../channels/mattermost.md) — Mattermost bot setup and OpenClaw config. Read when: Setting up Mattermost; Debugging Mattermost routing.
+- [Microsoft Teams](../channels/msteams.md) — Microsoft Teams bot support status, capabilities, and configuration. Read when: Working on Microsoft Teams channel features.
+- [Nextcloud Talk](../channels/nextcloud-talk.md) — Nextcloud Talk support status, capabilities, and configuration. Read when: Working on Nextcloud Talk channel features.
+- [Nostr](../channels/nostr.md) — Nostr DM channel via NIP-04 encrypted messages. Read when: You want OpenClaw to receive DMs via Nostr; You're setting up decentralized messaging.
+- [Pairing](../channels/pairing.md) — Pairing overview: approve who can DM you + which nodes can join. Read when: Setting up DM access control; Pairing a new iOS/Android node; Reviewing OpenClaw security posture.
+- [QA channel](../channels/qa-channel.md) — Synthetic Slack-class channel plugin for deterministic OpenClaw QA scenarios. Read when: You are wiring the synthetic QA transport into a local or CI test run; You need the bundled qa-channel config surface; You are iterating on end-to-end QA automation.
 - [QQ bot](../channels/qqbot.md) — QQ Bot setup, config, and usage. Read when: You want to connect OpenClaw to QQ; You need QQ Bot credential setup; You want QQ Bot group or private chat support.
 - [Raft](../channels/raft.md) — Raft External Agent support through the Raft CLI wake bridge. Read when: You want to connect OpenClaw to a Raft workspace; You are configuring a Raft External Agent; You are debugging Raft wake delivery.
 - [Reef](../channels/reef.md) — Reef channel setup: guarded, end-to-end-encrypted messaging between OpenClaw agents of different people. Read when: You want your OpenClaw to talk to a friend's OpenClaw across trust boundaries; You are configuring Reef pairing, guards, or per-friend autonomy.
@@ -24,12 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Synology Chat](../channels/synology-chat.md) — Synology Chat webhook setup and OpenClaw config. Read when: Setting up Synology Chat with OpenClaw; Debugging Synology Chat webhook routing.
 - [Telegram](../channels/telegram.md) — Telegram bot support status, capabilities, and configuration. Read when: Working on Telegram features or webhooks.
 - [Tlon](../channels/tlon.md) — Tlon/Urbit support status, capabilities, and configuration. Read when: Working on Tlon/Urbit channel features.
-- [Twitch](../channels/twitch.md) — Twitch chat bot: install, credentials, access control, token refresh. Read when: Setting up Twitch chat integration for OpenClaw.
-- [WeChat](../channels/wechat.md) — WeChat channel setup through the external openclaw-weixin plugin. Read when: You want to connect OpenClaw to WeChat or Weixin; You are installing or troubleshooting the openclaw-weixin channel plugin; You need to understand how external channel plugins run beside the Gateway.
-- [WeCom](../channels/wecom.md) — Install the official WeCom plugin and find its versioned setup documentation. Read when: You want to connect OpenClaw to WeCom; You need the supported WeCom plugin and its setup documentation.
-- [WhatsApp](../channels/whatsapp.md) — WhatsApp channel support, access controls, delivery behavior, and operations. Read when: Working on WhatsApp/web channel behavior or inbox routing.
-- [WhatsApp group messages](../channels/group-messages.md) — WhatsApp group message handling — activation, allowlists, sessions, and context injection. Read when: Configuring WhatsApp groups specifically; Changing WhatsApp activation modes (`mention` vs `always`); Tuning WhatsApp group session keys or pending-message context.
-- [Yuanbao](../channels/yuanbao.md) — Yuanbao bot overview, features, and configuration. Read when: You want to connect a Yuanbao bot; You are configuring the Yuanbao channel.
-- [Zalo](../channels/zalo.md) — Zalo bot support status, capabilities, and configuration. Read when: Working on Zalo features or webhooks.
-- [Zalo ClawBot](../channels/zaloclawbot.md) — Zalo ClawBot channel setup through the external openclaw-zaloclawbot plugin. Read when: You want a personal Zalo assistant bot with QR-code login; You are installing or troubleshooting the openclaw-zaloclawbot channel plugin.
-- [Zalo personal](../channels/zalouser.md) — Zalo personal account support via native zca-js (QR login), capabilities, and configuration. Read when: Setting up Zalo Personal for OpenClaw; Debugging Zalo Personal login or message flow.
