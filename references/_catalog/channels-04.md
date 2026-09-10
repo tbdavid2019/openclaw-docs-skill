@@ -1,0 +1,25 @@
+# Channels documentation catalog
+
+Messaging channel setup, routing, and troubleshooting.
+
+Open only the entries relevant to the current request. Start with at most three documents.
+
+- [Telegram Dashboard Mini App](../channels/telegram/mini-app.md) — Open the OpenClaw Control UI as a Telegram WebApp with /dashboard. Read when: Opening the OpenClaw dashboard from inside Telegram; Publishing the gateway over Tailscale serve or funnel.
+- [Telegram events and operations](../channels/telegram/events.md) — Reaction notifications, config writes from Telegram events, and error reply policy. Read when: Waking an agent on a Telegram reaction; Allowing or blocking config writes from Telegram; Stopping error messages from reaching a chat.
+- [Telegram media and attachments](../channels/telegram/media.md) — Photo albums, voice notes, video notes, locations, venues, and stickers. Read when: Sending several photos as one Telegram album; Sending a voice note, video note, location, or venue; Enabling sticker sends and sticker search.
+- [Telegram message behavior](../channels/telegram/messaging.md) — Runtime model, stream previews, native commands, reply tags, ack reactions, and send limits. Read when: Understanding how Telegram messages flow through the gateway; Tuning live previews, tool-progress lines, or reply threading; Changing chunk limits or sending from the CLI.
+- [Telegram rich messages and approvals](../channels/telegram/rich-messages.md) — Bot API 10.3 rich messages, inline buttons, message actions, and exec approvals. Read when: Sending buttons, stickers, or rich blocks from an agent; Enabling Telegram message actions for automation; Approving exec requests from inside Telegram.
+- [Telegram setup](../channels/telegram/setup.md) — Create the Telegram bot token, configure the channel, and approve the first DM. Read when: Connecting a Telegram bot to OpenClaw for the first time; Adding the bot to a group and finding the group chat ID; Setting BotFather privacy mode and group permissions.
+- [Telegram threads and sessions](../channels/telegram/threads-and-sessions.md) — Forum topic session keys, topic config inheritance, per-topic agents, and ACP bindings. Read when: Routing a forum topic to its own agent; Working out a Telegram session key for a topic; Binding an ACP harness session to a topic.
+- [Telegram transports](../channels/telegram/transports.md) — Long polling and webhook mode compared, with listener and durable ingress behavior. Read when: Choosing between long polling and webhook mode; Putting a reverse proxy in front of the Telegram webhook listener.
+- [Telegram troubleshooting](../channels/telegram/troubleshooting.md) — Fixes for silent groups, missing commands, rejected tokens, and unstable polling. Read when: The bot does not reply in a Telegram group; Commands are missing or the token is rejected at startup; Long polling stalls or Telegram API calls fail.
+- [Tlon](../channels/tlon.md) — Tlon/Urbit support status, capabilities, and configuration. Read when: Working on Tlon/Urbit channel features.
+- [Twitch](../channels/twitch.md) — Twitch chat bot: install, credentials, access control, token refresh. Read when: Setting up Twitch chat integration for OpenClaw.
+- [WeChat](../channels/wechat.md) — WeChat channel setup through the external openclaw-weixin plugin. Read when: You want to connect OpenClaw to WeChat or Weixin; You are installing or troubleshooting the openclaw-weixin channel plugin; You need to understand how external channel plugins run beside the Gateway.
+- [WeCom](../channels/wecom.md) — Install the official WeCom plugin and find its versioned setup documentation. Read when: You want to connect OpenClaw to WeCom; You need the supported WeCom plugin and its setup documentation.
+- [WhatsApp](../channels/whatsapp.md) — WhatsApp channel support, access controls, delivery behavior, and operations. Read when: Working on WhatsApp/web channel behavior or inbox routing.
+- [WhatsApp group messages](../channels/group-messages.md) — WhatsApp group message handling — activation, allowlists, sessions, and context injection. Read when: Configuring WhatsApp groups specifically; Changing WhatsApp activation modes (`mention` vs `always`); Tuning WhatsApp group session keys or pending-message context.
+- [Yuanbao](../channels/yuanbao.md) — Yuanbao bot overview, features, and configuration. Read when: You want to connect a Yuanbao bot; You are configuring the Yuanbao channel.
+- [Zalo](../channels/zalo.md) — Zalo bot support status, capabilities, and configuration. Read when: Working on Zalo features or webhooks.
+- [Zalo ClawBot](../channels/zaloclawbot.md) — Zalo ClawBot channel setup through the external openclaw-zaloclawbot plugin. Read when: You want a personal Zalo assistant bot with QR-code login; You are installing or troubleshooting the openclaw-zaloclawbot channel plugin.
+- [Zalo personal](../channels/zalouser.md) — Zalo personal account support via native zca-js (QR login), capabilities, and configuration. Read when: Setting up Zalo Personal for OpenClaw; Debugging Zalo Personal login or message flow.

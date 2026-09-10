@@ -4,6 +4,7 @@ Agent tools, browser, exec, web, skills, and permissions.
 
 Choose one section by its title range, then select at most three documents from it.
 
-- [ACP agents – Exec approvals](tools-01.md) — 30 documents.
-- [Exec approvals — advanced – Skills](tools-02.md) — 30 documents.
-- [Skills config – WSL2 + Windows + remote Chrome CDP troubleshooting](tools-03.md) — 16 documents.
+- [ACP agents – Code Mode guest API](tools-01.md) — 30 documents.
+- [Code Mode internals – MiniMax search](tools-02.md) — 30 documents.
+- [Multi-agent sandbox and tools – Sub-agent concurrency, recovery, and stopping](tools-03.md) — 30 documents.
+- [Sub-agent slash command – WSL2 + Windows + remote Chrome CDP troubleshooting](tools-04.md) — 24 documents.
