@@ -4,6 +4,7 @@ Exact OpenClaw CLI command reference.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Triage](../cli/triage.md) — CLI reference for `openclaw triage` (sanitized diagnostics and agent handoff). Read when: OpenClaw is misbehaving and you want an agent-ready debugging prompt; An update failed and you want a local coding agent to repair it; You need a sanitized diagnostics bundle without starting an agent.
 - [Uninstall and update plugins](../cli/plugins/uninstall-and-update.md) — What `plugins uninstall` removes, and how `plugins update` resolves sources, channels, pins, and integrity drift. Read when: You want to remove a plugin and know exactly what uninstall touches; You want to update a plugin and understand pin, channel, and integrity rules.
 - [Uninstall CLI](../cli/uninstall.md) — CLI reference for `openclaw uninstall` (remove gateway service + local data). Read when: You want to remove the gateway service and/or local state; You want a dry-run first.
 - [Update](../cli/update.md) — CLI reference for `openclaw update` (updates, repair, and recovery cleanup). Read when: You want to update a source checkout safely; You are debugging `openclaw update` output or options; You want to inspect or retire migration recovery originals after an update; You need to understand `--update` shorthand behavior.

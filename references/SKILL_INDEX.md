@@ -17,7 +17,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 20 |
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 109 |
 | [Ci](_catalog/ci.md) | Documentation under `ci/` | 18 |
-| [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 100 |
+| [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 101 |
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 77 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
 | [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 158 |
@@ -29,7 +29,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 317 |
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 85 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 57 |
-| [Releases](_catalog/releases.md) | Documentation under `releases/` | 31 |
+| [Releases](_catalog/releases.md) | Documentation under `releases/` | 32 |
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 13 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 1 |
 | [Start](_catalog/start.md) | Getting started, onboarding, and setup | 22 |

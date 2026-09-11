@@ -4,7 +4,6 @@ Exact OpenClaw CLI command reference.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [`openclaw tasks`](../cli/tasks.md) — CLI reference for `openclaw tasks` (background task ledger and Task Flow state). Read when: You want to inspect, audit, or cancel background task records; You are documenting Task Flow commands under `openclaw tasks flow`.
 - [Accept and watch policy state](../cli/policy/attestation.md) — Policy evidence, the attestation hash tuple, and `policy watch` drift detection. Read when: You need a policy attestation hash for audit evidence; You want to accept a clean policy state and detect later drift; You are wiring policy into a CI or release gate.
 - [ACP](../cli/acp.md) — Run the ACP bridge for IDE integrations. Read when: Setting up ACP-based IDE integrations; Debugging ACP session routing to the Gateway.
 - [Agent](../cli/agent.md) — CLI reference for Gateway-backed `openclaw agent` turns and isolated `agent exec` runs. Read when: You want to run one agent turn from scripts (optionally deliver reply); You want a strict, ephemeral one-shot agent run for CI.
@@ -33,4 +32,5 @@ Open only the entries relevant to the current request. Start with at most three 
 - [DNS](../cli/dns.md) — CLI reference for `openclaw dns` (wide-area discovery helpers). Read when: You want wide-area discovery (DNS-SD) via Tailscale + CoreDNS; You're setting up split DNS for a custom discovery domain (example: openclaw.internal).
 - [Docs](../cli/docs.md) — CLI reference for `openclaw docs` (search the live docs index). Read when: You want to search the live OpenClaw docs from the terminal; You need to know which hosted search API the docs CLI calls.
 - [Doctor CLI](../cli/doctor.md) — CLI reference for `openclaw doctor` (health checks + guided repairs). Read when: You have connectivity/auth issues and want guided fixes; You updated and want a sanity check.
+- [File transfers](../cli/file-transfer.md) — CLI reference for `openclaw file-transfer` (review and migrate standing file-transfer approvals). Read when: You upgraded and older file-transfer permissions stopped taking effect; You need the flag surface for `openclaw file-transfer approvals migrate`; You want a scriptable check for unreviewed file-transfer permissions.
 - [Fleet](../cli/fleet.md) — CLI reference for provisioning and managing isolated per-tenant OpenClaw cells. Read when: You host multiple tenant trust domains on one machine; You need to create, inspect, upgrade, or remove fleet cells.
