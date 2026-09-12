@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Voice call TTS and inbound calls](../plugins/voice-call/tts-and-inbound-calls.md) — Telephony TTS, inbound policy, per-number routing, and call lifecycle timers. Read when: You are choosing the TTS voice used on calls; You are enabling inbound calls or per-number routing; You need to tune the stale call reaper or call duration caps.
 - [Volcengine plugin reference](../plugins/reference/volcengine.md) — Adds Volcengine, Volcengine Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the volcengine plugin.
 - [Voyage plugin reference](../plugins/reference/voyage.md) — Adds embedding provider support, including memory search. Read when: You are installing, configuring, or auditing the voyage plugin.
 - [Vydra plugin reference](../plugins/reference/vydra.md) — Adds Vydra model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vydra plugin.

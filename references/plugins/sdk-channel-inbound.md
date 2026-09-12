@@ -119,6 +119,30 @@ dispatchers that keep platform delivery in the delivery adapter. New send
 paths should use message adapters and durable message helpers from
 `channel-outbound` instead.
 
+## Agent group dispatch
+
+The shared inbound dispatcher coordinates qualified `broadcast` entries before
+the ordinary single-agent call. Pass the real channel, account, conversation,
+thread, and root message identity through the inbound context. Core owns
+participant selection, agent/session rebinding, bounded sibling-final digests,
+continuation identities, and synchronous `maxTurns` reservations. Channel
+plugins own admission facts and platform encoding; do not implement another
+participant loop in a plugin.
+
+`MsgContext.GroupThread` carries prepared participant mention facts as a data-only
+contract. Shared context types do not depend on mention matching or channel
+registries; the admission resolver owns mention matching before dispatch.
+
+A turn is one participant run started by the coordinator. Its previews,
+chunks, and message-tool sends can produce multiple physical messages. Do not
+buffer or count deliveries to enforce `maxTurns`. The group budget is
+process-local and non-resumable. Configured ACP bindings retain exclusive
+ownership of their route.
+
+See [Broadcast groups](/channels/broadcast-groups) for the operator config and
+[Inbound mention policy](/plugins/sdk-channel-plugins#inbound-mention-policy)
+for participant-aware admission.
+
 ## Internal turn sources
 
 `MsgContext.InternalTurnSource` identifies an internal wake: `"heartbeat"`,
@@ -246,6 +270,10 @@ throw createChannelPartialDeliveryError(cause, {
   receipt,
 });
 ```
+
+Errors created by this helper retain the original failure in `cause`. After
+`isChannelPartialDeliveryError(error)`, `error.cause` is `unknown`; structural
+envelopes may omit it.
 
 Core emits a failed terminal observation with that provider-visible content and
 identity, then keeps the delivery failed so callers do not mistake partial

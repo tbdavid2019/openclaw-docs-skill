@@ -20,6 +20,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Qianfan plugin reference](../plugins/reference/qianfan.md) — Adds Qianfan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qianfan plugin.
 - [QQ Bot plugin reference](../plugins/reference/qqbot.md) — OpenClaw QQ Bot channel plugin for group and direct-message workflows. Read when: You are installing, configuring, or auditing the qqbot plugin.
 - [Qwen plugin reference](../plugins/reference/qwen.md) — Adds Qwen, Qwen Cloud, Model Studio, DashScope, Qwen Token Plan, Bailian Token Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qwen plugin.
+- [Radius plugin reference](../plugins/reference/radius.md) — Radius model gateway provider. Read when: You are installing, configuring, or auditing the radius plugin.
 - [Raft plugin reference](../plugins/reference/raft.md) — OpenClaw Raft channel plugin for secure CLI wake bridges. Read when: You are installing, configuring, or auditing the raft plugin.
 - [Reef plugin reference](../plugins/reference/reef.md) — Guarded end-to-end encrypted claw channel. Read when: You are installing, configuring, or auditing the reef plugin.
 - [Register an agent harness](../plugins/sdk-agent-harness/registration.md) — Register an AgentHarnessV2, plus the optional isolated-completion and delegated-execution capabilities. Read when: You are writing the plugin entry that calls `api.registerAgentHarness`; You are implementing `runIsolatedCompletionV2`; You need to let a trusted plugin execute a session your harness owns.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Signal plugin reference](../plugins/reference/signal.md) — OpenClaw Signal channel plugin. Read when: You are installing, configuring, or auditing the signal plugin.
 - [Slack plugin reference](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
 - [Sms plugin reference](../plugins/reference/sms.md) — Twilio SMS/MMS channel plugin for OpenClaw messages. Read when: You are installing, configuring, or auditing the sms plugin.
-- [StepFun plugin reference](../plugins/reference/stepfun.md) — Adds StepFun, StepFun Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the stepfun plugin.

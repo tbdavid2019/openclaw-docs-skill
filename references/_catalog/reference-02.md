@@ -4,9 +4,15 @@ Documentation under `reference/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Release performance sweep](../reference/release-performance-sweep.md) — Visual summary and technical evidence for the May 2026 performance, package-size, dependency, and shrinkwrap cleanup. Read when: You are validating the May 2026 performance and package-size cleanup; You need the numbers behind the OpenClaw performance and dependency blog post; You need historical context before changing current policy at /gateway/security/dependency-locking.
+- [Release policy](../reference/RELEASING.md) — Release lanes, operator checklist, validation boxes, version naming, and cadence. Read when: Looking for public release channel definitions; Running release validation or package acceptance; Looking for version naming and cadence.
 - [Release profiles and focused reruns](../reference/full-release-validation/profiles.md) — Release profile coverage, full-only additions, and the focused rerun handles and suite filters. Read when: Comparing beta, stable, and full profile coverage; Picking a focused rerun_group or suite filter.
 - [Remote test proof](../reference/test/remote-proof.md) — When agents use Crabbox or Testbox, and the wrapper, lease, and trust rules. Read when: You are deciding between local and remote proof; You are running OpenClaw tests on Crabbox or Testbox.
+- [Researcher operating program](../reference/templates/roles/researcher/workspace/AGENTS.md)
+- [Researcher soul](../reference/templates/roles/researcher/CLAW.md)
 - [Retired HEARTBEAT.md workspace file](../reference/templates/HEARTBEAT.md) — Migration guide for the retired HEARTBEAT.md workspace file. Read when: Migrating an older workspace that still has HEARTBEAT.md.
+- [Reviewer operating program](../reference/templates/roles/reviewer/workspace/AGENTS.md)
+- [Reviewer soul](../reference/templates/roles/reviewer/CLAW.md)
 - [Rich output protocol](../reference/rich-output-protocol.md) — Rich output protocol for structured media, embeds, audio hints, and replies. Read when: Changing assistant output rendering in the Control UI; Debugging `[embed ...]`, structured media, reply, or audio presentation directives.
 - [RPC adapters](../reference/rpc.md) — RPC adapters for external CLIs (signal-cli, imsg) and gateway patterns. Read when: Adding or changing external CLI integrations; Debugging RPC adapters (signal-cli, imsg).
 - [Run tests locally](../reference/test/local.md) — Routine local test order, the core test commands, and the local PR gate. Read when: You are running or fixing tests on your own machine; You need the local land and gate command list.
@@ -28,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [TOOLS.md retired](../reference/templates/TOOLS.md) — Retired TOOLS.md workspace template. Read when: Bootstrapping a workspace manually.
 - [Top-level stages](../reference/full-release-validation/stages.md) — The Full Release Validation umbrella stage matrix, evidence reuse, artifact producers, and decision states. Read when: Reading the umbrella stage matrix; Debugging a Release Decision or Diagnostic Drain state.
 - [Transcript hygiene](../reference/transcript-hygiene.md) — Reference: provider-specific transcript sanitization and repair rules. Read when: You are debugging provider request rejections tied to transcript shape; You are changing transcript sanitization or tool-call repair logic; You are investigating tool-call id mismatches across providers.
-- [USER template](../reference/templates/USER.md) — Durable user preference and profile directives. Read when: Bootstrapping a workspace manually.
-- [USER.dev template](../reference/templates/USER.dev.md) — Dev agent user profile (C-3PO). Read when: Using the dev gateway templates; Updating the default dev agent identity.
-- [Versioning contract](../reference/database-schemas/versioning.md) — How OpenClaw records schema versions, when a bump is required, and how updaters cross one. Read when: Deciding whether a storage change needs a schema-version bump; Diagnosing a refused update or a newer schema version error.

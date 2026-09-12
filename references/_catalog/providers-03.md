@@ -14,6 +14,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Provider directory](../providers/index.md) — Model providers (LLMs) supported by OpenClaw. Read when: You want to choose a model provider; You need a quick overview of supported LLM backends.
 - [Qianfan](../providers/qianfan.md) — Use Qianfan's unified API to access many models in OpenClaw. Read when: You want a single API key for many LLMs; You need Baidu Qianfan setup guidance.
 - [Qwen](../providers/qwen.md) — Use Qwen Cloud through its OpenClaw plugin. Read when: You want to use Qwen with OpenClaw; You have an Alibaba Cloud Token Plan subscription.
+- [Radius](../providers/radius.md) — Connect OpenClaw to Radius with browser sign-in or an organization API key. Read when: You want to use Radius models in OpenClaw; You need Radius authentication or model discovery help.
 - [Runway](../providers/runway.md) — Runway video generation setup in OpenClaw. Read when: You want to use Runway video generation in OpenClaw; You need the Runway API key/env setup; You want to make Runway the default video provider.
 - [SenseAudio](../providers/senseaudio.md) — SenseAudio batch speech-to-text for inbound voice notes. Read when: You want SenseAudio speech-to-text for audio attachments; You need the SenseAudio API key env var or audio config path.
 - [SGLang](../providers/sglang.md) — Run OpenClaw with SGLang (OpenAI-compatible self-hosted server). Read when: You want to run OpenClaw against a local SGLang server; You want OpenAI-compatible /v1 endpoints with your own models.

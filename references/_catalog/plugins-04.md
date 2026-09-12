@@ -4,7 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Crabbox plugin reference](../plugins/reference/crabbox.md) — Cloud worker provider backed by the Crabbox CLI. Read when: You are installing, configuring, or auditing the crabbox plugin.
+- [Crabbox plugin reference](../plugins/reference/crabbox.md) — Cloud worker provider and lease-backed sandbox backend for the Crabbox CLI. Read when: You are installing, configuring, or auditing the crabbox plugin.
 - [Cua Computer plugin reference](../plugins/reference/cua-computer.md) — Experimental CUA Driver computer control for macOS, Windows, and Linux node hosts. Read when: You are installing, configuring, or auditing the cua-computer plugin.
 - [Deepgram plugin reference](../plugins/reference/deepgram.md) — Deepgram audio transcription with Nova and Flux models, plus realtime speech recognition. Read when: You are installing, configuring, or auditing the deepgram plugin.
 - [DeepInfra plugin reference](../plugins/reference/deepinfra.md) — Adds DeepInfra model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the deepinfra plugin.
