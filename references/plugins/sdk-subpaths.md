@@ -289,8 +289,10 @@ The retained `openclaw/plugin-sdk/security-runtime` export and its
 - `mode` accepts `"tools"` (the default) or `"off"`. Registered exact secrets
   are masked even when mode is `"off"`.
 - `patterns` is a readonly array of strings, `RegExp` objects, or synchronous
-  matcher objects. An omitted or empty array uses built-in rules. A nonempty
-  array replaces those rules; it does not append to them. Rules run in order.
+  matcher objects. An omitted or empty array uses the default string rules. A
+  nonempty array replaces that string list. Built-in form-body, structured-auth,
+  and AWS bare-key protections always apply when mode is `"tools"`. String rules
+  run in order after form-body and structured-auth preprocessing.
 - String entries accept a regex source (default flags `gi`) or `/source/flags`.
   Strings pass the config regex safety validator. Regex entries gain `g` when
   absent. Captures select the value to mask; without captures, the whole match
@@ -370,7 +372,7 @@ Use `isLoopbackHost(host)` when a plugin must accept only the local machine. It 
     | `plugin-sdk/session-store-runtime` | Session workflow helpers (`getSessionEntry`, `listSessionEntries`, `patchSessionEntry`, `upsertSessionEntry`), repair/lifecycle helpers (`deleteSessionEntry`, `cleanupSessionLifecycleArtifacts`, `resolveSessionStoreBackupPaths`), marker helpers for transitional `sessionFile` values, bounded recent user/assistant transcript text reads by session identity, session store path/session-key helpers, and updated-at reads, without broad config writes/maintenance imports |
     | `plugin-sdk/session-catalog` | External session catalog contracts, canonical cursor/parameter/transcript paging, explicit local-plus-node family composition, node-host bindings, adoption helpers, and history import |
     | `plugin-sdk/session-discussion` | External session discussion provider contracts, registration, and canonical Control UI session path building |
-    | `plugin-sdk/session-transcript-runtime` | Private-local after July 2026; Transcript identity, bounded raw and visible cursors, scoped target/read/write helpers, visible message-entry projection, update publishing, write locks, and transcript memory hit keys |
+    | `plugin-sdk/session-transcript-runtime` | Private-local after July 2026; Transcript identity, bounded raw and visible cursors, scoped target/read/write helpers, read-only native transcript catalog pages with portable sender attribution, visible message-entry projection, update publishing, write locks, and transcript memory hit keys |
     | `plugin-sdk/sqlite-runtime` | Private-local after July 2026; SQLite agent-schema, path, transaction, and shared-handle borrowing helpers for first-party runtime. Type-only `Generated` and `Selectable` model generated columns and selected rows in Kysely table definitions. `compileSqliteQueryBindings` compiles fixed Kysely SQL with fresh bindings for caller-owned native statements; statement lifetime stays with the caller. `iterateSqliteQuerySync` streams Kysely query rows for incremental decoding; consume the iterator before closing its database. `sqliteStringSet` binds string membership as one SQLite JSON table-valued query parameter, preserving one query snapshot without a variable-count placeholder list. `borrowOpenClawAgentDatabase` returns `{ db, release }`; active borrows prevent cache eviction, `release()` does not close the handle, and explicit owner disposal still revokes it. `withOpenClawAgentDatabaseAsync` admits a connection asynchronously and retains its original identity through the operation’s settlement; it does not move callback execution off the caller thread. |
     | `plugin-sdk/cron-store-runtime` | Private-local after July 2026; Cron store path/load/save helpers |
     | `plugin-sdk/state-paths` | State/OAuth dir path helpers |
@@ -501,6 +503,13 @@ Use `isLoopbackHost(host)` when a plugin must accept only the local machine. It 
     | `plugin-sdk/test-state` | Repo-local isolated OpenClaw state, config, workspace, environment, and auth-profile fixtures for plugin tests |
     | `plugin-sdk/test-fixtures` | Repo-local generic CLI runtime capture, direct-import smoke, sandbox context, skill writer, agent-message, system-event, module reload, bundled plugin path, terminal-text, chunking, auth-token, and typed-case fixtures |
     | `plugin-sdk/test-node-mocks` | Repo-local focused Node builtin mock helpers for use inside Vitest `vi.mock("node:*")` factories |
+
+    For bundled plugins, `markdown-table-runtime` exposes `getMarkdownTableSource(table)` for tables returned by
+    `markdownToIRWithMeta(text, { tableMode: "block" })`. It returns source `start`/`end`
+    offsets, a continuation `prefix`, and the original cell Markdown in `headers`/`rows`.
+    Slice the same input string to preserve table bytes without reparsing Markdown containers.
+    This metadata is non-enumerable; the getter returns `undefined` for tables without it.
+
   </Accordion>
 
   <Accordion title="Memory subpaths">
@@ -513,7 +522,8 @@ Use `isLoopbackHost(host)` when a plugin must accept only the local machine. It 
     | `plugin-sdk/memory-core-host-engine-embeddings` | Private-local after July 2026; Memory host embedding contracts and batch/remote helpers. Providers register through the generic embedding provider API. |
     | `plugin-sdk/memory-core-host-engine-sessions` | Private-local after July 2026; Memory session transcript and query helpers |
     | `plugin-sdk/memory-core-host-engine-schema` | Private-local focused memory index schema and sqlite-vec helpers for doctor migrations |
-    | `plugin-sdk/memory-core-host-engine-knn` | Private-local SQLite, sqlite-vec, and text primitives for isolated vector search children |
+    | `plugin-sdk/memory-core-host-engine-indexing` | Private-local immutable chunk preparation, annotations, hashes, and embedding input limits for indexing workers |
+    | `plugin-sdk/memory-core-host-engine-knn` | Private-local read-only SQLite ownership checks, sqlite-vec, and text/vector primitives for isolated retrieval workers and children |
     | `plugin-sdk/memory-core-host-engine-storage` | Private-local after July 2026; Memory host storage engine exports |
     | `plugin-sdk/memory-core-host-secret` | Private-local after July 2026; Memory host secret helpers |
     | `plugin-sdk/memory-core-host-status` | Private-local after July 2026; Memory host status helpers |

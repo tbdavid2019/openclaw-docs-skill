@@ -30,7 +30,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Runway plugin reference](../plugins/reference/runway.md) — Adds video generation provider support. Read when: You are installing, configuring, or auditing the runway plugin.
 - [SearXNG plugin reference](../plugins/reference/searxng.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the searxng plugin.
 - [Senseaudio plugin reference](../plugins/reference/senseaudio.md) — Adds media understanding provider support. Read when: You are installing, configuring, or auditing the senseaudio plugin.
+- [Session Share plugin](../plugins/session-share.md) — Share selected OpenClaw sessions read-only with a paired team Gateway. Read when: Sharing personal OpenClaw sessions with a team Gateway; Pairing a node that exposes only session listings and transcripts; Configuring attribution for sessions from another Gateway.
+- [Session Share plugin reference](../plugins/reference/session-share.md) — Read-only OpenClaw sessions on paired gateways. Read when: You are installing, configuring, or auditing the session-share plugin.
 - [SGLang plugin reference](../plugins/reference/sglang.md) — Adds SGLang model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the sglang plugin.
 - [Signal plugin reference](../plugins/reference/signal.md) — OpenClaw Signal channel plugin. Read when: You are installing, configuring, or auditing the signal plugin.
-- [Slack plugin reference](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
-- [Sms plugin reference](../plugins/reference/sms.md) — Twilio SMS/MMS channel plugin for OpenClaw messages. Read when: You are installing, configuring, or auditing the sms plugin.

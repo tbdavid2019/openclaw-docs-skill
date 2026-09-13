@@ -115,6 +115,9 @@ A schema-valid but unset path explains that the runtime default applies; an unkn
 `openclaw config schema`. With `--json`, both use the standard [CLI JSON failure envelope](/cli#json-failures)
 on stdout and exit with status 1. Without `--json`, diagnostics remain on stderr.
 
+Explicit `null`, `false`, `0`, and empty strings remain readable values in both modes;
+`--json` preserves their types. Optional fields with no runtime value are reported as unset.
+
 ```bash
 openclaw config get browser.executablePath
 openclaw config get agents.defaults.model --json
@@ -296,6 +299,8 @@ SecretRef assignments are rejected on unsupported runtime-mutable surfaces (for 
 </Warning>
 
 Batch parsing always uses the batch payload (`--batch-json`/`--batch-file`) as the source of truth; `--strict-json` / `--json` do not change batch parsing behavior.
+
+Supplying either batch option selects batch mode. Empty or whitespace-only values are rejected; omit both options to use positional `<path> <value>` mode.
 
 Batch assignments apply in order, then validation checks the final config. A SecretRef replaced by a later assignment is not resolved or counted in dry-run output, even with `--allow-exec`. Providers that remain in a changed provider collection still receive command-path trust checks.
 
@@ -549,17 +554,30 @@ openclaw config set channels.discord.token \
 
 After every successful `config set` / `config patch` / `config unset`, the CLI prints one of three hints so you know whether the gateway needs a restart:
 
-| Hint                                                | Meaning                                |
-| --------------------------------------------------- | -------------------------------------- |
-| `Restart the gateway to apply.`                     | The changed path needs a full restart. |
-| `Change will apply without restarting the gateway.` | Hot reload picks it up automatically.  |
-| `No gateway restart needed.`                        | Nothing runtime-relevant changed.      |
+| Hint                                                | Meaning                                                               |
+| --------------------------------------------------- | --------------------------------------------------------------------- |
+| `Restart the gateway to apply.`                     | The changed path needs a full restart, or passive reload is disabled. |
+| `Change will apply without restarting the gateway.` | Hot reload picks it up automatically.                                 |
+| `No gateway restart needed.`                        | Nothing runtime-relevant changed.                                     |
 
-Effective changes to `plugins.entries` (or any subpath) require a restart, since the CLI cannot prove every plugin's reload metadata is loaded. Successful `config set` or `config unset` operations that produce no effective config diff print `No change` and leave the JSON5 file byte-for-byte untouched. A `config unset` target that is absent from the authored config exits with status 1 and also leaves the file untouched. Setting an absent key to a value equal to its runtime default is still an authored change and persists the explicit value.
+Plugin entry changes use the same reload planner as other settings. In the default
+`hybrid` mode, ordinary `plugins.entries.<id>` edits replace the affected plugin
+instance automatically. A plugin's narrower restart policy or
+`gateway.reload.mode: "off"` can still require a Gateway restart. The CLI hint
+describes expected application; it is not a receipt from a running Gateway.
+See [Config hot reload](/gateway/configuration/hot-reload).
+
+Successful `config set` or `config unset` operations that produce no effective config diff print `No change` and leave the JSON5 file byte-for-byte untouched. A `config unset` target that is absent from the authored config exits with status 1 and also leaves the file untouched. Setting an absent key to a value equal to its runtime default is still an authored change and persists the explicit value.
 
 ## Write safety
 
 `openclaw config set` and other OpenClaw-owned config writers validate the full post-change config before committing it to disk. If the new payload fails schema validation or looks like a destructive clobber, the active config is left alone and the rejected payload is saved beside it as `openclaw.json.rejected.*`.
+
+If staging a config save fails, the existing root or include backup ring is left
+untouched. OpenClaw prepares backup contents without blocking unrelated Gateway
+requests. If a copy fallback removes the file before a conflict, OpenClaw restores
+the original when it still owns the missing destination. Otherwise, the error
+reports partial publication and the backup location to inspect before another save.
 
 If the file is saved but later processing fails, the error names the written file
 and reports whether the write was rolled back. This can name an included file

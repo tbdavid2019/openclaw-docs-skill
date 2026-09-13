@@ -26,7 +26,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 25 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 26 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 318 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 320 |
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 86 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 65 |
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 32 |

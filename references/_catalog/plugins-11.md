@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Voice call security and interfaces](../plugins/voice-call/security-and-interfaces.md) — Webhook security options and the CLI, agent tool, and Gateway RPC surfaces. Read when: You are putting a proxy or tunnel in front of the voice webhook; You are looking up a voicecall CLI command; You are calling voice-call over Gateway RPC or the agent tool.
+- [Voice call troubleshooting](../plugins/voice-call/troubleshooting.md) — Fixes for voice-call setup, webhooks, signatures, Meet dial-in, and silent calls. Read when: A voice call fails to place or webhooks never arrive; Webhook signature verification fails; A realtime call connects but nobody speaks.
 - [Voice call TTS and inbound calls](../plugins/voice-call/tts-and-inbound-calls.md) — Telephony TTS, inbound policy, per-number routing, and call lifecycle timers. Read when: You are choosing the TTS voice used on calls; You are enabling inbound calls or per-number routing; You need to tune the stale call reaper or call duration caps.
 - [Volcengine plugin reference](../plugins/reference/volcengine.md) — Adds Volcengine, Volcengine Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the volcengine plugin.
 - [Voyage plugin reference](../plugins/reference/voyage.md) — Adds embedding provider support, including memory search. Read when: You are installing, configuring, or auditing the voyage plugin.

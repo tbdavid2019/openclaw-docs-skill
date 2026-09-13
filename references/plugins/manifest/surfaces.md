@@ -134,6 +134,22 @@ restore. The backup planner reads this metadata without loading plugin runtime
 or modifying plugin files. Only effectively activated, loadable plugins
 contribute resources; disabled or unloadable plugins cannot exclude data.
 
+An `include` declaration also asks OpenClaw to manage SQLite backups for that
+resource. SQLite files at or below the declared path receive verified online
+snapshots and offline compaction, with their committed write-ahead log (WAL)
+content included and sidecars omitted. Creation refuses a declared database
+when its required SQLite capabilities are unavailable. Declare every hardlink
+alias within these resources so backup can identify its journal owner.
+
+Other plugin SQLite files remain opaque byte copies, including their sidecars,
+unless they alias a canonical OpenClaw database. Backup reports each opaque
+SQLite file and sidecar in `warnings`; verification and restore preserve its bytes
+without applying SQLite validation or compaction. Merely placing a database
+under the state or agent directory does not opt it into managed snapshots.
+Undeclared SQLite symbolic links that exceed the link-resolution limit (`ELOOP`),
+including loops, are skipped with filename warnings. Declared database links still
+fail closed if they cannot be captured safely.
+
 ```json
 {
   "backupResources": [
@@ -349,6 +365,39 @@ from implementations that do not declare support.
 
 The `adapterFactory` id must match `commandName`. Do not export registrations
 for commands absent from the manifest.
+
+## channelAccountKeyPolicies reference
+
+`channelAccountKeyPolicies` declares stored account-key selection rules for channels
+listed in the plugin's `channels` array. It is plugin metadata; operators keep their
+account config under `channels.<id>.accounts`.
+
+```json
+{
+  "channels": ["signal"],
+  "channelAccountKeyPolicies": {
+    "signal": { "canonicalAliasesRequireOwnField": "account" }
+  }
+}
+```
+
+`canonicalAliasesRequireOwnField` is the name of a string field in the account
+entry. An alias that matches only after account-id normalization is eligible when
+that entry has a nonempty value for this field. Root values do not satisfy it.
+Exact stored keys win; existing case-insensitive matches keep their behavior.
+Readers and writers use the same selected stored key.
+
+For Signal, `Work Phone` resolves as `work-phone` when it has its own `account`
+number. Its settings then apply even if the channel root also has a number.
+Without its own number, the previously ignored entry stays ignored and the route
+keeps its inherited settings. Doctor preserves that key and reports the required
+manual change. Doctor also reports normalized-key collisions and preserves both
+entries; an exact `work-phone` key wins at runtime.
+
+Rules for undeclared channels are ignored. Runtime reads use the selected plugin
+metadata snapshot; they do not load plugin code to find the rule. See
+[account lookup arguments](/plugins/sdk-channel-plugins/setup-and-config#stored-account-key-selection)
+for the SDK contract.
 
 ## channelConfigs reference
 

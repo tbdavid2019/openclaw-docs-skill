@@ -348,6 +348,13 @@ looping forever. Inspect the failed session and use `/new` or `/reset` to start 
 replacement. `openclaw doctor --fix` can repair a stale aborted flag that
 conflicts with a tombstone, but it does not re-enable that recovery cycle.
 
+If you message the failed session again in a channel, OpenClaw sends a short
+recovery reminder through that channel and logs each rejected message at warn
+level with the session key, recovery reason, and recovery command. Repeated
+reminders are suppressed in a bounded memory cache. Resetting or deleting the
+session, or restarting the Gateway, clears that suppression. Sessions with locked
+model selection instead direct you to **Resume in new session** in WebChat.
+
 Every retry reuses one durable dispatch identifier, so an ambiguous connection
 failure cannot start the same recovery twice. Completed Control UI turns also
 retain bounded durable idempotency tombstones, allowing a reconnecting outbox
@@ -414,6 +421,11 @@ Subagent runs are persisted in the shared SQLite state database, so the
 subagent registry survives the process. On boot the registry is restored and
 interrupted subagent sessions are resumed with their original task context.
 
+Resumption notices use the requester's outbound channel when one exists.
+Control UI sessions and internal wakes observe recovery through session state;
+they do not enqueue outbound notices. Previously saved internal notice obligations
+are settled when the registry resumes, without sending or replaying the task.
+
 If a parent yielded while waiting for children, recovery first resumes the
 interrupted children. Their saved completion batch follows replacement run IDs,
 so the parent receives its follow-up after the batch settles, including when some
@@ -424,6 +436,9 @@ follow-up is waiting to retry or is interrupted by restart, the saved
 obligation survives and resumes after startup. Restart admission rejection
 does not consume an attempt, and cancellation of an admitted attempt does
 not exhaust the obligation. Existing delivery retry limits still apply.
+Settling a yielded turn's wake leaves its unfinished task and final delivery
+intact. A completed cancellation can also finish wake bookkeeping after its
+task record expires, without recreating the task or repeating cleanup.
 
 Two safety valves apply:
 

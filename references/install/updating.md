@@ -52,6 +52,9 @@ results. See
 The canary uses a temporary loopback Gateway port and suppresses background
 listeners, including the MCP Apps sandbox, browser control, and channel services.
 This lets validation run while the serving Gateway keeps its configured ports.
+It preserves non-secret Gateway auth settings such as `gateway.auth.rateLimit`
+for policy checks, while using a temporary token and disabling Tailscale identity
+authentication.
 The activated Gateway retains your normal listener settings.
 
 Package updates also check npm availability for enabled configured plugins before
@@ -209,6 +212,18 @@ in that chat as the Gateway observes the recorded milestones:
 3. `🔁 Back on v<to>, verifying…` when the new Gateway starts verification.
 4. The final report, including successful updates.
 
+External update and restart notices go only to destinations listed in
+`commands.ownerAllowFrom`. Selecting a non-owner chat in the Control UI does not
+authorize notices to that contact. If no owner destination resolves, OpenClaw
+logs the skipped notice and keeps the update outcome in the run record and
+Control UI; it does not redirect the notice to another chat or wake the rejected
+session with diagnostics.
+
+Update lifecycle notices also honor the destination account's `actions.sendMessage`
+policy. An explicit account setting overrides the channel default; when neither
+sets the flag, notices are allowed. Disabled sends are recorded as skipped notices
+without preventing the update or its Control UI report.
+
 Managed systemd or launchd updates can stop the Gateway before an intermediate
 notice is delivered. The complete four-message sequence is not guaranteed for
 those installations; the durable run report remains available after reconnect.
@@ -225,6 +240,11 @@ verification facts, and the next action when needed. A run sends each notice
 at most once; an update that stops before restart sends only the notices for
 phases it reached. If the update cannot start, the bot records and explains why
 and provides the manual command when available.
+The agent relays the returned recovery instructions to the operator. Manual
+update commands run in a terminal outside the Gateway service; the agent must
+not execute them in the shell of the Gateway hosting its session. A missing
+owner permission requires owner setup, and an externally supervised installation
+uses its deployment owner's update workflow.
 
 Chat, CLI, Control UI, and automatic updates share a durable run ID. Use
 `openclaw update status` to read the active or latest report, including after a
@@ -268,6 +288,14 @@ can also supersede a single stale identityless row. Recent rows and recorded
 live drivers are protected. Identityless rows outside the legacy-expiry shape
 require explicit recovery; the Control UI's configuration-write suspension clears
 after reconciliation.
+
+Repair started within the owning update can continue with a matching inherited
+run ID and live process identity; the run records that continuation. Repair
+still refuses an unrelated live or stalled updater. The error identifies its
+run, phase, driver PID, host, start and last-activity ages, and observed liveness.
+Wait for that update to finish, or stop the named driver on its host and rerun
+repair after it exits. See [Update repair](/cli/update/repair-and-recovery#update-repair)
+for maintenance and recovery behavior.
 
 OpenClaw 2026.9.2 does not reject a new CLI update because an older running row
 exists: its [admission path](https://github.com/openclaw/openclaw/blob/v2026.9.2/src/cli/update-cli/update-command-run.ts#L77)

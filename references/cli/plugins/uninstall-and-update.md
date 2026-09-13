@@ -13,8 +13,8 @@ plugin code without restarting the Gateway.
 With a running Gateway, ordinary uninstall waits for the package runtime owners
 to stop before removing files, and update refreshes the Gateway after the local
 package operation finishes. Without a running Gateway, these commands save changes
-for its next startup. See [Apply changes and inspect](/plugins/manage-plugins#apply-changes-and-inspect)
-for the separate CLI installation flow.
+for its next startup. See [Install plugins](/cli/plugins/install#install) for
+installation sources and Gateway-host path requirements.
 
 ## Uninstall
 
@@ -51,6 +51,8 @@ openclaw plugins update openclaw-codex-app-server --acknowledge-install-policy-w
 ```
 
 Updates apply to tracked plugin installs in the managed plugin index and tracked hook-pack installs in shared SQLite state. They reuse the source that the user already chose when installing the plugin, so they do not require a second source acknowledgement.
+
+If update finalization fails, the error reports the original cause first and retains any rollback failures as additional diagnostic context. A failed rollback remains retryable; a successfully committed or rolled-back install is not applied again during cleanup.
 
 On source installations, a selected plugin built with the host stays in use. Named updates, `--all`, and stable/beta core updates report why the registry copy was not admitted and leave its dormant install record unchanged. Package ownership checks still apply to plugins being updated; explicit plugin paths retain their selection priority.
 
@@ -127,8 +129,9 @@ and in Nix mode (`OPENCLAW_NIX_MODE=1`), including config composed with `$includ
 It preserves config and installation state. If changed capabilities need new
 consent, record that acceptance through the deployment owner before reloading.
 
-Changed declared capabilities may require another review. Interactive callers are
-prompted; use `--accept-capabilities` only after reviewing the change. If preparation
+Changed declared capabilities may require another review. Interactive text output
+prompts for consent; `--json` never prompts. Use `--accept-capabilities` only after
+reviewing the change, including when combining it with `--json`. If preparation
 fails, the error reports whether a replacement was published. A failure after
 publication can leave the new generation active; inspect the reported state before
 retrying.

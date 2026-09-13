@@ -8,15 +8,39 @@ title: "Integrity, troubleshooting, and recovery"
 
 ## Integrity checks
 
-| When                                        | Check                                                               |
-| ------------------------------------------- | ------------------------------------------------------------------- |
-| Every open                                  | Validate the `schema_meta` table and primary metadata row           |
-| Every physical writable agent-database open | Run full integrity, foreign-key, schema, and canonical-index checks |
-| Before a pending migration                  | Run a full integrity, foreign-key, role, schema, and index scan     |
-| Gateway background verifier                 | Run the full scan about once daily and log results                  |
-| Doctor, backup verification, and compaction | Run the full scan before accepting or rewriting the database        |
+| When                                                    | Check                                                                                         |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Every open                                              | Validate the `schema_meta` table and primary metadata row                                     |
+| First writable agent-database open per Gateway lifetime | Run full integrity, foreign-key, schema, and canonical-index checks                           |
+| Later physical writable agent-database opens            | Reuse integrity verification; recheck owner, version, schema, and canonical index definitions |
+| Before a pending migration                              | Run a full integrity, foreign-key, role, schema, and index scan                               |
+| Gateway background verifier                             | Run the full scan about once daily and log results                                            |
+| Doctor, backup verification, and compaction             | Run the full scan before accepting or rewriting the database                                  |
 
-The Gateway startup preflight reads schema headers only. `openclaw database preflight` performs the release-local shape comparison for an explicit copied file. The background verifier also scans already-open databases about once daily.
+Successful agent-database verification stays in memory across ordinary writes,
+connection closes, and cache eviction. Cleanup workers borrow that verification
+under their existing writer admission and return new verification to the Gateway
+after they finish. Reuse is bound to the agent and physical file identity; it does
+not hash database contents or create a persistent marker. A fresh Gateway process
+checks again, including after an unclean shutdown.
+
+Database replacement, explicit disposal, registry invalidation, quarantine, and
+failed admission discard remembered verification. Pending migrations still run
+full checks, and canonical index repairs verify their result before committing.
+Damage introduced into the same file after verification is detected by SQLite
+operations, the daily verifier, or explicit maintenance instead of a full scan
+on each reopen. Schema, ownership, and current write authority are never borrowed
+from the integrity result.
+
+The Gateway startup preflight reads schema headers only. For ordinary rollback-mode agent databases and complete WAL families, a read-only child reads the schema version and optional writer build in one fresh SQLite transaction, including committed WAL changes, without copying unrelated database contents. Its source-reader lease stays held through native close; cancellation and timeout wait for child closure. Parent-side diagnostics do not open or close the live agent file, preserving the parent's SQLite locks. As with the previous online-backup reader, native SQLite may update SHM read marks or rebuild existing SHM after a quiescent family reopens; the database and WAL contents remain unchanged. These headers are not cached compatibility or integrity proof: full readiness and writable admission retain their existing validation and fresh authority checks.
+
+Private snapshots remain necessary inside owner-held source-exclusion or canonical-mutation scopes, for incomplete WAL families whose inspection would create source sidecars, and for rollback journals requiring private recovery. Those cases use the existing snapshot owner and deadline; ordinary inspection errors do not trigger a full-copy fallback. Shared-state preflight is unchanged. `openclaw database preflight` performs the release-local shape comparison for an explicit copied file. The background verifier also scans already-open databases about once daily.
+
+Schema-only agent inspections during Doctor and restart checks read metadata in
+a child process, within one SQLite read transaction, without copying the whole
+database. Empty files, rollback journals, incomplete WAL sidecars, and
+owner-provided snapshots retain the private snapshot path. Full startup integrity
+admission, writable-open integrity checks, and repair validation remain unchanged.
 
 Memory search and maintenance managers borrow the verified per-agent connection. Acquisition does not reopen or rescan a healthy shared handle. Native and transformed plugin modules share the same process-owned connection lifecycle, query cache, and commit observers. Nested synchronous writes use SQLite savepoints on that connection. A manager retains that exact connection against cache eviction until its work drains, then releases its borrow without closing the database. Explicit quarantine and disposal still revoke it. Full memory rebuilds use separate temporary shadow databases and publish their derived tables in one synchronous transaction. Read-only memory status keeps its separate diagnostic connection and does not create or migrate a missing database.
 
@@ -41,7 +65,12 @@ IPC error remains the reported failure even if termination also fails.
 
 Agent database maintenance fences other writers with a 60-second lease in the shared state database. A dedicated worker renews that lease during synchronous integrity scans and migration phases. Maintenance still checks the exact persisted owner before mutations and commit, and stops if the heartbeat fails or ownership expires or changes. Finishing or cancelling maintenance stops renewal before releasing the lease; process death leaves at most the remaining lease duration.
 
-Asynchronous agent-database admission and maintenance run their initial full-file integrity check in a read-only child process when that check is outside a write transaction. The connection and owning scope remain held until the child closes, including on cancellation or timeout. Schema changes, index repairs, and compaction retain their synchronous phases.
+Asynchronous agent-database admission runs the first full-file integrity check in a read-only child process when that check is outside a write transaction. Later ordinary opens reuse remembered verification. Maintenance retains its independent full check. The connection and owning scope remain held until the child closes, including on cancellation or timeout. Schema changes, index repairs, and compaction retain their synchronous phases.
+
+The integrity child allows SQLite to cache up to about 64 MiB of database pages
+while checking indexes and foreign keys. SQLite allocates those pages as needed,
+and the cache ends with the child; retained Gateway connections keep their
+existing cache settings. Full integrity and foreign-key checks still run.
 
 Explicit session-maintenance finalization uses this asynchronous admission if its writable handle was evicted during archive or deletion preparation. It keeps its place in the session writer queue and rechecks maintenance and deletion authority before committing. Automatic maintenance retires when its original handle closes instead of reopening it.
 
@@ -68,6 +97,35 @@ The heartbeat proves ownership, not migration progress. A live but stuck mainten
 ## Troubleshooting
 
 `SQLite read-only worker` failures append `code` and numeric SQLite `errcode` diagnostics when the underlying error supplies valid values, including through a bounded cause chain. Report the full code suffix when investigating a failure. Snapshot and integrity-child timeout errors include the applied budget and source file size; snapshot timeouts report an unknown size if the source stat failed. Integrity-child timeouts also retain `lastObservedPhase`. A generic `disk I/O error` or `SQLITE_IOERR` alone does not prove the disk is full.
+
+### The shared-state WAL keeps growing
+
+The running Gateway records the result of its existing WAL maintenance pass,
+normally every 30 minutes. `openclaw status --deep` and Doctor show a **SQLite
+WAL** warning after two consecutive blocked checkpoints, or after one blocked
+checkpoint when the WAL exceeds both twice the database size and the existing
+64 MiB journal-size limit. Checkpoint errors warn immediately. A later complete
+checkpoint clears the warning; a large WAL alone does not mean a checkpoint is
+blocked. File-size observation failures are recorded and logged separately from
+SQLite's completion result; they do not turn a completed checkpoint into a failure.
+
+The warning includes observed WAL and database sizes, checkpointed and total WAL
+frames, the last observed complete checkpoint, the consecutive blocked count,
+and the observation time. SQLite can report `busy=0` for an incomplete PASSIVE
+checkpoint; fewer checkpointed frames than total frames still records a blocked
+checkpoint. These facts do not identify which reader or competing checkpoint
+prevented completion.
+
+Observations belong to the open database handle in the Gateway process. They
+reset when that handle is replaced or the Gateway restarts. Status and Doctor
+read the recorded observation through the existing status RPC; they do not run
+a checkpoint or open a diagnostic database. Before the first observation, or
+when an older Gateway supplies no observations, this warning is absent.
+
+If the warning persists, capture `openclaw status --deep` output and restart the
+Gateway gracefully with `openclaw gateway restart`. Report the captured output
+if the warning returns. Do not delete the WAL: it can contain committed data
+that has not reached the main database file.
 
 ### Doctor reports orphan task delivery rows
 

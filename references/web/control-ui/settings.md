@@ -66,6 +66,8 @@ Credentials reserved for Control UI link previews are excluded from both agent a
 
 Set an agent's display name, emoji, and avatar under **Agent settings → Overview → Identity**. The identity is stored with that agent and is shared by Control UI clients. Where the transcript shows avatars, saved and streaming assistant replies use the configured agent image or text avatar. Agents without a configured avatar omit the repeated fallback icon.
 
+Elsewhere, agents without a custom image or emoji use a generated face that fills the circular avatar. Its color, eyes, mouth, and solid or pastel background come from the agent ID, so the same agent keeps the same face across reloads and clients. Renaming the agent's display name does not change its face. Generated faces are decorative and do not indicate activity or model choice.
+
 ## Gateway host status
 
 The connection settings use one **Gateway secret** field for the configured
@@ -89,7 +91,24 @@ Gateway in this browser without reconnecting. Session edits and connection edits
 have independent Save/Apply and Discard actions. Switching Gateways restores
 that Gateway's saved session selection.
 
-Open **Settings → Gateway** to see the **Gateway Host** card with the Gateway machine, LAN address, operating system, runtime, uptime, CPU load, memory, and space for each mounted local disk. The card refreshes every 10 seconds while visible through the `system.info` Gateway RPC, which requires the `operator.read` scope. If mounted-disk discovery is unavailable, the card retains the state-directory disk reading when available. Connections without the required scope omit the card. A loading indicator appears while stats are being fetched; refreshes keep the previous readings visible. Disk paths appear in their labels without duplicate tooltips.
+Open **Settings → Gateway** to see the **Gateway Host** card with the Gateway machine, LAN address, operating system, runtime, uptime, CPU load, memory, and space for each mounted local disk. Linux EFI boot partitions mounted at `/boot/efi` or `/efi` are omitted. The card refreshes every 10 seconds while visible through the `system.info` Gateway RPC, which requires the `operator.read` scope. If mounted-disk discovery is unavailable, the card retains the state-directory disk reading when available. Connections without the required scope omit the card. Shimmer placeholders appear while the first stats are being fetched and remain still with reduced motion enabled; refreshes keep the previous readings and uptime visible. Disk paths appear in their labels without duplicate tooltips.
+
+The **Connection** card also shows average ping and p50, p95, and p99 round-trip
+times in milliseconds. It samples every five seconds while the page is visible
+and summarizes the last 100 successful samples from the current connection.
+The sample count makes small sets visible; p95 and p99 become more useful as
+samples accumulate. Reconnecting, switching Gateways, or leaving the page resets
+the readings. Failed requests are excluded and shown as a retry notice.
+
+The ping graph shows individual round trips. **Gateway activity** uses the same
+CPU, process memory, and event-loop delay graphs as the debug overlay, with up to
+100 snapshots sampled every five seconds while visible. CPU includes event-loop
+utilization, memory shows process RSS and used heap, and delay shows the Gateway's
+event-loop p99 and maximum delay. These are Gateway process measurements, separate
+from connection ping and the machine-wide **Gateway Host** readings below.
+
+Ping measures a lightweight `last-heartbeat` request over the existing WebSocket,
+including Gateway request handling. It is not ICMP ping or model response time.
 
 ## Language support
 
@@ -119,6 +138,30 @@ Appearance also has a Text size setting. It applies to chat text, composer text,
 Appearance also carries the **Lobster visits** and **Lobster sounds** toggles and the Lobsterdex. Both toggles are browser-local. See [The Lobster](/web/lobster) for what the sidebar visitor does and how to turn it off for good.
 
 When your connection is bound to an authenticated Gateway profile, theme, theme mode, and accent color are saved to that profile instead of the gateway config. They follow you across devices without changing anyone else's appearance, override gateway-wide `ui.prefs` values, and update your connected clients live. Connections without an authenticated profile continue syncing these preferences through the gateway config exactly as before. Language and chat display preferences remain gateway-config preferences for every connection. Each browser keeps a local mirror for instant boot, and text size remains browser-local. An explicitly read-only connection applies preference changes only in that browser. Changes made while offline remain queued until a later connection can write their applicable preferences; on a read-only reconnect, they continue to behave as browser-local preferences. See [Configuration reference](/gateway/configuration-reference#ui).
+
+## Session sources
+
+Open the sidebar's **Filter & sort** menu and choose **Session sources…** to
+control automatic discovery of **Claude Code**, **Codex**, **OpenCode**, and **Pi** conversations.
+The same controls live in **Settings → Appearance → Session sources**; searching
+Settings for the coding app's name and **sessions** opens them directly.
+
+Only sources whose owning plugin is installed appear: **Anthropic** for Claude Code,
+**Codex**, **OpenCode**, and **ACPX** for Pi. Installed but disabled plugins still expose
+their discovery preference; the plugin must be enabled for discovery to run.
+
+The **Show … sessions** switches control discovery on the Gateway and eligible paired
+computers. They use each plugin's existing discovery
+preference and apply to everyone on that Gateway. Changes save automatically and
+require a Gateway restart. **Manage plugins** opens installation and enablement controls.
+Pi uses ACPX's `piSessionCatalog.enabled` preference; the other sources use their plugin's
+`sessionCatalog.enabled` preference. Disabling discovery leaves the provider
+and harness settings unchanged.
+
+Fresh installations start Claude Code and Codex discovery off. OpenCode and Pi currently
+default to on. Existing installations retain their previous settings, including older
+implicit-on defaults. **Hide from sidebar**
+in a catalog's menu remains a separate browser-only presentation preference.
 
 ## Manage plugins
 
@@ -165,11 +208,13 @@ enabling, disabling, or removing a plugin and changing MCP servers require
 `operator.admin`; those actions stay disabled for read-only operators.
 
 ClawHub installs run through the Gateway and keep the same trust, integrity,
-and plugin-install policy checks as other Gateway-mediated installs. Installing
-or removing plugin code requires a Gateway restart. Enabling or disabling an
-installed plugin can apply without a restart when the plugin and current
-Gateway runtime support it; otherwise the UI reports that a restart is
-required. OAuth-backed MCP connectors need a one-time
+and plugin-install policy checks as other Gateway-mediated installs. Install,
+enable, disable, remove, and Reload actions wait for runtime application without
+restarting the Gateway. Ordinary plugin config edits also apply automatically
+in the default hybrid reload mode. See
+[Apply changes and inspect](/plugins/manage-plugins#apply-changes-and-inspect)
+for application failures, cleanup warnings, and source-edit reloads.
+OAuth-backed MCP connectors need a one-time
 `openclaw mcp login <name>` from the CLI after they are added.
 
 The page intentionally focuses on inventory, discovery, install, enablement,

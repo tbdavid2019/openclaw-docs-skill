@@ -83,7 +83,7 @@ Minimal config:
 
 Multi-account support: use `channels.signal.accounts` with per-account config and optional `name`. Each named account owns its `transport`; it does not inherit the top-level transport. The top-level transport belongs only to the implicit `default` account. See [Multi-account channels](/gateway/config-channels#multi-account-all-channels) for the shared pattern.
 
-If an account key such as `Work Phone` is listed as `work-phone` but reported unconfigured, run `openclaw doctor --fix` and restart the Gateway. Doctor preserves the account settings when moving an unambiguous key. If multiple keys normalize to the same account ID, or moving a key could change an account already using channel defaults, Doctor leaves it unchanged and asks you to review and rename it.
+Account keys use the normalized IDs shown by status. For example, `Work Phone` with its own `account` number runs as `work-phone` and uses its authored settings without running Doctor. If multiple keys normalize to the same ID, the exact key wins and Doctor reports the collision. Deletion refuses to remove that account if another stored key would then select a different identity; the error names both keys so you can resolve the collision first. Legacy aliases without their own number keep their existing inherited behavior. Doctor can clean up unambiguous keys, but refuses to rename an alias when that would activate previously ignored settings.
 
 Omitted account `dmPolicy` and `groupPolicy` inherit the channel root; explicit account policies win. If neither scope sets them, DMs use `pairing` and groups use `allowlist`.
 
@@ -135,13 +135,9 @@ signal-cli -a +<BOT_PHONE_NUMBER> register --captcha '<SIGNALCAPTCHA_URL>'
 signal-cli -a +<BOT_PHONE_NUMBER> verify <VERIFICATION_CODE>
 ```
 
-4. Configure OpenClaw, restart the gateway, verify the channel:
+4. Configure OpenClaw and verify the channel. Config changes follow [hot reload](/gateway/configuration/hot-reload); start the Gateway if it is offline. Restart it if you changed the service's `PATH` to find `signal-cli`.
 
 ```bash
-# If you run the gateway as a user systemd service:
-systemctl --user restart openclaw-gateway.service
-
-# Then verify:
 openclaw doctor
 openclaw channels status --probe
 ```

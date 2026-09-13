@@ -70,7 +70,9 @@ export default definePluginEntry({
   The optional `signal: AbortSignal` belongs to the catalog operation or provider
   lifetime. Pass it to cancellable work, including the top-level `signal` field
   of `api.runtime.nodes.invoke(...)`. A requesting client disconnect only removes
-  that client's subscription; it does not cancel shared discovery. Retaining
+  that client's subscription; it does not cancel shared discovery. The Gateway
+  removes queued listings when their catalog owner retires. Providers that have
+  started keep their admission slot until their returned promise settles. Retaining
   completion does not extend native invocation or fail-soft response deadlines,
   grant new authority, or permit starting work after the owner retires. Providers
   remain responsible for bounded work that settles after cancellation.
@@ -93,6 +95,15 @@ export default definePluginEntry({
   owns operator and agent authorization, session creation, model readiness and
   policy checks, rollback, and untrusted-content wrapping. The provider supplies
   transcript text through `read(...)`; it must not write the destination session.
+
+  A read-only catalog of sessions published by another Gateway may set
+  `audience: "session-viewers"`. Viewers need `operator.read`; configured roles
+  must also allow viewing others' sessions (`sessions.others: "view"`,
+  `"suggest"`, or `"write"`). Source publication and receiver roles are checked
+  independently. Core rechecks the receiver's access after asynchronous reads;
+  the provider must recheck that the source session remains published before
+  returning its transcript. Provider attribution remains display metadata and
+  does not adopt the source session into the receiving Gateway.
 
   Native source titles are presentation, not unique session labels. When adopting
   a new source, pass its title as `displayName` to the owner-authorized

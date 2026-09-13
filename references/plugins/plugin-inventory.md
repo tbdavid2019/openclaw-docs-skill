@@ -29,13 +29,13 @@ dependencies are available.
 
 Use the install route in each entry to decide whether install is needed. Plugins
 that say `included in OpenClaw` are already present in the core package.
-Official external packages need one install, then a Gateway restart.
+Official external packages need one install. Installation applies to the running
+local Gateway without restarting it; start the Gateway if it was stopped.
 
 For example, Discord is an official external package:
 
 ```bash
 openclaw plugins install @openclaw/discord
-openclaw gateway restart
 openclaw plugins inspect discord --runtime --json
 ```
 
@@ -50,7 +50,7 @@ Each entry lists the package, distribution route, and description.
 
 ## Core npm package
 
-59 plugins
+60 plugins
 
 - **[a2a](/plugins/reference/a2a)** (`@openclaw/a2a`) - included in OpenClaw. A2A v1.0 Agent-to-Agent protocol channel plugin.
 
@@ -147,6 +147,8 @@ Each entry lists the package, distribution route, and description.
 - **[runway](/plugins/reference/runway)** (`@openclaw/runway-provider`) - included in OpenClaw. Adds video generation provider support.
 
 - **[senseaudio](/plugins/reference/senseaudio)** (`@openclaw/senseaudio-provider`) - included in OpenClaw. Adds media understanding provider support.
+
+- **[session-share](/plugins/reference/session-share)** (`@openclaw/session-share`) - included in OpenClaw. Read-only OpenClaw sessions on paired gateways.
 
 - **[sglang](/plugins/reference/sglang)** (`@openclaw/sglang-provider`) - included in OpenClaw. Adds SGLang model provider support to OpenClaw.
 

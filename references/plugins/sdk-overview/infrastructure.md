@@ -76,6 +76,44 @@ synchronous executor and the connection's bounded statement cache when enabled.
 Keep the prepared function with its database owner and discard it when closing
 the connection; transaction callbacks must remain synchronous.
 
+### Worker task admission
+
+`WorkerTaskPool` and `serveWorkerTasks` from
+`openclaw/plugin-sdk/process-runtime` support reusable computation workers.
+Each pool defaults to 128 outstanding tasks and 256 MiB of reported input bytes,
+including queued, preparing, and running tasks. Set `maxPendingTasks` and
+`maxPendingBytes` when constructing a pool to choose different positive limits.
+Report known retained input with `run(input, { inputBytes })`, including buffers
+captured by an input factory. Omitted `inputBytes` counts as zero; this accounting
+does not measure serialized payload size, decoded data, results, or worker heaps.
+
+Capacity exhaustion rejects `run()` with `WorkerTaskError.code = "overloaded"`
+before preparing or executing that input. Accepted work remains ordered within
+a single-worker pool. Report the rejected operation as unsuccessful; do not
+substitute an empty result or bypass the limit with synchronous execution.
+After accepted work settles, the same pool accepts new work again. A caller may
+retry a rejected operation after pressure drains and its original authority and
+deadline are revalidated; the pool does not retry it automatically.
+
+For stateless computation, `sharedCompute: true` also shares an aggregate
+128-task/256-MiB admission budget and CPU execution capacity with participating
+pools in the same isolate. Dedicated ordered pools retain their own execution
+capacity and still enforce their individual admission limits.
+
+Pass static Node.js Worker settings in `workerOptions`. For per-worker settings,
+`prepareWorker()` runs once per Worker creation attempt and returns
+`{ options, temporaryDirectory? }`. Its `options` shallowly override
+`workerOptions`: properties such as `env`, `workerData`, and `resourceLimits`
+replace the whole static property rather than merging nested values.
+
+A returned `temporaryDirectory` transfers a newly allocated disposable directory
+to the pool. Preparation owns cleanup if it fails before returning. The pool
+removes the directory only after that Worker exits, including startup failure or
+cancellation, and reports deletion failures without replacing the task outcome.
+Worker exit releases execution capacity; `close()` also waits for pending file
+cleanup. Keep persistent data and files borrowed outside the Worker out of this
+directory.
+
 ### SQLite worker stores
 
 Use `openSqliteWorkerStore<Operations>` from
@@ -137,8 +175,22 @@ while the worker is drained.
 The process-wide host starts lazily and permits at most four workers, 64 opening
 or live store clients (including clients sharing a database), 128 outstanding
 operations, and 64 MiB of queued input. Each input message is limited to 32 MiB
-and each result to 64 MiB; capacity exhaustion rejects with
-`code: "overloaded"`. Operations for one database share its connection owner
+and capacity exhaustion rejects with `code: "overloaded"`. Larger execute inputs
+arrive in 8 MiB chunks; the backend runs once after the complete command is
+validated. Factory initialization input remains a single bounded message.
+
+Commands retaining at most 64 MiB of serialized input can queue, with their full
+byte length charged until settlement. A larger command must start immediately
+on an idle worker with a reserved 32 MiB transport window; otherwise it rejects
+with `overloaded` before dispatch.
+The aggregate budget bounds admitted queue bytes and reserved transport windows,
+not the complete value held by an active oversized command or result. Once
+staging starts, the existing post-dispatch cancellation and drainage rules apply.
+
+Results up to 64 MiB use an inline reply; larger results transfer their complete serialized value
+in bounded 8 MiB chunks. Callers still materialize the complete result in memory,
+and the original operation remains owned through transfer validation and cleanup.
+Operations for one database share its connection owner
 and execute in order. There are no reader replicas or worker-pool configuration
 options.
 
@@ -149,6 +201,16 @@ checks cannot protect against an uncoordinated filesystem replacement.
 Each client retains its admitted lexical and canonical pathnames through
 drainage and close. The backend's opening paths remain pinned for its native
 lifetime; released secondary aliases do not accumulate while other clients live.
+
+### Computation worker entrypoints
+
+For a plugin-owned worker, pass `package: { name, distWorkerPath }` to
+`resolveRuntimeWorkerUrl` from the same SDK subpath. Use the plugin's
+`package.json` name and a worker path relative to its `dist` directory. The
+descriptor then supports bundled and standalone installations, including renamed
+installation directories. Declare the worker's source entry in
+[`openclaw.build.workerEntries`](/plugins/dependency-resolution#native-imports-from-a-standalone-source-build)
+so package builds emit it.
 
 ### Webhook body rejection
 
@@ -181,6 +243,18 @@ requests apply input backpressure until earlier responses finish; finite pipelin
 drain in order. Use separate connections for concurrent requests. Keep the release hook returned by
 `beginWebhookRequestPipelineOrReject` in `finally`; it retains any selected
 rejection cleanup before releasing the in-flight slot.
+
+Channel webhook listeners that own their `createServer` admission serialize each
+connection with `runHttpConnectionRequest(req, run, res?)` from
+`openclaw/plugin-sdk/webhook-request-guards`. Pass the `ServerResponse` as the
+third argument: the shared owner waits for response completion (`finish` or
+`close`) before admitting the connection's next request, so a close-aware
+rejection — whose cleanup may destroy the socket within one second — can never
+overtake an earlier queued acknowledgement. Omitting the response argument
+releases the next request before the current response finishes and loses that
+guarantee; omit it only for dispatch that writes no response on the shared
+connection. Already admitted work always finishes; queued work is never
+dispatched after closure, and a closing connection cannot admit later requests.
 
 ### Post-ack webhook work
 

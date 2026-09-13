@@ -86,8 +86,9 @@ Enable the `codex` plugin and its supervision capability in `openclaw.json`:
 }
 ```
 
-If `plugins.allow` is present, include `codex`. Restart the Gateway after
-changing plugin activation.
+If `plugins.allow` is present, include `codex`. Gateway plugin activation applies
+automatically in the default hybrid reload mode; see
+[Apply changes and inspect](/plugins/manage-plugins#apply-changes-and-inspect).
 
 With no explicit `appServer` connection settings, supervision uses managed
 stdio connections for the available local Codex stores. The catalog combines
@@ -100,6 +101,11 @@ route agent as owner. The ordinary Codex harness remains agent-scoped by default
 Set `appServer.homeScope: "user"` explicitly if the harness should share native
 Codex state too. Supervision honors explicit `appServer` connection settings
 instead of replacing them with its local user-home default.
+
+Catalog reads use the selected store's native Codex authentication, including
+when that store is under an OpenClaw agent directory. Browsing stored sessions
+does not require importing a native credential into OpenClaw. Ordinary managed
+agent runs retain their own credential-import and authentication requirements.
 
 A Gateway-local Chat adopted from the **Codex** sidebar group is not an ordinary harness session.
 Its private supervision binding uses the supervision connection for source
@@ -124,11 +130,19 @@ honored for that stdio process. If the Mac config selects `"unix"`,
 capability or command, and a stale direct invocation fails instead of exposing
 the user Codex home or spawning a different local stdio App Server.
 
-The optional `agentId` in native Mac catalog list/read requests identifies the
-Gateway's OpenClaw route owner. It cannot select an agent-specific Codex home.
-The native catalog remains user-home stdio only. Headless node catalog requests
-still resolve `agentId` against that node's configured agents and use the selected
-agent's configured catalog source. This does not map agent IDs between computers.
+Headless nodes default to their native user-home stdio catalog: `CODEX_HOME`,
+or `~/.codex` when it is unset. Native listing, transcript reads, terminal resume,
+and Chat continuation use that same node-owned store. A Gateway agent need not
+exist on an updated native node, even when the node has multiple agents and no
+default owner.
+
+Gateways retain the optional `agentId` field for interoperability with released
+nodes that still require it. Updated native readers treat that field as route
+context only. Explicit agent-scoped or non-stdio catalog configurations retain
+their existing source-selection contract: the requested owner selects the
+configured node source, and a missing or removed owner fails instead of falling
+back to the native user home. Upgrade the node as well as the Gateway to obtain
+agent-independent native discovery.
 
 A newly advertised node command changes the node's approved command surface.
 Approve the update from the Gateway host:
@@ -173,9 +187,15 @@ does not change a thread's native status to `offline`. Session rows use Codex
 statuses such as `idle`, `active`, `notLoaded`, or error. A failed host does not
 hide results from healthy hosts.
 
+The sidebar hides the Codex group when it has no visible sessions, including
+when discovery fails. Normal discovery refreshes continue, so the group appears
+when sessions become available. A populated group remains visible when another
+host fails.
+
 The sidebar warning includes the catalog error code and the safe underlying
-Gateway error. Open **Settings > Automation > Plugins > Codex > Native Session
-Discovery** to disable discovery without disabling Codex. For
+Gateway error. Open the sidebar's **Filter & sort > Session sources…** menu,
+or **Settings > Appearance > Session sources**, and turn off **Show Codex sessions**
+to disable discovery without disabling Codex. For
 `NODE_LIST_FAILED`, compare `openclaw nodes list` and **Settings > Devices**.
 The detailed cause identifies the pairing-store, node-registry, permission, or
 Gateway lifecycle failure that needs repair.
@@ -325,8 +345,8 @@ or local label.
 
 Disabling or uninstalling the `codex` plugin does not release that ownership or
 make the Chat eligible for another model. The locked Chat remains preserved but
-unavailable. Reinstall or re-enable the same plugin and restart the Gateway to
-resume it. This deliberate fail-closed behavior prevents retention cleanup or a
+unavailable. Reinstall or re-enable the same plugin, confirm runtime application,
+then resume it. This deliberate fail-closed behavior prevents retention cleanup or a
 temporary plugin outage from silently orphaning the native binding.
 
 The `codex_threads` agent tool follows the same boundary. It cannot attach a
@@ -582,8 +602,9 @@ For every supervision config field, see
 
 **No sessions appear:** verify that `@openclaw/codex` is installed, both the
 plugin and `supervision.enabled` are true, the current plugin allowlist permits
-`codex`, and the sessions are not archived. Restart the Gateway or node after
-changing activation.
+`codex`, and the sessions are not archived. Gateway activation changes hot-apply;
+refresh the catalog after they finish. Restart a node if its local activation
+change has not refreshed its advertised capabilities.
 
 **Continue is disabled or refused:** an unmapped row is active or in an
 ineligible state, its host is offline, or another action is pending. For a

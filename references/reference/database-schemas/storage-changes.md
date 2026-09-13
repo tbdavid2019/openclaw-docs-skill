@@ -36,8 +36,52 @@ kernels. Their existing facades retain global connection acquisition, cache and
 close behavior, and write transaction admission. Compound subagent and cron
 operations call the kernels on their already-admitted connection. Task status
 classification stays with the pure record types, so decoding does not load
-provider or plugin runtime ownership. These operations and their transaction
-callbacks remain synchronous; this separation does not move SQL to a worker.
+provider or plugin runtime ownership. Kernels and their transaction callbacks
+remain synchronous. The asynchronous task and flow read facade runs these read
+kernels in the shared-state worker.
+
+Gateway user-preference RPCs and Talk appearance reads resolve merged profile IDs
+and access preferences in the shared-state worker. Preference writes keep profile
+resolution, quota validation, and mutation in one synchronous write transaction;
+Gateway replies and changed events follow completion. Profile merge and consent
+updates retain their connection-bound kernels. Push preference and notification
+callers still use the synchronous facade until their preparation and publication
+owners migrate together.
+
+The host captures the database path, state environment, and current admission
+before awaited work. The shared worker owns its canonical connection and schema
+opening, with Gateway schema authority delegated by its live coordinator owner.
+Classified database errors survive transport, and canonical close joins worker
+operations and native cleanup. Cold registry restoration and runtime-configuration
+preparation still retain their existing main-thread behavior.
+
+The optional `tasks.async.managedFlows` creation and revision mutations use the
+same row kernels in the shared worker, with fresh owner, managed-mode, and
+revision checks inside write admission. The admitted operation retains its actor
+through the durable result and worker-backed projection reconciliation, including
+during orderly shutdown. Delayed results cannot overwrite newer synchronous
+writes or refreshes. Reconciliation failures leave the flow projection dirty and
+preserve the durable mutation result without replaying the write.
+
+Synchronous callers keep their existing transaction behavior. Native cancellation,
+child-task linkage, and compound task/subagent completion retain their existing
+owners until their complete persistence and lifecycle boundaries move together.
+
+SQLite worker transport preserves complete result values. Results within the
+64 MiB inline reply budget keep their existing reply path; larger results are
+serialized once and transferred in 8 MiB frames. The original operation retains
+its worker until the complete result and cleanup are acknowledged, including
+during shutdown. Framing does not paginate or repeat the database query, truncate
+results, or change request and queue budgets. Callers still materialize their
+complete result in memory.
+
+Worker execute inputs also use bounded frames when necessary. Queued commands
+retain their full serialized-byte charge, up to the existing 64 MiB aggregate
+budget. Larger commands require immediate admission to an idle worker and reserve
+a 32 MiB transport window through settlement. Otherwise, admission returns the
+existing overload error without queuing the value or executing any part of it.
+Only complete validated input reaches the backend. The transport queue remains
+bounded; an active complete input or result still requires its materialized memory.
 
 Acquire a connection once for an operation and pass that exact connection
 through its transactional helpers. SQLite write callbacks remain synchronous:
@@ -92,8 +136,9 @@ native owner's authority after any awaited admission.
 
 Session reclamation keeps its deletion transaction on a worker connection.
 The worker opens its database under the session writer, then releases that writer
-while full integrity and foreign-key checks run on the same connection. Unrelated
-session writes can continue during those checks. It reacquires the writer and
+while any required first full integrity and foreign-key checks run on the same connection. Unrelated
+session writes can continue during those checks. Later workers reuse the Gateway's
+remembered verification for the same physical agent database. It reacquires the writer and
 revalidates current authority before index repair, schema work, or deletion.
 The connection and lease remain owned throughout admission; refusal unwinds that
 owner, and final writer admission remains held until the worker exits.
@@ -103,7 +148,8 @@ already excluded by that fresh protection set is canceled before worker admissio
 and is not counted as reclaimed. After releasing its lifecycle holds, cleanup
 remeasures physical usage before considering another candidate, so space freed by
 a peer does not cause unnecessary eviction. Every admitted worker still performs
-the full integrity, foreign-key, and current-owner checks described here.
+current-owner and schema checks; integrity reuse follows the Gateway-lifetime
+policy described in [Integrity checks](/reference/database-schemas/integrity-and-recovery#integrity-checks).
 
 Archive publication and cascading deletion remain atomic. Before COMMIT, the
 worker publishes its authorization request in shared memory and waits for the
@@ -188,18 +234,30 @@ the review checkpoint below.
 
 ## Review checkpoint for material changes
 
-Before implementing a material SQLite or persistent-store change, open or link a maintainer discussion and record acceptance of the design. A schema-version bump is always material, but a change can be material even when the numeric version stays the same.
+An explicit maintainer repair-and-land request covers internal scheduling,
+database admission, and lifecycle implementation decisions. The implementer
+owns design selection, risk assessment, and verification. Describe the design
+and its evidence in the PR; do not require a separate approval for each
+implementation decision within that scope.
 
-Treat a change as material when it introduces or materially changes any of these:
+Before changing public contracts, schemas, durability, retention, or permissions,
+open or link a maintainer discussion and record acceptance of the design. A
+schema-version bump always needs acceptance, but keeping the numeric version
+unchanged does not exempt a change to these contracts:
 
-- a table, dedicated database, durable projection, cache, index, or other persisted representation
+- a table, dedicated database, durable projection, persisted cache, index, or other schema representation
 - which data is canonical, derived, reconstructible, retained, deleted, exported, or visible after restart
 - user-visible persistence semantics, including a second interpretation of existing durable data
-- migration, backfill, repair, downgrade, rollback, retention, compaction, or corruption recovery
-- transaction boundaries, writer ownership, concurrency, locking, publication fencing, or reader consistency
-- read, write, disk, startup, or maintenance cost enough to affect the store's operating model
+- upgrade, downgrade, rollback, retention, compaction, or corruption-recovery contracts
+- durability, reader consistency, or permission boundaries
 
-The discussion should identify the owning store and lifecycle, the problem being solved, alternatives that avoid new persistence, canonical versus derived data, schema and upgrade/downgrade behavior, retention and deletion behavior, concurrency and recovery invariants, performance/storage impact, rollback plan, and validation limits. The implementing PR must link the accepted decision.
+Internal transaction boundaries, writer admission, locking, and lifecycle
+mechanics are engineering decisions within an authorized repair when they
+preserve those contracts. Prove FIFO ordering, current authority after awaited
+work, integrity checks, publication fencing, and settlement of write-capable
+work. Assess performance and storage costs as part of that verification.
+
+When separate acceptance is required, the discussion should identify the owning store and lifecycle, the problem being solved, alternatives that avoid new persistence, canonical versus derived data, schema and upgrade/downgrade behavior, retention and deletion behavior, concurrency and recovery invariants, performance/storage impact, rollback plan, and validation limits. The implementing PR must link that accepted decision.
 
 The checkpoint normally does not apply to a read-only query that preserves existing semantics, a bounded query-plan improvement with no material write/disk tradeoff, routine maintenance of an existing approved schema, or tests, generated baselines, and documentation that only follow an already accepted design. A mechanical migration or repair still links the decision that approved its persistent contract.
 

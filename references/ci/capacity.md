@@ -70,9 +70,9 @@ Expanded serial large/small jobs admit 210 predicted seconds; eligible hybrid pa
 
 Every selected project discovers Chromium. The first selected bundle-consuming project builds one private production bundle/preview and publishes its URL through Vitest's invocation-scoped root context; later consumers share it until invocation teardown. Standalone projects have no bundle setup or URL bridge, so standalone-only selections skip that build. Enabled manual proof capture uses the shared upload directory, including the MCP and Logs suites.
 
-The dedicated real-Gateway job runs its complete selected inventory in one invocation through `test/vitest/vitest.ui-e2e-prebuilt.config.ts`. It requires a clean checkout and completed runtime, private QA, and canonical Control UI artifacts from `OPENCLAW_BUILD_PRIVATE_QA=1 pnpm build:ci-artifacts`. Source and built outputs must remain unchanged until all workers and children finish. A readiness failure stops the invocation without rebuilding or falling back to another config. MCP conformance owns a source server and runs serially first; the remaining files then share the existing two-worker limit. The invocation preview builds its own private output from the same source. This adds no CI jobs or shards. The ordinary local config keeps real-Gateway files serial, and frozen targets lacking the prebuilt config retain their original serial command.
+The dedicated real-Gateway job runs its complete selected inventory in one invocation through `test/vitest/vitest.ui-e2e-prebuilt.config.ts`. It requires a clean checkout and completed runtime, private QA, and canonical Control UI artifacts from `OPENCLAW_BUILD_PRIVATE_QA=1 pnpm build:ci-artifacts`. Source and built outputs must remain unchanged until all workers and children finish. A readiness failure stops the invocation without rebuilding or falling back to another config. Files outside the prebuilt config’s shared-reader/writer allowlist run serially first; audited fixtures with private HOME, state, ports, and cleanup then share the existing two-worker limit. The allowlist admits both invocation-preview consumers and fixtures serving canonical built UI bytes through their own prepared Gateway child. The invocation preview builds its own private output from the same source. This adds no CI jobs or shards. The ordinary local config keeps real-Gateway files serial, and frozen targets lacking the prebuilt config retain their original serial command.
 
-A controlled Linux comparison covering all 14 files and 25 tests reduced invocation elapsed time from 309.374 to 202.027 seconds. This measures the test invocation, not complete CI timing or achievement of the CI latency target.
+The original two-worker rollout had a controlled Linux comparison covering its then-complete inventory of 14 files and 25 tests, reducing invocation elapsed time from 309.374 to 202.027 seconds. Those historical results do not measure later allowlist additions, complete CI timing, or achievement of the CI latency target.
 
 Eligible `control-ui` rows request `blacksmith-32vcpu-ubuntu-2404`; the browser-extension row keeps the 8-vCPU request, and eligible real-Gateway jobs request the 32-class. Backend, event, contributor-trust and cache-write boundaries are unchanged, including hybrid first attempts and trusted contributor forks. In [run 33692146223](https://github.com/openclaw/openclaw/actions/runs/33692146223), the two slowest UI rows requested the 8-vCPU label but reported two CPUs; their 356/383-second test steps set the 8:20 non-Windows wall. The same run's 32-vCPU jobs reported eight CPUs. The larger request added no workers. In [run 33695337496](https://github.com/openclaw/openclaw/actions/runs/33695337496), all twelve UI rows reported eight CPUs and finished by 4:38 from workflow creation, with 102–145-second test steps. That margin supports consolidating to six rows; reduced-row timings still require native proof. Stale file weights also need the existing refit's independent-run and replacement thresholds, rather than a one-run manual adjustment.
 
@@ -85,6 +85,30 @@ The previous thirteen-serial-shard layout consumed 4,258 job-seconds in successf
 Canonical-repo CI keeps Blacksmith as the default runner path for pushes and first-attempt same-repo pull-request runs when the backend is unset or `blacksmith`. Hybrid keeps the heavy set plus the named critical-path plateau lanes on Blacksmith for attempt 1; other light lanes and every rerun Blacksmith lane use GitHub-hosted capacity. Pull-request retries of both UI E2E jobs use GitHub-hosted Ubuntu in every mode; push retries remain on their normal backend unless hybrid fallback applies. Manual `workflow_dispatch` and non-canonical repository runs use GitHub-hosted runners for the main test/build lanes. With an unset or `blacksmith` backend, ordinary canonical manual dispatches (`release_gate: false`) can still run the seven `check-shard` rows on their Blacksmith matrix runners; release-gate check rows remain hosted. Same-repo hybrid Full Release Validation sends only frozen-candidate lint to its matrix runner, both for exact main-ancestor SHAs without a release context and for canonical release-context candidates. These manual admissions are outside the main/PR arrival estimate above. The [`github` backend](/ci/runners#runner-backend-modes) provides a manual repository-wide fallback; canonical runs do not probe Blacksmith queue health or mutate the variable automatically.
 
 ## Measured shard weights
+
+Hybrid main runtime bins retain their existing jobs and runner allocations while
+admitting complete measured runtime groups within 440 seconds, including the
+existing 100-second build allowance. This reserves 40 seconds of the eight-minute
+objective for checkout/setup; it does not change test deadlines or guarantee
+elapsed time. Only non-exclusive ordinary-runtime bins participate. A group can
+move to an already-required equal-or-stronger runner only with its own explicit
+worker limit. Both replacement bins must pass the shared family, group-count and
+budget checks. If no transfer fits, CI retains the complete existing plan and
+reports its over-budget estimate; an optimization cannot suppress test coverage.
+Recipient capacity must preserve the donor job's fixed runner anchor, including
+any earlier promotion of that group. Private-QA, dist, exclusive, hosted,
+and ordinary two-slot policies remain unchanged.
+
+The refit records separate runtime-placement observations from the emitted group
+descriptor, successful complete envelope and runtime-readiness marker. Configs,
+group environment, exact include set and prebuild mode define their identity;
+unrelated sibling repartitioning does not erase them. These observations use the
+same independent-run sampling rules but are consumed only after file splitting.
+They cannot reconstruct a parent or create more worker generations. Existing
+parent and exact-child timing keys keep their original meaning. Preparation is
+already included in the envelope; each job's shared runtime build is charged once.
+Unknown groups retain positive fallback costs, and native same-inventory evidence
+must verify latency, actual resources and cleanup before claiming improvement.
 
 `config/ci-test-timings.json` records CI measurements for UI and Gateway E2E files
 and compact Node groups. UI and compact packers prefer these weights over their in-source cold-start
