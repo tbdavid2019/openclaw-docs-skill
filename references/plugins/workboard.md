@@ -65,6 +65,20 @@ plugin entry:
 openclaw plugins disable workboard
 ```
 
+## Board appearance
+
+Use **Edit board** to change a board's name, icon, and color. **Reset to default**
+clears the icon and color when you save; canceling leaves the saved board unchanged.
+
+For `workboard.boards.upsert`, omitting `icon` or `color`, passing `null`, or passing
+an empty string preserves the existing value, including for older clients. To clear
+appearance explicitly, send `clearAppearance: ["icon", "color"]`, or list only the
+field you want to clear. Listed fields are cleared even if the request also supplies
+a replacement value for them. Other fields retain their ordinary update behavior.
+`clearAppearance` must be an array containing only `"icon"` and `"color"`; an empty
+array changes nothing. Clients using this argument need a Gateway version that
+supports explicit appearance clearing; older Gateways do not implement this reset.
+
 ## Card fields
 
 | Field       | Values                                                                                                        |
@@ -433,6 +447,18 @@ Gateway RPC methods live under `workboard.*`:
 | `operator.read`  | `cards.list`, `cards.export`, `cards.diagnostics`, attachment list/get, notification event reads, `boards.list`, `cards.stats`, `cards.runs`                                                                                                                                                                                                                                                            |
 | `operator.write` | `cards.diagnostics.refresh`, create/captureSession/update/move/delete/comment/link/linkDependency/proof/artifact, attachment add/delete, worker log, protocol violation, claim/heartbeat/release/promote/reassign/reclaim/complete/block/unblock/start, `cards.dispatch`, `cards.bulk`, archive, `boards.upsert`/`archive`/`delete`, `cards.specify`/`decompose`, notification subscribe/delete/advance |
 
+`workboard.cards.update`, `workboard.cards.move`, `workboard.cards.archive`, and
+`workboard.cards.delete` accept an optional `expectedUpdatedAt` request field.
+Pass the finite numeric `updatedAt` from the card you read to guard the write.
+If the card has changed, the request fails with `workboard_conflict` and returns
+its latest card in `error.details.card` (`error.details.type` is
+`workboard_card_conflict`). Review that card before retrying. Omitting the field
+keeps the method's existing unguarded request behavior.
+
+Control UI bulk actions use each card's observed revision and stop on a conflict.
+Remaining cards stay selected for review and retry; the batch does not silently
+retry against newer revisions or overwrite another client's changes.
+
 No RPC method requires `operator.admin`. Browsers connected with read-only
 operator access can inspect the board but cannot mutate cards. An admin scope
 widens accepted Workboard host paths. It does not change the methods available.
@@ -446,6 +472,10 @@ attachment metadata and blobs, diagnostics, notifications, worker logs,
 protocol state, and subscriptions all live in Workboard tables (not
 plugin key-value entries). A card export preserves the board narrative
 without inlining attachment blob contents.
+
+SQLite opening, queries, and transactions run in a background database worker.
+Disabling or reloading the plugin drains admitted storage work before closing
+its connections.
 
 Installations that used Workboard in the `.28` release can run
 `openclaw doctor --fix` to migrate the shipped legacy plugin-state namespaces

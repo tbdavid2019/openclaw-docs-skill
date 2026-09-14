@@ -133,6 +133,10 @@ remain terminal. Recovery startup uses the admitted run's existing deadline,
 including runtime preparation and waiting for session or global capacity. Waiting
 in a healthy queue does not consume separate failed-start attempts.
 
+`sessions.abort` waits for the cancellation's session write before acknowledging
+success. Restarting immediately after that acknowledgment preserves the terminal
+outcome even if the run's finalizer has not finished.
+
 ## Host sleep and process freezes
 
 When a gateway host wakes from sleep, a virtual machine resumes, or the process
@@ -326,6 +330,17 @@ Three complementary mechanisms mark sessions whose turn did not finish:
   hard crashes and kills where no shutdown code ran. Stale transcript lock
   files are cleaned up at the same time.
 
+A failed store scan leaves that store eligible for the scheduled retry while
+other stores continue recovery. `openclaw status` and `openclaw doctor` show
+outstanding startup recovery failures from the running Gateway; the warning clears
+when the store scan succeeds.
+
+If an older Gateway left a session running with a dead writer and an unfinished
+recovery cycle, `sessions.recover` reconciles that writer and starts a continuation
+in the same session. It preserves the session key and transcript. A live run or
+cloud worker still prevents this repair. Tombstoned sessions retain their separate
+recovery path into a new session.
+
 ## Automatic resume
 
 A few seconds after startup, the gateway re-dispatches each marked session
@@ -333,6 +348,34 @@ with a synthetic system message telling the agent its previous turn was
 interrupted by a restart and to continue from the existing transcript. If a
 final reply had already been produced but not delivered, its text is included
 so the agent can deliver it instead of redoing the work.
+
+The restart does not cancel the user's task. The agent checks the current state,
+reconciles tool results whose outcomes are unknown, and continues without asking
+the user to repeat the request. Preparing a new message cannot consume the
+interruption marker; the recovery owner retains it until work is adopted or
+settled.
+
+When a recovered turn starts with an eligible channel delivery route, OpenClaw
+sends a resumption notice to that conversation, retaining its account and topic.
+The final reply uses the same delivery route. Transcript-only turns stay private,
+and a turn that has already finished does not receive a late resumption notice.
+A failed notice does not restart or replay the recovered work. Main-session
+resumption notices are best-effort and live-only: automatic-delivery permission and the recovery
+owner are rechecked immediately before the channel send. They are not replayed
+from the outbound queue; terminal-failure notice retries and normal final-reply
+delivery are unchanged.
+
+Telegram renews its typing indicator while the recovered turn runs. Typing stops
+when the turn settles, its recovery owner changes, or the gateway closes, and
+respects `typingMode: "never"`. Other channels can opt in through the guarded
+typing hook; unsupported channels still receive the resumption notice.
+
+Channel plugins opt in with `heartbeat.sendTypingGuarded(...)`. Alongside the
+recovery delivery target, core supplies an `AbortSignal` and an
+`assertPlatformSendAuthorized` callback. Plugins must honor cancellation through
+queued sends and invoke the callback immediately before the platform request,
+after asynchronous preparation. Recovery does not fall back to the unguarded
+`heartbeat.sendTyping(...)` hook.
 
 Startup reconciliation retries transient failures up to three times with
 exponential backoff. Separately, each interrupted main-session cycle has a
@@ -439,6 +482,10 @@ not exhaust the obligation. Existing delivery retry limits still apply.
 Settling a yielded turn's wake leaves its unfinished task and final delivery
 intact. A completed cancellation can also finish wake bookkeeping after its
 task record expires, without recreating the task or repeating cleanup.
+Recovery reconciles an expired cancellation's retained marker before retrying
+its requester wake, preserving the original cleanup record. Live child cancellation
+can wake a waiting requester while normal cleanup reconciliation completes.
+A delayed cancellation callback cannot reopen completed cleanup.
 
 Two safety valves apply:
 

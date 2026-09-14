@@ -68,11 +68,21 @@ callable functions.
 
 The arrow in each quick-index line describes the callable function's value.
 `-> Array<{ id: string }>` is a declared output hint; `-> ?` is output unknown.
-Unknown outputs stay raw-first: return the value unchanged, observe it, then
-filter or map it in a later `exec` instead of feeding guessed fields into
-dependent logic in the same program. This also
-applies when a declared-output read feeds a final `-> ?` call: return that
-call's raw value without wrapping it in the requested answer shape.
+For unknown outputs, return the value unchanged or return
+`await results.save(value)` for a bounded preview. Observe the raw value or
+preview before filtering or mapping in a later `exec`; do not feed guessed
+fields into dependent logic in the same program. This also applies when a
+declared-output read feeds a final `-> ?` call: return or save that final raw
+value without wrapping it in a guessed answer shape.
+
+`results.load(id)` returns a detached JSON copy for later cells in the same
+agent run, and `results.delete(id)` frees capacity. Read `results.d.ts` through
+`API.read` for types, limits, and lifetime, or see
+[Reuse data across cells](/tools/code-mode/quickstart#reuse-data-across-cells).
+Oversized final objects and arrays may return an automatic `value.reference`
+instead of an unrecoverable display prefix; use its `id` with `results.load`.
+Larger previews show explicitly sampled paths, counts, and observed shapes.
+These samples are not schemas; load the original value before processing full data.
 
 ```typescript
 type ToolCatalogMetadata = {
@@ -80,14 +90,15 @@ type ToolCatalogMetadata = {
   toolName: string;
   label?: string;
   description: string;
-  source: "openclaw" | "client";
+  source: "openclaw" | "client" | "mcp";
+  apiPath?: string;
   input?: string;
   output?: string;
 };
 
 type ToolCatalogHandle = ((input?: unknown) => Promise<unknown>) &
   ToolCatalogMetadata & {
-    describe(): Promise<ToolCatalogDescription>;
+    describe(): Promise<ToolCatalogDescription | McpCatalogDescription>;
     toJSON(): ToolCatalogMetadata;
   };
 ```
@@ -106,8 +117,22 @@ or plugin `outputSchema`. MCP and client output-schema claims are not promoted
 into this trusted catalog hint.
 
 Plugin tools use `source: "openclaw"`; there is no separate `"plugin"` source
-value. MCP entries are excluded from generic catalog discovery and remain
-available only through `MCP`.
+value. Search includes visible MCP tools using the same ranking and total result
+limit as native tools. An MCP handle has `source: "mcp"`, a fully qualified
+`callableName` such as `MCP.accounting.listInvoices`, the original MCP
+`toolName`, and an `apiPath` such as `mcp/accounting.d.ts`. Its remote description
+is limited to 512 UTF-16 code units without splitting surrogate pairs; input and
+output hints remain absent. Returning or emitting MCP discovery metadata uses
+the normal untrusted-content wrapper, even if no MCP tool is called.
+
+MCP handles invoke the existing namespace path with one object argument, including
+its input defaults, policy checks, approvals, and native MCP result projection.
+Their `describe()` returns the exact tool's `$api(method, { schema: true })`
+header and schemas. A normalized method name takes precedence over a colliding
+original tool name when selecting a `$api` declaration. Use `API.read(handle.apiPath)` for the entire server's
+TypeScript declaration. Search also accepts the fully qualified `callableName`.
+`catalog.all()` continues to list only native and client handles; searching does
+not add remote tools to that list or to the trusted quick index.
 
 Full schema is loaded only on demand:
 
@@ -116,6 +141,20 @@ type ToolCatalogDescription = Omit<ToolCatalogMetadata, "toolName"> & {
   name: string;
   parameters: unknown;
   outputSchema?: unknown;
+};
+```
+
+MCP description shape:
+
+```typescript
+type McpCatalogDescription = {
+  kind: "mcp_api";
+  scope: "tool";
+  server: { identifier: string; serverName: string };
+  header: string;
+  tools: unknown[];
+  schemas: Record<string, unknown>;
+  note: string;
 };
 ```
 
@@ -143,7 +182,9 @@ const status = await node.invoke("device.status");
 ```
 
 `nodes.list()` returns paired node ids, names, platforms, connection state, and
-advertised commands. `nodes.get(idOrName)` resolves an exact id before a display
+advertised commands. TypeScript preflight knows these fields and the node handle
+methods. Command parameters and results remain `unknown` because each node
+command defines its own payload; check the result before composing it. `nodes.get(idOrName)` resolves an exact id before a display
 name and returns a handle with `id`, `name`, and `invoke(command, params?)`.
 Invocation uses the normal `nodes` tool path, so pairing, command policy, scopes,
 approvals, timeouts, hooks, and telemetry are unchanged. A handle includes
@@ -165,8 +206,9 @@ const schema = await search.describe();
 const hits = await search({ query: "OpenClaw code mode" });
 ```
 
-Calling a global or catalog handle returns the normal tool's JSON `details`
-value directly. Exact catalog ids and raw `{ tool, result }` envelopes are not
+Calling a native global or native catalog handle returns the normal tool's JSON `details`
+value directly. MCP handles retain the native MCP result (`content`, optional
+`structuredContent`, and optional `isError`). Exact catalog ids and raw `{ tool, result }` envelopes are not
 guest-visible.
 
 The `ls`, `find`, and `grep` tools include their bounded listing or search text

@@ -16,7 +16,7 @@ OpenClaw serializes inbound auto-reply runs (all channels) through a tiny in-pro
 
 ## How it works
 
-- A lane-aware FIFO queue drains each lane with a configurable concurrency cap (default 1 for unconfigured lanes; `main` uses `min(16, max(8, available CPU parallelism))`, and `subagent` defaults to 8).
+- A lane-aware FIFO queue drains each lane with a configurable concurrency cap (default 1 for unconfigured lanes; `main` uses `max(8, available CPU parallelism * 4)`, and `subagent` defaults to 8).
 - CLI, embedded, and Codex runs share the same **session-key lane** (`session:<key>`). Each turn waits there before acquiring the session's execution claim, so changing runtimes cannot start a competing turn.
 - Each session run is then queued into a **global lane** (`main` by default) so overall parallelism is capped by `agents.defaults.maxConcurrent`.
 - Embedded attempt preparation starts one stage per event-loop turn so concurrent starts leave room for Gateway requests. Asynchronous stage work can still overlap; this does not lower the run concurrency limit or change session serialization.
@@ -146,10 +146,16 @@ not a local-mode command.
 
 ## Input durability
 
-Ordinary Control UI input sent to an existing session is stored in the per-agent database
-before the Gateway acknowledges it. In `collect` mode, appending the combined
+Ordinary user input sent through `chat.send` to an existing session is stored in the per-agent database
+before the Gateway acknowledges it. This includes the Control UI, TUI, CLI, native apps, and RPC clients.
+Other connected clients can display the accepted input while it waits, without waiting for a new agent turn.
+In `collect` mode, appending the combined
 turn and marking its source inputs consumed happen in one transaction. A browser
 reconnect can reconcile those source inputs even if it missed their final events.
+
+The chat displays recorded client sources separately from the sender, for example `Alice · via CLI`.
+Reported app names describe the submitting client; they do not establish a human identity or grant permissions.
+Collected messages retain their contributing client sources, and older messages without recorded sources keep their existing attribution.
 
 This preserves input, not execution permissions. If the Gateway stops before a
 queued input reaches the transcript, it appears as interrupted input after

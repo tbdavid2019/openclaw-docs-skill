@@ -88,6 +88,14 @@ openclaw update repair --json
 openclaw update repair --accept-capabilities
 ```
 
+If an older updater publishes the new core but then reports
+`update-executor-settlement-failed` with `Parent executor is suspended for its candidate.`,
+wait for that updater to exit and run `openclaw update repair --yes --json` from
+the updated installation, preserving its profile and state/config overrides.
+This finishes Doctor and post-core convergence through a fresh owner. Check the
+repair result before restarting an already stopped Gateway through its service
+owner. Updating the candidate cannot change the older updater already in memory.
+
 | Flag                                             | Description                                                                                                                                                                                                                                                                                      |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `--channel <stable\|extended-stable\|beta\|dev>` | Persist the core update channel before repair. For extended-stable, eligible official npm and trusted official ClawHub plugins that follow bare/default or `latest` intent target the exact installed core version. Extended-stable repair is rejected on Git checkouts without changing config. |
@@ -120,8 +128,9 @@ JSON output identifies reconciled run IDs in
 `reconciledRuns`, with `status: "ok"`, `mode: "repair"`, and `restart: false`.
 
 Repair invoked within the owning update can continue when its inherited run ID
-and live process identity match that owner. The run records the continuation,
-and Doctor can use its normal maintenance lifecycle: stop the owned Gateway,
+and live process identity match that owner. Standalone repair records the same
+continuation for its new run and passes that run ID to its Doctor children.
+Doctor can then use its normal maintenance lifecycle: stop the owned Gateway,
 repair state, then restore and verify the same service. Doctor only restarts a
 service that it stopped; an already stopped service stays stopped. The owning
 run remains active while its driver is alive. If that driver exits during
@@ -132,7 +141,8 @@ restart the Gateway. Normal update finalization without this explicit repair
 continuation still leaves activation to its parent.
 
 An unrelated update whose driver is live or cannot be inspected still blocks
-repair, even after a long period without activity. The refusal identifies the
+repair, even after a long period without activity. Manual `doctor --fix` also
+refuses to stop a service while that update is active. The refusal identifies the
 owning run, phase, driver PID, host, start and last-activity times and ages, and observed liveness (`alive` or
 `not observed`). Wait for that update to finish, or stop the named driver on its
 host and rerun `openclaw update repair` after it exits. Elapsed inactivity alone
@@ -160,9 +170,9 @@ refreshes the plugin registry, and writes converged install-record metadata.
 Configured runtime plugins whose versions follow OpenClaw are checked against
 the newly installed core during post-update repair, even when the updater process
 started on the previous version.
-It does not install a new core package or request update activation. Standalone
-repair does not restart the Gateway; a verified owning-run continuation can
-restore the service after Doctor maintenance as described above.
+It does not install a new core package or request update activation. Doctor can
+restore a service stopped for maintenance by a verified repair invocation,
+including standalone repair, as described above.
 Human output ends with a finalization result that distinguishes completion,
 completion with warnings, and failure.
 
@@ -206,10 +216,16 @@ step fails. Codex runtime readiness remains owned by its plugin after restart.
 
 Finalization (including the supervisor-facing `update finalize` command) records
 phase starts and finishes immediately on stderr and in the update run ledger.
-The defaults are 30 seconds for preflight admission, config validation, config backup, and completion
-cache work; 120 seconds for Doctor migrations; 600 seconds for plugin registry
-and installation work; and 180 seconds for post-plugin Doctor and validation.
-`--timeout` overrides each phase budget.
+Preflight admission, config validation, config backup, and core completion-cache
+budgets scale with the shared SQLite database and its sidecars, with a five-minute
+startup allowance and conservative disk throughput. Repair Doctor and its enclosing
+convergence phase have no automatic wall-clock deadline. Post-plugin config and
+readiness checks share a budget derived from the existing shared and discovered
+agent database families after Doctor finishes, including WAL growth. Plugin
+updates retain the command owner's 20-minute allowance; missing-plugin repairs
+retain their installer defaults. The serial plugin phase and
+outer finalizer process add no competing default deadline. An explicit `--timeout`
+still overrides each phase and its child commands.
 
 A phase deadline produces exit code 1 and JSON with `status: "failed"`,
 `stuckPhase`, `elapsedMs`, `error`, and the existing `phaseTimings` array. The

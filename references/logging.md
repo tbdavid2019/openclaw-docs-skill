@@ -361,6 +361,23 @@ operations lasting at least one second after they return or throw:
   callback and delivery of its settlement. It can include multiple Git commands
   and does not identify a queue holder or every predecessor.
 
+Removal also records the stages reached inside `bodyMs`:
+
+- `preparationMs`: authority and removal-claim checks, repository rebinding, and
+  worktree lock inspection or unlock.
+- `snapshotMs`: snapshot preparation and publication, including provisioned-file
+  capture and snapshot-failure cleanup.
+- `checkoutRemovalMs`: deletion admission checks and physical Git worktree
+  removal through result validation.
+- `bodyFinalizeMs`: branch deletion, prune, empty-parent cleanup, registry
+  finalization, or removal-claim cleanup after failure. This is distinct from
+  `finalizeMs`, which measures the allocation-lease wrapper's final settlement.
+
+Unreached stages are absent; a reached stage can report zero milliseconds.
+Exceptions close the active stage and include claim cleanup in `bodyFinalizeMs`.
+These fields subdivide the admitted body, not individual Git commands or CPU
+work. They use the same completion record and rate budget.
+
 Both records include `durationMs` in integer milliseconds, `callbackEntered`, and
 `outcome` (`returned` or `threw`). Removal that never enters its callback reports
 all elapsed time as `admissionMs` and omits `bodyMs` and `finalizeMs`. Git directory
@@ -466,6 +483,10 @@ Hot transcript reads identify their purpose in `operation`: `session transcript
 distinguish readers without retaining session IDs or transcript content. Nested
 reads remain part of the outer transaction's timing; older warnings use the
 generic `session transcript hot read` label.
+
+`session branch summaries read` covers the snapshot read and branch-summary
+computation. Stored sessions perform this work in a background Worker; incognito
+sessions use their process-held database. Cache hits do not perform this scan.
 
 Immediate `BEGIN` warnings also include `beginAdmission`: `nativeAttempts` counts
 actual native `BEGIN IMMEDIATE` calls and `nativeMs` measures those calls;

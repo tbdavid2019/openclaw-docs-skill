@@ -8,6 +8,13 @@ title: "openclaw status"
 
 Diagnostics for channels + sessions.
 
+Task counts and audit totals use a read-only metadata summary. Retained task
+payloads and delivery history are not loaded for each status request, and
+overlapping requests share the pending summary read. Database work runs on the
+shared SQLite worker; live task ownership is still checked by the Gateway.
+These summaries are not a full physical database-integrity check. Full registry
+restoration and Doctor retain their integrity verification.
+
 ```bash
 openclaw status
 openclaw status --all
@@ -141,6 +148,8 @@ Use `openclaw skills check --agent <id>` to inspect the missing requirements.
 
 ## Overview and update status
 
+- The **Sessions** overview counts stored conversation rows, including archived
+  rows. Running turns and recent activity are separate from this inventory.
 - Overview includes Gateway + node host service install/runtime status when
   available, plus compact Gateway process uptime and host system uptime.
 - `status --all` shows returned host, IP, version, and platform in **Gateway self**.

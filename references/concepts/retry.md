@@ -37,6 +37,8 @@ Agent runs automatically recover from temporary rate limits, overloads, and prov
 
 Recovery continues the existing transcript with an instruction to preserve completed work and inspect interrupted actions before deciding whether to repeat them. It can recover a throttle after tool activity or partial output without resubmitting the original user request. The run shows one transient retry indicator while waiting and remains cancellable. Recovered attempts do not leave persisted assistant errors; only terminal failure retains one error. Billing failures, authentication errors, and provider refusals do not use this transient retry budget.
 
+In the embedded runtime, a model idle timeout after tool activity also uses this recovery when every tool in the latest batch has a recorded result and all tool execution has settled. The next attempt keeps tools available to finish the task, including handling a recorded tool failure. Pending approval, asynchronous tool activity, intentional tool termination, cancellation, and the run deadline still prevent this continuation. Completed actions are not resubmitted.
+
 A Responses stream that ends before its terminal event also qualifies for transient recovery, including when a tool call is still unfinished. Partial tool arguments are never executed. A completed response with inconsistent tool-call identities does not qualify as a disconnected stream.
 
 Exhausted subscription, daily, weekly, or monthly usage windows go directly to eligible auth-profile or model fallback. A long `Retry-After` value alone does not establish usage-window exhaustion: temporary throttles still honor the provider's minimum wait.
@@ -46,6 +48,24 @@ The [model failover controller](/concepts/model-failover#model-fallback) owns th
 ChatGPT SSE errors preserve HTTP status and `Retry-After` together, so a transient HTTP response remains retryable even when its message or provider code is unfamiliar. The ChatGPT transport separately reconnects once for `websocket_connection_limit_reached` before streaming; this is not an SSE HTTP-response retry.
 
 For SDK calls that retain internal retries, Stainless-based SDKs such as Anthropic and OpenAI can receive `retry-after-ms` or `retry-after` on retryable responses (`408`, `409`, `429`, and `5xx`). When that wait is longer than 60 seconds, OpenClaw injects `x-should-retry: false` so the SDK returns control promptly. Override this SDK-only cap with `OPENCLAW_SDK_RETRY_MAX_WAIT_SECONDS=<seconds>`. Set it to `0`, `false`, `off`, `none`, or `disabled` to let those SDK calls honor long `Retry-After` sleeps internally.
+
+### Managed Git operations
+
+The shared Git runner retries transient `fetch` and `ls-remote` failures once,
+after a one-second delay within the command's original timeout. This includes
+incomplete object transfers, connection resets, temporary DNS failures, and
+transient HTTP errors. Managed project clones use the same policy and remove
+their failed partial checkout before retrying. Cancellation stops the retry,
+and workspace or publication authority is checked again before another attempt.
+Each scheduled retry writes a `git/network` warning with the operation, attempt
+count, delay, and exit code. It omits command arguments, repository URLs, and raw
+Git output.
+
+Authentication failures, missing repositories or refs, local storage failures,
+process termination, and exhausted command timeouts are not retried. `push` and
+`pull` are not replayed by this runner: a failed connection can follow an accepted
+write, so publication keeps its existing remote-outcome reconciliation. This
+policy does not wrap arbitrary Git commands run by agents or setup scripts.
 
 ### Discord
 

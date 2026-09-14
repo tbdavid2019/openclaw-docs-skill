@@ -10,6 +10,8 @@ Run shell commands in the workspace. `exec` is a mutating shell surface: command
 
 Supports foreground and background execution via `process`. If `process` is disallowed, `exec` runs synchronously and ignores `yieldMs`/`background`. Background sessions are scoped per agent. `process` only sees sessions from the same agent.
 
+Completed calls return command output directly. Use `process` only when `exec` reports that a command is still running and provides a `sessionId`; an identifier printed by the command is ordinary output, not a process handle.
+
 ## Parameters
 
 <ParamField path="command" type="string" required>
@@ -82,7 +84,8 @@ Notes:
 - Important: sandboxing is **off by default**. If sandboxing is off, implicit `host=auto` resolves to `gateway`. Explicit `host=sandbox` still fails closed instead of silently running on the gateway host. Enable sandboxing or use `host=gateway` with approvals.
 - Script preflight checks (for common Python/Node shell-syntax mistakes) only inspect files inside the effective `workdir` boundary. If a script path resolves outside `workdir`, preflight is skipped for that file. Preflight also skips entirely when `host=gateway` and the effective policy is `security=full` with `ask=off`.
 - For long-running work that starts now, start it once and rely on automatic completion wake when it is enabled and the command emits output or fails. Use `process` for logs, status, input, or intervention. Do not emulate scheduling with sleep loops, timeout loops, or repeated polling.
-- Agent-started background commands appear in the Web, iOS, and Android background-task views until they finish. The task ledger is finalized before the completion heartbeat wakes the agent again.
+- Subagent sessions do not receive automatic background-exec wakes. Collect the result with `process poll` before yielding without another completion source. With secret egress enabled, leaving the owning run also expires the command's proxy access; start a new command from an active run to obtain current access.
+- Agent-started background commands appear in the Web, iOS, and Android background-task views until they finish. Each task shows a compact command preview with sensitive values redacted; long commands are truncated. The task ledger is finalized before the completion heartbeat wakes the agent again.
 - For work that should happen later or on a schedule, use cron instead of `exec` sleep/delay patterns.
 
 ## Config
@@ -133,6 +136,10 @@ Example:
 Use `/exec ask=always` with a message to require human approval for that run. It does not persist to later messages. Use [session permission modes](/gateway/permission-modes) for session-wide policy.
 
 Auto-review approval is single-use. The reviewer returns `allow`, `deny`, or `ask`: `allow` runs a low- or medium-risk command once. `deny` returns a reason to the agent, which must choose a materially safer alternative or ask the user rather than work around the denial. `ask` requests human approval. Commands containing reviewer-directed text are denied back to the agent so it can rewrite the command. They do not directly escalate to human approval. Reviewer failures, timeouts, and invalid responses also ask a human. On the gateway, three consecutive reviewer denials for a session escalate the third command to human approval. A reviewer allowance or resolved human approval resets the count.
+
+Set `tools.exec.reviewer.thinking` to `minimal`, `low`, `medium`, `high`, `xhigh`, or `max` to choose the reviewer reasoning effort independently of the main agent. For example, `reviewer: { model: "openai/gpt-5.6-terra", thinking: "low" }` requests low-effort reviews. Supported levels are normalized for the selected model. Omit `thinking` to preserve the existing provider default; the reviewer does not inherit the main agent's thinking setting. The same setting is available under `agents.entries.<id>.tools.exec.reviewer`. It also applies to model-backed widget reviews, but does not configure Codex's native Guardian reviewer.
+
+Set `tools.exec.reviewer.fastMode` to `true` to request Fast processing on supported OpenAI Responses and ChatGPT/OAuth routes, or `false` for standard processing. For example, `reviewer: { model: "openai/gpt-5.6-terra", thinking: "low", fastMode: true }` requests both low reasoning effort and priority processing. Omit `fastMode` to preserve provider defaults. This setting is independent of the main agent's Fast mode and is also available per agent. Priority processing may cost more and remains subject to provider/model availability; other providers may ignore the setting.
 
 Model preparation and completion each receive the configured `tools.exec.reviewer.timeoutMs` budget. A timeout returns to human approval immediately. Pending preparation and provider cleanup remain owned until they settle. Preparation that finishes after its timeout does not start a review.
 

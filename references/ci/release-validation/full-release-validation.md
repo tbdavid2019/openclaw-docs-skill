@@ -97,11 +97,23 @@ For pinned commit proof on a fast-moving branch, use the helper instead of
 ```bash
 TOOLING_SHA="<recorded-full-main-ancestor-sha>"
 VALIDATION_SHA="<full-release-candidate-sha>"
+PUBLICATION_SELECTION='{"route":"normal","npmDistTag":"latest","publishOpenclawNpm":true,"pluginPublishScope":"all-publishable","plugins":[]}'
 pnpm ci:full-release \
   --sha "$VALIDATION_SHA" \
   --target-ref release/YYYY.M.PATCH \
-  --workflow-sha "$TOOLING_SHA"
+  --workflow-sha "$TOOLING_SHA" \
+  -f validation_purpose=publish \
+  -f publication_selection_json="$PUBLICATION_SELECTION"
 ```
+
+Choose `npmDistTag=beta` for a beta and `route=prepared` only for an intended
+prepared-button consumer. Source admission verifies committed metadata; fresh
+publish runs also retain separate selected npm and ClawHub registry admission
+before fanout. Neither grants publication authority. See
+[Dispatch](/reference/full-release-validation/dispatch) for both contracts.
+For nonpublish work, explicitly select
+`diagnostic`, `main-qualification`, or `postpublish-confidence` and omit the
+publication selection; profile and filters still select the actual coverage.
 
 GitHub workflow dispatch refs must be branches or tags, not raw commit SHAs. The
 helper pushes a temporary `release-ci/<sha>-...` branch at a trusted Tooling
