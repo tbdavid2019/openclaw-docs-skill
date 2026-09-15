@@ -296,6 +296,160 @@ OpenTelemetry log export is enabled, using the same bounded attributes as file
 logs. Configure `diagnostics.otel.logsExporter` to choose OTLP, stdout JSONL, or
 both sinks.
 
+### Embedded attempt preparation
+
+Embedded `prep stages` summaries separate two tool-preparation intervals:
+
+- `bundle-tools`: awaited MCP/LSP preparation, tool normalization and policy
+  projection, measured after preparation admission.
+- `tool-catalog`: synchronous catalog construction, including Code Mode or tool
+  search when enabled, schema projection and tool diagnostics.
+
+`tool-preparation` is an inclusive checkpoint from the preceding bootstrap
+checkpoint. It includes both intervals, preparation admission waits and the
+remaining bootstrap work. These entries overlap: do not sum them or interpret
+them as CPU time. Later permission refreshes do not append initial-preparation
+entries. The conditional Code Mode and tool-search catalog messages still report
+their original activation/compaction events.
+
+Older summaries charged bundle waiting to `code-mode` or `tool-search` and used
+`bundle-tools` for a later bookkeeping checkpoint. Those names do not provide
+the same timing boundaries as the corrected spans.
+
+The summary keeps its existing identity fields and warning thresholds: ten
+seconds total or five seconds in any recorded stage; faster summaries use trace
+logging. A missing summary does not prove preparation completed without delay.
+
+### Session catalog provider waits
+
+With process diagnostics enabled, the `gateway/session-catalog` logger records
+`slow session catalog provider list` for attempts that settle after at least one second. It separates
+`admissionWaitMs`, `providerElapsedMs`, and `completionDelayMs`: waiting for
+catalog provider admission, elapsed time inside the provider call, and the
+continuation after settlement and queue release. These are elapsed intervals,
+not CPU measurements. The Gateway's earlier operator-start queue is separate.
+
+`admitted` and `providerInvoked` distinguish an attempt that never entered the
+queue's active slot from one that called the provider. Unreached intervals are
+omitted. `outcome` reports the attempt's resolution or rejection;
+`signalAborted` reports the signal independently and does not identify an error's
+cause or prove that native work stopped. Provider slots remain owned until their
+returned promises settle, including after cancellation.
+
+`providerIdHash` hashes provider IDs of at most 256 UTF-16 units; longer IDs omit
+the field. It supports correlation, not anonymization or authorization. Host
+summaries count only returned gateway/node kinds, connection flags and error
+presence, inspecting at most 512 hosts. `returnedHostCount` reports the full
+array length and `hostCountsComplete=false` marks partial counts. No session rows,
+host IDs, provider labels, search text or error messages are included.
+
+Each summary describes an underlying provider attempt. Cached and in-flight
+followers can receive several RPC responses from that one attempt. Later
+`waitUntil` host publications have a separate lifetime and are not included in
+the provider duration or returned-host counts. The log does not prove client
+receipt, identify which native operation was slow, or cover attempts that never
+settle. Missing records do not establish that there were no stalls.
+
+### Codex catalog phases
+
+The same `gateway/session-catalog` logger records three Codex summaries when
+process diagnostics and warning-level logging are enabled. Each summary is
+emitted only after its observed operation settles and takes at least one second:
+
+- `slow Codex catalog list phases` covers the plugin's list operation.
+  `managedSnapshotMs`, `controlWaitSumMs`, `exclusionMarkSumMs`, `adoptionSumMs`
+  and `mappingMs` identify reached work. Counts include `localHostCount`,
+  `controlPageCalls`, `exclusionMarkCalls` and `adoptionCalls`.
+  `managedSnapshotMs` is absent when the optional snapshot method or store is
+  unavailable. `nodeRegistryCalls` and `nodeRegistryMs` measure the existing node
+  registry invocation; `pairedNodeCalls`, `pairedNodeSettled` and `nodeWaitSumMs`
+  describe the paired-node promises reached by the list. Cache counters
+  `coldStarts`, `refreshStarts`, `freshHits`, `staleHits` and `pendingJoins`
+  distinguish new producers, background refreshes, immediate cached delivery
+  and callers awaiting an existing cold page.
+- `slow Codex catalog page producer` measures one control-page calculation.
+  `listOperationId` identifies its originating list when observed. `origin` is
+  `cold`, `refresh` or `uncached`. `controlRequestCalls` counts
+  entered control requests; `inclusiveControlRequestWaitMs` sums their elapsed
+  waits and `inclusiveControlRequestWaitMaxMs` reports the longest one.
+  `postResponseMs` covers subsequent provenance checks and page projection.
+  `provenanceChecks`, `provenanceCacheHits`, `provenanceReadCalls` and
+  `provenanceMs` describe the existing provenance path. `provenanceReadCalls`
+  counts calls to the metadata reader, not filesystem read syscalls or chunks.
+  `stopReason`, when reached, is `exhausted`, `limit` or `page-bound`.
+- `slow Codex catalog cache wait` measures a caller waiting for a pending cold
+  page. `producerOperationId` links it to an observed producer;
+  `listOperationId` links the surrounding list when available.
+  `producerObserved=false` means the producer's diagnostic identity is
+  unavailable, not that no producer exists.
+
+Rejected control calls can add `controlFailurePhase` and
+`controlFailureCategory` to the page-producer summary. The phase identifies the
+logical request boundary that reported the error:
+
+| `controlFailurePhase` | Boundary                                                                                                         |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `load-control`        | Loading the control module.                                                                                      |
+| `prepare`             | Options, guards, imports, or argument/budget evaluation before acquisition or client API entry.                  |
+| `acquire-client`      | Shared-client selection, process-registration preparation, possible startup, authentication, and initialization. |
+| `client-request`      | The client API was invoked; readiness and shared native-request waiting can still occur inside it.               |
+| `release-client`      | Lease release or cleanup, including a later deadline decision after cleanup.                                     |
+
+Categories are `deadline-observed`, `scoped-rejection`,
+`rpc-method-unavailable` (typed RPC error code `-32601`), `rpc-error`, or `other`.
+They use existing owner decisions and typed errors, without copying exception
+messages, stacks, response data, or arbitrary error codes. Plain startup,
+transport, and other unclassified errors remain `other`; the category does not
+identify their cause. Public unavailable-host messages remain sanitized.
+
+Successful cleanup preserves an earlier error's phase unless the outer request
+owner observes its deadline. For `deadline-observed`, the phase is the active
+stage at that later decision, even if cleanup just completed. For example,
+`release-client/deadline-observed` can follow budget exhaustion before the client
+API was ever invoked; it does not prove cleanup caused the deadline. A cleanup
+error that replaces the request error reports `release-client`. Internally
+handled retries and successful requests do not publish failure fields, and late
+callbacks cannot overwrite a settled observation.
+
+These fields do not prove a native request was written, a native process failed,
+or a response reached the client. The containing list can resolve with an
+unavailable host after a control call rejects.
+
+`operationId` is local to `diagnosticEpoch`, PID and thread. It is not a session,
+native request or audit execution identity. One producer can serve several
+waiters, and a stale refresh can continue after a list returns. `outcome=resolved`
+means that the observed operation returned; a resolved list can include
+disconnected or error-bearing hosts.
+
+All timings are elapsed time, including asynchronous waits. The inclusive
+control-request interval does not isolate physical request writes, wire latency,
+native processing or cleanup; it does not prove that a native process stopped.
+Provenance time is included in post-response time, and host work can overlap,
+so sums need not partition the list's elapsed time. `nodeWaitSumMs` sums existing
+paired-node promise waits; it is not a disjoint node phase or proof of native
+completion. If the list closes while a child promise is unsettled,
+`pairedNodeCalls` can exceed `pairedNodeSettled` and the sum is partial. Later
+host publications retain their separate lifetime. Unreached timings are omitted,
+while a reached stage may report zero milliseconds.
+
+The tracker admits at most 64 active diagnostic observations per JavaScript
+runtime isolate and shares a budget of 60 records per fixed 60-second window
+across these three summaries. These limits suppress observations, not catalog
+work. Each record's metadata is capped at 28 scalar fields and 2 KiB, excluding
+the logger envelope. `omittedObservations` reports accumulated capacity, rate
+or metadata-limit suppression on a later emitted record. Window-boundary bursts
+remain possible. Disabled diagnostics, logging levels, short operations,
+non-settlement or logging failures can also leave no record.
+
+The records contain fixed labels, counts, timings and diagnostic operation
+identity. They omit connection fingerprints, queries, cursors, homes, paths,
+session/thread identifiers, titles, credentials and raw errors. Existing trace
+context may accompany the log; no trace or audit identity is created. These are
+ordinary performance logs and do not change [audit collection](/gateway/audit),
+authorization, cache behavior or deadlines. Their sanitized attributes may flow
+through an already-enabled [OpenTelemetry log exporter](/gateway/opentelemetry/privacy-and-trace-context)
+even when content capture is off. Missing logs do not prove an absence of stalls.
+
 ### Lifecycle queue waits
 
 When process diagnostics are enabled, the `sessions/lifecycle` logger emits

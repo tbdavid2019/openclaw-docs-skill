@@ -127,10 +127,11 @@ you open a different agent's chat in team mode. Turning team mode off clears the
 remembered value after restoring it. You can still
 choose a narrower scope; navigating between pages does not reset that choice.
 Automations, Dashboards, Sessions, Tasks, and Usage support all-agent views, with
-agent identity shown on mixed-agent rows. Memory, Model providers, and Skill
-Workshop stay scoped to one agent. Open an agent's main chat from its group header
-to select that agent before visiting those pages; chat actions always belong to
-the conversation's agent.
+agent identity shown on mixed-agent rows. In Settings, choose an agent below the
+sidebar title to keep the same target across Agents, Models, Memory, and Skills.
+Global settings remain global. Skill Workshop uses the agent selected through
+chat; open an agent's main chat from its group header to select it. Chat actions
+always belong to the conversation's agent.
 
 Choose **All sessions** from an agent group’s options menu to open the Sessions
 page filtered to that agent. Open **Agents** in the sidebar to return to the roster
@@ -156,6 +157,7 @@ is absent from the window, its agent's most recent session supplies the preview.
 
 - [Connect and pair](/web/control-ui/connect-and-pair) — pair a browser or phone, reach the UI over Tailscale, and fix a blank page.
 - [Sessions and sidebar](/web/control-ui/sessions-and-sidebar) — sidebar zones, session menus, and the New session page.
+- [Systems workspace](/web/control-ui/sessions-and-sidebar#systems-workspace) — contextual machine navigation and a desktop-first workspace.
 - [Chat](/web/control-ui/chat) — composer controls, the session rail, transcript rendering, and hosted embeds.
 - [Panels and docks](/web/control-ui/panels) — Ask OpenClaw, the Home dock, the operator terminal, and the browser panel.
 - [Settings](/web/control-ui/settings) — identity, appearance, plugins, updates, MCP, activity, and meetings.

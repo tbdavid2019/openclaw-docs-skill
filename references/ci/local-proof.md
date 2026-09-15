@@ -67,6 +67,11 @@ pnpm test:extensions:memory -- --json .artifacts/openclaw-performance/source/moc
 pnpm perf:kova:summary --report .artifacts/kova/reports/mock-provider/report.json --output .artifacts/kova/summary.md
 ```
 
+The Gateway watch regression check starts its idle CPU window only after readiness
+and the settle period. Startup and early-exit failures still fail the check. Missing
+CPU samples from an otherwise valid window fail measurement; whole-run CPU is
+reported separately and never compared with the idle thresholds.
+
 The native source gate covers catalog-owned macOS, iOS, and shared Apple source
 roots. Linux-runnable source extraction requires explicit typed localized formats
 (for example, `String(format: String(localized: "Expires in %lld minutes"), minutes)`
@@ -390,6 +395,24 @@ pnpm crabbox:stop -- --provider aws <cbx_id-or-slug>
 Under AWS pressure, avoid `class=beast` unless the task really needs 48xlarge-class CPU. A `beast` request starts at 192 vCPUs and is the easiest way to trip regional EC2 Spot or On-Demand Standard quota. The repo-owned `.crabbox.yaml` defaults to `class: standard`, on-demand market, and `capacity.hints: true` so brokered AWS leases print selected region/market, quota pressure, Spot fallback, and high-pressure class warnings. Use `fast` for heavier broad checks, `large` only after standard/fast are not enough, and `beast` only for exceptional CPU-bound lanes such as full-suite or all-plugin Docker matrices, explicit release/blocker validation, or high-core performance profiling. Do not use `beast` for `pnpm check:changed`, focused tests, docs-only work, ordinary lint/typecheck, small E2E repros, or Blacksmith outage triage. Use `--market on-demand` for capacity diagnosis so Spot market churn is not mixed into the signal.
 
 `.crabbox.yaml` owns provider, sync, and GitHub Actions hydration defaults. Crabbox sync never transfers `.git`, so the hydrated Actions checkout keeps its own remote Git metadata instead of syncing maintainer-local remotes and object stores, and the repo config additionally excludes local runtime/build artifacts (such as `.artifacts` and test reports) that should never be transferred. `.github/workflows/crabbox-hydrate.yml` owns checkout, Node/pnpm setup, `origin/main` fetch, and the non-secret environment handoff for owned-cloud `crabbox run --id <cbx_id>` commands.
+
+Linux hydration keeps physical workspace `node_modules` directories and pnpm's
+default `.pnpm` virtual store. Only the package-content store uses the persistent
+`/var/cache/crabbox/pnpm/store` volume; its fallback lives at
+`.cache/openclaw-pnpm-store` beside the workspace dependencies. Ordinary POSIX
+sync preserves these ignored directories, so frozen reinstalls and later build
+commands use the same owned install. Hydration checks the tooling loader before
+marking the lease ready. When rehydrating an older lease, the workflow retires
+only its former root links to `/var/tmp/openclaw-pnpm/node_modules` or
+`${XDG_CACHE_HOME:-$RUNNER_TEMP/cache}/openclaw/pnpm/install/node_modules` before
+installing physical workspace dependencies, including links whose runner cache
+was already cleared. It preserves external package caches and unrelated
+dependency links.
+
+Native Windows daemon hydration retains its external dependency junction because
+released Crabbox native Windows delete-sync replaces workspace contents. Move
+that route to physical workspace dependencies only with a Crabbox sync version
+that preserves generated dependency directories.
 
 ## Related
 

@@ -226,6 +226,11 @@ expected version and Git build identity, checks channel readiness, and requires
 HTTP 200 from `/readyz`. Plugin activation or load failures remain named warnings
 when these core checks pass; they do not turn a successful core update into an error.
 
+Managed updates from 2026.9.3 can finish migration through the candidate runtime
+while the original updater retains installation ownership. The candidate checks
+the captured update identity against its live parent before finalizing either a
+Git or npm installation. This continuation does not change the recovery limits below.
+
 A candidate can be running while verification fails. Recovery guidance uses the
 latest observed service state and names the running version when known; an
 earlier activation stop does not mean the service remains stopped.
@@ -483,7 +488,7 @@ the sentinel.
 
 <Steps>
   <Step title="Verify clean worktree">
-    Requires no uncommitted changes.
+    Requires no uncommitted changes. Local edits fail the clean check before installation or service shutdown; the checkout is preserved. Commit your changes and retry, or run `openclaw triage` for help.
   </Step>
   <Step title="Resolve the target">
     Selects the channel's tag or branch and fetches upstream as needed. If the resolved target SHA equals `HEAD`, finishes `skipped` with reason `already-current` before staging or stopping the service.
