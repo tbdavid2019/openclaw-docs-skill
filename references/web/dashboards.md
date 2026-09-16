@@ -25,7 +25,8 @@ core feature, owned by the thread, stored with the agent, and they survive
 
 Open `/dashboards` to browse dashboard-enabled threads as a card gallery. Search
 by thread or author, filter by author, and sort by recent activity or title.
-Select a card to open its owning task using your personal presentation override
+Stored sessions without a matching task URL remain visible as previews without an open link.
+Select a linked card to open its owning task using your personal presentation override
 or the dashboard’s shared default. In fullscreen, choose **Restore split** to
 bring the side panel alongside it. An open Dashboards page updates as threads
 are renamed, archived, or deleted, including
@@ -134,6 +135,9 @@ never needs the agent.
   **Auto height** from the widget menu to fit the content again.
 - **Tabs.** A board can have several pages — say, an overview tab and a
   focused tab with one big widget. Each tab remembers its widget layout.
+  Visited tabs stay loaded while the dashboard is retained, preserving local
+  filters and widget interactions when you switch back. Unvisited tabs load on
+  demand; changed content still refreshes, and removed tabs release their widgets.
 - **Dashboard view.** The board can occupy the main area or a resizable side
   panel. With Dashboard active in the side panel, choose **Swap** in the task
   toolbar, then **Focus** for a dashboard-only view. **Restore split** brings

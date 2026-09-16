@@ -39,6 +39,10 @@ Hover the row or focus it with the keyboard for a tooltip explaining the exact
 status. Reduced motion keeps the claw still. Tasks without a display title keep
 the generic **Subagent** label. Select a row to open its details.
 
+The sidebar keeps unread child failures visible on their ancestors. These warnings
+name the child session that failed, even when its parent has finished or continues
+working. Open the child session to inspect and acknowledge its failure.
+
 Choose **New agent** in the sidebar or Agents home to open the custodian chat.
 It recommends a chief of staff, researcher, writer, reviewer, or a small team
 with all four. Reply with a choice, or describe custom work and a name. Role
@@ -144,7 +148,9 @@ an emoji or generated face appears only when no image is configured or the image
 This behavior is shared by the roster, agent switcher, identity chips, settings, and chat.
 
 Activity and previews on the page and sidebar roster refresh on session events
-and Gateway reconnects. When both are visible, they share one activity window and
+and Gateway reconnects. Continuous events share a paced follow-up refresh: after
+an automatic read, the next waits three times its duration, bounded between one
+and 15 seconds. Reconnects and explicit refreshes bypass that delay. When both are visible, they share one activity window and
 one refresh, so opening **Agents** while team mode is visible does not duplicate requests. Activity loading
 stops when neither roster is visible. Each refresh reads at most 300 sessions
 across agents, loading pinned sessions first and then the most recent sessions.

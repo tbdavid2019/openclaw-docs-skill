@@ -53,6 +53,20 @@ the outcome. Post-core finalization children report back to their parent without
 creating a separate update run, including when an older updater cannot forward
 a run ID.
 
+On an existing profile, update history admission waits for a database writer using
+the update's step timeout (30 minutes by default, or `--timeout`). If that wait
+expires, the command exits successfully with a deferred `update-ledger-busy`
+outcome and retry guidance. It does not claim an update completed or create a run;
+previous history remains visible. A dry-run reports the incomplete preview in
+`notes`. Repair uses its existing preflight budget for the same admission.
+Status and background history work retain their shorter wait budget.
+Hidden post-core finalization returns a nonzero exit with the same deferred
+reason when admission is exhausted. Its Gateway parent records a skipped outcome
+and leaves restart pending until a later update completes plugin convergence.
+Public `update`, `--dry-run`, and `update repair` keep the successful deferral exit.
+This behavior requires the updated CLI: a previously installed updater cannot
+use candidate code before its own history admission completes.
+
 Triage preserves the original update report. Any update launched during repair
 gets a separate `runId`.
 
@@ -125,12 +139,21 @@ catalog-confirmed public check and plugin IDs are included; unknown IDs and code
 remain complete locally and are redacted publicly. Older runs cannot recover facts that their updater did not record. Existing history
 and report size limits still apply.
 
+When a managed-service handoff cannot start or transfer ownership, the Gateway
+records the refusal on the failed `requested` step. Status includes the recorded
+diagnostic after the reason code; chat and failure reports use the same facts.
+Public reports preserve recognized handoff diagnostics, including the instruction
+to run `openclaw doctor` when the installed updater cannot be found. This applies
+once the Gateway runs the updated code; older reports cannot recover missing facts.
+
 Failed finalization steps record their reason code before failure reporting starts.
 Standalone finalization also records the package or Git install kind. For package
 installs it records that package rollback is unnecessary because finalization does
 not replace the core package; this does not claim that Doctor left config or state
-unchanged, or that Gateway health was verified. Failure reports include the failing
-step's first recognized diagnostic line when no process exit code was recorded.
+unchanged, or that Gateway health was verified. Failure reports include recognized
+error codes and causes from the failing step's retained diagnostics, including beside
+a process exit code (for example, `exit 1 (EACCES; Permission denied)`). Arbitrary
+log text stays private; steps without a recognized diagnostic show only their exit.
 
 Recoverable maintenance failures appear as recorded warnings even when the update
 succeeds. Each warning names the skipped work, the cause, and a repair command.
@@ -187,6 +210,16 @@ automatic rollback cannot complete. Phase timings, repair attempts, and
 verification facts are included only when observed. Chat reports are limited to 1,500 characters;
 `update.runs.get` preserves the bounded record for detailed inspection.
 
+If a stable Gateway is still starting when the readiness allowance ends, the run
+finishes `skipped` with reason `gateway-readiness-unverified`. This means the
+installation completed, readiness was not confirmed, and recovery backups were
+retained. `finishedAtMs` records when observation ended; `confirmedAtMs` remains
+`null`. The warning log preserves the elapsed allowance and last service/HTTP
+observation. No background readiness continuation is promised. Check current
+health with `openclaw gateway status --deep`; later health does not rewrite this
+historical outcome. A Gateway that becomes ready within the allowance records
+`succeeded` and `confirmedAtMs` when readiness is reached.
+
 Standalone finalization and repair record the installed target version before
 Doctor runs. Failed Doctor steps retain the observed child exit code alongside
 the bounded, redacted failure reason; a terminated child can have a `null` exit
@@ -197,7 +230,13 @@ required migrations remain errors. Historical runs cannot recover facts that
 their updater never recorded.
 
 Current updaters record their process identities and refresh the ledger
-every 30 seconds during long build, install, and finalization phases. The Gateway checks for
+every 30 seconds during long build, install, and finalization phases. Those
+writes pause whenever a Doctor child is repairing state: finalization pauses them
+for repair Doctor, including the post-plugin Doctor, and installation pauses them
+for the activation Doctor step. These phases record their start and completion;
+the recorded driver identity protects the running update while its last-activity
+timestamp stays unchanged.
+The Gateway checks for
 abandoned runs at startup and while following active updates. After more than
 30 minutes without step or heartbeat activity, verifiably dead recorded drivers
 allow the Gateway to finish the run as `failed` with reason `abandoned` and a

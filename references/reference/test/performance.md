@@ -193,10 +193,51 @@ turns in each session (default 1, maximum 100). The second example completes 512
 turns across 64 sessions. Each session starts its next turn as soon as its
 previous turn completes, retaining its conversation history and workspace;
 there is no barrier between rounds. The fresh-connection probe runs once after
-every session has started its first turn. `--tool-events` requests a tool call
-on every turn, including follow-ups. The per-run timeout still bounds the whole
-workload. Health/control sampling is capped at 2,048 samples, while heap
+every session has started its first turn. `--tool-events` requires a matching
+successful `exec` result and the expected visible final reply on every turn,
+including follow-ups. Missing or duplicate tool evidence fails the run. The load
+timeout bounds turns and probes; startup, setup, and probe warmup have separate
+budgets. Health/control sampling is capped at 2,048 samples, while heap
 sampling continues until the full workload finishes.
+
+The fixture gives the utility model its own structured mock response, preserving
+the agent model's automatic tool loop. `turnEvidence.observerModelDigestTurns`
+counts turns with a published model-derived observer digest. A short run can
+legitimately report zero; observer correctness proof requires a positive count.
+
+`mockRequests` retains five mock-server counter checkpoints and their parent
+monotonic request bounds. Ingress deltas cover `startupAndWarmup` (readiness,
+connect, visibility, and probe warmup), `setup`, `loadBracket`, and `postLoad`
+(through Gateway shutdown). They distinguish Responses, Chat Completions,
+embeddings, and other routes, including rejected request bodies; health and
+model-catalog reads are excluded. These HTTP brackets are not exact CPU capture
+windows or causal attribution. `selections` through the final checkpoint separately
+count model/global controlled responses and automatic tool/text branches, not completed
+responses. Auxiliary model requests remain included; neither total is a count
+of agent turns. Missing, regressing, or replaced-server checkpoints fail instead
+of becoming zero. Reports retain counters, not raw prompts or request bodies.
+
+`--agent-count N` distributes the same session inventory round-robin across
+1–128 configured agents. It defaults to one agent and cannot exceed the larger
+of `--session-count` and `--concurrency`. Increasing it does not add sessions or
+turns. Multi-agent runs use `main`, `bench-agent-2`, and subsequent IDs with
+separate workspaces. `--workspace-fanout` still assigns a distinct workspace per
+session. Separate browser click targets remain on `main`.
+
+For example, `--agent-count 32 --session-count 1000 --concurrency 32
+--turns-per-session 3` seeds 1,000 sessions and completes 96 turns, three per
+agent. Before the load window and its CPU/allocation profiling, multi-agent runs
+require each agent's current published configured model through `models.list`,
+then verify its complete seeded inventory and reported per-agent SQLite path
+through all pages of scoped `sessions.list` reads. This checks the Gateway's
+reported storage route; it does not independently inspect database files.
+`agentCoverage.beforeLoad` retains the model response and every session page.
+`activeTurnAgentIds` and
+`completedTurns` distinguish the agents handling turns from the configured
+roster: 128 configured agents with 16 parallel sessions does not mean 128 agents
+handled turns. Multi-agent history probe rows retain `sessionKey`, which maps
+successful requests to the independently verified store inventory. These extra
+setup reads do not run in the default one-agent case.
 
 Use `--probe-rounds N` for allocation comparisons with equal probe work. It
 attempts exactly N sampler rounds and N history bursts per configured history

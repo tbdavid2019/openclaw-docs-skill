@@ -42,6 +42,12 @@ cannot replace the batch's delivery state; already committed delivery evidence
 remains valid. Restart activation reconciles retained requester-turn bindings
 before resuming child completion.
 
+For a nested requester, settlement persists its paused run together with the
+child wake batch before scheduling the continuation. This also covers a child
+that finishes before the requester yields: successor admission must not depend
+on the later lifecycle-end notification. The successor keeps the same task,
+and a delayed notification from the predecessor cannot reopen it.
+
 Settlement dispatch uses `subagent_settle` input provenance. Individual
 announcements and the older descendant-wake path retain `subagent_announce`:
 the latter already owns its run replacement after dispatch and must not trigger
@@ -77,7 +83,9 @@ with its scheduler-owned continuation.
   requester.
 - **Stable audience.** A nested wake uses internal delivery. A settlement
   continuation targeting a live `sessions_yield`-paused row adopts that row;
-  ordinary inter-session messages remain untracked. Explicit plugin follow-ups
+  ordinary inter-session messages do not adopt that row. A parent's
+  `sessions_send` turn to its native child has separate activity tracking and
+  keeps the child's original result or pending yield intact. Explicit plugin follow-ups
   naming a new requester continue to create their own delivery obligation.
 - **Deterministic batches.** Frozen run IDs are sorted. Findings use creation
   time, completion time, and child session identity as tie-breakers. Superseded
@@ -85,7 +93,13 @@ with its scheduler-owned continuation.
   IDs, and yield generation.
 - **Bounded delivery.** Existing limits remain: three attempts, three ambiguous
   transport replays, and ten stale deferrals. Active descendants do not consume
-  the stale-deferral budget. Findings are capped at 4,096 characters, individual
+  the stale-deferral budget. A private handoff's observation timeout does not
+  cancel the underlying Gateway turn. When the Gateway reports that turn as
+  in flight, settlement observes the same request without spending failure
+  attempts or discarding the child results. Gateway admission and execution
+  retain their own timeouts; explicit cancellation still stops the turn.
+  Individual private announcements keep their existing delivery deadline.
+  Findings are capped at 4,096 characters, individual
   results at 512, and route notices at 1,024. Ambiguous replay reuses its attempt
   key; it does not assert global exactly-once delivery across Gateway restarts.
 
