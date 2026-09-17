@@ -154,6 +154,12 @@ checked independently. An unrestricted policy does not make an unknown
 provider or an unsupported runtime usable. If the policy is omitted, unmigrated
 legacy model-map restrictions described above still apply.
 
+Aliases and policy entries do not prove that a model works on a provider endpoint.
+Native endpoints need a supported model definition or provider-owned resolution.
+Explicit custom and local endpoints can use unlisted model names. Subagent spawns
+check the same support before creating child state. An automatic selection keeps
+its original primary and fallback order when at least one candidate is supported.
+
 The same policy applies to explicit `provider/model` and configured-alias hints
 after `/new` or `/reset`. Unrecognized leading text stays in the prompt.
 
@@ -348,6 +354,7 @@ Without a scope flag, selections change only the current session. `agents.defaul
 - Model refs are parsed by splitting on the first `/`. Type `provider/model`. If the model ID itself contains `/` (OpenRouter-style), include the provider prefix, for example `/model openrouter/moonshotai/kimi-k2`. If you omit the provider, OpenClaw tries an alias match first. It then tries a unique configured-provider match for that exact unprefixed model id. It then tries the configured default provider, which is a deprecated fallback. If that provider no longer exposes the configured default model, OpenClaw uses the first configured provider and model instead. This avoids surfacing a stale removed-provider default.
 - When inferring a provider, exact model ID case takes precedence over case-insensitive matches within the same configuration scope. A case-insensitive match is used only when it identifies one provider. Per-agent model entries take precedence over global entries and configured provider catalogs.
 - Provider IDs are normalized to lowercase. Model IDs follow the provider's normalization rules. Use the spelling advertised by the plugin.
+- Configured primary models also accept `provider/alias`. The alias resolves within that provider before inference, while an exact model ID configured for that provider keeps its literal identity. An optional auth-profile suffix such as `@work` stays separate from the model identity.
 
 Full command behavior and config: [Slash commands](/tools/slash-commands).
 

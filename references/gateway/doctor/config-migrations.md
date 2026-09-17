@@ -16,6 +16,10 @@ Doctor, updates, or Gateway startup. OpenClaw records a warning that names the
 plugin, its pending migration, and the command to finish installation or repair.
 The Gateway continues serving the available plugins.
 
+`doctor --fix` repairs an older shared database schema before recording pending
+plugin migrations. Missing plugins therefore do not prevent the database repair;
+their inputs stay available for a later retry.
+
 Deferred migrations keep their state and legacy config inputs in place. Config
 repairs can still update unrelated settings, while the pending plugin's retired
 fields remain inactive. After installing or repairing the plugin, run
@@ -81,6 +85,8 @@ beyond the grace period.
     When model migrations change a configured consumer between subscription/OAuth and metered API-key billing, Doctor reports the consumer, model, and old and new routes after saving the config. The warning also appears in the diagnostic log and update run record. A later Doctor run does not repeat it when the resolved billing route is unchanged. Missing credentials are not treated as proof of a billing change.
 
     During an update, Doctor records model-retirement repairs that must wait until plugin installation finishes. The updated OpenClaw completes those repairs after plugin convergence, even when no plugin version changed. `openclaw update status` records their completion so retired subscription models do not fall through to metered API credentials.
+
+    Utility-model separation preserves an older config's implicit primary before recording `meta.migrations.utilityModelSeparation: true`. Doctor and normal config writes use the previous config to save that primary explicitly; existing primary selections, fallbacks, and credential bindings stay authoritative. This keeps regular chat available when the old implicit primary also served utility tasks. Fresh utility setup records the separation without choosing a primary, and a provider added during utility setup is not mistaken for the previous primary. See [agent model configuration](/gateway/config-agents/models#agentsdefaultsmodel).
 
     Other commands that encounter legacy keys still ask you to run `openclaw doctor`. Doctor explains the issues, shows its migrations, and rewrites `~/.openclaw/openclaw.json` with the updated schema. Cron job store migrations are also handled by `openclaw doctor --fix`; automatic config-key migration does not import legacy session stores or repair services.
 

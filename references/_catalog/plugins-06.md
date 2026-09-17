@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Lobster plugin reference](../plugins/reference/lobster.md) — Lobster workflow tool plugin for typed pipelines and resumable approvals. Read when: You are installing, configuring, or auditing the lobster plugin.
+- [Logbook plugin](../plugins/logbook.md) — Optional automatic work journal built from periodic screen snapshots. Read when: You want a Dayflow-style timeline of your day in the Control UI; You are enabling or configuring the bundled Logbook plugin; You want standup summaries or day recall grounded in screen activity.
 - [Logbook plugin reference](../plugins/reference/logbook.md) — Automatic work journal: captures periodic screen snapshots from a paired node and turns them into a reviewable timeline of your day. Read when: You are installing, configuring, or auditing the logbook plugin.
 - [LongCat plugin reference](../plugins/reference/longcat.md) — OpenClaw LongCat provider plugin. Read when: You are installing, configuring, or auditing the longcat plugin.
 - [Manage plugins](../plugins/manage-plugins.md) — Manage OpenClaw plugins from the Control UI or CLI. Read when: You want to browse, configure, enable, disable, or reload plugins in the Control UI; You want quick plugin list, install, update, inspect, or uninstall examples; You want to choose a plugin install source; You want the right reference for publishing plugin packages.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Microsoft Teams plugin reference](../plugins/reference/msteams.md) — OpenClaw Microsoft Teams channel plugin for bot conversations. Read when: You are installing, configuring, or auditing the msteams plugin.
 - [Migrate Claude plugin reference](../plugins/reference/migrate-claude.md) — Imports Claude Code and Claude Desktop instructions, MCP servers, skills, and safe configuration into OpenClaw. Read when: You are installing, configuring, or auditing the migrate-claude plugin.
 - [Migrate Hermes plugin reference](../plugins/reference/migrate-hermes.md) — Imports Hermes configuration, memories, skills, and supported credentials into OpenClaw. Read when: You are installing, configuring, or auditing the migrate-hermes plugin.
-- [MiniMax plugin reference](../plugins/reference/minimax.md) — Adds MiniMax, MiniMax Portal model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the minimax plugin.
-- [Mistral plugin reference](../plugins/reference/mistral.md) — Adds Mistral model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the mistral plugin.

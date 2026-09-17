@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [GitHub Copilot plugin reference](../plugins/reference/github-copilot.md) — Adds GitHub Copilot model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the github-copilot plugin.
+- [Gmi plugin reference](../plugins/reference/gmi.md) — OpenClaw GMI Cloud provider plugin. Read when: You are installing, configuring, or auditing the gmi plugin.
 - [Google Chat plugin reference](../plugins/reference/googlechat.md) — OpenClaw Google Chat channel plugin for spaces and direct messages. Read when: You are installing, configuring, or auditing the googlechat plugin.
 - [Google Meet configuration](../plugins/google-meet/config.md) — Google Meet plugin config defaults, overrides, and provider examples. Read when: You are looking up a Google Meet plugin config key and its default; You are pointing Google Meet at a specific realtime or TTS provider; You are configuring the Twilio dial plan for Google Meet.
 - [Google Meet OAuth and artifacts](../plugins/google-meet/oauth-and-artifacts.md) — Google Meet OAuth setup, refresh tokens, preflight, and conference artifact exports. Read when: You are creating Google Cloud credentials for the Google Meet REST API; You are minting or rotating the Google Meet refresh token; You are reading Meet artifacts, attendance, or transcript exports.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [llama.cpp Provider](../plugins/llama-cpp.md) — Run GGUF chat with managed or existing llama.cpp servers and managed local embeddings. Read when: You want OpenClaw to install and manage a local llama.cpp server; You want a local model recommendation for your Gateway hardware; You want OpenClaw to connect to an existing llama-server; You want memory search embeddings from a local GGUF model; You are configuring memory.search.provider = "local".
 - [LLM Task plugin reference](../plugins/reference/llm-task.md) — Generic JSON-only LLM tool for structured tasks callable from workflows. Read when: You are installing, configuring, or auditing the llm-task plugin.
 - [LM Studio plugin reference](../plugins/reference/lmstudio.md) — Adds LM Studio model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the lmstudio plugin.
-- [Lobster plugin reference](../plugins/reference/lobster.md) — Lobster workflow tool plugin for typed pipelines and resumable approvals. Read when: You are installing, configuring, or auditing the lobster plugin.
-- [Logbook plugin](../plugins/logbook.md) — Optional automatic work journal built from periodic screen snapshots. Read when: You want a Dayflow-style timeline of your day in the Control UI; You are enabling or configuring the bundled Logbook plugin; You want standup summaries or day recall grounded in screen activity.

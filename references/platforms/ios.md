@@ -45,6 +45,16 @@ Finish recording or delivering attachments and send or clear the current draft
 before using the quick picker. It does not move drafts to another Gateway.
 **Approvals** opens the native approval inbox and shows the pending count.
 
+An icon beside a native sidebar session shows whether its oldest pending request
+is a question or an approval. It opens a compact preview and the number of
+additional requests of that kind. The agent and section headings summarize their sessions, including
+requests outside the visible recent-session list. Tap an icon, activate it with
+a keyboard, or use VoiceOver to read the details without switching chats.
+Questions stay available when navigating away from Chat. Completed, cancelled,
+and expired requests disappear from these previews; answer and credential drafts
+never appear. Gateway administration approvals open their existing Dashboard
+review page, while native exec and plugin approvals keep their existing actions.
+
 The Gateway must serve Dashboard pages that support the companion iOS app.
 If a loaded Settings page does not report that support, a native banner asks you
 to update the Gateway. **Open Gateway** opens the native connection screen;
@@ -166,7 +176,9 @@ creation has a token or password auth path.
    administrative Gateway controls, then click **Create setup code**.
 
 3. In the iOS app, open **Settings** -> **Gateway**, scan the QR code (or paste
-   the setup code), and connect.
+   the setup code), and connect. Use a mobile setup code from Control UI or
+   [`openclaw qr`](/cli/qr) — not a gateway join URL from
+   [`openclaw devices join-code`](/cli/devices#openclaw-devices-join-code).
 
    Paired Gateways remain in the **Gateways** list. The checkmark identifies
    the focused Gateway; use the bolt control on another row to keep its
