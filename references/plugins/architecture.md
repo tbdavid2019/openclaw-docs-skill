@@ -168,7 +168,11 @@ Read-only model validation, effective tool inventory, and isolated model probes 
 
 Each plugin service startup attempt owns one cleanup operation, including failed starts. Hot replacement observes candidate startup and service cleanup with five-second deadlines. Candidate startup failure rejects the replacement. Replacing a loaded plugin requires successful cleanup before another registration can acquire its resources; pending cleanup or a cleanup error can therefore reject replacement and prevent automatic recovery. A pending startup retains its resources until it finishes and its one stop operation settles. Plugin removal can report deferred cleanup; Gateway shutdown joins that work before releasing the plugin's resources. Disposal stops new registered calls while physical cleanup finishes. Service cleanup is not invoked a second time merely because an observer timed out. If a command catalog refresh also stopped unchanged channels, failed replacement resumes those healthy registrations while the failed plugin remains fenced.
 
-A later reload can retry after pending cleanup completes successfully, without capturing code from the disposed instance again. A timed-out admitted call also keeps retry blocked until that call finishes. If draining fails before disposal starts, the quiesced registration retains its original loader for the next reload's recovery capture; ordinary plugin calls remain closed. Rejected replacements and failed recovery registrations retain the same cleanup barrier. Recovery preserves existing error records as diagnostics without executing their code. It never substitutes current package files for an already retired registration whose captured source has been released.
+A failed replacement automatically tries to restore the previous code and configuration. If its channels have already stopped, recovery waits up to 60 seconds for pending service cleanup and admitted work, retrying settlement observation with one-, two-, then four-second backoff. Each observation remains bounded by the five-second cleanup deadline and the remaining recovery window. Only service-stop observer timeouts qualify for this wait; channel-stop failures, rejected service cleanup, and failed candidate cleanup still prevent recovery. The wait joins the original service stop promises, including services whose shared stop deadline was already exhausted. After cleanup and work settle successfully, recovery disposes the old registration, registers its captured code with fresh resource ownership, and restarts its channels. Manually stopped accounts stay stopped. A timeout never grants another registration ownership of an unfinished write's resources, and retries do not repeat service stop or resource disposal.
+
+When recovery cannot safely finish, the operation settles as failed and releases its channel reload pauses. Channel health reads retain captured account facts without invoking unavailable plugin code; healthy registrations can restart normally. Detailed readiness reports `failing: ["plugin-reload"]` with the affected plugin IDs and an actionable recovery reason, instead of leaving an indefinite "reloading" state. Retry `openclaw plugins reload <id>` after admitted work and pending cleanup settle, or restart the Gateway. Permanent cleanup failures still prevent another registration from acquiring those resources.
+
+A later reload can retry after pending cleanup completes successfully, without capturing code from the disposed instance again. If draining fails before disposal starts, the quiesced registration retains its original loader for the next reload's recovery capture; ordinary plugin calls remain closed. Rejected replacements and failed recovery registrations retain the same cleanup barrier. Recovery preserves existing error records as diagnostics without executing their code. It never substitutes current package files for an already retired registration whose captured source has been released.
 
 Gateway shutdown also joins actual harness, MCP, LSP, embedding, and media cleanup after their initial grace periods. When clearing the active registry, plugin host cleanup can advance to later hooks after a timeout, but registry resets and shared database closure wait for its actual completion. These waits preserve resources for cleanup; they do not restore a retired plugin's runtime authority.
 
@@ -222,6 +226,49 @@ further capture.
 Runtime and setup retirement remove captured artifacts asynchronously and wait
 for removal to finish. Plugin callback deadlines do not end custody of those
 files; synchronous source inspection and failed capture still clean up before returning.
+
+Default source captures live under
+`<stateDir>/tmp/plugin-captures/<instanceId>/captures/`, with a random instance ID
+and an empty SQLite coordinator held for that instance's lifetime. Gateway
+metadata and its source captures retain the same process-local instance; a
+concurrent CLI process owns a separate instance. Releasing one capture cannot
+retire another capture or a still-running metadata owner.
+The shared cleanup timer does not retain the first command's invocation context.
+The managed `tmp/plugin-captures` subtree is excluded from source snapshots when
+the state directory is inside a plugin's source directory. Recovery can still
+load a preserved source package from within that subtree.
+
+This follows the native lifetime-token pattern used for
+[interrupted SQLite snapshots](/reference/database-schemas/integrity-and-recovery).
+Executable CLI commands release captures through their existing invocation
+resource scope; Gateway captures remain with metadata retirement. Snapshot
+cleanup owns SQLite staging files, while plugin cleanup owns this capture subtree.
+Neither adds a second process-shutdown owner. Reclamation removes captured
+payload before its coordinator so a partial deletion remains retryable.
+
+Startup and hourly cleanup inspect only this owned subtree. An instance becomes
+eligible after one hour, but age alone never authorizes removal: cleanup must
+also acquire its native coordinator, proving that no producer retains custody.
+Process exit releases the native lock even after a forced termination. PID
+names, process probes, and PID-reuse guesses are not used; a numeric PID cannot
+identify a producer across containers sharing a temporary directory. Contention,
+unreadable entries, symlinks, and entries without a coordinator preserve files.
+Removal remains asynchronous and advisory. This subtree is excluded from state
+backups because its captured package bytes are reconstructible.
+
+Metadata retention does not create directories until a source capture is needed.
+If the state directory cannot accept captures, loading falls back to an isolated
+system-temporary instance and reports a warning. Normal disposal still removes
+that instance; automatic cleanup does not scan unrelated system-temporary roots.
+There is no total disk quota, and an active instance may legitimately exceed the
+one-hour cleanup grace period.
+
+Older `openclaw-plugin-build-*` directories in the system temporary directory
+have no coordinator proving whether their producer is still alive. Startup,
+Doctor (including `--fix`), and update finalization preserve them. Neither age
+nor a lock for one state directory establishes ownership of captures from other
+profiles or containers sharing that temporary directory. No legacy files are
+moved or adopted by the new runtime.
 
 Configured Gateway agents share one model-catalog worker per plugin-inventory
 lifetime. Agent and authentication facts belong to each task; plugin registrations

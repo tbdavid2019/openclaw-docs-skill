@@ -85,17 +85,21 @@ persisted text field, plus 32 bytes per row. Session totals include their events
 This is a retained-content estimate, not a limit on SQLite file, page, or WAL size.
 
 Older releases counted characters inconsistently, undercounting Unicode and
-allowing unchanged metadata writes to drift. The existing app-version upgrade
-repair and explicit shared-state schema repair rebuild all derived totals
+allowing unchanged metadata writes to drift. Explicit Doctor shared-state
+repair rebuilds all derived totals
 atomically, preserving event JSON text, identifiers, timestamps, and sequence.
 Repair does not prune history. The next ordinary session write applies the
 existing caps and eviction order, so corrected Unicode history may trim sooner
 and use transcript fallback when loaded.
 
-A current-app-version reopen skips this repair. Replacing code without changing
-the app version does not repair an already-open or current-version database;
-explicit schema repair remains the repair owner for that case. Accounting repair
-cannot recover history already evicted by an older writer. See [ACP CLI](/cli/acp).
+Normal runtime opens and automatic startup schema preparation leave existing
+accounting columns unchanged, including after the application version changes. If
+the supported older shape lacks accounting columns, adding them also initializes
+their totals in the same transaction. Run
+`openclaw doctor --fix` during update maintenance to repair historical accounting.
+Supported older-schema upgrades still perform the content transformations needed
+to preserve data while changing its schema. Accounting repair cannot recover
+history already evicted by an older writer. See [ACP CLI](/cli/acp).
 
 ### Meeting transcript tables
 
@@ -279,6 +283,12 @@ metadata alone exceeds a hard limit, the write fails without changing the row.
 The CLI and Gateway share WAL-backed transactions, including while the Gateway
 is stopped. The first terminal outcome wins; subsequent verification can enrich
 its observed facts without rewriting success, failure, skip, or rollback status.
+Explicit `update repair` can correct the older package-owner refusal
+misclassification to `skipped` once the installed version satisfies its resolved
+target. This exception requires the latest run to contain only the untouched
+request and optional driver-adoption metadata, with no recovery or active update.
+It preserves the refusal detail and finish time and records the existing
+acknowledgement marker; subsequent repairs use normal finalization.
 The restart sentinel carries `stats.runId` and remains the continuation owner;
 consuming it does not delete the run row. Chat, CLI, and status reports read that
 row. See [Run history and reports](/cli/update#run-history-and-reports).

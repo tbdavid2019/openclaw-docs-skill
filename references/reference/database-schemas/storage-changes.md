@@ -24,12 +24,28 @@ and publishes the result. Avoid exposing a generic SQL callback to application
 code or adding an asynchronous wrapper around an existing asynchronous facade.
 The plugin KV API already has asynchronous methods over its SQLite owner.
 
+Managed outgoing image metadata lookups and cleanup inventories read through the
+shared-state worker, retaining their writable, creating database-open behavior.
+Typed columns, ordering, cleanup claims, and original-media references are unchanged.
+Downloads retain ticket or owner authorization and current transcript membership;
+verified descriptors and post-render thumbnail checks remain in place. Inserts, message-commit
+promotion, cleanup claim/deletion transactions, Doctor imports, and native session
+metadata reads keep their existing owners and remain separate worker migrations.
+
 Explicit promotion notice and claim annotations execute in the shared-state
 worker. The CLI awaits their best-effort completion before reporting results;
 storage failures still do not fail a promotion claim. Notice recording retains
 its read-only preflight and atomic sorted slug union, preserving the other feed
 fields. Empty notices leave absent databases absent, and already-recorded notices
 do not open a writer. Claim upserts, stored formats, and retention are unchanged.
+
+Update-check telemetry reads its cached response and retained session-creation
+count through the shared-state worker. Successful responses use the existing
+machine-state transaction, which preserves a newer persisted response. The CLI
+awaits preview reads, and Gateway maintenance joins accepted checks through
+persistence before shutdown retires shared state. Consent, payload fields,
+request policy, cache periods, and the bounded in-memory retry state are unchanged.
+Cold CLI plugin-inventory preparation remains with the plugin metadata owner.
 
 Plugin conversation standing approvals load and upsert in the shared-state worker.
 Core publishes an always-allow grant only after durable completion, serializes cache
@@ -50,6 +66,32 @@ The hosted loader receives the same monotonicity error type, so rejected writes
 retain the accepted snapshot. Marketplace refresh awaits persistence before clearing
 its catalog cache and applying the result to the Gateway. Feed verification, expired
 snapshot visibility, install authority, and the stored representation are unchanged.
+
+Web Push subscription reads, VAPID identity, approval-delivery receipts, recovery,
+and expired-target cleanup run in the shared-state worker. Normal paired browser
+mutations also run there with authority retained by the WebSocket request owner.
+The worker resolves current profile bindings on its transaction connection, while
+host admission checks retained client, scope, request, and shared-auth state.
+Selected-account mismatches keep the original error and execution-phase details.
+
+Opaque request callbacks retain the native mutation kernels required by the tagged
+SDK contract. Their full callback runs at the native write boundary. This family
+is selected before storage begins; worker failures never redirect to native SQL.
+Its remaining migration belongs to the actual in-process resolver, session, and
+run authority producers. Accepted ordinary RPCs keep their reconnect behavior.
+
+Gateway handlers and notification senders await storage results; receipt preparation
+returns the committed target IDs before final recipient and approval checks. A private
+FIFO scope orders subscription mutations with the final subscription read, synchronous
+policy checks, and send start. The scope ends before awaiting provider completion;
+slow network delivery does not block registration. The scope uses the existing worker
+request and byte limits for its separate bounded waiting interval and joins shared-state close.
+Expired-target cleanup still compares the sent registration, and concurrent VAPID
+initialization returns the first committed identity. Read-only identity lookup does
+not create missing state. Existing tables, additive schema preparation, Doctor
+imports, retention, and notification payloads are unchanged. Pairing, profile,
+user-preference, and visibility checks outside transaction admission retain their
+separate synchronous owners.
 
 Asynchronous mutable cron-store loads run in the shared-state worker, including
 the existing retired-job deletion and runtime-authority repairs. The connection-bound
@@ -122,6 +164,13 @@ public synchronous binding APIs retain their synchronous owner and completion
 contract. Moving those writes requires preserving immediate unbind persistence
 and preventing older writes from recreating removed bindings; row comparison
 tokens alone do not identify an absent binding incarnation.
+
+Agent creation provenance displayed by the agents CLI, Gateway roster, and local
+TUI is read by the shared-state worker. JSON CLI output reads only its configured
+agent IDs; tree and Gateway output retain full ordered enumeration and enum
+validation. Cold reads retain database creation and feature schema initialization.
+Synchronous incarnation checks, provenance writes, and connection-bound deletion
+remain with their lifecycle owners; collection and retention are unchanged.
 
 Memory-host event appends and bounded journal reads execute on the shared state
 worker. The plugin-state owner allocates the sequence, rereads the cursor and
@@ -205,22 +254,37 @@ Only pending reads coalesce; completed results are not cached. Physical integrit
 verification remains with full registry restoration and Doctor, while known
 database failures and quarantine still refuse summary reads.
 
-`sessions.list` and `sessions.describe` load complete persisted subagent metadata
-in the shared-state worker through a read-only connection. The existing cache coalesces pending fills
-and applies intervening named updates and deletions before publishing its first
-complete snapshot. Full replacement, registry ownership changes, and database
-retirement fence obsolete replies. Loaded snapshots stay current through registry
-publication instead of periodic reloads: named writes patch rows, while full
-replacement and restore replace snapshots. Retention rules remain unchanged.
-Gateway, embedded, and TUI callers merge accepted rows
-with current host memory and scheduler facts before building the full topology.
-Session reads check the shared projection budget before accepting a snapshot,
-then capture persisted rows and live ownership in one synchronous continuation.
-Each resumed caller rechecks the shared budget before admission and cache
-acceptance. Pure topology grouping uses the same budget; a single snapshot
-capture cannot yield midway.
-Synchronous readers reuse the same SQL and row decoder; runtime reads do not
-repair storage.
+Offline `status --json --all` checks for existing built-in memory data through
+memory-core's retrieval worker before constructing a memory manager. The check
+retains current and shipped table recognition, missing-store behavior, and
+best-effort read failures without creating or migrating a database. Custom memory
+slots and explicitly configured memory retain their existing selection paths.
+This moves only the presence check; memory-manager diagnostics keep their own
+lifecycle and execution contracts.
+
+Gateway, embedded, and TUI session lists use resident materialized rows and the
+subagent registry's owner-maintained memory snapshot. Each durable session store
+is hydrated when first admitted, replaced, or reintroduced; departing stores lose
+their projected rows. Committed owner publications mark affected identities dirty,
+and bounded refresh batches yield through the shared session-list work budget.
+Clean list, describe, and event snapshot reads execute no SQLite statements.
+Refreshing a dirty row may use the existing exact-key readers for its cold facts;
+requests never rebuild the combined store or reload the subagent registry.
+External workers publish committed changes through their owning bridge. After
+projection readiness, selection, authorization, and presentation use the current
+caller identity in one synchronous boundary.
+Registry replacement and restoration replace its snapshot, while named writes
+patch it. Storage repair and retention remain with their existing owners.
+
+Gateway `session.members.list` and `session.members.listEvidence` read full
+membership rows through the existing session-transcript read worker. Both methods
+recheck the exact session instance and current management rights after the read
+settles. Member ordering, actor evidence, and missing-database behavior are
+unchanged. Incognito membership remains with its process-local native owner;
+the synchronous session-store facade retains its existing compatibility contract.
+Target resolution, profile and creator catalogs, public-share metadata, projection
+refreshes, and membership writes retain their existing execution paths. This cut
+moves the member-row query, not every database read performed by these RPCs.
 
 Gateway user-preference RPCs and Talk appearance reads resolve merged profile IDs
 and access preferences in the shared-state worker. Preference writes keep profile
@@ -314,6 +378,15 @@ health row are not one atomic transaction. Synchronous config readers and writer
 keep their existing APIs; config parsing, validation, and plugin preparation retain
 their own execution paths.
 
+The native Gateway host supplies snapshot preparation through its registered
+config owner. Those reads prepare deferred migration and plugin metadata with the
+existing shared-state actor. Each read captures one exact owner before awaiting
+preparation and rejects its result if that owner closes; failures never select a
+replacement or switch readers. Direct servers and standalone config readers keep
+their existing execution path unless their host explicitly supplies this operation.
+Missing-file defaults still load plugin metadata only when those defaults need it.
+The operation changes no schema, persisted representation, or publication authority.
+
 SQLite worker transport preserves complete result values. Results within the
 64 MiB inline reply budget keep their existing reply path; larger results are
 serialized once and transferred in 8 MiB frames. The original operation retains
@@ -356,8 +429,12 @@ entries and checking each entry's current visibility. The entry accessor closes
 that connection before transcript search, including on errors; inherited async
 callbacks fall back to ordinary fresh reads. This scope preserves the same
 per-read admission and committed-row checks without caching visibility decisions.
-Other cold readers outside the history worker and extension-capable readers
-remain one-shot; incognito reads retain their existing process-local owner.
+Other cold readers outside the history worker, including
+extension-capable readers, remain one-shot; incognito reads retain their existing
+process-local owner.
+
+SQLite and Git worker replies transfer owned byte buffers to the caller; shared
+or partial views are copied into an exact owned buffer before transfer.
 
 The history worker retains up to 64 read-only connections across requests, rechecking
 schema, agent owner, and physical file identity before reuse. Every request keeps

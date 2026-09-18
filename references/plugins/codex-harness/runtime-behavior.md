@@ -88,12 +88,20 @@ transcript and attachment remain unchanged.
 
 Codex owns provider-stream liveness and native turn completion. OpenClaw waits
 for the exact `turn/completed` outcome rather than interrupting a quiet turn or
-treating assistant output as completion. The existing
+treating assistant output as completion. Malformed completion payloads do not end
+the run: OpenClaw waits for a valid native outcome instead of inventing missing
+items, tool arguments, or completion states. The existing
 `agents.defaults.timeoutSeconds` limit is an elapsed execution budget per
 attempt: progress does not reset it, and `0` means unlimited execution.
 OpenClaw still bounds its own requests, dynamic tools, cancellation, and local
 settlement. See [Timeouts](/plugins/codex-harness-reference#timeouts) for those
 budgets, Stop and replay behavior, and Doctor migration of retired idle settings.
+
+OpenClaw preserves assistant text supplied with the initial native item and
+reasoning supplied with a completed item, even when Codex sends no text deltas.
+Completed items reconcile the transcript with Codex's final content. Messages
+marked for asynchronous delivery remain separate from the final reply when
+Codex repeats them in the turn-completion summary.
 
 ## Cyber safety notices
 
