@@ -4,7 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [GitHub](../plugins/github.md) — Read public GitHub issues, pull requests, commits, and comments beside chat. Read when: You want GitHub links to open beside your conversation; You need to enable or disable GitHub link previews and the reader.
 - [GitHub Copilot plugin reference](../plugins/reference/github-copilot.md) — Adds GitHub Copilot model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the github-copilot plugin.
+- [GitHub plugin reference](../plugins/reference/github.md) — Public GitHub link previews and document reader. Read when: You are installing, configuring, or auditing the github plugin.
 - [Gmi plugin reference](../plugins/reference/gmi.md) — OpenClaw GMI Cloud provider plugin. Read when: You are installing, configuring, or auditing the gmi plugin.
 - [Google Chat plugin reference](../plugins/reference/googlechat.md) — OpenClaw Google Chat channel plugin for spaces and direct messages. Read when: You are installing, configuring, or auditing the googlechat plugin.
 - [Google Meet configuration](../plugins/google-meet/config.md) — Google Meet plugin config defaults, overrides, and provider examples. Read when: You are looking up a Google Meet plugin config key and its default; You are pointing Google Meet at a specific realtime or TTS provider; You are configuring the Twilio dial plan for Google Meet.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [LiteLLM plugin reference](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.
 - [Llama Cpp plugin reference](../plugins/reference/llama-cpp.md) — Managed and external llama.cpp servers for GGUF chat and embeddings. Read when: You are installing, configuring, or auditing the llama-cpp plugin.
 - [llama.cpp Provider](../plugins/llama-cpp.md) — Run GGUF chat with managed or existing llama.cpp servers and managed local embeddings. Read when: You want OpenClaw to install and manage a local llama.cpp server; You want a local model recommendation for your Gateway hardware; You want OpenClaw to connect to an existing llama-server; You want memory search embeddings from a local GGUF model; You are configuring memory.search.provider = "local".
-- [LLM Task plugin reference](../plugins/reference/llm-task.md) — Generic JSON-only LLM tool for structured tasks callable from workflows. Read when: You are installing, configuring, or auditing the llm-task plugin.
-- [LM Studio plugin reference](../plugins/reference/lmstudio.md) — Adds LM Studio model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the lmstudio plugin.

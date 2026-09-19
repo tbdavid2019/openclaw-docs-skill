@@ -88,8 +88,7 @@ count.
   The optional `sessionId` and opaque `lifecycleRevision` identify the session
   lifecycle; `lifecycleRevision` can be absent before the first reset. Revisions
   increase across runs within that lifecycle but can restart after a reset.
-  Critical notice history starts fresh when the identity pair changes, including
-  when `/clear` preserves `sessionId` and changes `lifecycleRevision`.
+  `/clear` preserves `sessionId` and changes `lifecycleRevision`.
   Clients show its headline or inspector link only while the digest's exact `runId`
   is present in `activeRunIds`.
 - `sessions.changed`: session index or metadata changed. Keyed changes carry the
@@ -105,8 +104,16 @@ count.
   remain event receipts, including explicit clearing values. When a nested row
   omits an optional field, honor its top-level clearing tombstone; nested values
   take precedence when present. Merge an existing
-  roster member's snapshot locally; refresh the list when a row is missing or
-  the event is a broad, keyless invalidation. Profile identity, runner
+  roster member's snapshot locally when the query's membership and pagination
+  window remain valid. The Control UI reuses lifecycle and ordinary `patch`,
+  `send`, `steer`, `agent.run.started`, `agent.input.settled`, `run-capacity`, and
+  `chat.title` snapshots for held standalone rows with unchanged identity, archive,
+  pin, and owner facts and nondecreasing recency. It coalesces an authoritative
+  refresh for missing rows or snapshots, broad/keyless changes, `catalogChanged`,
+  membership filters, linked ancestor facts, and uncertain boundaries (including owner-first rows
+  promoted into the shared page). Events overlapping a roster read retain a
+  trailing refresh so its response cannot lose an update. A retained list with a
+  read error also refreshes on the next relevant event. Profile identity, runner
   availability, and loaded cron bindings can produce broad invalidations.
   Authorized incognito descriptions and events use the same row presentation from
   transient process-local state. Incognito rows remain excluded from the session

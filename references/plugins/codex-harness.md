@@ -14,6 +14,17 @@ native compaction, and app-server execution. OpenClaw still owns chat
 channels, session files, model selection, OpenClaw dynamic tools, approvals,
 media delivery, and the visible transcript mirror.
 
+During `initialize`, OpenClaw uses `capabilities.optOutNotificationMethods` to
+suppress unused app-server notifications before they reach the transport and JSON
+decoder. This includes cumulative turn diffs; file-change items still carry the
+individual changes. The plugin's notification policy owns the exact method list.
+Turn and item lifecycle, transcript, usage, approval, and catalog notifications
+remain enabled. Some events whose payloads are not projected still carry progress:
+MCP progress, streamed patch updates, reasoning section markers, and model metadata
+keep native work from appearing stalled. Terminal interaction also informs process
+cleanup. These notifications remain enabled. Older app-servers that do not recognize
+the optional capability ignore it; the normal minimum-version check still applies.
+
 The native session catalog keeps one resident index per Codex home, shared across
 agents, working-directory filters, searches, and pages. Lists normally filter and page
 bounded display rows in memory. They do not expire or restart native discovery
@@ -23,12 +34,25 @@ projection once ready; mutations can require exact-key refreshes before delivery
 Native adoption bindings still use their storage owner, and paired-node enumeration
 can use network I/O. Previews remain limited to 500 characters;
 native hydration and catalog pages remain limited to 64 rows each. Native `thread/list` has no bounded metadata projection, so wire JSON can still be
-large. Immediately after decoding, catalog responses discard unused native fields
-and detach bounded metadata before the response promise settles. Each native page
-contains at most 64 rows (less than 6 MiB of serialized catalog metadata even at
-all field limits). Unchanged background rows reuse resident previews at this
-boundary without sanitizing them again; new or changed rows retain the prefix-first
-preview selector. Native wire parsing remains a transient allocation cost. Recency, native position within exposed timestamp ties, and thread ID form the
+large. Catalog `thread/list` pages and metadata-only `thread/read` responses used for catalog refreshes are
+parsed and projected in a worker owned by their app-server client. The stdout
+reader transfers bytes and waits for the compact result before delivering later
+responses or notifications. It admits one worker task at a time and pauses the
+transport while that task runs. Recovery also stays in the worker when a malformed
+frame hides its routing header until a later line; its decoded ID selects the catalog
+projection and the captured row admission. Native control reads, normal streaming notifications,
+and full-history reads keep their in-process decoder. Control reads preserve complete
+native metadata, including model selection and direct-input capability; transcript
+consumers require complete native raw items.
+Each native list page contains at most 64 rows (less than 6 MiB of serialized
+catalog metadata even at all field limits). The worker applies the existing
+prefix-first preview selector and 500-character display bound. Unchanged
+background rows can reuse resident previews before delivery. Native wire parsing
+and its temporary objects stay in the worker. Metadata reads preserve exact
+working directories and the native history paging mode.
+Ephemeral threads are excluded as soon as native metadata acknowledges them, so
+closing a short-lived helper cannot lose the exclusion while a background refresh is pending.
+Recency, native position within exposed timestamp ties, and thread ID form the
 stable ordering and opaque continuation key. Initial native positions preserve
 the sub-second order that the protocol rounds to seconds. Unchanged rows keep
 their positions across background refreshes, so existing cursors do not repeat
@@ -84,7 +108,7 @@ Snapshot restoration waits for earlier cache writes, and mutations received duri
 restoration fence stale saved rows from publication. Background work then
 reconciles changed files and native metadata. A
 database-only native metadata walk recovers changes made while the Gateway was
-stopped and repeats every 30 seconds, including renames, Git branch and other displayed metadata, and the selected rollout
+stopped. A full safety walk repeats every 15 minutes, including renames, Git branch and other displayed metadata, and the selected rollout
 path after a native revert. Metadata changes and explicit clears are applied even
 when native activity timestamps do not change. Newer Gateway observations fence
 older background pages. These coalesced background walks reuse previews for
@@ -113,15 +137,35 @@ restores the stored metadata. Resume publication uses
 the response's current cwd, which can differ from the thread's persisted cwd.
 For remote app-servers without local filesystem access, the saved snapshot is
 available immediately and a background native walk reconciles changes made while
-the Gateway was stopped or its app-server connection was unavailable. Every
-30 seconds, a database-only walk reconciles remote membership and metadata.
-Unchanged display rows reuse their bounded previews; only new or changed rows
-need preview projection. Unchanged rows are not rewritten to SQLite.
+the Gateway was stopped or its app-server connection was unavailable. The full
+15-minute safety walk reconciles remote membership and metadata.
+Unchanged display rows reuse their bounded resident previews after worker projection.
+Unchanged rows are not rewritten to SQLite.
+
+Native starts, metadata refreshes, renames, archives, deletions, and changed file
+fingerprints coalesce an incremental native check on the next 30-second tick.
+It reads database-only pages in descending recency order and stops after a whole
+page leaves the resident metadata unchanged, or at the 20,000-row retained limit.
+The comparison includes timestamps, selected path, fingerprint, and bounded display
+metadata; exposed timestamp ties keep their existing ordering. An unvisited tail
+is never treated as deleted. With no activity, ticks issue no native requests or
+file scans between safety walks. These checks reuse the existing preview cache
+after JSON decoding; they reduce wire parsing by requesting fewer pages.
+
+Silent changes outside the checked prefix, including timestamp-preserving metadata
+edits and remote deletions or archives, appear at the next successful full safety
+walk. Local file disappearance is checked on the same cycle; native database
+omission alone still cannot delete a local row. Safety cycles start 15 minutes
+apart, subject to timer scheduling, in-flight work, and
+scan/walk duration. Native failures retain pending work for retry under source
+backoff. Successful file scans keep an independent deadline, so native retries
+neither repeat the scan nor postpone its next check.
+Notifications and acknowledged catalog actions continue to update rows immediately.
 
 Native lifecycle notifications update affected threads, and successful catalog
 archives immediately hide their rows. Turn starts and completions coalesce
 single-thread metadata refreshes, so a running turn advances recency before it
-finishes. A 30-second stat-only scan discovers external rollout changes; no
+finishes. A startup scan and the 15-minute stat-only safety scan discover external rollout changes; no
 recursive filesystem watcher retains a directory inventory. The scan streams
 directory entries and retains at most 20,000 file fingerprints while separately
 checking the presence of resident paths. Only changed or
@@ -153,7 +197,7 @@ Each home retains at most 20,000 display rows, 20,000 live-status records,
 managed-thread ceiling; eviction drops the oldest archived rows first, then the
 oldest remaining rows. Row eviction preserves independently bounded live status and
 settings while their supporting native connections remain open. Eviction removes only cached metadata: older sessions remain
-discoverable through native paging/search and readable by ID. Background native walks finish pagination, but rows beyond the
+discoverable through native paging/search and readable by ID. Initial and full safety walks finish pagination, but rows beyond the
 resident limit are discarded before native-response metadata projection or preview
 sanitization. The native page size stays 64, and pagination continues to completion.
 At most 20,000 detached native cursors are remembered during a walk.
@@ -266,6 +310,11 @@ unless you opt into the experimental sandbox exec-server path. The effective
 tool profile must allow all native shell and filesystem capabilities: `coding`
 and `full` do, while `messaging` and `minimal` disable the native surface. Agent
 and provider profile overrides and explicit tool restrictions still apply.
+When sandboxing disables the native surface, allowed shell commands remain available
+through `sandbox_exec`. Denying `process` removes `sandbox_process` and background
+continuation, while `sandbox_exec` runs to completion under the existing timeout,
+sandbox backend, and workspace-access policy.
+
 The sandbox exec-server option does not bypass those tool restrictions. Node-backed
 `remote-exec` on a paired device or cloud worker instead uses its
 placement-owned environment without that experimental flag. A dedicated cloud worker with a completed project preparation keeps the bound workspace and `HOME` paths, so native commands can reuse setup caches. The node exec-server still uses a separate temporary `CODEX_HOME` for each connection. Ending the connection removes that Codex state and preserves the prepared project home.

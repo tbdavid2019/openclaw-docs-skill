@@ -164,6 +164,26 @@ Pin the recovery to a specific version or dist-tag with `--version`:
 curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method npm --version <version-or-dist-tag>
 ```
 
+## Homebrew formula installs
+
+For `brew install openclaw-cli`, update through Homebrew:
+
+```bash
+brew upgrade openclaw-cli
+openclaw gateway restart
+```
+
+`openclaw update` leaves the formula unchanged and prints these commands. Existing
+profiles retain that skipped outcome and guidance in `openclaw update status --json`
+and the update report. Stop a running Gateway before a manual upgrade to avoid
+loading files from a removed keg; back up first and run `openclaw doctor --fix`
+before restarting.
+
+New or refreshed service definitions use Homebrew's stable `opt/openclaw-cli`
+path. To repair a service still pointing at a versioned `Cellar` path, run
+`openclaw gateway install --force` from the upgraded CLI. Global npm packages
+under the Homebrew prefix continue to use npm.
+
 ## Alternative: manual npm, pnpm, or bun
 
 The npm command below is for npm 12 or npm 11.16+. On npm 11.15 and earlier,
@@ -227,6 +247,12 @@ dependency scripts remain unapproved.
 This avoids npm overlaying a new package onto stale files from the old one. If
 the install command fails, OpenClaw retries once with `--omit=optional`, which
 helps hosts where native optional dependencies cannot compile.
+The packaged lifecycle restores the matching precompiled fs-safe dependency
+when that retry omitted it. It uses the version declared by the installed
+fs-safe package and does not run dependency build scripts. A working native
+binding needs no extra download. Unsupported hosts or failed downloads produce
+a warning and allow installation to finish; explicitly disabling fs-safe native
+support also skips this repair.
 
 For local tarball targets on npm 12, the archive filename and every parent
 directory must be comma-free. See [Installer path requirements](/install/installer).

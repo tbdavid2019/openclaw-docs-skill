@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Session Share plugin](../plugins/session-share.md) — Share selected OpenClaw sessions read-only with a paired team Gateway. Read when: Sharing personal OpenClaw sessions with a team Gateway; Pairing a node that exposes only session listings and transcripts; Configuring attribution for sessions from another Gateway.
+- [Session Share plugin reference](../plugins/reference/session-share.md) — Read-only OpenClaw sessions on paired gateways. Read when: You are installing, configuring, or auditing the session-share plugin.
 - [SGLang plugin reference](../plugins/reference/sglang.md) — Adds SGLang model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the sglang plugin.
 - [Signal plugin reference](../plugins/reference/signal.md) — OpenClaw Signal channel plugin. Read when: You are installing, configuring, or auditing the signal plugin.
 - [Slack plugin reference](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Vercel AI Gateway plugin reference](../plugins/reference/vercel-ai-gateway.md) — Adds Vercel AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vercel-ai-gateway plugin.
 - [Visitor Access plugin reference](../plugins/reference/visitor-access.md) — Manage expiring visitor grants through one Cloudflare Access email policy. Read when: You are installing, configuring, or auditing the visitor-access plugin.
 - [vLLM plugin reference](../plugins/reference/vllm.md) — Adds vLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vllm plugin.
-- [Voice call configuration](../plugins/voice-call/configuration.md) — Plugin config keys, the call owner, the config reference table, and session scope. Read when: You are setting up voice-call plugin config keys; You need the default for a voice-call config key; You are choosing how call sessions are scoped.
-- [Voice call plugin](../plugins/voice-call.md) — Place outbound and accept inbound voice calls via Twilio, Telnyx, or Plivo, with optional realtime voice and streaming transcription. Read when: You want to place an outbound voice call from OpenClaw; You are configuring or developing the voice-call plugin; You need realtime voice or streaming transcription on telephony.

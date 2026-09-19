@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Plugin SDK package entries](../plugins/sdk-entrypoints/package-entries.md) — package.json openclaw source and runtime entry fields and their resolution order. Read when: You are declaring extensions, setupEntry, or their runtime peers; You need the built-JavaScript peer resolution order.
+- [Plugin SDK registration mode](../plugins/sdk-entrypoints/registration-mode.md) — How api.registrationMode reports the load mode and what to register in each. Read when: You need to know what to register in each registration mode; You are handling cli-metadata, discovery, or setup-runtime loads.
 - [Plugin SDK subpaths](../plugins/sdk-subpaths.md) — Plugin SDK subpath catalog: which imports live where, grouped by area. Read when: Choosing the right plugin-sdk subpath for a plugin import; Auditing bundled-plugin subpaths and helper surfaces.
 - [Plugin SDK tool policy and sandbox helpers](../plugins/sdk-entrypoints/tool-policy-and-sandbox.md) — toolPolicy matchers, tool-group expansion, and splitSandboxBindSpec. Read when: You are expanding tool groups or building a tool policy matcher; You are parsing a sandbox bind specification.
 - [Plugin SDK tools and commands](../plugins/sdk-overview/tools-and-commands.md) — Registering agent tools, custom commands, node-host commands, and widget presenters. Read when: You are registering an agent tool or a custom command; You are exposing a node-host command as an agent tool; You are registering a widget presenter or Computer Use provider.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Runway plugin reference](../plugins/reference/runway.md) — Adds video generation provider support. Read when: You are installing, configuring, or auditing the runway plugin.
 - [SearXNG plugin reference](../plugins/reference/searxng.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the searxng plugin.
 - [Senseaudio plugin reference](../plugins/reference/senseaudio.md) — Adds media understanding provider support. Read when: You are installing, configuring, or auditing the senseaudio plugin.
-- [Session Share plugin](../plugins/session-share.md) — Share selected OpenClaw sessions read-only with a paired team Gateway. Read when: Sharing personal OpenClaw sessions with a team Gateway; Pairing a node that exposes only session listings and transcripts; Configuring attribution for sessions from another Gateway.
-- [Session Share plugin reference](../plugins/reference/session-share.md) — Read-only OpenClaw sessions on paired gateways. Read when: You are installing, configuring, or auditing the session-share plugin.

@@ -50,6 +50,12 @@ policy. OpenClaw does not retry them with thinking disabled.
 
 Fallback execution is turn-local. The reply runner persists only fallback notice state so `/status` and transition notices can distinguish the selected model from the model that answered. It does not persist the fallback as the next turn's model selection.
 
+Sessions placed on an OpenClaw cloud worker keep the OpenClaw runtime when
+automatic model selection advances to a fallback. The configured provider,
+model, and auth-profile fallback rules still apply. Explicit session or
+configured runtime choices remain strict: an incompatible runtime reports a
+placement error and requires a compatible destination before retrying.
+
 When configured fallback stops because the agent run reaches a final timeout or
 the idle-timeout cost-runaway breaker returns a terminal error, the
 `model-fallback/decision` logger records `model_fallback_chain_stopped` with
@@ -323,7 +329,7 @@ If all profiles for a provider fail, OpenClaw moves to the next model in `agents
 
 Provider-busy signals such as `ModelNotReadyException` land in the overloaded bucket and follow the same one-rotation-then-fallback policy as rate limits.
 
-The failover controller owns OpenClaw's transient recovery budget. Rate limits receive up to **10 total attempts** before auth-profile rotation or model fallback. Jittered exponential waits cap at 30 seconds, while provider `retry-after` and `retry-after-ms` hints remain minimum waits even beyond that cap. Other transient failures retain eight retries and a 90-second retry window. Once that budget or window is exhausted, recovery proceeds to eligible auth-profile rotation, configured model fallback, or a visible error. Continuations preserve the transcript instead of replaying the original user request. Recovery and any fallback winner remain turn-local.
+The failover controller owns OpenClaw's transient recovery budget. Rate limits receive up to **10 total attempts** before auth-profile rotation or model fallback. Jittered exponential waits cap at 30 seconds, while provider `retry-after` and `retry-after-ms` hints remain minimum waits even beyond that cap. Other transient failures retain eight retries and a 90-second window for consecutive outages. A completed successful model response clears that window without resetting the total retry count; partial output and tool activity alone do not. Once that budget or window is exhausted, recovery proceeds to eligible auth-profile rotation, configured model fallback, or a visible error. Continuations preserve the transcript instead of replaying the original user request. Recovery and any fallback winner remain turn-local.
 
 The embedded runtime's existing session setting `retry.provider.maxRetries` overrides its recovery retry budget. `0` disables retries, and rate limits remain capped at 10 total attempts. It is not an `openclaw.json` key and does not change a native harness's internal request retries. Native harnesses may finish their own request retries before OpenClaw starts continuation recovery. The reply runner does not add another whole-turn replay loop. See [Retry policy](/concepts/retry) for pacing and exclusions.
 
@@ -414,7 +420,7 @@ Live model switching follows these rules:
 
 The active run carries its chosen candidate directly. Live reconciliation changes that candidate only for an explicit pending user switch, so no temporary fallback override or rollback is needed.
 
-When a recorded fallback notice belongs to a different selected model, status and session lists skip its optional transcript lookup. That stale-notice path no longer surfaces transcript-only errors or starts projection reconciliation. Matching notices still use the canonical transcript reader, including its errors and reconciliation behavior.
+When a recorded fallback notice belongs to a different selected model, status and session lists skip its optional transcript lookup. That stale-notice path no longer surfaces transcript-only errors or starts projection reconciliation. Matching notices use a read-only transcript lookup that neither creates storage nor starts projection reconciliation. If optional storage or projections are unavailable, the lookup omits transcript-derived details. Unexpected read errors still propagate.
 
 ## User-visible fallback notices
 

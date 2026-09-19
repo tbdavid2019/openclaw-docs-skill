@@ -18,7 +18,8 @@ different executable. Verified setup accepts a native Codex executable or the
 official `@openai/codex` npm entrypoint, including its installed symlink or
 Windows npm launcher. Arbitrary wrapper scripts cannot be verified because
 their native target is unknown; select the native executable or official npm
-launcher instead. Codex classifies WebSocket transport as experimental
+launcher instead. An `app-server proxy` also cannot supply verified setup because
+its local executable only forwards requests to a separate daemon. Codex classifies WebSocket transport as experimental
 and unsupported; use it only for non-production testing against an app-server
 already running elsewhere:
 
@@ -207,6 +208,12 @@ connection fingerprint. Reauthenticating that same endpoint to another account
 does not revoke the schedule: subsequent runs use the endpoint's current account,
 subject to the captured app ceiling and current app/tool policy. Scheduled
 authority does not store or replay authentication credentials.
+
+Scheduled app approval ceilings preserve native tool overrides and the approval
+policy of the account identified by each tool. For tools that select an account
+when called, the shared tool ceiling uses the strictest combination of the
+configured account and default policies. Such tools can require approval across
+accounts even when one account permits the action automatically.
 
 Removing or un-configuring the endpoint, changing its connection fingerprint, or
 changing its captured managed requirements rejects the run before app execution.

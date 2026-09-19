@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Voice call configuration](../plugins/voice-call/configuration.md) — Plugin config keys, the call owner, the config reference table, and session scope. Read when: You are setting up voice-call plugin config keys; You need the default for a voice-call config key; You are choosing how call sessions are scoped.
+- [Voice call plugin](../plugins/voice-call.md) — Place outbound and accept inbound voice calls via Twilio, Telnyx, or Plivo, with optional realtime voice and streaming transcription. Read when: You want to place an outbound voice call from OpenClaw; You are configuring or developing the voice-call plugin; You need realtime voice or streaming transcription on telephony.
 - [Voice Call plugin reference](../plugins/reference/voice-call.md) — OpenClaw voice-call plugin for Twilio, Telnyx, and Plivo phone calls. Read when: You are installing, configuring, or auditing the voice-call plugin.
 - [Voice call realtime and streaming](../plugins/voice-call/realtime-and-streaming.md) — Realtime voice conversations, tool policy, agent voice context, and streaming transcription. Read when: You want a full-duplex realtime voice model on a call; You are tuning realtime tool policy or agent consult; You are streaming Twilio call audio to a transcription provider.
 - [Voice call security and interfaces](../plugins/voice-call/security-and-interfaces.md) — Webhook security options and the CLI, agent tool, and Gateway RPC surfaces. Read when: You are putting a proxy or tunnel in front of the voice webhook; You are looking up a voicecall CLI command; You are calling voice-call over Gateway RPC or the agent tool.

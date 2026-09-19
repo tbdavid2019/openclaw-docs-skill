@@ -187,9 +187,25 @@ Reach the Gateway and paired nodes from plugin code, and the events a long-lived
 
 ## Gateway service events
 
+Gateway-hosted services can use `ctx.invokeNode?.()` for their own registered
+node commands. This uses the service's identity, so a read-only document request
+can fetch a remote file without granting its caller `operator.write`.
+Authorize the public operation before using this capability. Node pairing,
+command grants, and plugin path policies still apply. The capability accepts no
+caller-selected scopes and stops accepting work when the service stops or its
+Gateway closes. Ordinary `api.runtime.nodes.invoke` keeps its caller's authority.
+
 Gateway-hosted services also receive `ctx.getCron?.()` for the scheduler operations
 already available to Gateway hooks: `list`, `add`, `update`, `remove`, and
 `removeStaleJobFamily`. Non-Gateway service hosts omit this getter.
+
+Current Gateway service handles also provide `await cron.isEnabled()` to observe
+whether automatic scheduling is enabled, including the `OPENCLAW_SKIP_CRON`
+override. It returns only a boolean, not storage metadata or permission to mutate
+jobs. The method is optional in the public type for older host implementations;
+its absence means unknown, not enabled or disabled. Consumers that support older
+hosts can keep their previous reconciliation behavior when it is absent.
+Disabled scheduling does not disable job CRUD or required plugin cleanup.
 
 Service cleanup retains the owning plugin's cleanup context so `stop()` can
 release resources after ordinary call admission closes. Keep the resources and

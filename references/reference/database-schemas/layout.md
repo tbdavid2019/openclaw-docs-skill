@@ -283,6 +283,19 @@ metadata alone exceeds a hard limit, the write fails without changing the row.
 The CLI and Gateway share WAL-backed transactions, including while the Gateway
 is stopped. The first terminal outcome wins; subsequent verification can enrich
 its observed facts without rewriting success, failure, skip, or rollback status.
+Interrupted completion has one narrowly verified exception: a candidate records
+its installed version and build ID in the retained `finalize:installed-candidate`
+step before returning post-core completion to the installed updater. The Gateway
+watcher and Doctor share one ledger reconciliation owner, which may finish the
+latest interrupted verification or correct its `abandoned` result to `succeeded`
+only after all recorded drivers are positively dead and fresh installed-build,
+serving-build, readiness, and generation checks agree. Recovery descriptors and
+recorded repair, failure, or rollback evidence prevent that correction. The transaction
+rechecks the complete row and latest-run identity after probing, then records the
+verification, outcome, and an explanatory warning together. Older rows without
+the target identity remain unchanged, and Doctor explains the missing evidence.
+This uses existing step and verification fields; schemas and rollback readers
+remain unchanged.
 Explicit `update repair` can correct the older package-owner refusal
 misclassification to `skipped` once the installed version satisfies its resolved
 target. This exception requires the latest run to contain only the untouched
@@ -328,6 +341,37 @@ This change requires no schema migration. See the
 The worktree service owns template creation, reuse, invalidation, and cleanup under its existing allocation lease. It reserves a `preparing` row before creating the artifact and publishes `ready` only after preparation completes. Durable mutations recheck the lease inside synchronous state transactions; filesystem work runs outside those transactions. Cleanup uses the reserved template ID so an old operation cannot delete its replacement. Templates are replaced when the commit or checkout policy changes and retired after seven days without use.
 
 The additive table is ensured on first use and does not change the numeric database schema version. Existing worktree and snapshot records retain their meaning; no existing checkout is migrated or moved. Template artifacts are reconstructible, while registered worktree contents and recovery snapshots retain their existing preservation rules.
+
+### Conversation environments
+
+Temporary desktops and app previews attached to a conversation use
+`worker_environment_session_attachments` in the shared state database. The worker
+environment store owns this additive companion table. One row binds an exact
+session ID and lifecycle revision to one environment, with an attachment
+generation, creation and last-use timestamps, and a nullable closed timestamp.
+The environment row continues to own provisioning, provider leases, transport
+identity, credentials, and teardown. Execution placement remains independent.
+
+Allocation intent and attachment reservation commit together before provisioning.
+Concurrent creation and retries reuse the owned allocation. Stop closes the
+relation before waiting for remote cleanup; cleanup failure retains the relation
+and prevents replacement until the old lease is confirmed destroyed. Session
+reset or deletion retires it, and startup checks the canonical session incarnation
+before allowing access. The configured profile's `suspendAfter` expires idle
+attachments; active agent runs and desktop observers keep them active. Provider
+lease lifetime limits continue to apply. Closing a sidebar panel only releases
+its viewer. Terminal attachment rows follow the environment owner's seven-day
+retention through a cascading foreign key.
+
+The table is ensured when the worker environment store opens and does not change
+the numeric schema version or the meaning of existing placement columns. Older
+builds ignore the relation and show these machines as ordinary unassigned
+environments; they do not maintain conversation attachment activity or cleanup.
+Stop attached machines before downgrading when they should not remain running.
+Existing environment destruction and provider lifetime limits remain available.
+Re-upgrading validates retained session identities and retries pending cleanup.
+Database backup and rollback include the companion table with the existing
+shared state database; no external attachment state needs reconstruction.
 
 ### Cloud repository workspaces
 

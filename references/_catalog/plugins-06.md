@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [LLM Task plugin reference](../plugins/reference/llm-task.md) — Generic JSON-only LLM tool for structured tasks callable from workflows. Read when: You are installing, configuring, or auditing the llm-task plugin.
+- [LM Studio plugin reference](../plugins/reference/lmstudio.md) — Adds LM Studio model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the lmstudio plugin.
 - [Lobster plugin reference](../plugins/reference/lobster.md) — Lobster workflow tool plugin for typed pipelines and resumable approvals. Read when: You are installing, configuring, or auditing the lobster plugin.
 - [Logbook plugin](../plugins/logbook.md) — Optional automatic work journal built from periodic screen snapshots. Read when: You want a Dayflow-style timeline of your day in the Control UI; You are enabling or configuring the bundled Logbook plugin; You want standup summaries or day recall grounded in screen activity.
 - [Logbook plugin reference](../plugins/reference/logbook.md) — Automatic work journal: captures periodic screen snapshots from a paired node and turns them into a reviewable timeline of your day. Read when: You are installing, configuring, or auditing the logbook plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Microsoft Teams meetings plugin](../plugins/teams-meetings.md) — Microsoft Teams meetings plugin: join work or consumer meetings as a Chrome browser guest. Read when: You want an OpenClaw agent to join a Microsoft Teams meeting; You need Teams-specific guest policy or manual-action guidance.
 - [Microsoft Teams meetings plugin reference](../plugins/reference/teams-meetings.md) — Join Microsoft Teams meetings as a Chrome browser guest. Read when: You are installing, configuring, or auditing the teams-meetings plugin.
 - [Microsoft Teams plugin reference](../plugins/reference/msteams.md) — OpenClaw Microsoft Teams channel plugin for bot conversations. Read when: You are installing, configuring, or auditing the msteams plugin.
-- [Migrate Claude plugin reference](../plugins/reference/migrate-claude.md) — Imports Claude Code and Claude Desktop instructions, MCP servers, skills, and safe configuration into OpenClaw. Read when: You are installing, configuring, or auditing the migrate-claude plugin.
-- [Migrate Hermes plugin reference](../plugins/reference/migrate-hermes.md) — Imports Hermes configuration, memories, skills, and supported credentials into OpenClaw. Read when: You are installing, configuring, or auditing the migrate-hermes plugin.
