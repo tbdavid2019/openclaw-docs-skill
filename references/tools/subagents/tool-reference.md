@@ -43,6 +43,7 @@ session to confirm the effective tool list.
 
 - **Model:** same-agent native sub-agents inherit the caller's active model, including session and one-shot overrides, unless you set `agents.defaults.subagents.model` (or per-agent `agents.entries.*.subagents.model`). The inherited model ID is preserved exactly, even when it contains a provider prefix. Cross-agent spawns use the target agent's configured model. ACP runtime spawns use the same configured subagent model when present; otherwise the ACP harness keeps its own default. An explicit `sessions_spawn.model` still wins.
 - **Thinking:** native sub-agents inherit the caller's active turn, including one-shot thinking overrides, unless you set `agents.defaults.subagents.thinking` (or per-agent `agents.entries.*.subagents.thinking`). ACP runtime spawns also apply the target agent's `thinkingDefault`, then its per-model `agents.entries.*.models["provider/model"].params.thinking` or the shared `agents.defaults.models["provider/model"].params.thinking`. An explicit `sessions_spawn.thinking` still wins.
+- **Fast mode:** with swarm enabled, native sub-agents inherit the requester's setting only when the resolved child provider and model match the requester's active model. A different child model uses its own defaults. Explicit `sessions_spawn.fastMode` values (`true`, `false`, or `"auto"`) take precedence; aliases resolving to the same model preserve inheritance.
 - **Run timeout:** pass `runTimeoutSeconds` to set a timeout for a specific native, ACP, or visible sub-agent run. When omitted, OpenClaw uses `agents.defaults.subagents.runTimeoutSeconds` if configured; otherwise it falls back to `0` (no timeout). An explicit `0` disables the timeout for that run.
 - **Process lifetime:** a detached OpenClaw sub-agent has its own run lifecycle. A background task created inside an external CLI backend is different: it shares the parent CLI subprocess and stops if that parent reaches `agents.defaults.timeoutSeconds`.
 - **Task delivery:** hidden and visible native sub-agents receive their delegated task in a `[Subagent Task]` message appended after any forked history. The message identifies the current child assignment and treats inherited conversation as background context. The hidden sub-agent system prompt carries runtime rules and routing context, not a duplicate of the task.
@@ -278,6 +279,12 @@ starting a sibling. The requester is announced once such a follow-up finishes
 normally; a follow-up that yields again leaves the run paused and the requester
 waiting.
 
+The controlling parent resumes a paused native child with an ordinary
+`sessions_send` continuation. The runtime preserves the original task and its
+completion recipient without requiring `mode: "resume"`. An explicit
+`mode: "followup"` deliberately starts a separate turn instead. Return completed
+work normally after resuming; yielding again keeps the task waiting.
+
 An operator can also resume the existing child with the `sessions.send` Gateway
 method and its paused session key. This preserves the original task, requester,
 and parent completion batch, so the parent continues when the child finishes.
@@ -359,9 +366,9 @@ means the runtime has no child completion to await; it does not prove that a
 remote job or timer was scheduled. Child dependency lists are bounded to 32
 entries and `pendingCount` retains the total. A finished child with pending
 delivery has produced a result that has not yet reached its requester.
-For an external wait, `resume` names the supported Gateway method and exact
-child session key. An authorized operator or integration must send that
-continuation; merely yielding does not schedule one.
+For an external wait, the controlling parent can send a continuation to the
+listed child session key with `sessions_send`; merely yielding does not schedule
+one. The task owner delivers completion when the resumed child finishes.
 
 Use `action: "cancel"` with a `taskId` returned by `action: "list"` to stop
 a task. Native subagent cancellation requires current controller authority;

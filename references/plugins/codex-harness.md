@@ -28,27 +28,32 @@ the optional capability ignore it; the normal minimum-version check still applie
 The native session catalog keeps one resident index per Codex home, shared across
 agents, working-directory filters, searches, and pages. Lists normally filter and page
 bounded display rows in memory. They do not expire or restart native discovery
-on the normal sidebar polling interval. This memory-only boundary is the local
+on the normal sidebar polling interval. The sorted view retains only eligible
+display rows and is invalidated by resident row changes. Complete, unfiltered
+queries reuse it directly; live status and workspace settings still apply per page.
+This memory-only boundary is the local
 resident query. The Gateway also reads session entries from its resident session-row
 projection once ready; mutations can require exact-key refreshes before delivery.
 Native adoption bindings still use their storage owner, and paired-node enumeration
 can use network I/O. Previews remain limited to 500 characters;
 native hydration and catalog pages remain limited to 64 rows each. Native `thread/list` has no bounded metadata projection, so wire JSON can still be
-large. Catalog `thread/list` pages and metadata-only `thread/read` responses used for catalog refreshes are
-parsed and projected in a worker owned by their app-server client. The stdout
-reader transfers bytes and waits for the compact result before delivering later
-responses or notifications. It admits one worker task at a time and pauses the
-transport while that task runs. Recovery also stays in the worker when a malformed
+large. Complete catalog `thread/list` pages and metadata-only `thread/read` responses
+up to 64 KiB are parsed and projected inline, avoiding worker startup for small
+catalog refreshes. Larger responses use a worker owned by their app-server client.
+Both paths apply the same projection. The stdout reader waits for the compact result
+before delivering later responses or notifications. It transfers larger responses
+as bytes, admits one worker task at a time, and pauses the transport while that task runs.
+Incomplete-frame recovery stays in the worker, including when a malformed
 frame hides its routing header until a later line; its decoded ID selects the catalog
 projection and the captured row admission. Native control reads, normal streaming notifications,
 and full-history reads keep their in-process decoder. Control reads preserve complete
 native metadata, including model selection and direct-input capability; transcript
 consumers require complete native raw items.
 Each native list page contains at most 64 rows (less than 6 MiB of serialized
-catalog metadata even at all field limits). The worker applies the existing
+catalog metadata even at all field limits). Both paths apply the existing
 prefix-first preview selector and 500-character display bound. Unchanged
-background rows can reuse resident previews before delivery. Native wire parsing
-and its temporary objects stay in the worker. Metadata reads preserve exact
+background rows can reuse resident previews before delivery. Large native payloads
+and their temporary objects stay in the worker. Metadata reads preserve exact
 working directories and the native history paging mode.
 Ephemeral threads are excluded as soon as native metadata acknowledges them, so
 closing a short-lived helper cannot lose the exclusion while a background refresh is pending.
@@ -139,7 +144,7 @@ For remote app-servers without local filesystem access, the saved snapshot is
 available immediately and a background native walk reconciles changes made while
 the Gateway was stopped or its app-server connection was unavailable. The full
 15-minute safety walk reconciles remote membership and metadata.
-Unchanged display rows reuse their bounded resident previews after worker projection.
+Unchanged display rows reuse their bounded resident previews before delivery.
 Unchanged rows are not rewritten to SQLite.
 
 Native starts, metadata refreshes, renames, archives, deletions, and changed file
@@ -157,15 +162,19 @@ edits and remote deletions or archives, appear at the next successful full safet
 walk. Local file disappearance is checked on the same cycle; native database
 omission alone still cannot delete a local row. Safety cycles start 15 minutes
 apart, subject to timer scheduling, in-flight work, and
-scan/walk duration. Native failures retain pending work for retry under source
-backoff. Successful file scans keep an independent deadline, so native retries
+scan/walk duration. A failed background check records its error and waits for new
+activity or the next safety cycle, subject to source backoff. It does not retry on
+every idle tick. File scans keep an independent deadline, so native failures
 neither repeat the scan nor postpone its next check.
 Notifications and acknowledged catalog actions continue to update rows immediately.
 
 Native lifecycle notifications update affected threads, and successful catalog
 archives immediately hide their rows. Turn starts and completions coalesce
 single-thread metadata refreshes, so a running turn advances recency before it
-finishes. A startup scan and the 15-minute stat-only safety scan discover external rollout changes; no
+finishes. When an observing client closes, queued reads against that client stop;
+an interrupted read records that metadata recovery is deferred to the current
+catalog owner. Observations do not keep retired clients alive. A startup scan and
+the 15-minute stat-only safety scan discover external rollout changes; no
 recursive filesystem watcher retains a directory inventory. The scan streams
 directory entries and retains at most 20,000 file fingerprints while separately
 checking the presence of resident paths. Only changed or
@@ -549,6 +558,23 @@ Neither Codex command is provider-response telemetry. `/codex models` lists
 the live Codex app-server catalog for the harness and account. If `/status` is
 surprising, see
 [Troubleshooting](/plugins/codex-harness/troubleshooting).
+
+## Luna Reserve and credit usage
+
+Ordinary `gpt-5.6-luna` and Luna Reserve (`gpt-reserve`) are separate routes.
+Selecting ordinary Luna does not consume Reserve merely because its quota has
+capacity. Turning Fast off changes the requested service tier, not the model route.
+
+OpenClaw currently reports the Reserve bucket when Codex returns it, but does not
+implement the backend-authorized Reserve transition and recovery flow. Do not
+force the hidden Reserve model or treat an unused counter as authorization.
+Account and client eligibility remain backend decisions.
+
+After included usage is exhausted, ordinary requests may consume credits under
+your account settings. Check the provider’s usage and spending controls before
+continuing high-volume automation. Account balances and quota percentages are
+not per-request billing receipts; `/status` and `/codex binding` do not establish
+the service tier or charge actually applied to a completed request.
 
 ## Where each section moved
 

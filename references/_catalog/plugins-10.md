@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Runway plugin reference](../plugins/reference/runway.md) — Adds video generation provider support. Read when: You are installing, configuring, or auditing the runway plugin.
+- [SearXNG plugin reference](../plugins/reference/searxng.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the searxng plugin.
+- [Senseaudio plugin reference](../plugins/reference/senseaudio.md) — Adds media understanding provider support. Read when: You are installing, configuring, or auditing the senseaudio plugin.
 - [Session Share plugin](../plugins/session-share.md) — Share selected OpenClaw sessions read-only with a paired team Gateway. Read when: Sharing personal OpenClaw sessions with a team Gateway; Pairing a node that exposes only session listings and transcripts; Configuring attribution for sessions from another Gateway.
 - [Session Share plugin reference](../plugins/reference/session-share.md) — Read-only OpenClaw sessions on paired gateways. Read when: You are installing, configuring, or auditing the session-share plugin.
 - [SGLang plugin reference](../plugins/reference/sglang.md) — Adds SGLang model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the sglang plugin.
@@ -28,9 +31,6 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Tool plugins](../plugins/tool-plugins.md) — Build simple typed agent tools with defineToolPlugin and openclaw plugins init/build/validate. Read when: You want to build a simple OpenClaw plugin that only adds agent tools; You want to use defineToolPlugin instead of hand-writing plugin manifest metadata; You need to scaffold, generate, validate, test, or publish a tool-only plugin.
 - [TTS Local CLI plugin reference](../plugins/reference/tts-local-cli.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the tts-local-cli plugin.
 - [Twitch plugin reference](../plugins/reference/twitch.md) — OpenClaw Twitch channel plugin for chat and moderation workflows. Read when: You are installing, configuring, or auditing the twitch plugin.
+- [TypeSafe AI](../plugins/typesafe.md) — Use TypeSafe AI's Jev model for optional typed decisions. Read when: Configuring a typed decision model; Using the TypeSafe evaluation tool.
+- [Typesafe plugin reference](../plugins/reference/typesafe.md) — Optional typed evaluations, not a conversational model provider. Read when: You are installing, configuring, or auditing the typesafe plugin.
 - [Vault plugin reference](../plugins/reference/vault.md) — HashiCorp Vault SecretRef provider integration. Read when: You are installing, configuring, or auditing the vault plugin.
-- [Vault SecretRefs](../plugins/vault.md) — Use the bundled Vault plugin to resolve SecretRefs from HashiCorp Vault. Read when: You want OpenClaw to read API keys from HashiCorp Vault; You are setting up SecretRefs on a local machine or server; You need to configure Vault-backed model provider credentials.
-- [Venice plugin reference](../plugins/reference/venice.md) — Adds Venice model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the venice plugin.
-- [Vercel AI Gateway plugin reference](../plugins/reference/vercel-ai-gateway.md) — Adds Vercel AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vercel-ai-gateway plugin.
-- [Visitor Access plugin reference](../plugins/reference/visitor-access.md) — Manage expiring visitor grants through one Cloudflare Access email policy. Read when: You are installing, configuring, or auditing the visitor-access plugin.
-- [vLLM plugin reference](../plugins/reference/vllm.md) — Adds vLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vllm plugin.

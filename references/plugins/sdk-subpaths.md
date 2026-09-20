@@ -408,7 +408,7 @@ Use `isLoopbackHost(host)` when a plugin must accept only the local machine. It 
     | `plugin-sdk/device-bootstrap` | Device bootstrap and pairing token helpers, including `BOOTSTRAP_HANDOFF_OPERATOR_SCOPES` |
     | `plugin-sdk/extension-shared` | Shared passive-channel, status, and ambient proxy helper primitives |
     | `plugin-sdk/models-provider-runtime` | `/models` command/provider reply helpers. Display `ModelsProviderData.refreshWarning` alongside usable choices, and use `MODEL_PICKER_CHANGED_MESSAGE` when a saved menu choice is no longer available. |
-    | `plugin-sdk/skill-commands-runtime` | Skill command listing helpers |
+    | `plugin-sdk/skill-commands-runtime` | Synchronous Skill command listing. Remote workspaces expose Gateway-owned Skills only; menus do not wait for the Harness. |
     | `plugin-sdk/native-command-registry` | Native command registry/build/serialize helpers |
     | `plugin-sdk/agent-harness` | Experimental trusted-plugin surface for low-level agent harnesses: harness types, active-run steer/abort helpers, OpenClaw tool bridge helpers, runtime-plan tool policy helpers, terminal outcome classification, tool progress formatting/detail helpers, and attempt result utilities |
     | `plugin-sdk/async-lock-runtime` | Private-local after July 2026; Process-local async lock helper for small runtime state files |
@@ -499,7 +499,7 @@ Use `isLoopbackHost(host)` when a plugin must accept only the local machine. It 
     | `plugin-sdk/plugin-state-test-runtime` | Repo-local plugin state store, ingress queue, and state DB test helpers |
     | `plugin-sdk/provider-test-contracts` | Repo-local provider runtime, auth, discovery, onboard, catalog, wizard, media capability, replay policy, realtime STT live-audio, web-search/fetch, and stream contract helpers |
     | `plugin-sdk/provider-http-test-mocks` | Private-local after July 2026; Repo-local opt-in Vitest HTTP/auth mocks for provider tests that exercise `plugin-sdk/provider-http` |
-    | `plugin-sdk/reply-payload-testing` | Repo-local helpers for attaching metadata to reply payload fixtures |
+    | `plugin-sdk/reply-payload-testing` | Repo-local reply payload, delivery settlement, threading, and metadata test helpers |
     | `plugin-sdk/sqlite-runtime-testing` | Repo-local SQLite lifecycle helpers for first-party tests |
     | `plugin-sdk/test-state` | Repo-local isolated OpenClaw state, config, workspace, environment, and auth-profile fixtures for plugin tests |
     | `plugin-sdk/test-fixtures` | Repo-local generic CLI runtime capture, direct-import smoke, sandbox context, skill writer, agent-message, system-event, module reload, bundled plugin path, terminal-text, chunking, auth-token, and typed-case fixtures |

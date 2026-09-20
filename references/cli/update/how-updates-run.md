@@ -143,8 +143,8 @@ Their request and recovery watchdogs do not become update validation deadlines.
 Startup and readiness responses share that validation deadline, including reading
 the response body.
 
-These deadlines belong to the invoking updater. The published 2026.9.3 updater
-caps its complete rehearsal at five minutes, including the snapshot, and its
+These deadlines belong to the invoking updater. The published 2026.9.3 and 2026.9.4 updaters
+cap their complete rehearsal at five minutes, including the snapshot, and their
 later schema inspection at thirty seconds, even with `--timeout 900`. Installing
 a newer candidate cannot enlarge those parent-process deadlines on that first
 update. Subsequent updates use the newer updater's allowances described above.
@@ -233,6 +233,10 @@ or state, invalid or unattributed plugin-registry results, and failed core start
 or readiness checks. The updater reruns the failed check after each attempt and
 activates only after it passes. Failed or unavailable repair discards the
 staged update and leaves the serving Gateway untouched.
+After Doctor migrations complete and validation children shut down, repair reuses
+that private copy and its completed checks. If no usable inference route exists,
+the attempt is skipped without another snapshot or Doctor pass. Incomplete
+migrations or unconfirmed child shutdown require a fresh private copy instead.
 Successful repair of a private copy does not mean the update was applied:
 the updater validates a fresh copy of the update again before activation. If that check
 fails, the report retains the failed update and the command exits nonzero even
@@ -266,6 +270,16 @@ The new version can be running while verification fails. Recovery guidance uses 
 latest observed service state and names the running version when known; an
 earlier activation stop does not mean the service remains stopped.
 
+Respawn and update verification use the same progress-aware readiness wait as
+Gateway restart. Startup that continues making progress can use the existing
+five-minute startup lease. If that lease ends while the same Gateway is still
+progressing, verification finishes with a warning and reason `still-starting`.
+The process stays running, recovery backups remain available, and the updater
+does not restart it again, roll it back, or instruct you to keep it stopped.
+The run is `skipped` because readiness is unverified. A version that has not yet
+been observed is unknown; a version mismatch requires an observed serving
+version that disagrees with the installed target.
+
 When the readiness allowance expires for the same running PID or boot generation
 while the restart owner reports waiting for a listener, startup migration, or
 healthy settling, the updater records the elapsed wait and startup phase as a warning. It leaves the process starting, keeps readiness
@@ -286,6 +300,12 @@ This warning handling belongs to the updater already running. The published
 2026.9.3 and 2026.9.4 parents cannot distinguish pending readiness from verified
 success when completing a migrated update, so candidate-only updates cannot
 change their backup-retirement and Windows autostart decisions.
+The published 2026.9.4 runtime also retains its own ten-second respawn health
+wait when it verifies a child it started. Installing a new version cannot change
+that already-running wait. The shared respawn readiness wait applies when the
+new runtime owns the respawn, including subsequent upgrades driven by it;
+candidate-side restart verification uses the new owner when the old updater
+hands that work to the installed runtime.
 
 Plugin packages download and sync against the installed target before the managed
 Gateway restarts. The service remains stopped through channel/config writes,

@@ -149,6 +149,13 @@ Native dependency policy:
     - Local worker auto-scaling is intentionally conservative and backs off
       when the host load average is already high, so multiple concurrent
       Vitest runs do less damage by default.
+      CI hosts with at least eight available CPUs can use six workers at
+      24 to below 28 GiB and eight workers at 28–128 GiB. The measured memory allowance
+      reserves 25% of RAM even for two heavy test processes. Interactive local
+      sizing is unchanged; explicit worker overrides, load backoff, process
+      memory constraints, free-memory pressure limits, and the 16-worker cap
+      still apply. See [CI worker sizing](/ci/capacity#vitest-worker-sizing)
+      for the measurements and workflow limits.
     - The base Vitest config marks the projects/config files as
       `forceRerunTriggers` so changed-mode reruns stay correct when test
       wiring changes.
@@ -252,6 +259,14 @@ Native dependency policy:
 The dedicated real-Gateway CI job uses `test/vitest/vitest.ui-e2e-prebuilt.config.ts` after `OPENCLAW_BUILD_PRIVATE_QA=1 pnpm build:ci-artifacts` completes in a clean checkout. Keep source and built outputs unchanged until all workers and children finish. Files outside the prebuilt config’s shared-reader/writer allowlist run serially first. Audited fixtures own their HOME, state, ports, and cleanup, and share at most two workers in the same invocation, with no extra jobs or shards. Readiness failures stop execution without rebuilding or falling back. The ordinary local config keeps real-Gateway files serial; frozen targets without the prebuilt config keep their original serial command. See [CI](/ci) for the resource policy and bounded timing evidence.
 
 ### Network-isolated local E2E
+
+When Chromium is available, UI E2E setup proves loopback HTTP through the parent
+Node process's normal `fetch` before acquiring Gateway fixtures or the shared UI
+build. A proxy refusal or malformed response fails this environment preflight
+with a sanitized error instead of consuming the Gateway startup budget. Existing
+optional missing-browser skips remain unchanged. If later Gateway readiness
+expires, its error also retains the last completed HTTP failure so a final
+deadline-edge timeout does not hide useful status and error-category evidence.
 
 Gateway-hosted exec can inherit the [secret egress proxy](/gateway/secrets/secret-store-and-egress#secret-egress-proxy). Its plain-HTTP refusal also applies to a test process calling its own loopback fixture. A Gateway can therefore log that it is ready while its parent receives a proxy error from `/readyz`. Building the UI again or increasing the readiness timeout does not repair that transport mismatch.
 

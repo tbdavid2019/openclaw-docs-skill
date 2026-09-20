@@ -1807,6 +1807,8 @@
                     "group": "Meetings and calls",
                     "pages": [
                       "plugins/meeting-plugins",
+                      "plugins/facetime",
+                      "plugins/facetime-recovery",
                       "plugins/google-meet",
                       {
                         "group": "Google Meet",
@@ -1839,7 +1841,8 @@
                       "plugins/apple-fm",
                       "plugins/llama-cpp",
                       "plugins/memory-lancedb",
-                      "plugins/memory-wiki"
+                      "plugins/memory-wiki",
+                      "plugins/typesafe"
                     ]
                   },
                   {
@@ -2052,7 +2055,8 @@
                       "tools/progress-card",
                       "tools/reactions",
                       "tools/screen",
-                      "tools/show-widget"
+                      "tools/show-widget",
+                      "tools/theme"
                     ]
                   },
                   {
