@@ -89,6 +89,11 @@ session reservation or temporary output, await `withCommandProcessScope` from th
 same subpath around execution before releasing those resources. The scope joins
 late startup and process cleanup; uncertain cleanup remains an error.
 
+For a subprocess that requires Node.js, use `resolveNodeRuntimeExecutable` from
+the same subpath. It reuses the current Node executable and resolves a real Node
+binary when the host runs under Bun, skipping Bun's `node` shim. An unavailable
+Node runtime returns `undefined`; the caller reports the missing requirement.
+
 Interactive process adapters can use `spawnTerminalPty` from the same subpath.
 It owns platform-specific terminal creation, including the Node helper on Bun.
 Pass the caller's construction signal and current-authority check through its
@@ -112,9 +117,28 @@ resources. Both remain retained until Worker exit is confirmed; cleanup also
 runs if construction fails before a Worker exists. When both are supplied,
 the pool attempts temporary-directory removal first, then calls
 `releaseResources()` even if that removal fails. Cleanup failures become warnings.
-Execution capacity becomes available after Worker exit, while `close()` joins
-the cleanup callback before it completes. A failed termination runs neither
+Resource cleanup itself does not hold execution capacity after Worker exit;
+pending input preparation can still retain it as described below. `close()`
+joins the cleanup callback before it completes. A failed termination runs neither
 cleanup step; retry `close()` on the same pool to confirm exit and release them.
+
+Cancellation can reject `run()` before an asynchronous input factory settles.
+The pool retains its inputs and capacity until preparation and required worker
+retirement both finish, then invokes `onInputConsumed`. When cancellation's initial
+retirement succeeds, the native execution receipt precedes result rejection. A
+failed stop can reject earlier while retaining native custody and the pending
+receipt for retry.
+
+Input factories must settle independently of the same pool’s `close()`: awaiting
+closure inside a pending factory creates a cycle because closure joins that
+factory. Cancel any awaited work owned by the factory before awaiting `close()`,
+then await closure before disposing resources the factory still captures. The
+`run()` signal cancels the task; it does not interrupt arbitrary work awaited by
+the factory.
+
+Handle errors from `close()` even when `run()` already rejected. For canceled
+pending preparation, input and execution-receipt callback failures are reported
+by `close()`; admission remains held until closure observes the cleanup failure.
 
 When launching an isolated Gateway child that your plugin owns, remove
 `SUPERVISOR_HINT_ENV_VARS` from its environment after applying caller overrides.

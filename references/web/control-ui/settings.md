@@ -135,6 +135,8 @@ Personal theme definitions are saved to your authenticated Gateway profile. Exis
 
 The Appearance panel has the built-in Claw, Knot, Dash, Absolutely, Tide, Beacon, Phosphor, CRT, Manuscript, Rosé, and Miami themes (Claw is default), plus themes contributed by enabled plugins, personal themes saved through the agent, and one browser-local tweakcn import slot. Each theme ships its own self-hosted typeface, loaded only when selected or previewed: Claw uses Instrument Sans, Knot uses Geist, Dash pairs DM Sans with Fraunces for chat prose, Absolutely pairs Space Grotesk with Lora for chat prose, Tide uses IBM Plex Sans, Rosé uses DM Sans, and Miami uses Space Grotesk. Beacon targets WCAG AAA (7:1) contrast with the Atkinson Hyperlegible Next typeface for low vision, bright sunlight, projectors, and low-quality panels. Phosphor and CRT set the entire surface, chat prose included, in JetBrains Mono — Phosphor as green-on-glass, CRT as a white-on-black console with squared corners. Manuscript is the one light-first theme: parchment and iron-gall ink with a lapis accent, set entirely in the Lora serif, with a candlelit dark mode. To import a theme, open the [tweakcn editor](https://tweakcn.com/editor/theme), choose or create a theme, click **Share**, and paste the copied link into Appearance. The importer also accepts `https://tweakcn.com/r/themes/<id>` registry URLs, editor URLs like `https://tweakcn.com/editor/theme?theme=amethyst-haze`, relative `/themes/<id>` paths, raw theme IDs, and default theme names such as `amethyst-haze`.
 
+Every built-in theme includes matching light and dark background artwork across the app canvas. The small, bundled lossless WebP images stay quiet behind content and follow the selected mode, including System. Plugin, personal, and imported palettes use neutral artwork. New-session and chat composers use a lightly translucent surface instead of repeating the image; navigation, menus, and reading cards retain their own surfaces. No external image requests are required. Increased contrast and forced colors hide the artwork and make composers opaque; reduced transparency also makes composers opaque.
+
 Themes imported from tweakcn are stored only in the current browser profile; they are not written to gateway config and do not sync across devices. Replacing the imported theme updates the one local slot; clearing it switches back to Claw if the imported theme was active.
 
 Selecting a **different theme** in Appearance applies its complete default look, clearing the interface and chat font overrides and selecting its own accent palette. You can customize the fonts and accent afterward. Selecting the same theme, reloading, reconnecting, receiving synced preferences, or changing light/dark mode does not reset those customizations. Language, text size, chat display, and other unrelated preferences are unchanged.
@@ -273,6 +275,12 @@ update policy, and active or most recent update. **Update now** opens a
 confirmation showing the target and restart impact. Choose **Update and restart**
 to start; canceling leaves the Gateway untouched.
 
+For `dev` git updates, the confirmation, sidebar, and available-update status
+show the installed → target short commit SHAs on a separate line below the commit
+count. **Compare on GitHub** opens a comparison when the tracked upstream is
+a GitHub repository; other installs show plain revisions. This distinguishes
+revisions that share a version number.
+
 After confirmation, one update view shows the ordered phases, current or last
 step details, and verification results for the service, version, plugins,
 channels, and inference. The details area follows new lines until you scroll up.
@@ -370,6 +378,11 @@ The existing Terminal, Files, and Side chat bindings are unchanged.
 Inside the [macOS app](/platforms/macos), Settings includes a **This Mac** group
 for settings on that Mac. **This Mac** (`/settings/device`) contains app behavior,
 device capabilities, browser login import and cookie sync, and developer tools.
+**Capabilities → Desktop sharing** is enabled by default and makes this Mac's
+existing Screen Sharing service available in **Systems** after pairing approval.
+It is separate from agent **Computer Control** and **Keep computer awake**.
+Changing it reconnects this Mac automatically; it does not change the remote
+Gateway host's desktop setting or enable macOS Screen Sharing.
 **Permissions** (`/settings/device/permissions`) shows macOS permission status
 and actions, location preferences, and active computer presence.
 
@@ -394,8 +407,10 @@ Find **Labs** in the **System** section of the Settings sidebar, after **Infrast
 
 **Settings → Labs → Custom plugin UI** enables native pages, widgets, actions,
 and view replacements from user-installed plugins. It defaults to off and
-writes `gateway.controlUi.experimental.customPlugins`. Restart the Gateway and
-reload connected browser tabs after changing it.
+writes `gateway.controlUi.experimental.customPlugins`. Changes apply without
+restarting the Gateway, and connected pages refresh their plugin views
+automatically. After disabling it, reload browser tabs to clear plugin
+JavaScript that already ran.
 
 Only enable it for plugin authors you trust: native UI runs in the Control UI
 origin with the signed-in operator's Gateway authority. Native UI from enabled

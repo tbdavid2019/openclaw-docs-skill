@@ -50,7 +50,7 @@ Each entry lists the package, distribution route, and description.
 
 ## Core npm package
 
-63 plugins
+62 plugins
 
 - **[a2a](/plugins/reference/a2a)** (`@openclaw/a2a`) - included in OpenClaw. A2A v1.0 Agent-to-Agent protocol channel plugin.
 
@@ -164,8 +164,6 @@ Each entry lists the package, distribution route, and description.
 
 - **[tts-local-cli](/plugins/reference/tts-local-cli)** (`@openclaw/tts-local-cli`) - included in OpenClaw. Adds text-to-speech provider support.
 
-- **[typesafe](/plugins/reference/typesafe)** (`@openclaw/typesafe`) - included in OpenClaw. Optional typed evaluations, not a conversational model provider.
-
 - **[vault](/plugins/reference/vault)** (`@openclaw/vault`) - included in OpenClaw. HashiCorp Vault SecretRef provider integration.
 
 - **[vllm](/plugins/reference/vllm)** (`@openclaw/vllm-provider`) - included in OpenClaw. Adds vLLM model provider support to OpenClaw.
@@ -180,7 +178,7 @@ Each entry lists the package, distribution route, and description.
 
 ## Official external packages
 
-93 plugins
+95 plugins
 
 - **[acpx](/plugins/reference/acpx)** (`@openclaw/acpx`) - npm or ClawHub: `clawhub:@openclaw/acpx`. OpenClaw ACP runtime backend with plugin-owned session and transport management.
 
@@ -296,6 +294,8 @@ Each entry lists the package, distribution route, and description.
 
 - **[novita](/plugins/reference/novita)** (`@openclaw/novita-provider`) - npm or ClawHub: `clawhub:@openclaw/novita-provider`. Adds Novita, Novita AI, Novitaai model provider support to OpenClaw.
 
+- **[onnx](/plugins/reference/onnx)** (`@openclaw/onnx`) - npm or ClawHub: `clawhub:@openclaw/onnx`. Local typed decisions using pinned ONNX classifiers.
+
 - **[opencode](/plugins/reference/opencode)** (`@openclaw/opencode-provider`) - npm or ClawHub: `clawhub:@openclaw/opencode-provider`. Adds OpenCode model provider support to OpenClaw.
 
 - **[openshell](/plugins/reference/openshell)** (`@openclaw/openshell-sandbox`) - npm or ClawHub: `clawhub:@openclaw/openshell-sandbox`. OpenClaw sandbox backend for the NVIDIA OpenShell CLI with mirrored local workspaces and SSH command execution.
@@ -343,6 +343,8 @@ Each entry lists the package, distribution route, and description.
 - **[tokenjuice](/plugins/reference/tokenjuice)** (`@openclaw/tokenjuice`) - npm or ClawHub: `clawhub:@openclaw/tokenjuice`. Compacts exec and bash tool results with tokenjuice reducers.
 
 - **[twitch](/plugins/reference/twitch)** (`@openclaw/twitch`) - npm or ClawHub: `clawhub:@openclaw/twitch`. OpenClaw Twitch channel plugin for chat and moderation workflows.
+
+- **[typesafe](/plugins/reference/typesafe)** (`@openclaw/typesafe`) - npm or ClawHub: `clawhub:@openclaw/typesafe`. Optional typed evaluations, not a conversational model provider.
 
 - **[venice](/plugins/reference/venice)** (`@openclaw/venice-provider`) - npm or ClawHub: `clawhub:@openclaw/venice-provider`. Adds Venice model provider support to OpenClaw.
 

@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Typesafe plugin reference](../plugins/reference/typesafe.md) — Optional typed evaluations, not a conversational model provider. Read when: You are installing, configuring, or auditing the typesafe plugin.
+- [Vault plugin reference](../plugins/reference/vault.md) — HashiCorp Vault SecretRef provider integration. Read when: You are installing, configuring, or auditing the vault plugin.
 - [Vault SecretRefs](../plugins/vault.md) — Use the bundled Vault plugin to resolve SecretRefs from HashiCorp Vault. Read when: You want OpenClaw to read API keys from HashiCorp Vault; You are setting up SecretRefs on a local machine or server; You need to configure Vault-backed model provider credentials.
 - [Venice plugin reference](../plugins/reference/venice.md) — Adds Venice model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the venice plugin.
 - [Vercel AI Gateway plugin reference](../plugins/reference/vercel-ai-gateway.md) — Adds Vercel AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vercel-ai-gateway plugin.
@@ -32,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Zalo Personal plugin reference](../plugins/reference/zalouser.md) — OpenClaw Zalo Personal Account plugin via native zca-js integration. Read when: You are installing, configuring, or auditing the zalouser plugin.
 - [Zalo plugin reference](../plugins/reference/zalo.md) — OpenClaw Zalo channel plugin for bot and webhook chats. Read when: You are installing, configuring, or auditing the zalo plugin.
 - [Zoom meetings plugin](../plugins/zoom-meetings.md) — Zoom meetings plugin: join meetings as a Chrome browser guest. Read when: You want an OpenClaw agent to join a Zoom meeting; You need Zoom-specific guest policy or manual-action guidance.
-- [Zoom meetings plugin reference](../plugins/reference/zoom-meetings.md) — Join Zoom meetings as a Chrome browser guest. Read when: You are installing, configuring, or auditing the zoom-meetings plugin.

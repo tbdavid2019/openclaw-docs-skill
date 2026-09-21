@@ -36,7 +36,8 @@ leave time for cancellation and cleanup. These caps also apply to `--wait 0`. Lo
 heartbeat timeouts do not extend it. When available, the drain log reports the
 largest observed model request timeout for context.
 
-If work still ignores cancellation at the shutdown deadline under systemd or launchd, the process logs
+If work still ignores cancellation at the shutdown deadline under systemd or launchd,
+a native service stop or supervisor-owned restart logs
 the remaining work categories, writes a diagnostic stability bundle, and exits
 with status `0`. It does not reuse that unfinished runtime for an in-process
 restart. This lets a requested stop finish cleanly and lets the service manager
@@ -64,10 +65,10 @@ retains exit status `78` and parks a managed LaunchAgent when possible. A refuse
 shared-state database cannot record a new lifecycle row; the error log explains
 the refusal, and deep status reports it instead of an unavailable shutdown record.
 
-Foreground/manual Gateways and other supervisors retain exit status `1` when
+Foreground/manual Gateways, in-process restarts selected by `OPENCLAW_NO_RESPAWN=1`, and other supervisors retain exit status `1` when
 cleanup cannot finish before the shutdown deadline.
 
-`--force` skips the active-work drain and restarts immediately. Plain `restart` normally uses the service-manager restart path.
+`--force` skips the active-work drain and requests cancellation of active cron runs before cleanup. The normal shutdown path still joins accepted work; existing shutdown deadlines still apply. Plain `restart` normally uses the service-manager restart path.
 
 During an upgrade, restart records its reason and drain options in the existing
 Gateway state without starting a schema migration while the old Gateway is still

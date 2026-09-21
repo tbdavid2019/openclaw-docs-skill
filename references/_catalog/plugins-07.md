@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Microsoft plugin reference](../plugins/reference/microsoft.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the microsoft plugin.
 - [Microsoft Teams meetings plugin](../plugins/teams-meetings.md) — Microsoft Teams meetings plugin: join work or consumer meetings as a Chrome browser guest. Read when: You want an OpenClaw agent to join a Microsoft Teams meeting; You need Teams-specific guest policy or manual-action guidance.
 - [Microsoft Teams meetings plugin reference](../plugins/reference/teams-meetings.md) — Join Microsoft Teams meetings as a Chrome browser guest. Read when: You are installing, configuring, or auditing the teams-meetings plugin.
 - [Microsoft Teams plugin reference](../plugins/reference/msteams.md) — OpenClaw Microsoft Teams channel plugin for bot conversations. Read when: You are installing, configuring, or auditing the msteams plugin.
@@ -23,6 +24,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Oc Path plugin reference](../plugins/reference/oc-path.md) — Adds the openclaw path CLI for oc:// workspace file addressing. Read when: You are installing, configuring, or auditing the oc-path plugin.
 - [Ollama plugin reference](../plugins/reference/ollama.md) — Adds Ollama, Ollama Cloud model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the ollama plugin.
 - [Onepassword plugin reference](../plugins/reference/onepassword.md) — 1Password SecretRef resolver and curated agent broker with approval policy and SQLite audit history. Read when: You are installing, configuring, or auditing the onepassword plugin.
+- [Onnx plugin reference](../plugins/reference/onnx.md) — Local typed decisions using pinned ONNX classifiers. Read when: You are installing, configuring, or auditing the onnx plugin.
 - [OpenAI plugin reference](../plugins/reference/openai.md) — Adds OpenAI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the openai plugin.
 - [OpenCode Go plugin reference](../plugins/reference/opencode-go.md) — Adds OpenCode Go model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the opencode-go plugin.
 - [OpenCode plugin reference](../plugins/reference/opencode.md) — Adds OpenCode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the opencode plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Perplexity plugin reference](../plugins/reference/perplexity.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the perplexity plugin.
 - [PixVerse plugin reference](../plugins/reference/pixverse.md) — OpenClaw PixVerse video generation provider plugin. Read when: You are installing, configuring, or auditing the pixverse plugin.
 - [Plugin architecture internals](../plugins/architecture-internals.md) — Plugin architecture internals: load pipeline, registry, runtime hooks, HTTP routes, and reference tables. Read when: Implementing provider runtime hooks, channel lifecycle, or package packs; Debugging plugin load order or registry state; Adding a new plugin capability or context engine plugin.
-- [Plugin bundles](../plugins/bundles.md) — Install and use Agent Plugins, Codex, Claude, and Cursor bundles as OpenClaw plugins. Read when: You want to install an Agent Plugins, Codex, Claude, or Cursor-compatible bundle; You need to understand how OpenClaw maps bundle content into native features; You are debugging bundle detection or missing capabilities.
-- [Plugin compatibility](../plugins/compatibility.md) — Plugin compatibility contracts, deprecation metadata, and migration expectations. Read when: You maintain an OpenClaw plugin; You see a plugin compatibility warning; You are planning a plugin SDK or manifest migration.

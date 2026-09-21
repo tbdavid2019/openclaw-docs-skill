@@ -4,6 +4,8 @@ Documentation under `reference/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Pull request review flow](../reference/pull-request-review-flow.md) — How Barnacle and ClawSweeper feedback helps move OpenClaw pull requests through review. Read when: Following up after Barnacle or ClawSweeper feedback; Asking ClawSweeper for review; Debugging Barnacle, ClawSweeper, stale labels, or auto-closures.
+- [Release checks stages](../reference/full-release-validation/release-checks.md) — OpenClaw Release Checks stage matrix and the Docker release-path chunk list. Read when: Classifying a failed release-check surface; Selecting a Docker release-path chunk.
 - [Release performance sweep](../reference/release-performance-sweep.md) — Visual summary and technical evidence for the May 2026 performance, package-size, dependency, and shrinkwrap cleanup. Read when: You are validating the May 2026 performance and package-size cleanup; You need the numbers behind the OpenClaw performance and dependency blog post; You need historical context before changing current policy at /gateway/security/dependency-locking.
 - [Release policy](../reference/RELEASING.md) — Release lanes, operator checklist, validation boxes, version naming, and cadence. Read when: Looking for public release channel definitions; Running release validation or package acceptance; Looking for version naming and cadence.
 - [Release profiles and focused reruns](../reference/full-release-validation/profiles.md) — Release profile coverage, full-only additions, and the focused rerun handles and suite filters. Read when: Comparing beta, stable, and full profile coverage; Picking a focused rerun_group or suite filter.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Tests](../reference/test.md) — Index of the OpenClaw testing reference, one page per reader job. Read when: Running or fixing tests.
 - [Token use and costs](../reference/token-use.md) — How OpenClaw builds prompt context and reports token usage + costs. Read when: Explaining token usage, costs, or context windows; Debugging context growth or compaction behavior.
 - [TOOLS.md retired](../reference/templates/TOOLS.md) — Retired TOOLS.md workspace template. Read when: Bootstrapping a workspace manually.
-- [Top-level stages](../reference/full-release-validation/stages.md) — The Full Release Validation umbrella stage matrix, evidence reuse, artifact producers, and decision states. Read when: Reading the umbrella stage matrix; Debugging a Release Decision or Diagnostic Drain state.
-- [Transcript hygiene](../reference/transcript-hygiene.md) — Reference: provider-specific transcript sanitization and repair rules. Read when: You are debugging provider request rejections tied to transcript shape; You are changing transcript sanitization or tool-call repair logic; You are investigating tool-call id mismatches across providers.

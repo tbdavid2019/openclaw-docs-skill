@@ -4,6 +4,7 @@ Architecture, agents, sessions, memory, models, and routing.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Session state awareness](../concepts/session-state.md) — Durable session state signal log: state versions, watchers, stale-state notices, and reconciliation. Read when: You want agents to notice when humans or other agents change a session behind their back; You are debugging state-change notices, watch cursors, or session_status changesSince; You want to understand how parent agents stay synchronized with child sessions.
 - [Session synchronization and attachment](../concepts/session-attachment.md) — How Gateway-owned sessions continue across the Control UI, terminal, CLI, mobile clients, and coding harnesses. Read when: You want to continue a Control UI session in the terminal; You want to attach a coding harness to an existing session; You are troubleshooting session links, remote pairing, or attachment failures.
 - [Session tools](../concepts/session-tool.md) — Agent tools for cross-session status, recall, messaging, and sub-agent orchestration. Read when: You want to understand what session tools the agent has; You want to configure cross-session access or sub-agent spawning; You want to inspect spawned sub-agent status.
 - [Slack QA](../concepts/qa-e2e-automation/slack-qa.md) — The Slack QA lane and the workspace, app, and scope provisioning it needs. Read when: You are running the Slack QA lane; You are provisioning a Slack workspace for QA.

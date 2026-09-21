@@ -34,6 +34,17 @@ same-version readers can ignore the extra index, so binary rollback leaves it
 intact. The accepted design is recorded in the
 [session label index decision](https://github.com/openclaw/openclaw/pull/147837#issuecomment-5658783288).
 
+Task and maintenance lookups add nonunique indexes without changing state schema
+17 or agent schema 21: task requester sessions, worker placements by environment,
+and session entries whose
+validity is not yet confirmed. Existing task matching, stored rows, retention,
+and ownership checks are unchanged. Read-only admission accepts missing indexes;
+the canonical writable schema owner installs or repairs them. Initial construction
+uses time and temporary disk proportional to the affected tables, and subsequent
+writes maintain the added indexes. Older same-version readers can ignore them,
+so binary rollback preserves both rows and indexes. See the
+[accepted index design](https://github.com/openclaw/openclaw/issues/153533).
+
 Task execution ownership uses three bare nullable columns on `task_runs`:
 `execution_owner_host TEXT`, `execution_owner_pid INTEGER`, and
 `execution_owner_start_identity INTEGER`. The first task write ensures them
@@ -107,6 +118,14 @@ leave pending markers when they change canonical inputs. Reopening with older
 code is refused. Rollback uses the verified pre-migration backup and matching
 build, not marker changes or removal of the derived table alone. See
 [incremental canonical-session validation](/reference/database-schemas/agent-schema-history#incremental-canonical-session-validation).
+
+Agent schema 22 requires exact transcript FTS row ownership even though its
+mapping table is additive. Older writers would append rows without recording
+ownership, making later exact deletion incomplete. Both schema markers advance
+together under maintenance authority; existing projections are marked for lazy
+rebuild without scanning FTS content. Older readers and writers refuse the new
+version. See [transcript FTS row ownership](/reference/database-schemas/agent-schema-history#transcript-fts-row-ownership)
+for healing, deletion and rollback behavior.
 
 Agent schema 19 records collected input consumption in the nullable
 `session_pending_inputs.consumed_event_id TEXT` column. Doctor and the feature's
@@ -325,12 +344,31 @@ Update-time Doctor checks shared and registered agent databases before other
 repairs. A state-only migration proceeds with deferred publication and reports
 `schema content applied; version publication deferred until update run <id> finishes`.
 Publication still observes the five-minute grace after that run finishes.
-Doctor keeps the typed `update-schema-bump-unfenced` refusal when deferral cannot
-cover a pending agent-database migration, the required `config_machine_state`
-table is missing, or the state-content migration fails. A failed content
-transaction rolls back. The refusal includes the database versions, driving
-updater version, and [manual update commands](/install/updating#updating-from-2026.9.2-across-a-schema-bump).
-Package rollback cannot reverse a migration that already happened.
+Agent schema versions are not deferred or relabeled. For a supported 2026.9.2
+package update, the early Doctor runs schema repair on private database copies
+while the old driver can still roll back its package installation. It reports
+success only after the private Doctor and its children settle successfully;
+live agent databases remain unchanged. Known pending agent databases without a
+registered canonical backup owner still refuse during this rollback window.
+
+After the shipped driver commits the package and enters its fresh post-core
+phase, the current updater delegates Doctor under its executor and maintenance
+ownership. Doctor creates and verifies a retained recovery archive covering every
+pending agent database before normal live migration. Coverage requires matching
+agent owners and physical file identities, including registered custom paths;
+opaque archived bytes are not a verified SQLite snapshot. Authority and live
+file identities are checked again after backup work and at the versioned schema
+write and commit boundaries. Doctor reports the retained
+archive path; it does not automatically restore that archive on a later failure.
+
+Doctor keeps the typed `update-schema-bump-unfenced` refusal when the phase or
+current owner cannot be verified, recoverable backup coverage is missing, or the
+required `config_machine_state` table is absent. Private rehearsal and backup
+failures leave live agent schemas unchanged. A failed content transaction rolls
+back. The refusal includes the affected database versions, driving updater
+version, and [manual update commands](/install/updating#updating-from-2026.9.2-across-a-schema-bump).
+Package rollback cannot reverse a migration that already happened; recovery
+after live migration requires the verified backup and a matching build.
 
 The driver check requires a valid semantic version and includes 2026.9.2
 rebuilds. Earlier updaters, including 2026.9.1, have no ledger and keep normal
