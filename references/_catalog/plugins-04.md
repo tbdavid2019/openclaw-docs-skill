@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Copilot Proxy plugin reference](../plugins/reference/copilot-proxy.md) — Adds Copilot Proxy model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the copilot-proxy plugin.
 - [Copilot SDK harness](../plugins/copilot.md) — Run OpenClaw embedded agent turns through the external GitHub Copilot SDK harness. Read when: You want to use the GitHub Copilot SDK harness for an agent; You need configuration examples for the `copilot` runtime; You are wiring an agent to subscription Copilot (github / openclaw / copilot) and want it to run through the Copilot CLI.
 - [Core runtime helpers](../plugins/architecture-internals/runtime-helpers.md) — Calling core speech, media understanding, subagent, web search, and image generation helpers from a plugin. Read when: You are calling core TTS, media understanding, subagent, or web search helpers from a plugin; You are registering a speech, media understanding, or web search provider; You need the ownership split between core orchestration and vendor behavior.
 - [Crabbox plugin reference](../plugins/reference/crabbox.md) — Cloud worker provider and lease-backed sandbox backend for the Crabbox CLI. Read when: You are installing, configuring, or auditing the crabbox plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Firecrawl plugin reference](../plugins/reference/firecrawl.md) — Adds agent-callable tools. Adds web fetch provider support. Adds web search provider support. Read when: You are installing, configuring, or auditing the firecrawl plugin.
 - [Fireworks plugin reference](../plugins/reference/fireworks.md) — Adds Fireworks model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fireworks plugin.
 - [Fish Audio Speech plugin reference](../plugins/reference/fish-audio-speech.md) — Fish Audio S2.1 hosted text-to-speech with streaming, voice notes, and telephony output. Read when: You are installing, configuring, or auditing the fish-audio-speech plugin.
-- [Gateway and install lifecycle hooks](../plugins/hooks/lifecycle.md) — Plugin install checks, Gateway start and stop, and Gateway-owned cron events. Read when: You are inspecting staged install material from a plugin runtime; You are starting or stopping plugin-owned services with the Gateway; You are projecting OpenClaw cron wakes into an external host scheduler.

@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Linux Node plugin reference](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
 - [LiteLLM plugin reference](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.
 - [Llama Cpp plugin reference](../plugins/reference/llama-cpp.md) — Managed and external llama.cpp servers for GGUF chat and embeddings. Read when: You are installing, configuring, or auditing the llama-cpp plugin.
 - [llama.cpp Provider](../plugins/llama-cpp.md) — Run GGUF chat with managed or existing llama.cpp servers and managed local embeddings. Read when: You want OpenClaw to install and manage a local llama.cpp server; You want a local model recommendation for your Gateway hardware; You want OpenClaw to connect to an existing llama-server; You want memory search embeddings from a local GGUF model; You are configuring memory.search.provider = "local".
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Message and delivery hooks](../plugins/hooks/messages.md) — Claim inbound messages and rewrite or cancel outbound deliveries. Read when: You are claiming an inbound message before the normal model dispatch; You are taking over reply generation with reply_dispatch; You need to rewrite or cancel an outbound message or reply payload.
 - [Message presentation](../plugins/message-presentation.md) — Semantic message cards, charts, tables, controls, fallback text, and delivery hints for channel plugins. Read when: Adding or modifying message card, chart, table, button, or select rendering; Building a channel plugin that supports rich outbound messages; Changing message tool presentation or delivery capabilities; Debugging provider-specific card/block/component rendering regressions.
 - [Meta plugin reference](../plugins/reference/meta.md) — Adds Meta model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the meta plugin.
-- [Microsoft Foundry plugin reference](../plugins/reference/microsoft-foundry.md) — Adds Microsoft Foundry model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the microsoft-foundry plugin.

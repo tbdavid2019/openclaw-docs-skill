@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Gateway and install lifecycle hooks](../plugins/hooks/lifecycle.md) — Plugin install checks, Gateway start and stop, and Gateway-owned cron events. Read when: You are inspecting staged install material from a plugin runtime; You are starting or stopping plugin-owned services with the Gateway; You are projecting OpenClaw cron wakes into an external host scheduler.
 - [Gateway routes](../plugins/architecture-internals/gateway-routes.md) — Registering plugin HTTP routes on the Gateway, and their auth, scope, and lifecycle rules. Read when: You are exposing an HTTP endpoint or webhook from a plugin; You need the auth and runtime scope rules for plugin routes; You are registering or replacing routes from channel lifecycle code.
 - [Geolocation plugin](../plugins/geolocation.md) — Resolve a connecting client's IP address to a coarse city using a locally cached database, with no per-lookup third-party calls. Read when: You want to see where the people using your Gateway are connecting from; You are choosing or replacing the IP-geolocation database and need its license terms; A location is missing, wrong, or stuck and you need to know which layer failed.
 - [Geolocation plugin reference](../plugins/reference/geolocation.md) — Resolves client IP addresses to a coarse city using a locally cached IP-geolocation database. Read when: You are installing, configuring, or auditing the geolocation plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Kilocode plugin reference](../plugins/reference/kilocode.md) — Adds Kilocode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kilocode plugin.
 - [Kimi plugin reference](../plugins/reference/kimi.md) — Adds Kimi, Kimi Code, Kimi Coding model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kimi plugin.
 - [LINE plugin reference](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
-- [Linux Node plugin reference](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.

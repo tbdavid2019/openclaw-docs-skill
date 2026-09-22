@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Removal timeline](../plugins/sdk-migration/removal-timeline.md) — When deprecated plugin SDK surfaces become eligible for removal. Read when: You need the removal date or gate for an SDK subpath you import; You are planning migration work around a compatibility window.
 - [Removed surfaces and replacements](../plugins/sdk-migration/removed-surfaces.md) — Removed SDK surfaces and the replacement for each removed or deprecated API. Read when: A removed export, hook, or manifest field is breaking your plugin; You need the replacement for a specific legacy API.
 - [Run Codex on another machine](../plugins/codex-harness/placement.md) — Place Codex native execution on a paired device or a cloud worker. Read when: You want Codex commands to run on another machine; You are approving the Codex node exec-server command; You are placing a Codex session on a cloud worker.
 - [Runway plugin reference](../plugins/reference/runway.md) — Adds video generation provider support. Read when: You are installing, configuring, or auditing the runway plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Tool plugins](../plugins/tool-plugins.md) — Build simple typed agent tools with defineToolPlugin and openclaw plugins init/build/validate. Read when: You want to build a simple OpenClaw plugin that only adds agent tools; You want to use defineToolPlugin instead of hand-writing plugin manifest metadata; You need to scaffold, generate, validate, test, or publish a tool-only plugin.
 - [TTS Local CLI plugin reference](../plugins/reference/tts-local-cli.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the tts-local-cli plugin.
 - [Twitch plugin reference](../plugins/reference/twitch.md) — OpenClaw Twitch channel plugin for chat and moderation workflows. Read when: You are installing, configuring, or auditing the twitch plugin.
-- [TypeSafe AI](../plugins/typesafe.md) — Use hosted Jev or a local System One server for typed decisions. Read when: Configuring a typed decision model; Using the TypeSafe evaluation tool; Running Kev locally through the System One API.

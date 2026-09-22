@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Microsoft Foundry plugin reference](../plugins/reference/microsoft-foundry.md) — Adds Microsoft Foundry model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the microsoft-foundry plugin.
 - [Microsoft plugin reference](../plugins/reference/microsoft.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the microsoft plugin.
 - [Microsoft Teams meetings plugin](../plugins/teams-meetings.md) — Microsoft Teams meetings plugin: join work or consumer meetings as a Chrome browser guest. Read when: You want an OpenClaw agent to join a Microsoft Teams meeting; You need Teams-specific guest policy or manual-action guidance.
 - [Microsoft Teams meetings plugin reference](../plugins/reference/teams-meetings.md) — Join Microsoft Teams meetings as a Chrome browser guest. Read when: You are installing, configuring, or auditing the teams-meetings plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Package packs and import paths](../plugins/architecture-internals/packaging.md) — Plugin SDK import subpaths, multi-extension package packs, and channel catalog and install metadata. Read when: Implementing package packs; You are choosing plugin SDK import subpaths for a new plugin; You are publishing channel catalog or install metadata.
 - [Perplexity plugin reference](../plugins/reference/perplexity.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the perplexity plugin.
 - [PixVerse plugin reference](../plugins/reference/pixverse.md) — OpenClaw PixVerse video generation provider plugin. Read when: You are installing, configuring, or auditing the pixverse plugin.
-- [Plugin architecture internals](../plugins/architecture-internals.md) — Plugin architecture internals: load pipeline, registry, runtime hooks, HTTP routes, and reference tables. Read when: Implementing provider runtime hooks, channel lifecycle, or package packs; Debugging plugin load order or registry state; Adding a new plugin capability or context engine plugin.
