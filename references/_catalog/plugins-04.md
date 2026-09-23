@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Copilot plugin reference](../plugins/reference/copilot.md) — Registers the GitHub Copilot agent runtime. Read when: You are installing, configuring, or auditing the copilot plugin.
 - [Copilot Proxy plugin reference](../plugins/reference/copilot-proxy.md) — Adds Copilot Proxy model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the copilot-proxy plugin.
 - [Copilot SDK harness](../plugins/copilot.md) — Run OpenClaw embedded agent turns through the external GitHub Copilot SDK harness. Read when: You want to use the GitHub Copilot SDK harness for an agent; You need configuration examples for the `copilot` runtime; You are wiring an agent to subscription Copilot (github / openclaw / copilot) and want it to run through the Copilot CLI.
 - [Core runtime helpers](../plugins/architecture-internals/runtime-helpers.md) — Calling core speech, media understanding, subagent, web search, and image generation helpers from a plugin. Read when: You are calling core TTS, media understanding, subagent, or web search helpers from a plugin; You are registering a speech, media understanding, or web search provider; You need the ownership split between core orchestration and vendor behavior.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [File Transfer plugin reference](../plugins/reference/file-transfer.md) — Fetch, list, and write files on paired nodes via dedicated node commands. Bypasses bash stdout truncation by using base64 over node.invoke for binaries up to 16 MB. Read when: You are installing, configuring, or auditing the file-transfer plugin.
 - [Firecrawl plugin reference](../plugins/reference/firecrawl.md) — Adds agent-callable tools. Adds web fetch provider support. Adds web search provider support. Read when: You are installing, configuring, or auditing the firecrawl plugin.
 - [Fireworks plugin reference](../plugins/reference/fireworks.md) — Adds Fireworks model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fireworks plugin.
-- [Fish Audio Speech plugin reference](../plugins/reference/fish-audio-speech.md) — Fish Audio S2.1 hosted text-to-speech with streaming, voice notes, and telephony output. Read when: You are installing, configuring, or auditing the fish-audio-speech plugin.

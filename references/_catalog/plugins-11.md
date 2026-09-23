@@ -4,8 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [TypeSafe AI](../plugins/typesafe.md) — Use hosted Jev or a local System One server for typed decisions. Read when: Configuring a typed decision model; Using the TypeSafe evaluation tool; Running Kev locally through the System One API.
-- [Typesafe plugin reference](../plugins/reference/typesafe.md) — Optional typed evaluations, not a conversational model provider. Read when: You are installing, configuring, or auditing the typesafe plugin.
+- [Twitch plugin reference](../plugins/reference/twitch.md) — OpenClaw Twitch channel plugin for chat and moderation workflows. Read when: You are installing, configuring, or auditing the twitch plugin.
+- [TypeSafe AI](../plugins/typesafe.md) — Use hosted Jev or a local System One server for typed decisions. Read when: Configuring a typed decision model; Using TypeSafe with the decision evaluation tool; Running Kev locally through the System One API.
+- [Typesafe plugin reference](../plugins/reference/typesafe.md) — Typed decision provider for hosted Jev and local System One models. Read when: You are installing, configuring, or auditing the typesafe plugin.
 - [Vault plugin reference](../plugins/reference/vault.md) — HashiCorp Vault SecretRef provider integration. Read when: You are installing, configuring, or auditing the vault plugin.
 - [Vault SecretRefs](../plugins/vault.md) — Use the bundled Vault plugin to resolve SecretRefs from HashiCorp Vault. Read when: You want OpenClaw to read API keys from HashiCorp Vault; You are setting up SecretRefs on a local machine or server; You need to configure Vault-backed model provider credentials.
 - [Venice plugin reference](../plugins/reference/venice.md) — Adds Venice model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the venice plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Z.AI plugin reference](../plugins/reference/zai.md) — Adds Z.AI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the zai plugin.
 - [Zalo personal plugin](../plugins/zalouser.md) — Zalo Personal plugin: QR login + messaging via native zca-js (plugin install + channel config + tool). Read when: You want Zalo Personal (unofficial) support in OpenClaw; You are configuring or developing the zalouser plugin.
 - [Zalo Personal plugin reference](../plugins/reference/zalouser.md) — OpenClaw Zalo Personal Account plugin via native zca-js integration. Read when: You are installing, configuring, or auditing the zalouser plugin.
-- [Zalo plugin reference](../plugins/reference/zalo.md) — OpenClaw Zalo channel plugin for bot and webhook chats. Read when: You are installing, configuring, or auditing the zalo plugin.

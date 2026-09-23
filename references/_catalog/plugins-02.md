@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Brave plugin reference](../plugins/reference/brave.md) — OpenClaw Brave Search provider plugin for web search. Read when: You are installing, configuring, or auditing the brave plugin.
 - [Browser plugin reference](../plugins/reference/browser.md) — Adds agent-callable tools. Read when: You are installing, configuring, or auditing the browser plugin.
 - [Building channel plugins](../plugins/sdk-channel-plugins.md) — Step-by-step guide to building a messaging channel plugin for OpenClaw. Read when: You are building a new messaging channel plugin; You want to connect OpenClaw to a messaging platform; You need to understand the ChannelPlugin adapter surface.
 - [Building CLI backend plugins](../plugins/cli-backend-plugins.md) — Build a plugin that registers a local AI CLI backend. Read when: You are building a local AI CLI backend plugin; You want to register a backend for model refs such as acme-cli/model; You need to map a third-party CLI into OpenClaw's text fallback runner.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Codex approval and sandbox modes](../plugins/codex-harness-reference/approval-and-sandbox.md) — YOLO and guardian approval presets, and sandboxed native execution paths. Read when: You are choosing between YOLO and guardian approval; You are running Codex native execution inside an OpenClaw sandbox; You are placing Codex execution on a node or cloud worker.
 - [Codex auth and environment isolation](../plugins/codex-harness-reference/auth.md) — Codex auth selection order, credential handling, and environment isolation. Read when: You need the Codex auth selection order; You are sharing or isolating the native Codex home; You are migrating Codex credentials or assets into an agent.
 - [Codex commands and diagnostics](../plugins/codex-harness/commands.md) — The /codex command surface, Fast mode controls, and local thread inspection. Read when: You need the /codex command surface; You are comparing shared Fast mode with Codex fast mode; You are inspecting a bad Codex run.
-- [Codex compaction and transcript mirror](../plugins/codex-harness-runtime/compaction.md) — Native Codex compaction, the OpenClaw transcript mirror, and continuity projection. Read when: You are tuning host mirror compaction against native compaction; You need to know what the transcript mirror records.
