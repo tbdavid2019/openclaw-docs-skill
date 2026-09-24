@@ -4,6 +4,7 @@ Agent tools, browser, exec, web, skills, and permissions.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Sub-agent announce](../tools/subagents/announce.md) — How a sub-agent reports its result back, the announce context block, and why sessions_history is preferred. Read when: You are debugging a missing or duplicated completion; You need the fields in the announce context block; You are reading a child transcript from inside an agent turn.
 - [Sub-agent concurrency, recovery, and stopping](../tools/subagents/operations.md) — The subagent queue lane, restart recovery, stop scope, and the standing limitations. Read when: You are tuning sub-agent concurrency or investigating a delivery backlog; A Gateway restart interrupted a sub-agent run; You need the exact scope of Stop and /stop.
 - [Sub-agent slash command](../tools/subagents/slash-command.md) — Inspect sub-agent runs with /subagents, use the thread-binding commands, and follow the completion-delivery path. Read when: You want to inspect or log a sub-agent run from chat; You need the thread-binding slash commands; You are debugging how a completed child reaches the requester.
 - [Sub-agent tool policy](../tools/subagents/tool-policy.md) — The sub-agent tool restriction layer and how to narrow it with config. Read when: You need to know which tools a sub-agent always loses; You want to allow or deny specific tools for sub-agents.

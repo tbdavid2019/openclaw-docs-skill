@@ -6,7 +6,7 @@ Choose one section by its title range, then select at most three documents from 
 
 - [1Password – Configuration — agent runtime and CLI backends](gateway-01.md) — 30 documents.
 - [Configuration — agent sandboxing – Crabbox backend](gateway-02.md) — 30 documents.
-- [Dependency locking – Gateway, service, and security checks](gateway-03.md) — 30 documents.
-- [Give your Gateway a stable HTTPS URL – Provider and route repairs](gateway-04.md) — 30 documents.
-- [Rate limiting – Troubleshooting](gateway-05.md) — 30 documents.
-- [Trusted proxy auth – Workspace tips and Dreams UI actions](gateway-06.md) — 9 documents.
+- [Dependency locking – Gateway service and process](gateway-03.md) — 30 documents.
+- [Gateway, service, and security checks – Prompt injection](gateway-04.md) — 30 documents.
+- [Provider and route repairs – Tools invoke API](gateway-05.md) — 30 documents.
+- [Troubleshooting – Workspace tips and Dreams UI actions](gateway-06.md) — 10 documents.
