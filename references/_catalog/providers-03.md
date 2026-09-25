@@ -4,7 +4,8 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [OpenAI setup](../providers/openai/setup.md) — Connect OpenAI with an API key or a ChatGPT/Codex subscription. Read when: You are connecting OpenAI to OpenClaw for the first time; You want Codex subscription auth instead of API keys; You are recovering a broken Codex OAuth route or a long-context budget.
+- [OpenAI runtimes and Codex auth](../providers/openai/runtimes.md) — Which runtime runs an openai/* turn, and how native Codex resolves auth. Read when: You need to know whether a turn runs on OpenClaw or the native Codex harness; You are mapping the openai, codex, and agentRuntime names to layers; You are debugging native Codex app-server account selection.
+- [OpenAI setup](../providers/openai/setup.md) — Connect OpenAI with an API key, Codex subscription, or Sign in with ChatGPT. Read when: You are connecting OpenAI to OpenClaw for the first time; You want Codex subscription auth instead of API keys; You are recovering a broken Codex OAuth route or a long-context budget.
 - [OpenAI voice and speech](../providers/openai/voice-and-speech.md) — OpenAI text-to-speech, transcription, and realtime voice settings and auth. Read when: You are configuring OpenAI text-to-speech or transcription; You are setting up realtime voice for Talk, Voice Call, or Discord; You need the auth order for a specific realtime route.
 - [OpenCode](../providers/opencode.md) — Use OpenCode Zen and Go catalogs with OpenClaw. Read when: You want OpenCode-hosted model access; You want to pick between the Zen and Go catalogs.
 - [OpenCode Go](../providers/opencode-go.md) — Use the OpenCode Go catalog with the shared OpenCode setup. Read when: You want the OpenCode Go catalog; You need the runtime model refs for Go-hosted models.
