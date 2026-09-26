@@ -14,5 +14,5 @@ Choose one section by its title range, then select at most three documents from 
 - [PixVerse plugin reference – Plugin SDK events and hook semantics](plugins-08.md) — 30 documents.
 - [Plugin SDK host hooks for workflow plugins – Reef plugin reference](plugins-09.md) — 30 documents.
 - [Register an agent harness – TTS Local CLI plugin reference](plugins-10.md) — 30 documents.
-- [Twitch plugin reference – Zalo Personal plugin reference](plugins-11.md) — 30 documents.
-- [Zalo plugin reference – Zoom meetings plugin reference](plugins-12.md) — 3 documents.
+- [Twitch plugin reference – Zoom meetings plugin](plugins-11.md) — 30 documents.
+- [Zoom meetings plugin reference – Zoom meetings plugin reference](plugins-12.md) — 1 documents.
