@@ -231,7 +231,12 @@ editor with plugin configuration and editable **Permissions** controls; Back ret
 to the overview.
 Existing `#configuration` links still open the editor. Local controls and the
 installed README remain available when optional ClawHub metadata cannot load.
-The catalog shows featured plugins and category shelves. Search queries
+The catalog shows featured plugins and category shelves. Within each category,
+ClawHub's selected priorities appear first, followed by remaining plugins in
+download order. **View all** preserves that order. Computer use groups interactive
+desktop and browser control. Other and uncategorized plugins remain available
+through search and installed-plugin management instead of homepage sections.
+Search queries
 [ClawHub](https://clawhub.ai/plugins) without leaving the page. Catalog detail
 links use `/plugins/<catalog-id>`; installed-only links use
 `/settings/plugins/<plugin-id>`. Both show the same overview and actions.
@@ -543,6 +548,8 @@ The Sessions view owns its query independently of the sidebar. Its people filter
 The Sessions view collects session-change events in a randomized four-to-five-second window that later events cannot postpone. After an automatic refresh completes, the next waits three times its duration, bounded between five and 15 seconds. Event-driven refreshes pause while the browser tab is hidden and catch up once when you return, respecting that cooldown. Changing filters or retrying a failed request still loads immediately. The sidebar's session capability also [reuses row snapshots and paces list reads](/web/control-ui/sessions-and-sidebar#sidebar-navigation). Activity links retain their search and people filters during initial loading and navigation.
 
 The Gateway updates recaps when new work happens, throttling ongoing updates and catching up after a run ends. A shared queue runs at most two recap calls at once and retries temporary overload or rate-limit failures up to three times with increasing delays, honoring provider retry timing. Authentication, configuration, and exhausted subscription failures require correction before retrying. Idle sessions make no repeated model calls. Archiving retains the recap and requests catch-up; an agent still running in an archived session can update it when work finishes. Reopening or new work resumes freshness checks. Older sessions backfill in bounded chronological chunks when requested from Activity. Recaps read user and assistant conversation text, preferring final answers and skipping tool calls/results. Existing cached recaps gradually adopt the shorter format through the same queue while retaining their previous coverage. Incognito sessions and subagent sessions do not generate recaps. Recaps are generated text and do not determine whether a task is complete or grant access to a session.
+
+Visible conversations created by an agent receive recaps too, including spawned dashboard chats and conversations assigned to a sidebar group. Their parent-session link does not exclude them from recap generation; hidden background subagents remain excluded.
 
 To find an older archived conversation, choose **Sessions**, **All time**, and **Everyone** in the people filter, then enter its name or label in **Search session titles…**. This metadata search includes archived sessions and applies across the complete caller-visible store before the 100-result window. Narrow the query if results are truncated. Open an archived match to read its retained history, then select **Unarchive** to continue the same conversation.
 
