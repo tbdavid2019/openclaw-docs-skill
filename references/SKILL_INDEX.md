@@ -14,7 +14,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 |---|---|---:|
 | [General](_catalog/general.md) | Top-level concepts and cross-cutting documentation | 12 |
 | [Announcements](_catalog/announcements.md) | Breaking changes and migration announcements | 1 |
-| [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 20 |
+| [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 18 |
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 109 |
 | [Ci](_catalog/ci.md) | Documentation under `ci/` | 19 |
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 101 |
