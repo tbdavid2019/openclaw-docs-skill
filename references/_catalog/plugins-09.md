@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Plugin SDK events and hook semantics](../plugins/sdk-overview/events-and-hooks.md) — Typed lifecycle hooks and the decision rules each hook applies. Read when: You are subscribing to a typed lifecycle hook from a plugin; You need to know whether a hook result is terminal; You are projecting Gateway cron state into an external scheduler.
 - [Plugin SDK host hooks for workflow plugins](../plugins/sdk-overview/host-hooks.md) — Session extensions, trusted tool policies, Control UI descriptors, and runtime lifecycle. Read when: You are building a workflow, approval, or policy plugin that participates in the host lifecycle; You are registering a Control UI descriptor or session action; You need trusted tool policy or tool-result middleware.
 - [Plugin SDK imports and module layout](../plugins/sdk-overview/imports.md) — Which plugin SDK subpath to import from, and how to lay out a plugin's own barrels. Read when: You need to know which SDK subpath to import from; You are looking up a specific SDK export; You are deciding how to structure your plugin's internal imports.
 - [Plugin SDK infrastructure registration](../plugins/sdk-overview/infrastructure.md) — Hooks, HTTP routes, Gateway methods, services, and the webhook and SQLite helpers. Read when: You are registering a Gateway HTTP route, RPC method, or background service; You are reading a webhook body or admitting a SQLite write from a plugin; You need per-requester MCP transports for a static server name.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Qwen plugin reference](../plugins/reference/qwen.md) — Adds Qwen, Qwen Cloud, Model Studio, DashScope, Qwen Token Plan, Bailian Token Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qwen plugin.
 - [Radius plugin reference](../plugins/reference/radius.md) — Radius model gateway provider. Read when: You are installing, configuring, or auditing the radius plugin.
 - [Raft plugin reference](../plugins/reference/raft.md) — OpenClaw Raft channel plugin for secure CLI wake bridges. Read when: You are installing, configuring, or auditing the raft plugin.
-- [Reef plugin reference](../plugins/reference/reef.md) — Guarded end-to-end encrypted claw channel. Read when: You are installing, configuring, or auditing the reef plugin.

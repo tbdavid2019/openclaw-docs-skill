@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Message presentation](../plugins/message-presentation.md) — Semantic message cards, charts, tables, controls, fallback text, and delivery hints for channel plugins. Read when: Adding or modifying message card, chart, table, button, or select rendering; Building a channel plugin that supports rich outbound messages; Changing message tool presentation or delivery capabilities; Debugging provider-specific card/block/component rendering regressions.
 - [Meta plugin reference](../plugins/reference/meta.md) — Adds Meta model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the meta plugin.
 - [Microsoft Foundry plugin reference](../plugins/reference/microsoft-foundry.md) — Adds Microsoft Foundry model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the microsoft-foundry plugin.
 - [Microsoft plugin reference](../plugins/reference/microsoft.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the microsoft plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [OpenRouter plugin reference](../plugins/reference/openrouter.md) — Adds OpenRouter model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the openrouter plugin.
 - [Openshell plugin reference](../plugins/reference/openshell.md) — OpenClaw sandbox backend for the NVIDIA OpenShell CLI with mirrored local workspaces and SSH command execution. Read when: You are installing, configuring, or auditing the openshell plugin.
 - [Package packs and import paths](../plugins/architecture-internals/packaging.md) — Plugin SDK import subpaths, multi-extension package packs, and channel catalog and install metadata. Read when: Implementing package packs; You are choosing plugin SDK import subpaths for a new plugin; You are publishing channel catalog or install metadata.
-- [Perplexity plugin reference](../plugins/reference/perplexity.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the perplexity plugin.

@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Reef plugin reference](../plugins/reference/reef.md) — Guarded end-to-end encrypted claw channel. Read when: You are installing, configuring, or auditing the reef plugin.
 - [Register an agent harness](../plugins/sdk-agent-harness/registration.md) — Register an AgentHarnessV2, plus the optional isolated-completion and delegated-execution capabilities. Read when: You are writing the plugin entry that calls `api.registerAgentHarness`; You are implementing `runIsolatedCompletionV2`; You need to let a trusted plugin execute a session your harness owns.
 - [Removal timeline](../plugins/sdk-migration/removal-timeline.md) — When deprecated plugin SDK surfaces become eligible for removal. Read when: You need the removal date or gate for an SDK subpath you import; You are planning migration work around a compatibility window.
 - [Removed surfaces and replacements](../plugins/sdk-migration/removed-surfaces.md) — Removed SDK surfaces and the replacement for each removed or deprecated API. Read when: A removed export, hook, or manifest field is breaking your plugin; You need the replacement for a specific legacy API.
@@ -15,6 +16,8 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Session Share plugin reference](../plugins/reference/session-share.md) — Read-only OpenClaw sessions on paired gateways. Read when: You are installing, configuring, or auditing the session-share plugin.
 - [SGLang plugin reference](../plugins/reference/sglang.md) — Adds SGLang model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the sglang plugin.
 - [Signal plugin reference](../plugins/reference/signal.md) — OpenClaw Signal channel plugin. Read when: You are installing, configuring, or auditing the signal plugin.
+- [Slack huddles plugin](../plugins/slack-huddles.md) — Slack huddles plugin: join active huddles through a signed-in Chrome user account. Read when: You want an OpenClaw agent to join a Slack huddle; You need to set up the dedicated Slack user or understand manual actions.
+- [Slack huddles plugin reference](../plugins/reference/slack-huddles.md) — Join Slack huddles through a dedicated Slack user in Chrome. Read when: You are installing, configuring, or auditing the slack-huddles plugin.
 - [Slack plugin reference](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
 - [Sms plugin reference](../plugins/reference/sms.md) — Twilio SMS/MMS channel plugin for OpenClaw messages. Read when: You are installing, configuring, or auditing the sms plugin.
 - [StepFun plugin reference](../plugins/reference/stepfun.md) — Adds StepFun, StepFun Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the stepfun plugin.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Tlon plugin reference](../plugins/reference/tlon.md) — OpenClaw Tlon/Urbit channel plugin for chat workflows. Read when: You are installing, configuring, or auditing the tlon plugin.
 - [Together plugin reference](../plugins/reference/together.md) — Adds Together model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the together plugin.
 - [Tokenjuice plugin reference](../plugins/reference/tokenjuice.md) — Compacts exec and bash tool results with tokenjuice reducers. Read when: You are installing, configuring, or auditing the tokenjuice plugin.
-- [Tool call policy hooks](../plugins/hooks/tool-policy.md) — Gate, rewrite, and approve tool calls, and rewrite tool results before persistence. Read when: You need to block a tool call or require approval from a plugin; You are writing sender-aware tool policy in a standalone plugin file; You are contributing environment variables to the exec tool; You are rewriting or blocking a transcript write.
-- [Tool plugins](../plugins/tool-plugins.md) — Build simple typed agent tools with defineToolPlugin and openclaw plugins init/build/validate. Read when: You want to build a simple OpenClaw plugin that only adds agent tools; You want to use defineToolPlugin instead of hand-writing plugin manifest metadata; You need to scaffold, generate, validate, test, or publish a tool-only plugin.
-- [TTS Local CLI plugin reference](../plugins/reference/tts-local-cli.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the tts-local-cli plugin.

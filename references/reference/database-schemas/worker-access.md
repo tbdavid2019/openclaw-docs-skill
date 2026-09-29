@@ -27,6 +27,39 @@ or `withOpenClawAgentDatabaseReadOnly` alone, does not move execution off thread
 `readWithCanonicalSessionAdmission` validates session reads on the executing
 thread; invoke it inside the worker's admitted reader.
 
+Reply initialization and audited admission validators can reserve their exact
+session keys in the shared store queue. Unrelated sessions proceed while a holder
+awaits another queue; overlapping keys retain FIFO order. Creation hooks, parent
+forks, legacy-main retirement, and unscoped validators retain store-wide exclusion.
+Placement and migration barriers join earlier accepted work and block later
+writers. The separate canonical SQLite writer still owns transaction admission,
+current-authority checks, and commit settlement. Schemas, durability, and update
+behavior are unchanged.
+
+The dedicated shared-state read transport reuses successful process-owner and
+compatibility-projection verification for less than one second. Canonical
+owner-path resolutions have the same maximum age. An expired read synchronously
+resolves its path and verifies ownership before worker dispatch, including after
+a queue delay; no timer can extend this window. Transient verification errors
+refuse the affected read and are retried by the next read. Release, cleanup, and
+schema-maintenance transitions invalidate cached paths immediately. Maintenance
+authority, physical database identity, and read lifecycle checks remain in place.
+Writes, schema transitions, lease grants, and all generic SQLite broker jobs
+retain immediate fresh ownership verification, including their transaction and
+commit grants. Schemas, retained data, and update behavior are unchanged.
+
+Legacy session-entry patches yield while waiting for a competing SQLite writer.
+Each `BEGIN IMMEDIATE` attempt uses a zero busy timeout and can retry within the
+connection's existing admission budget. Once admitted, the synchronous callback
+and commit retain the connection's original busy timeout: rollback-journal
+readers can temporarily block commit even after writer admission succeeds.
+The session writer queue retains FIFO order, the captured connection stays
+retained, and each attempt rechecks its owner. The admitted transaction revalidates
+the prepared rows and caller authority before mutation. Its callback and committed
+publications never replay. Entry reads and transaction bodies still execute on
+the calling thread; this bounded cutover removes native writer-admission waits without
+changing schemas, durability, or update behavior.
+
 Channel setup awaits a fresh policy read after the agent-selection prompt.
 Deferred plugin migration rows are read by the shared-state worker, and setup
 rechecks its config owner after the read before using the selected agent. Each
@@ -68,6 +101,12 @@ transaction callback remain synchronous **inside the worker**. Complete
 asynchronous planning first, then reread authoritative rows inside the admitted
 transaction. Preserve FIFO order, physical database identity, transaction/commit grants,
 and settlement of accepted write-capable work.
+
+Outbound media staging and recovery create and release their retention rows through
+the delivery queue's shared-state worker. Callers await creation before publishing
+spool files and await release during cleanup, so a concurrent writer waiting for
+host admission cannot block media sends on the Gateway thread. The existing custody
+rows, atomic enqueue, expiry, and update behavior are unchanged.
 
 Published agent and shared-state database timers dispatch periodic WAL checkpoints
 and bounded page reclamation through those same writers. The existing timer keeps
@@ -327,6 +366,14 @@ SQLite rows, missing-store behavior, and update behavior are unchanged.
 
 ## Migrate a caller
 
+Completed-child archive lookups resolve durable store ownership and check exact
+archive registration through the existing history reader. Empty lookups do not
+start the archive reader. Positive lookups retain the original physical database
+and logical session through metadata preparation, archive integrity checks, and
+reader cleanup. Process-held incognito preflight retains its native owner pending
+the memory namespace migration. Schemas, stored bytes, retention, and update
+behavior are unchanged.
+
 1. Trace the registered request, event, or timer through the store owner. Check
    whether a worker adapter already exists; separate durable databases from
    process-held incognito stores, which cannot be reopened by path in another
@@ -495,6 +542,26 @@ retaining rows protected by current job or receipt ownership. Reconciled legacy
 rows remain history; they do not recreate a task runtime or linked-flow publication
 owner. This changes no schema, retention policy, or update step.
 
+Cron execution, descendant follow-up, and delivery observations use the existing
+subagent registry worker snapshot. Descendant closure selection and the existing
+query policies run in its consuming frame, including the paired fresh/active
+execution facts. Run draining awaits a fresh observation at each refresh, so a
+successor admitted while a wait settles is not lost. Failed or replaced read
+admission is not an empty descendant set. The obsolete internal synchronous
+descendant-list adapter is removed. This changes no schema, retention, or update behavior.
+
+Cron continuation cleanup and retention batches prepare deletion through the
+existing session reclamation worker. The host retains live descendant, media,
+and lifecycle authority; the worker compares the durable descendant rows after
+that grant and before committing. Registry preparation preserves unpublished
+intent and current live objects without treating a stale resident snapshot as
+fresh durable state. Reaper maintenance uses the existing compact subagent
+projection, with a fresh protection check at the worker commit boundary.
+The batch keeps one synchronous transaction and the existing archive,
+publication, rollback, and uncertain-outcome owners. Native harness mutation
+objects remain with their process-held owner. No cross-database atomicity,
+retention change, or new update step is introduced.
+
 Cron retention discovery uses a separate, single-worker maintenance lane within the
 same session database lifecycle owner. Foreground history and exact-entry reads
 keep their own queue while full-store validation runs. Both lanes retain the same
@@ -553,6 +620,23 @@ The existing shared schema is unchanged. Cron retains its own history operations
 on the existing storage rows; removed Task projections do not regain execution
 or delivery authority.
 
+Requester wake transitions and settlement use that same worker transaction and
+registry publication owner. Timers and retries retain the original database, run,
+and wake generation through acknowledgement. A known commit keeps its existing
+wake episode until current canonical facts can be published; reconciliation reads
+those facts without repeating the data write. Outcome settlement also retains any
+committed system-event intent until the existing queue owner can finish scheduling
+it. Pending intent payloads must still match; current terminal queue receipts are
+consumed without another dispatch. An absent or replaced intent leaves the episode
+unsettled instead of recreating delivery, including when existing retention has
+removed a terminal receipt.
+
+Uncertain outcomes stay fenced. Definite failures retain the existing delivery
+failure and replay rules, and outcome-bearing settlement publishes its new
+delivery receipt. Initial requester-yield creation and requester/session reads
+remain separate worker migration work. Schema, retention, and update behavior
+are unchanged.
+
 Concurrent first opens wait for owner-record publication and a transient schema
 initializer within one database busy timeout. Incomplete records never grant
 access; each attempt rechecks ownership, and records that remain malformed still
@@ -582,23 +666,37 @@ opening settles. The remaining native Cron transitions still need migration.
 This cutover preserves schemas, stored bytes, retention, configuration, and update
 behavior.
 
-Native cron receipt guards read deletion authority through their transaction's
-admitted connection. Other synchronous current-authority readers may reuse that
+Cron receipt guards use the current read-only owner without initializing storage
+or waiting for the worker's writer transaction. They read deletion authority
+through the admitted connection. Synchronous current-authority readers may reuse that
 same thread's managed write transaction, including its pending lifecycle rows;
 ordinary discovery reads retain committed-state isolation. This avoids preparing
 a child-process snapshot while holding the shared-state write transaction. Agent
 database admission refusals remain with their in-memory admission owner. Schemas,
 retention, configuration, and update behavior are unchanged.
 
-Cron activation, exact reservation cleanup, and stale-family removal use typed
+Cron reservation creation, activation, exact reservation cleanup, and stale-family removal use typed
 commands through the existing worker mutation owner. The host retains the
 partition lock, reservation identity, live policy, and runner settlement. The
 worker rereads durable receipt and deletion guards before committing. Publication
 uses the matching committed receipt once; a lost reply never causes a replay.
 Deferred receipt finishing retains the captured physical worker context through
-settlement. Reservation creation and remaining manual or timer finalizers retain
+settlement. Reservation transactions supply compact receipt facts to the host's
+liveness and current-caller checks. Prospective local receipt ownership lasts
+through native settlement; only committed receipts transfer to callers, and a
+conflict retries only after confirmed rollback. Owner edits observe receipts
+through the read worker before their existing synchronous authority capture.
+Pending work retains the partition queue and fences retired service generations,
+including deferred startup jobs. Remaining manual or timer finalizers retain
 their native implementation as migration debt. Schemas, retention, configuration,
 and update behavior are unchanged.
+
+Direct compaction hydrates durable transcripts through the existing read worker
+before preparing hooks or model calls. The read retains the captured transcript
+identity and cancellation signal; the caller rechecks its live writer authority
+before using the result. Caller-owned in-memory recovery keeps its existing
+buffer. Compaction persistence, stored bytes, retention, and update behavior are
+unchanged.
 
 Streaming assistant and tool-result completion events use the session manager's
 existing SQLite writer domain. The host retains extension hooks, redaction, and
