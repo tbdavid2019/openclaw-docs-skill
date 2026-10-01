@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [IRC plugin reference](../plugins/reference/irc.md) — OpenClaw IRC channel plugin. Read when: You are installing, configuring, or auditing the irc plugin.
+- [Kie plugin reference](../plugins/reference/kie.md) — Adds Kie model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kie plugin.
+- [Kilocode plugin reference](../plugins/reference/kilocode.md) — Adds Kilocode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kilocode plugin.
 - [Kimi plugin reference](../plugins/reference/kimi.md) — Adds Kimi, Kimi Code, Kimi Coding model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kimi plugin.
 - [LINE plugin reference](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
 - [Linux Node plugin reference](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Memory Core plugin reference](../plugins/reference/memory-core.md) — Adds agent-callable tools. Read when: You are installing, configuring, or auditing the memory-core plugin.
 - [Memory LanceDB](../plugins/memory-lancedb.md) — Configure the official external LanceDB memory plugin, including local Ollama-compatible embeddings. Read when: You are configuring the memory-lancedb plugin; You want LanceDB-backed long-term memory with auto-recall or auto-capture; You are using local OpenAI-compatible embeddings such as Ollama.
 - [Memory Lancedb plugin reference](../plugins/reference/memory-lancedb.md) — OpenClaw LanceDB-backed long-term memory plugin with auto-recall, auto-capture, and vector search. Read when: You are installing, configuring, or auditing the memory-lancedb plugin.
-- [Memory wiki](../plugins/memory-wiki.md) — memory-wiki: compiled knowledge vault with provenance, claims, dashboards, and bridge mode. Read when: You want persistent knowledge beyond plain MEMORY.md notes; You are configuring the bundled memory-wiki plugin; You need separate wiki vaults for agents in one Gateway; You want to understand wiki_search, wiki_get, or bridge mode.
-- [Memory Wiki plugin reference](../plugins/reference/memory-wiki.md) — Persistent wiki compiler and Obsidian-friendly knowledge vault for OpenClaw. Read when: You are installing, configuring, or auditing the memory-wiki plugin.
-- [Message and delivery hooks](../plugins/hooks/messages.md) — Claim inbound messages and rewrite or cancel outbound deliveries. Read when: You are claiming an inbound message before the normal model dispatch; You are taking over reply generation with reply_dispatch; You need to rewrite or cancel an outbound message or reply payload.

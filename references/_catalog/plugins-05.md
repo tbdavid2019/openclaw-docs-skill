@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [File Transfer plugin reference](../plugins/reference/file-transfer.md) — Fetch, list, and write files on paired nodes via dedicated node commands. Bypasses bash stdout truncation by using base64 over node.invoke for binaries up to 16 MB. Read when: You are installing, configuring, or auditing the file-transfer plugin.
+- [Firecrawl plugin reference](../plugins/reference/firecrawl.md) — Adds agent-callable tools. Adds web fetch provider support. Adds web search provider support. Read when: You are installing, configuring, or auditing the firecrawl plugin.
+- [Fireworks plugin reference](../plugins/reference/fireworks.md) — Adds Fireworks model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fireworks plugin.
 - [Fish Audio Speech plugin reference](../plugins/reference/fish-audio-speech.md) — Fish Audio S2.1 hosted text-to-speech with streaming, voice notes, and telephony output. Read when: You are installing, configuring, or auditing the fish-audio-speech plugin.
 - [Gateway and install lifecycle hooks](../plugins/hooks/lifecycle.md) — Plugin install checks, Gateway start and stop, and Gateway-owned cron events. Read when: You are inspecting staged install material from a plugin runtime; You are starting or stopping plugin-owned services with the Gateway; You are projecting OpenClaw cron wakes into an external host scheduler.
 - [Gateway routes](../plugins/architecture-internals/gateway-routes.md) — Registering plugin HTTP routes on the Gateway, and their auth, scope, and lifecycle rules. Read when: You are exposing an HTTP endpoint or webhook from a plugin; You need the auth and runtime scope rules for plugin routes; You are registering or replacing routes from channel lifecycle code.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [iMessage plugin reference](../plugins/reference/imessage.md) — OpenClaw iMessage channel plugin using imsg on a signed-in Mac. Read when: You are installing, configuring, or auditing the imessage plugin.
 - [Import path reference](../plugins/sdk-migration/import-paths.md) — Which typed-public SDK subpath replaces each legacy import, including the retained channel facades. Read when: You are replacing a broad SDK barrel import with a focused subpath; You need the retained channel facade to channel-outbound mappings.
 - [Inworld plugin reference](../plugins/reference/inworld.md) — Inworld streaming text-to-speech (MP3, OGG_OPUS, PCM telephony). Read when: You are installing, configuring, or auditing the inworld plugin.
-- [IRC plugin reference](../plugins/reference/irc.md) — OpenClaw IRC channel plugin. Read when: You are installing, configuring, or auditing the irc plugin.
-- [Kie plugin reference](../plugins/reference/kie.md) — Adds Kie model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kie plugin.
-- [Kilocode plugin reference](../plugins/reference/kilocode.md) — Adds Kilocode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kilocode plugin.
