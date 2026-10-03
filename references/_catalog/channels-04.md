@@ -4,7 +4,7 @@ Messaging channel setup, routing, and troubleshooting.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Telegram Dashboard Mini App](../channels/telegram/mini-app.md) — Open the OpenClaw Control UI as a Telegram WebApp with /dashboard. Read when: Opening the OpenClaw dashboard from inside Telegram; Publishing the gateway over Tailscale serve or funnel.
+- [Telegram Control UI Mini App](../channels/telegram/mini-app.md) — Open the OpenClaw Control UI as a Telegram WebApp with /controlui. Read when: Opening the OpenClaw Control UI from inside Telegram; Publishing the gateway over Tailscale serve or funnel.
 - [Telegram events and operations](../channels/telegram/events.md) — Reaction notifications, config writes from Telegram events, and error reply policy. Read when: Waking an agent on a Telegram reaction; Allowing or blocking config writes from Telegram; Stopping error messages from reaching a chat.
 - [Telegram media and attachments](../channels/telegram/media.md) — Photo albums, voice notes, video notes, locations, venues, and stickers. Read when: Sending several photos as one Telegram album; Sending a voice note, video note, location, or venue; Enabling sticker sends and sticker search.
 - [Telegram message behavior](../channels/telegram/messaging.md) — Runtime model, stream previews, native commands, reply tags, ack reactions, and send limits. Read when: Understanding how Telegram messages flow through the gateway; Tuning live previews, tool-progress lines, or reply threading; Changing chunk limits or sending from the CLI.

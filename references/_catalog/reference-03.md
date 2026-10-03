@@ -4,6 +4,7 @@ Documentation under `reference/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [TOOLS.md retired](../reference/templates/TOOLS.md) — Retired TOOLS.md workspace template. Read when: Bootstrapping a workspace manually.
 - [Top-level stages](../reference/full-release-validation/stages.md) — The Full Release Validation umbrella stage matrix, evidence reuse, artifact producers, and decision states. Read when: Reading the umbrella stage matrix; Debugging a Release Decision or Diagnostic Drain state.
 - [Transcript hygiene](../reference/transcript-hygiene.md) — Reference: provider-specific transcript sanitization and repair rules. Read when: You are debugging provider request rejections tied to transcript shape; You are changing transcript sanitization or tool-call repair logic; You are investigating tool-call id mismatches across providers.
 - [USER template](../reference/templates/USER.md) — Durable user preference and profile directives. Read when: Bootstrapping a workspace manually.
