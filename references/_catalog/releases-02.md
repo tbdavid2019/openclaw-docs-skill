@@ -9,4 +9,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.9.5](../releases/2026.9.5.md) — Atomic Updates, plugin hot reloading, conversation sharing, GPT Live, shared browser pages, conversation archiving, and guided specialist teams.
 - [v2026.9.6](../releases/2026.9.6.md) — Managed updates, restart recovery, complete 30-day Usage reporting, GitHub and remote workspace tools, live meeting notes, and new model choices.
 - [v2026.9.7](../releases/2026.9.7.md) — Snappier under load, smoother long conversations, update recovery, OpenAI Agents API, and Sign in with ChatGPT (Beta).
-- [v2026.9.8](../releases/2026.9.8.md) — Update recovery, Windows startup and reply fixes, plus GPT-6.1 Sol support.
+- [v2026.9.8](../releases/2026.9.8.md) — Update recovery, Windows startup and reply fixes.

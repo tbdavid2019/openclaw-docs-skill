@@ -71,6 +71,15 @@ openclaw plugins disable workboard
 
 ## Board appearance
 
+While Workboard is open, its sidebar entry expands to show both Cards and
+Sessions boards, with the open board highlighted. Select a nested board to open it.
+Sidebar labels use the board name; boards with the same name include their kind
+in parentheses, such as **Planning (cards)** and **Planning (sessions)**.
+Boards you create in the Control UI are pinned in the sidebar immediately.
+Use **Customize** to pin any other board or remove a pin; removed pins stay removed.
+Pinned boards remain available as top-level entries when you leave Workboard,
+and you can drag them to reorder them.
+
 Choose **New board**, then **Cards** (the default) or **Sessions**. A Sessions
 board starts with the columns described below. A board's kind is permanent;
 create another board to use the other kind. Existing boards remain Cards boards.
@@ -142,13 +151,18 @@ column is removed, the board applies its rules again. Tile tooltips distinguish
 
 Facts update live from session changes, with automatic board rereads at most once
 every five seconds. Later events keep invalidating facts without delaying that
-reread. The board reuses unchanged facts across boards. Unavailable pull-request
-information is retried on a read after one minute. An inline warning names the
+reread. The board reuses unchanged facts across boards until a session change
+invalidates them, and concurrent reads share one facts refresh per board.
+Session visibility and people filters remain specific to each caller.
+Reads use prepared Gateway facts without waiting for Git or pull-request requests.
+Missing pull-request facts refresh in the background and announce a board change
+when ready. An inline warning names the
 reason when facts or pull-request information are unavailable, including on an
 empty board. A failed facts read keeps the last known facts and placement;
 sessions with no known facts use the fallback column with reason
-`facts-unavailable`. Opening the board reads its current state; unviewed boards
-do no background work.
+`facts-unavailable`. A session whose available facts match no rule also uses that
+reason while its pull-request facts are unknown. Opening a board starts any needed
+background refresh; unchanged sessions do not refresh merely because time passed.
 
 When the Control UI host supports a session dock, **Board agent** opens a
 conversation beside the board. Its first use creates and saves a dedicated
@@ -229,6 +243,14 @@ one follow-up read. Workboard defers that read while a card is being dragged,
 edited, or written, then resumes after the local interaction finishes. A
 reconnect always performs a canonical reload. There is no routine full-card
 poll, and **Refresh** remains available as manual recovery.
+
+The Gateway shares one immutable `workboard.cards.list` payload per normalized
+board filter at each store revision, including concurrent reads. Card and board
+writes invalidate it before the next read; the existing change service also
+invalidates it when it observes a commit from another SQLite connection.
+Each response still includes all board summaries, so a change to another board
+invalidates the payload too. Claim tokens remain redacted, and the RPC response
+shape is unchanged.
 
 When more than one board exists, the toolbar includes a **Board** filter backed
 by persisted board metadata rather than only the currently visible cards. Empty
