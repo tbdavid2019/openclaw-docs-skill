@@ -14,5 +14,5 @@ Choose one section by its title range, then select at most three documents from 
 - [OpenRouter plugin reference – Plugin SDK defineChannelPluginEntry helper](plugins-08.md) — 30 documents.
 - [Plugin SDK definePluginEntry helper – QQ Bot plugin reference](plugins-09.md) — 30 documents.
 - [Qwen plugin reference – Tencent plugin reference](plugins-10.md) — 30 documents.
-- [Tlon plugin reference – xAI plugin reference](plugins-11.md) — 30 documents.
-- [Xiaomi plugin reference – Zoom meetings plugin reference](plugins-12.md) — 7 documents.
+- [Tlon plugin reference – X plugin reference](plugins-11.md) — 30 documents.
+- [xAI plugin reference – Zoom meetings plugin reference](plugins-12.md) — 8 documents.

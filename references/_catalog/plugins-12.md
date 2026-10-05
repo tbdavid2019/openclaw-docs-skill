@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [xAI plugin reference](../plugins/reference/xai.md) — xAI provider for Grok models, Grok web and X search, code execution, speech, and media generation. Read when: You are installing, configuring, or auditing the xai plugin.
 - [Xiaomi plugin reference](../plugins/reference/xiaomi.md) — Adds Xiaomi, Xiaomi Token Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the xiaomi plugin.
 - [Z.AI plugin reference](../plugins/reference/zai.md) — Adds Z.AI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the zai plugin.
 - [Zalo personal plugin](../plugins/zalouser.md) — Zalo Personal plugin: QR login + messaging via native zca-js (plugin install + channel config + tool). Read when: You want Zalo Personal (unofficial) support in OpenClaw; You are configuring or developing the zalouser plugin.

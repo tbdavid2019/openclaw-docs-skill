@@ -15,7 +15,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [General](_catalog/general.md) | Top-level concepts and cross-cutting documentation | 12 |
 | [Announcements](_catalog/announcements.md) | Breaking changes and migration announcements | 1 |
 | [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 18 |
-| [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 109 |
+| [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 110 |
 | [Ci](_catalog/ci.md) | Documentation under `ci/` | 19 |
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 102 |
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 79 |
@@ -26,7 +26,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 25 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 26 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 337 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 338 |
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 89 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 69 |
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 36 |

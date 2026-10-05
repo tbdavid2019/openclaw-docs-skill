@@ -78,6 +78,12 @@ history; replacing the code alone cannot undo a migration. The original
 failed update still exits nonzero after the agent finishes, even if the repair
 succeeds.
 
+On Linux, systemd can unload an inactive unit after the updater stops it. The
+owning updater reloads that unit's metadata when rechecking admission, retaining
+the original manager and service identity. This does not start the service or
+rewrite its definition. A later refusal still uses the recorded stop to restore
+the previous Gateway; a service that was already stopped remains stopped.
+
 After activation succeeds, a failure to read or publish update reporting leaves
 the updated installation in place. Reporting failures do not trigger package
 rollback. The command still exits nonzero when required finalization cannot
@@ -173,8 +179,20 @@ Retention copies plugin manifests and files inspected by plugin safety checks,
 so retaining the updater does not make the checkout's plugins fail hardlink
 validation. Other runtime files remain hardlinked when supported.
 
+When a container or filesystem refuses file cloning, retention and candidate
+snapshot copies warn once per copy operation and continue with a guarded byte
+copy. Native filesystem safeguards, source identity checks, file modes, and
+snapshot verification remain active. Genuine I/O errors still fail the copy.
+This includes Proxmox LXC containers whose seccomp policy denies the `FICLONE`
+ioctl; changing that policy is unnecessary for an updater carrying this fix.
+Do not globally disable native filesystem support to bypass cloning: Doctor's
+state migrations require native safeguards.
+
 These lifecycle and copying changes apply when the installed updater supports
 them; installing a newer candidate cannot change the updater already running.
+For the first hop from 2026.9.7 in an affected container, manually install a
+release containing this fix with npm. Subsequent `openclaw update` runs use the
+repaired copier.
 
 On Windows, interruption before activation still lets the admitted recovery
 owner restore task autostart after pending task operations settle. Cancellation
@@ -225,6 +243,16 @@ from the new installation before restarting through the service manager.
 
 ## `update repair`
 
+An older updater can leave package activation at `prepared` after refusing an
+update before publication. Run `openclaw update repair` from an installation
+containing this fix. Repair verifies that the original package and launchers are
+unchanged, aborts the unused preparation, and retires its recovery artifacts so
+the next update can proceed. It does not publish the staged candidate. An active
+updater, changed package or launcher, or unfinished state restoration keeps its
+existing recovery checks. A candidate cannot patch the older updater already
+running; use the manual installation hop below if the installed CLI lacks this
+repair.
+
 For a package update stranded by an older updater's launcher ownership checks,
 use the manual installation hop, then repair from the new CLI at the same root:
 
@@ -254,6 +282,15 @@ recover against a replaced lease database. Matching lease identities keep the
 original recovery checks; another live update owner still prevents settlement.
 No recovery artifacts are deleted. An older installed CLI cannot obtain this fix
 from a candidate it has not yet staged; use the manual installation hop above.
+
+The same repair handles `ENOENT` when the recorded handoff lease database is
+missing, for example after a reboot clears a temporary filesystem. Its storage
+owner recreates the lease database, and repair acquires fresh update ownership
+before closing the orphaned package operation as `recovery-lease-missing`.
+The installed package, launchers, and retained recovery evidence keep the same
+protections. Repair then continues through Doctor and plugin convergence;
+plugin data/settings warnings clear only when their migration owners complete
+the required work. Remaining warnings name the next repair action.
 
 Rerun update finalization after the core package already changed but later
 repair work did not finish cleanly. This is the supported recovery path when
