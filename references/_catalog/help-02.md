@@ -4,6 +4,7 @@ Symptom-first troubleshooting and support.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Sessions and multiple chats](../help/faq/sessions-and-chats.md) — Fresh sessions, context truncation, full resets, groups, and multi-agent setups. Read when: You are managing sessions, resets, or context limits; You run multiple chats, groups, or bots.
 - [Skills and automation](../help/faq/skills-and-automation.md) — Customizing skills, per-task models, subagents, cron jobs, and background runs. Read when: You are customizing, loading, or installing skills; A cron job, reminder, or subagent did not behave.
 - [Test suites and commands](../help/testing/suites.md) — The unit, e2e, and live suites, which one to run, and the offline regression checks. Read when: You need to pick a test suite or command; You want to know what each suite covers.
 - [Testing](../help/testing.md) — Index of the OpenClaw testing kit, one page per reader job. Read when: Running tests locally or in CI; Adding regressions for model/provider bugs; Debugging gateway + agent behavior.

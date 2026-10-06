@@ -9,4 +9,4 @@ Choose one section by its title range, then select at most three documents from 
 - [Dependency locking – Gateway service and process](gateway-03.md) — 30 documents.
 - [Gateway, service, and security checks – Prompt injection](gateway-04.md) — 30 documents.
 - [Provider and route repairs – Tools invoke API](gateway-05.md) — 30 documents.
-- [Troubleshooting – Workspace tips and Dreams UI actions](gateway-06.md) — 10 documents.
+- [Troubleshooting – Workspace tips and Dreams UI actions](gateway-06.md) — 11 documents.

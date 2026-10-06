@@ -20,8 +20,8 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 102 |
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 79 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
-| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 160 |
-| [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 38 |
+| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 161 |
+| [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 39 |
 | [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 43 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 25 |
