@@ -17,10 +17,10 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 18 |
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 110 |
 | [Ci](_catalog/ci.md) | Documentation under `ci/` | 19 |
-| [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 102 |
-| [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 79 |
+| [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 101 |
+| [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 80 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
-| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 161 |
+| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 160 |
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 39 |
 | [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 43 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
@@ -33,5 +33,5 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 13 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 1 |
 | [Start](_catalog/start.md) | Getting started, onboarding, and setup | 21 |
-| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 117 |
+| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 110 |
 | [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 19 |
