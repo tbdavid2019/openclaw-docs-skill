@@ -5,7 +5,7 @@ Top-level concepts and cross-cutting documentation.
 Open only the entries relevant to the current request. Start with at most three documents.
 
 - [Agent runtime architecture](../agent-runtime-architecture.md) — How OpenClaw structures the built-in agent runtime: code layout, boundaries, resource manifests, and runtime selection.
-- [Auth credential semantics](../auth-credential-semantics.md) — Canonical credential eligibility and resolution semantics for auth profiles. Read when: Working on auth profile resolution or credential routing; Debugging model auth failures or profile order.
+- [Auth credential semantics](../auth-credential-semantics.md) — Credential eligibility and resolution rules for auth profiles. Read when: Working on auth profile resolution or credential routing; Debugging model auth failures or profile order.
 - [CI pipeline](../ci.md) — CI job graph, scope gates, release umbrellas, and local command equivalents. Read when: You need to understand why a CI job did or did not run; You are debugging a failing GitHub Actions check; You are coordinating a release validation run or rerun; You are changing ClawSweeper dispatch or GitHub activity forwarding.
 - [Date and time](../date-time.md) — Date and time handling across envelopes, prompts, tools, and connectors. Read when: You are changing how timestamps are shown to the model or users; You are debugging time formatting in messages or system prompt output.
 - [Docs Guide](../AGENTS.md)

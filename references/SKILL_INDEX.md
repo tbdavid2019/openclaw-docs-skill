@@ -28,8 +28,9 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 26 |
 | [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 338 |
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 89 |
+| [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 1 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 69 |
-| [Releases](_catalog/releases.md) | Documentation under `releases/` | 37 |
+| [Releases](_catalog/releases.md) | Documentation under `releases/` | 38 |
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 13 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 1 |
 | [Start](_catalog/start.md) | Getting started, onboarding, and setup | 21 |

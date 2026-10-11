@@ -58,15 +58,13 @@ openclaw triage --agent codex
 Use `openclaw triage --non-interactive` to collect diagnostics without starting
 an agent. Add `--update-result <path>` to include a saved update-failure artifact.
 
-When another process saves configuration during database admission, OpenClaw
-warns and reads the current configuration again. It validates and uses that
-configuration before continuing, retaining concurrent changes when applying
-the requested update. If the root config or an included file changes after
-candidate checks, it repeats those checks against the current configuration
-before activation. A candidate that cannot accept the current configuration
-still fails validation; a concurrent save alone is not a refusal.
-If the save changes an implicitly selected update channel, OpenClaw resolves
-the target again before execution. An explicit `--channel` keeps its selection.
+OpenClaw retains the selected update target and candidate admission result.
+Concurrent edits to configuration, included files, or the stored update channel
+do not reselect the target or restart candidate validation. Activation-time
+configuration and schema checks, and config-write conflict checks, still apply.
+Avoid editing configuration during an update; if a later edit causes startup to
+fail, correct it or run `openclaw doctor` before restarting. A candidate that
+rejects the selected configuration still fails validation.
 
 Validation failures leave the serving Gateway untouched. If stopping the managed
 service unloads it and then fails before activation, OpenClaw attempts to restore
@@ -94,7 +92,14 @@ operator-stopped services and explicit data-risk refusals remain stopped.
 After activation succeeds, a failure to read or publish update reporting leaves
 the updated installation in place. Reporting failures do not trigger package
 rollback. The command still exits nonzero when required finalization cannot
-complete; follow its recovery guidance after the owning updater exits.
+complete; follow its recovery guidance after the owning updater exits. If update
+history already records success, a later result-publication error is a warning
+and the command exits successfully without offering recovery.
+
+Repair warns when configured channel accounts remain stopped or suppressed,
+including accounts other than the default. Run `openclaw health --json` to inspect
+them. These warnings do not make a verified Gateway recovery fail, start stopped
+channels, or disable the crash-loop breaker.
 
 Activation Doctor rechecks the chat requester's authority inside its own live
 maintenance scope. This lets it read authorization policy while the state database
@@ -335,7 +340,10 @@ from the compatible CLI. Archival failure after durable completion is a warning:
 evidence stays preserved and does not prevent repair finalization or a later update. Retained evidence is not deleted or used as
 authority for later updates. Unfinished operations still require a compatible
 recovery owner. This behavior does not deliver a newer repair implementation to
-an already-blocked older CLI; the first-hop installation limitation remains.
+an already-blocked older CLI. For completed `anchor-retired` history, use the
+[independent helper recovery](/install/updating#recover-a-completed-receipt-with-an-older-updater)
+to preserve the receipt and unblock the original updater without replacing its
+installation. Unfinished recovery retains the first-hop installation limitation.
 
 For a package update stranded by an older updater's launcher ownership checks,
 use the manual installation hop, then repair from the new CLI at the same root:
@@ -637,9 +645,10 @@ service restoration, including when the Gateway is still starting or restoration
 also fails. A startup warning after otherwise successful Doctor repair does not
 clear a repair phase timeout.
 
-Recorded pending-migration warnings stop appearing after the migration owner
-records completion. Unrelated warnings and later or reintroduced obligations
-remain visible; the original update history is preserved.
+Recorded pending-migration warnings stop appearing when the plugin is no longer
+pending in the migration owner's current state, including warnings delivered
+after completion by a Doctor child. Unrelated warnings and reintroduced pending
+obligations remain visible; the original update history is preserved.
 
 After post-update or finalization work fails and its child processes settle,
 OpenClaw checks the installed Gateway using the normal startup and readiness
@@ -843,6 +852,11 @@ eligible. Unknown or unimported history, malformed inputs, trajectories,
 forensic corrupt databases, operator backups, and unmanifested artifacts stay
 protected. Old manifests are verified offline where possible; missing evidence
 is a reason to retain an artifact. Cleanup has no automatic expiration policy.
+Immutable release-retention inspection is separate from this migration-backup
+cleanup and remains gated on a compatible serving bridge. Its descriptor policy
+and release-generation inventory record ownership without deleting directories
+or snapshots. They do not make immutable releases eligible for `update cleanup`; see the
+[immutable release-retention inventory](/reference/database-schemas/layout#immutable-release-retention-inventory).
 Doctor's `<database>.pre-startup-migration-<id>.bak` groups become eligible only
 after Doctor verifies migration completion and update history records a successful
 update that started later. Until then they appear as protected. Changed or
