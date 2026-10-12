@@ -91,6 +91,15 @@ offsets for `isInsideCode`. Regions returned by `findCodeRegions` additionally
 include parser-owned `block` metadata; callers supplying their own ranges do not
 need to provide it.
 
+### Session header link helper
+
+`createSessionHeaderLink` from `openclaw/plugin-sdk/control-ui` shipped in
+OpenClaw 2026.10.1 and is deprecated. Session conversation links were retired,
+so hosts no longer pass `props.session` to `session-header` accessories. The
+helper still mounts, but its link never renders. Plugins built against
+2026.10.1 keep loading. Render a custom accessory instead. The
+`plugin-sdk-session-header-link` record allows removal after 2027-01-12.
+
 ### Harness tool construction
 
 Harnesses should await `params.hostCapabilities.createToolSurfaceAsync(options,
@@ -133,15 +142,13 @@ migration.
 
 The Gateway context exposed by `GatewayRequestHandlerOptions` from `core` and
 `gateway-runtime`, and by `getPluginRuntimeGatewayRequestScope()` from
-`plugin-runtime`, retains these synchronous contracts shipped in OpenClaw
+`plugin-runtime`, retains these synchronous placement contracts shipped in OpenClaw
 2026.9.7:
 
 - `workerSessionPlacementService.listPendingWorkspaceResults(sessionId?)`
   returns the pending result array.
 - `workerSessionPlacementService.getWorkspaceResultReconcilingSessionIds(sessionIds)`
   returns a `ReadonlySet<string>`.
-- `githubPublicationService.deferOrphanedRequests()` returns `void` after
-  orphaned requests have been deferred.
 
 Migrate to the corresponding `Async`-suffixed methods and await their results.
 The placement readers use the SQLite worker. Internal callers use the awaited
@@ -149,6 +156,23 @@ methods; the synchronous adapters remain solely for released plugin contracts.
 TypeScript marks those adapters deprecated. They retain their result shapes and
 completion timing until the next Plugin SDK major and an explicitly approved
 breaking release. No schema, retained data, or update migration changes.
+
+`githubPublicationService.deferOrphanedRequests()` retains its `void` signature
+but now fails at invocation; use `await deferOrphanedRequestsAsync()` to defer
+orphaned requests. Other deprecated publication methods likewise retain their
+signatures only for migration discovery and fail with replacement guidance.
+
+GitHub publication's opaque requester, `personalStatus`, and synchronous lifecycle methods, plus
+managed OAuth `cancelAuthorization` and `retireProfile`, and personal OAuth
+`cancelAuthorization` and `disconnect`, share the
+`github-publication` runtime warning budget. The OAuth methods retain
+their synchronous results until the same removal gate; migrate managed OAuth to
+`cancelAuthorizationAsync` and `retireProfileAsync`, and personal OAuth to
+`cancelAuthorizationAsync` and `disconnectAsync`. Publication status readers use
+`await personalStatusAsync(...)` with the same arguments. Follow the
+[V2 request and lifecycle migration](/plugins/sdk-migration/how-to-migrate#await-github-publication-operations)
+for required host capabilities and callback ordering. This does not change the
+warning policy of the placement reader family.
 
 ### Channel pairing allowlists
 
@@ -353,23 +377,27 @@ unchanged. Removal still requires explicit breaking-release approval.
 
 ### Reply run-start transcript facts
 
-`GetReplyOptions.onAgentRunStart` from `openclaw/plugin-sdk/reply-runtime`, also
-provided to `reply_dispatch` hooks, retains the callback shipped in OpenClaw
-2026.9.8: `(runId, executionIdentityToken?, options?) => unknown`. Existing
-callbacks and producers that omit later arguments remain supported. Completion
-ownership still requires returning `"reply-dispatch"` synchronously.
+`GetReplyOptions.onPreparedAgentRunStart` from
+`openclaw/plugin-sdk/reply-runtime`, also provided to `reply_dispatch` hooks,
+receives one `PreparedAgentRunStart` object containing `runId`, optional
+`executionIdentityToken` and `options`, and required `transcriptStart` facts (or
+`null` when there is no transcript). Prepare the transcript boundary through the
+awaited runtime before invoking the callback. The facts describe the transcript
+boundary and do not grant session or write authority.
 
-Current runtime helpers supply prepared transcript facts in an optional fourth
-argument. Wrappers should forward every argument and the callback's return value;
-see [message hooks](/plugins/hooks/messages). The facts describe the transcript
-boundary and do not grant session or write authority. When a released producer
-omits them, the Gateway retains its synchronous transcript-read fallback.
+Bundled runtimes and callback wrappers use this contract so the Gateway does not
+read SQLite while handling the notification. Forward the complete object and
+return the callback's result synchronously. Completion ownership requires
+returning `"reply-dispatch"` synchronously; a Promise does not transfer ownership.
 
-Only that omitted-facts fallback is deprecated as of October 4, 2026; the callback
-itself remains supported. The fallback stays until the next Plugin SDK major and
-explicit breaking-release approval. The compatibility registry records the
-migration without runtime warnings. Schemas, retained data, and update behavior
-are unchanged.
+The deprecated `onAgentRunStart` retains the callback shipped in OpenClaw
+2026.9.8: `(runId, executionIdentityToken?, options?) => unknown`, including the
+optional fourth transcript-facts argument. Released callbacks and producers that
+omit later arguments remain supported. Legacy invocation emits one
+`DEP_SESSION_PERSISTENCE` warning per plugin and callback family per process.
+The Gateway's omitted-facts synchronous read stays until the next Plugin SDK
+major and explicit breaking-release approval. Schemas, retained data, and update
+behavior are unchanged.
 
 ### Agent execution preparation compatibility
 
@@ -520,9 +548,20 @@ no durable artifacts for that actor. Private transcripts are not added to the
 durable Memory ingestion corpus.
 
 The synchronous `loadMemorySessionMetadata` and
-`loadMemorySessionMetadataBatch` helpers remain durable ingestion admission
-guards. `statSessionEntrySync`, batch transcript stats, and synchronous archive
-and selector readers retain their existing native/offline contracts. Explicitly
+`loadMemorySessionMetadataBatch` helpers are deprecated. Await
+`loadMemorySessionMetadataAsync` and `loadMemorySessionMetadataBatchAsync`
+instead; bundled ingestion resolves each store batch in the existing history
+worker. The synchronous helpers retain their signatures until the next Plugin
+SDK major. Main-thread calls emit one shared Memory session deprecation warning
+per plugin. Batch transcript statistics now offer
+`readTranscriptStatsBatchReadOnlyAsync`; `session-store-runtime` offers
+`readTranscriptStatsAsync` for individual transcripts. Their synchronous
+predecessors retain their signatures until the next Plugin SDK major and warn
+on main-thread use. Worker-local statistics kernels remain synchronous.
+Use `statSessionEntry` for awaited file or transcript metadata. The deprecated
+`statSessionEntrySync` warns when it reads SQLite on the host; supplying prepared
+transcript statistics remains a synchronous projection without database access.
+Synchronous archive and selector readers retain their native/offline contracts. Explicitly
 bound actor calls refuse synchronous database access with
 `IncognitoSessionSyncAccessError`: await `resolveMemorySessionTargetsAsync`,
 `loadArchivedSessionsAsync`, or `buildSessionEntry` as named by the error.
@@ -819,20 +858,24 @@ references are triage signals, not published-artifact proof.
 
 ### TTS preference resolution
 
-Host reply dispatch now prepares the machine-owned TTS preference path through
-the shared-state reader and carries that fact through prompt and delivery work.
-The released `resolveTtsPrefsPath(config)` call in
-`openclaw/plugin-sdk/agent-runtime` and `openclaw/plugin-sdk/tts-runtime` still
-returns a `string` synchronously. `buildTtsSystemPromptHint(config, agentId,
-options)` also keeps its synchronous return value, and the existing asynchronous
-`maybeApplyTtsToPayload` call does not require prepared preferences.
+Await `resolveTtsPrefsPathAsync(config)` from
+`openclaw/plugin-sdk/agent-runtime` or `openclaw/plugin-sdk/tts-runtime` to resolve
+the machine-owned preference path through the shared-state reader. Explicit
+config and environment paths retain their precedence. Host prompt, status,
+command, and speech preparation carry the resolved preferences through their
+existing operations instead of reopening the state store.
 
-The `tts-preferences-sync-resolution` compatibility record retains the legacy
-synchronous resolution path. Removal requires a public preparation contract,
-migration of published plugin readers, and explicit approval for a breaking
-Plugin SDK release at the next major-version gate. No removal date or runtime
-warning is introduced. Existing plugins need no change for this host update;
-preference-file reads, stored data, and update behavior stay the same.
+The released `resolveTtsPrefsPath(config)` call still returns a `string`
+synchronously, but is deprecated and emits a bounded warning when it needs
+legacy resolution. `buildTtsSystemPromptHint(config, agentId, options)` retains
+its synchronous return value; hosts pass prepared preferences to keep it free
+of state-store reads. The asynchronous `maybeApplyTtsToPayload` call continues
+to prepare preferences when none are supplied.
+
+The `tts-preferences-sync-resolution` compatibility record retains the released
+signatures until the next Plugin SDK major, migration of published plugin
+readers, and explicit approval of a breaking release. Preference files, stored
+data, and update behavior are unchanged.
 
 ### Media legacy projection
 

@@ -34,6 +34,23 @@ If you need transcript storage details, see
 
 ---
 
+## Delivered command exchanges
+
+Slash commands and their delivered replies from the shared dispatcher are ordinary
+conversation messages, not runtime-only prompt context. Native command menus,
+button selections, and acknowledgements on Discord and Telegram, Slack
+argument menus, and Mattermost model pickers are also retained after delivery.
+Login device codes, pairing codes, login URLs, and sensitive `/config set` or `/debug set` values
+(including nested object assignments) are redacted before appending the exchange.
+These rows remain available to later provider requests and chat history without rewriting earlier
+rows. `/btw` and `/side` remain ephemeral.
+
+## Delivered automation results
+
+Canonical `openclaw` / `automation-result` assistant rows remain in model history,
+even when their text matches the preceding assistant reply and their usage is
+zero. The historical duplicate filter still removes marker-free delivery mirrors.
+
 ## Failed attempts and recovery
 
 Text-only assistant errors are buffered until the logical run settles. Recovery
@@ -112,7 +129,10 @@ Implementation:
 - `sanitizeContentBlocksImages` in `src/agents/tool-images.ts`
 - Max image side is configurable via `agents.defaults.imageMaxDimensionPx`
   (default: `1200`)
-- Blank text blocks are removed while this pass walks replay content.
+- Unsigned blank text blocks are removed while this pass walks replay content.
+  Blank assistant text with a provider replay signature is retained byte-for-byte,
+  including whitespace-only messages, so later reasoning keeps its
+  original request prefix and item order.
   Assistant turns that become empty are dropped unless they own opaque
   provider replay state; user and tool-result turns that become empty receive
   a non-empty omitted-content placeholder.
@@ -218,6 +238,10 @@ inter-session user turns that only have provenance metadata.
 - Preserve replayable OpenAI Responses reasoning item payloads, including
   encrypted empty-summary items, so manual/WebSocket replay keeps required
   `rs_*` state paired with assistant output items.
+- SDK Responses replay uses the storage privacy shape and a fixed field order:
+  summaries are empty, cleartext reasoning content is omitted, and completed
+  ciphertext remains unchanged across live continuation and transcript reload.
+  Native ChatGPT Responses retains its upstream Codex payload semantics.
 - Node turns canonicalize fresh reasoning signatures before returning the
   completed assistant message, so live continuation and transcript storage use
   the same signature bytes. Encrypted reasoning bytes, executable tool arguments,

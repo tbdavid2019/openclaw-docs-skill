@@ -20,6 +20,11 @@ Unexpected exceptions retain the known update mode, resolved target, failed step
 and any recorded recovery outcome. Reports include a bounded, redacted error code
 or name and first message line through the same diagnostics as failed commands;
 unrecognized private text and stack traces are excluded from the public preview.
+Git preflight cleanup continues if its progress history cannot be recorded. The
+direct result retains a reporting warning; if the update was already failing,
+its exception retains both the original failure and the reporting failure. A
+reporting warning alone does not mean runtime verification failed. Uncertain
+command cleanup still preserves the temporary artifacts and blocks recovery.
 
 Choosing **Diagnose update failure** opens [Triage](/cli/triage), which starts the
 first directly launchable coding agent on `PATH`, in this order: Claude Code,
@@ -135,6 +140,8 @@ migration resources. The capture stays beside the selected state directory in
 `<state-directory>.update-captures/<run-id>`. Doctor continuations keep the same
 capture; they do not replace it with already migrated state. State-directory
 relocation leaves its original location and recorded paths intact.
+Continuation verifies the recorded live updater's process identity and ancestry;
+unreadable supervisors above that updater do not prevent its Doctor from reusing the capture.
 Inherited control-plane and managed-helper runs retain their existing capture
 behavior. Standalone `doctor --fix` preserves a separate pre-repair copy; that
 copy does not replace an earlier update's originals. Standalone `doctor --fix`
@@ -157,7 +164,10 @@ Keep both names for manual inspection; their presence does not authorize restora
 
 These captures are evidence for manual recovery. Active writers can change state
 during capture; an observed change leaves the capture incomplete and produces a
-warning. The set is not an atomic snapshot across active stores. Missing,
+warning. For databases, the warning names each database that changed after its
+snapshot or had no stable generation during it, followed by the backup's
+database warnings. A running Gateway that writes during capture is enough to
+cause this. The set is not an atomic snapshot across active stores. Missing,
 unreadable, or incomplete captures do not establish a safe
 rollback point. The updater process keeps optional debug-proxy persistence
 disabled because its update history can use an older database schema. Doctor
@@ -301,6 +311,21 @@ from the new installation before restarting through the service manager.
 
 ## `update repair`
 
+Repair exits nonzero with the original recovery command when an older package
+journal remains pending and the current CLI cannot settle it. It does not report
+successful repair or continue post-update maintenance while that record remains.
+
+For a record written by the published 2026.9.8 package recovery helper, repair
+can settle an aborted operation after rollback or finish publication into a
+missing installation when ctime or link-count drift invalidates the previous
+package's historical seal. It requires the recorded directory identity and package version,
+verifies launchers, and records: `legacy package record settled by identity and
+version; content could not be re-verified`. The original journal, helper, and
+remaining package evidence are preserved. This accepts unverified contents of
+reinstallable legacy package code; records written by current versions retain
+their existing verification rules. Use a CLI containing this fix: the original sealed helper
+cannot acquire newer recovery behavior.
+
 An older updater can leave package activation at `prepared` after refusing an
 update before publication. Run `openclaw update repair` from an installation
 containing this fix. Repair verifies that the original package and launchers are
@@ -343,7 +368,10 @@ recovery owner. This behavior does not deliver a newer repair implementation to
 an already-blocked older CLI. For completed `anchor-retired` history, use the
 [independent helper recovery](/install/updating#recover-a-completed-receipt-with-an-older-updater)
 to preserve the receipt and unblock the original updater without replacing its
-installation. Unfinished recovery retains the first-hop installation limitation.
+installation. For the narrowly verified remounted `publishing` case, the
+[independent settlement-only repair](/install/updating#recover-an-unfinished-publication-after-a-remount)
+can also clear the older updater's first-hop block without replacing packages.
+Other unfinished recovery still requires its original owner.
 
 For a package update stranded by an older updater's launcher ownership checks,
 use the manual installation hop, then repair from the new CLI at the same root:

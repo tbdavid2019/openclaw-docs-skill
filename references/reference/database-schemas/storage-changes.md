@@ -7,6 +7,32 @@ read_when:
 title: "Storage changes and release preflight"
 ---
 
+## Agent JSON predicate columns
+
+[Agent schema 26](/reference/database-schemas/agent-schema-history#json-predicate-columns)
+implements the agent-store portion of the
+[accepted column-promotion design](https://github.com/openclaw/openclaw/issues/169254).
+The JSON remains canonical. Each writer derives its query columns in TypeScript
+and commits them with the JSON in one statement; the session actor reuses that
+derivation. Runtime predicates use columns. No trigger, second persistence owner,
+or read-time backfill is introduced.
+
+The versioned migration uses SQLite JSON functions only to classify existing rows
+and publishes both schema markers after the complete backfill. It preserves
+first-member lookups, legacy last-member transcript navigation, SQLite integer-cast
+semantics, malformed-row handling, payload bytes, and existing retention rules.
+Schema admission and Doctor remain the only migration owners. Optional outbox
+storage stays lazy. Added text and integer fields translate to PostgreSQL text
+with C collation and bigint; supporting engines share the schema version and
+must supply their equivalent forward migration.
+
+SQL projections that bound large payloads before transfer stay in SQL. Current
+writer-authority comparisons also retain their existing implementation rather
+than weakening a real effect boundary. The migration adds storage proportional
+to retained rows, and first-upgrade proof measures time per database and across
+many-agent hosts. Older binaries refuse the new schema; recovery restores a
+verified pre-migration backup and its matching binary.
+
 ## Canonical writer validation
 
 The per-agent session writer owns row validity under the single Gateway writer
@@ -59,6 +85,39 @@ not runtime backend support or a choice of per-agent PostgreSQL topology.
 `pnpm check:database-dialect-ratchet` keeps mechanical, design, and engine-maintenance counts shrink-only against the Git base by scanning only differing production `.ts`/`.mts`/`.sql` files under `src/`, `extensions/`, and `packages/` (excluding tests and fixtures); `--staged` reads the index, `--full-tree` reports totals, and the `sqliteStringSet` owner subset is reported within mechanical debt.
 The lexical gate examines `.sql` files minus comments, all static parts of templates whose tag's final identifier ends in `sql` (case-insensitive), strings and untagged templates starting after whitespace and `(` with an uppercase SQL statement keyword, and the `orReplace`/`orIgnore`/`orAbort`/`orFail`/`orRollback` method calls; construct regexes remain case-insensitive, exclude SQL double-quoted text, require `name(` for functions, and require `PRAGMA <name>` or `pragma_<name>(` for `data_version`/`schema_version`/`user_version`.
 Prose, fragments without a statement prefix, and substitutions are ignored, accepting under-counts for assembled SQL; both revisions use identical rules without type, symbol, import, or SQL token-role analysis, and runtime behavior and schemas are unchanged.
+
+### Experimental PostgreSQL engine (workboard pilot)
+
+`database.engine: "postgres"` selects the experimental PostgreSQL engine for
+workboard only. Set `database.postgres.connection` to a PostgreSQL DSN, preferably
+through a SecretRef. The host resolves the secret before opening the worker;
+missing or unresolvable connections and unreachable servers fail without falling
+back to SQLite. SQLite remains the supported default (`database.engine: "sqlite"`),
+and updates require no configuration or migration for SQLite stores. Other stores
+continue to use SQLite. A follow-up adapter will generalize selection to every
+store and add Doctor reporting.
+
+The workboard database path holds a small SQLite anchor with a durable store
+UUID. Its first 16 hexadecimal characters select the PostgreSQL schema
+`<schemaPrefix>_workboard_<uuid-prefix>` (prefix defaults to `openclaw`); moving the anchor preserves that identity.
+Back up and restore both the anchor and its PostgreSQL schema together.
+The pilot refuses an existing SQLite workboard store containing data; it does
+not port that data to PostgreSQL. Opening an anchor with the SQLite engine
+refuses and names its PostgreSQL schema; it never creates SQLite workboard tables
+in the anchor. This check runs once per open, never per operation. The connection
+owns its `search_path`.
+Writers use `READ COMMITTED` with one transaction-scoped advisory lock derived
+from the store UUID; snapshot reads use `REPEATABLE READ READ ONLY`. Connections set
+`synchronous_commit=off` to match SQLite WAL with `synchronous=NORMAL`: an operating
+system or database crash can lose recent acknowledged commits.
+
+`pnpm db:postgres:gen --target workboard` generates the workboard DDL from its
+SQLite schema; `pnpm db:postgres:check` verifies freshness. Admission installs the
+tables and records the current store version in one transaction. There are no
+PostgreSQL migrations yet: an existing version mismatch refuses to open and names
+the expected version. PostgreSQL text cannot store NUL characters, so NUL-bearing
+values fail with an engine error. This pilot does not enable multiple active
+Gateways against the same store.
 
 ### Keep operations at the owning store
 
@@ -136,10 +195,10 @@ Canonical shutdown joins accepted publication and planner lease cleanup; a newer
 scheduled owner cannot be consumed by an older retired pass. Schemas, retention,
 permissions, and update behavior are unchanged.
 
-The transcript reconcile pool admits the smallest pending session backlog first,
-with original operation order breaking ties. At a completed session boundary, a
-planner yields only to a strictly smaller waiting backlog and reserves its place
-before releasing the worker. Each resumed pass refreshes its backlog in preflight.
+The transcript reconcile pool uses its bounded worker's FIFO queue. At a completed
+session boundary, a planner yields when another reconcile operation is present,
+so a large backlog does not monopolize the worker. Each resumed pass refreshes
+its backlog in preflight; scheduling does not retain priority reservations.
 Direct reconciliation awaits its observed backlog; Gateway startup runs that
 maintenance after readiness, with cancellation tied to startup lifetime. The pool
 retains one worker, and lease release tasks bypass backlog admission.
@@ -1070,9 +1129,13 @@ read worker. The policy owner captures the original database path before yieldin
 and keeps legacy-file migration checks, normalization, fail-closed results, and
 warning throttling on the host. The reader preserves inherited snapshots and joins
 accepted reads before disposable source cleanup. Missing stores stay absent, and
-worker failures never retry through host SQLite. Synchronous execution-authorization
-callbacks and policy mutation, restore, and initialization keep their existing
-owners.
+worker failures never retry through host SQLite. Execution-authorization callbacks
+consume the current policy from in-process committed write publications, seeded
+by the existing authorization worker operation. Pending or unknown policy writes
+fail closed at execution; completed writes replace the policy before the next
+execution check. The callbacks no longer open or query a native reader. Policy
+mutation, restore, and initialization keep their existing worker owners; Doctor
+retains its synchronous maintenance transaction.
 
 Use Kysely for ordinary queries and mutations. The current
 `getNodeSqliteKysely` facade compiles queries; `executeSqliteQuerySync` runs them
@@ -1927,6 +1990,12 @@ adoption retains its separate header initialization and native deletion rollback
 composition. Pending-archive recovery still follows the replacement receipt after
 writer release. Stored formats, schemas, retention, and update behavior are unchanged.
 
+Fresh creation carries its initial absent-target snapshot into that replacement
+command instead of preparing the same target again. The writer still checks the
+target and any label claim in its transaction, preserving a competing creation
+committed during preparation. Existing entries and alias adoption retain their
+replacement snapshots.
+
 Session reclamation keeps its deletion transaction on a worker connection.
 The worker opens its database under the session writer, then releases that writer
 while any required first full integrity and foreign-key checks run on the same
@@ -2238,13 +2307,17 @@ Owning-writer receipts invalidate the pairing snapshot cache across workers.
 CLI pairing mutations route through the Gateway or hold exclusive offline ownership.
 Workers project lists and node identity bindings;
 the Gateway installs bindings against the pairing revision without reopening
-SQLite. Historical inspection snapshots never publish live node authority.
+SQLite. A lookup or receipt at a newer revision marks the published set incomplete
+but keeps other devices' bindings; only a full list replaces the set.
+Historical inspection snapshots never publish live node authority.
 
 Pairing, approval, role-token, bootstrap, and node-surface mutations execute in
 the shared-state writer. Each synchronous transaction reads the authoritative
 rows and obtains current host policy or connection admission before mutation and
 again before commit. Commit receipts publish the revision and changed node
-bindings before callers continue; uncertain outcomes are not replayed. Node
+bindings before callers continue; uncertain outcomes are not replayed. Pending
+mutations leave published bindings usable because stored rows stay authoritative
+until commit and the next binding read installs the committed receipt. Node
 prompt preparation refreshes the published facts, and Web Push retains pairing
 and subscription admission through network start, releasing both before provider
 completion. APNs registration checks pairing in its worker transaction and
@@ -2507,6 +2580,40 @@ schema, owning-writer receipts, or local mutation revision. Transactions and
 pinned or authorizer-controlled reads do not reuse those facts. Closing the native
 connection retires its cache. Confirmation capability remains available to bound
 consults after call closure, independently of the open-state check.
+
+## Session usage overview projection
+
+Session usage retains its derived cache in the existing `cache_entries` owner.
+The `session-cost-usage-rollup-v3` scope holds the versioned transcript checkpoint
+and untimestamped contribution. The adjacent `session-cost-usage-projection-v1`
+scope stores UTC-month partitions containing quarter-hour session and model
+aggregates. The checkpoint and affected partitions commit atomically. This
+replaces the previous whole-history per-event cache body; no tables, indexes,
+or database schema version change. Incognito sessions retain their existing
+process-local, nonpersistent cache and create no month partitions. Projection
+version 2 packs sparse quarters into monthly compressed bodies; version 1 daily
+rows are ignored and replaced by the normal resumable refresh, without a schema
+migration. Checkpoint and partition replacement remain atomic.
+
+Committed transcript publications schedule advancement through the existing
+usage worker queue. Startup and topology changes backfill in bounded batches,
+yielding between batches. Cache writes wait outside the agent writer FIFO until
+foreground work drains, then commit one session at a time. Report reads use their
+separate worker lane and return partial or stale totals during backfill. Restart
+rediscovers unfinished sessions from their committed checkpoints.
+Deletion, transcript rewind or branch changes, and pricing revisions rebuild
+through the same owner. SQL and single-agent aggregation run in workers.
+Cross-agent reports fold worker summaries in global session order on the Gateway
+to preserve floating-point addition. Reports reuse completed results only while
+their transcript, usage, session metadata,
+visibility, profile, and configuration revisions remain current.
+
+Transcripts remain authoritative; the projection changes neither retention nor
+billing data. Exact partial-quarter ranges and arithmetic that cannot be
+represented by the aggregate use canonical transcript reads. Partial backfill
+remains visible in the existing cache-status fields. An older implementation
+ignores the new representation's version and reconstructs its prior cache from
+transcripts, so rollback needs no reverse data migration.
 
 ## Review checkpoint for material changes
 
