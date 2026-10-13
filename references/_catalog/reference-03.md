@@ -4,6 +4,7 @@ Documentation under `reference/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [SOUL.md template](../reference/templates/SOUL.md) — Workspace template for SOUL.md. Read when: Bootstrapping a workspace manually.
 - [State schema history](../reference/database-schemas/state-schema-history.md) — Shared state database schema versions, their changes, and their first releases. Read when: Looking up which release first shipped a state schema version; Reading the per-version notes for a recent state schema change.
 - [Storage changes and release preflight](../reference/database-schemas/storage-changes.md) — Proposing a persistent-store change, the review checkpoint, and preflighting a target release. Read when: Proposing a SQLite or persistent-store change, or another database backend; Preflighting a copied state database against a target release before activation.
 - [Store maintenance and retention](../reference/session-management-compaction/maintenance.md) — The session.maintenance keys, disk-budget cleanup tiers, cron run retention, and the SQLite downgrade path. Read when: Tuning the per-agent session disk budget or retention cutoffs; Running openclaw sessions cleanup, or downgrading after the SQLite flip.

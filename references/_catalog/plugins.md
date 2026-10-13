@@ -9,10 +9,10 @@ Choose one section by its title range, then select at most three documents from 
 - [Codex approval and sandbox modes – ComfyUI plugin reference](plugins-03.md) — 30 documents.
 - [Community plugins – Feishu plugin reference](plugins-04.md) — 30 documents.
 - [File Transfer plugin reference – Inworld plugin reference](plugins-05.md) — 30 documents.
-- [IRC plugin reference – Memory Lancedb plugin reference](plugins-06.md) — 30 documents.
-- [Memory wiki – OpenCode plugin reference](plugins-07.md) — 30 documents.
-- [OpenRouter plugin reference – Plugin SDK defineChannelPluginEntry helper](plugins-08.md) — 30 documents.
-- [Plugin SDK definePluginEntry helper – QQ Bot plugin reference](plugins-09.md) — 30 documents.
-- [Qwen plugin reference – Tencent plugin reference](plugins-10.md) — 30 documents.
-- [Tlon plugin reference – X plugin reference](plugins-11.md) — 30 documents.
-- [xAI plugin reference – Zoom meetings plugin reference](plugins-12.md) — 8 documents.
+- [IRC plugin reference – Memory Core plugin reference](plugins-06.md) — 30 documents.
+- [Memory LanceDB – OpenAI plugin reference](plugins-07.md) — 30 documents.
+- [OpenCode Go plugin reference – Plugin SDK capability registration](plugins-08.md) — 30 documents.
+- [Plugin SDK CLI and discovery registration – QA Lab plugin reference](plugins-09.md) — 30 documents.
+- [Qianfan plugin reference – Team Reports plugin](plugins-10.md) — 30 documents.
+- [Team Reports plugin reference – WhatsApp plugin reference](plugins-11.md) — 30 documents.
+- [Workboard plugin – Zoom meetings plugin reference](plugins-12.md) — 11 documents.

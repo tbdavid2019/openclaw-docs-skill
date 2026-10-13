@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Workboard plugin](../plugins/workboard.md) — Optional Workboard boards for agent-owned cards and rule-based session views. Read when: You want a Kanban-style workboard in the Control UI; You are enabling or disabling the bundled Workboard plugin; You want to track planned agent work without an external project manager; You want sessions grouped by session status, observer health, and pull-request state.
+- [Workboard plugin reference](../plugins/reference/workboard.md) — Dashboard workboard for agent-owned issues and sessions. Read when: You are installing, configuring, or auditing the workboard plugin.
+- [X plugin reference](../plugins/reference/x.md) — Allowlisted X mentions and public replies. Read when: You are installing, configuring, or auditing the x plugin.
 - [xAI plugin reference](../plugins/reference/xai.md) — xAI provider for Grok models, Grok web and X search, code execution, speech, and media generation. Read when: You are installing, configuring, or auditing the xai plugin.
 - [Xiaomi plugin reference](../plugins/reference/xiaomi.md) — Adds Xiaomi, Xiaomi Token Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the xiaomi plugin.
 - [Z.AI plugin reference](../plugins/reference/zai.md) — Adds Z.AI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the zai plugin.

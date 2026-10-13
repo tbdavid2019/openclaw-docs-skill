@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Memory LanceDB](../plugins/memory-lancedb.md) — Configure the official external LanceDB memory plugin, including local Ollama-compatible embeddings. Read when: You are configuring the memory-lancedb plugin; You want LanceDB-backed long-term memory with auto-recall or auto-capture; You are using local OpenAI-compatible embeddings such as Ollama.
+- [Memory Lancedb plugin reference](../plugins/reference/memory-lancedb.md) — OpenClaw LanceDB-backed long-term memory plugin with auto-recall, auto-capture, and vector search. Read when: You are installing, configuring, or auditing the memory-lancedb plugin.
 - [Memory wiki](../plugins/memory-wiki.md) — memory-wiki: compiled knowledge vault with provenance, claims, dashboards, and bridge mode. Read when: You want persistent knowledge beyond plain MEMORY.md notes; You are configuring the bundled memory-wiki plugin; You need separate wiki vaults for agents in one Gateway; You want to understand wiki_search, wiki_get, or bridge mode.
 - [Memory Wiki plugin reference](../plugins/reference/memory-wiki.md) — Persistent wiki compiler and Obsidian-friendly knowledge vault for OpenClaw. Read when: You are installing, configuring, or auditing the memory-wiki plugin.
 - [Message and delivery hooks](../plugins/hooks/messages.md) — Claim inbound messages and rewrite or cancel outbound deliveries. Read when: You are claiming an inbound message before the normal model dispatch; You are taking over reply generation with reply_dispatch; You need to rewrite or cancel an outbound message or reply payload.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Onepassword plugin reference](../plugins/reference/onepassword.md) — 1Password SecretRef resolver and curated agent broker with approval policy and SQLite audit history. Read when: You are installing, configuring, or auditing the onepassword plugin.
 - [Onnx plugin reference](../plugins/reference/onnx.md) — Local typed decisions using pinned ONNX classifiers. Read when: You are installing, configuring, or auditing the onnx plugin.
 - [OpenAI plugin reference](../plugins/reference/openai.md) — Adds OpenAI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the openai plugin.
-- [OpenCode Go plugin reference](../plugins/reference/opencode-go.md) — Adds OpenCode Go model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the opencode-go plugin.
-- [OpenCode plugin reference](../plugins/reference/opencode.md) — Adds OpenCode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the opencode plugin.

@@ -93,11 +93,26 @@ their existing native in-memory owner until that owner's worker migration.
 ### Session and command preparation
 
 Use `getSessionEntryAsync`, `readSessionUpdatedAtAsync`,
-`getConversationSessionAsync`, and `readAmbientTranscriptWatermarkAsync` from
+`getConversationSessionAsync`, `readAmbientTranscriptWatermarkAsync`,
+`loadTranscriptEvents`, and `readTranscriptStatsAsync` from
 `openclaw/plugin-sdk/session-store-runtime` for ordinary session reads. The
 runtime equivalent is `api.runtime.agent.session.getSessionEntryAsync`. These
 operations read through the existing session worker and observe committed
 in-process writes. Missing entries remain `undefined`; read failures propagate.
+`loadTranscriptEventsSync` and `readTranscriptStatsSync` are deprecated; their
+awaited replacements preserve ordered events and transcript statistics while
+keeping durable reads off the Gateway thread.
+
+Await `UserTurnTranscriptRecorder.completeProcessingAsync(outcome)` to settle an
+accepted input through its session owner. The deprecated `completeProcessing`
+method preserves synchronous completion and returns after the terminal outcome
+commits, with a migration warning, until the next Plugin SDK major. Recorders
+without an accepted input keep their existing no-op behavior.
+
+Use `readSessionTranscriptCatalogTitleAsync` from
+`openclaw/plugin-sdk/session-transcript-runtime` for catalog titles. The
+synchronous `readSessionTranscriptCatalogTitle` remains deprecated until the
+next Plugin SDK major.
 
 Use `resolveStoredModelOverrideAsync` and `resolveCommandArgMenuAsync` from
 `openclaw/plugin-sdk/command-auth-native` when preparing native commands.
@@ -153,14 +168,14 @@ existing reset policy and process-held incognito behavior.
 The typed public SDK is organized into focused subpaths with documented
 contracts. Not every SDK build entrypoint is a public plugin API.
 
-Legacy provider convenience seams for bundled channels are gone too -
+Legacy provider convenience interfaces for bundled channels are gone too -
 channel-branded helper shortcuts were private mono-repo conveniences, not
 stable plugin contracts. Use narrow generic SDK subpaths instead. Inside the
 bundled plugin workspace, keep provider-owned helpers in that plugin's own
 `api.ts` or `runtime-api.ts`:
 
 - Anthropic keeps Claude-specific stream helpers in its own `api.ts` /
-  `contract-api.ts` seam.
+  `contract-api.ts` interface.
 - OpenAI keeps provider builders, default-model helpers, and realtime provider
   builders in its own `api.ts`.
 - OpenRouter keeps provider builder and onboarding/config helpers in its own

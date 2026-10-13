@@ -4,6 +4,7 @@ Documentation under `reference/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [PR GitHub transport](../reference/scripts/github-transport.md) — GitHub observations, publication, and protected Octopool dispatch for scripts/pr. Read when: Changing GitHub observation, publication, or protected PR merge transport.
 - [PR merge admission](../reference/scripts/merge-admission.md) — Main movement, mergeability, transport, and receipt contracts for scripts/pr. Read when: Changing PR merge admission, main-drift handling, or merge receipt verification.
 - [PR merge recovery](../reference/scripts/merge-recovery.md) — Retained merge outcomes, investigated recovery, and ownership-checked completion. Read when: Recovering a failed, accepted, or uncertain PR merge or maintaining its cleanup lifecycle.
 - [PR preparation](../reference/scripts/pr-preparation.md) — Preparation, correction reviews, source acquisition, and gate bindings for scripts/pr. Read when: Changing PR preparation, correction reviews, source acquisition, or gate bindings.
@@ -24,7 +25,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Reviewer soul](../reference/templates/roles/reviewer/CLAW.md)
 - [Rich output protocol](../reference/rich-output-protocol.md) — Rich output protocol for structured media, embeds, audio hints, and replies. Read when: Changing assistant output rendering in the Control UI; Debugging `[embed ...]`, structured media, reply, or audio presentation directives.
 - [RPC adapters](../reference/rpc.md) — RPC adapters for external CLIs (signal-cli, imsg) and gateway patterns. Read when: Adding or changing external CLI integrations; Debugging RPC adapters (signal-cli, imsg).
-- [Run tests locally](../reference/test/local.md) — Routine local test order, the core test commands, and the local PR gate. Read when: You are running or fixing tests on your own machine; You need the local land and gate command list.
+- [Run tests locally](../reference/test/local.md) — Focused local proof, core test commands, and optional full local runs. Read when: You are running or fixing tests on your own machine; You need focused local proof or an explicitly needed full local run.
 - [Secret Placeholder Conventions](../reference/secret-placeholder-conventions.md) — Secret-scanner-safe placeholder conventions for docs and examples. Read when: Writing docs that include tokens, API keys, or credential snippets; Updating examples that may be scanned by secret-detection tooling.
 - [SecretRef credential surface](../reference/secretref-credential-surface.md) — Canonical supported vs unsupported SecretRef credential surface. Read when: Verifying SecretRef credential coverage; Auditing whether a credential is eligible for `secrets configure` or `secrets apply`; Verifying why a credential is outside the supported surface.
 - [Session keys, ids, and transcript events](../reference/session-management-compaction/schema.md) — sessionKey patterns, sessionId lifecycle, SessionEntry fields, and the transcript event stream. Read when: You need to debug session ids, transcript events, or session row fields; Reading or writing SessionEntry fields, forks, or transcript entry types.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Session transcript working sets](../reference/session-management-compaction/resident-history.md) — Proposed worker-owned transcript acquisition and bounded SessionManager working sets. Read when: Changing which transcript payloads an active session retains; Migrating synchronous session history consumers to worker reads; Reviewing transcript revision fences, rewrites, or branch navigation.
 - [Silent turns and the memory flush](../reference/session-management-compaction/housekeeping.md) — The NO_REPLY silent-turn contract and the pre-compaction memory flush configuration. Read when: You want to implement memory flushes or silent system turns; Tuning agents.defaults.compaction.memoryFlush.
 - [SOUL.dev template](../reference/templates/SOUL.dev.md) — Dev agent soul (C-3PO). Read when: Using the dev gateway templates; Updating the default dev agent identity.
-- [SOUL.md template](../reference/templates/SOUL.md) — Workspace template for SOUL.md. Read when: Bootstrapping a workspace manually.
