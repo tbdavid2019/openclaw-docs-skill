@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Beam plugin](../plugins/beam.md) — Publish coding sessions for shared viewing and independent Team continuation. Read when: Sharing a Claude Code or Codex session with trusted Gateway operators; Continuing a beamed conversation with a Team agent; Configuring an authenticated session-ingest endpoint without connecting a node; Auditing what Beam stores and exposes.
+- [Beam plugin reference](../plugins/reference/beam.md) — Read-only coding-session Beam receiver. Read when: You are installing, configuring, or auditing the beam plugin.
 - [Bonjour plugin reference](../plugins/reference/bonjour.md) — Advertise the local OpenClaw gateway over Bonjour/mDNS. Read when: You are installing, configuring, or auditing the bonjour plugin.
 - [Brave plugin reference](../plugins/reference/brave.md) — OpenClaw Brave Search provider plugin for web search. Read when: You are installing, configuring, or auditing the brave plugin.
 - [Browser plugin reference](../plugins/reference/browser.md) — Adds agent-callable tools. Read when: You are installing, configuring, or auditing the browser plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Cloudflare AI Gateway plugin reference](../plugins/reference/cloudflare-ai-gateway.md) — Adds Cloudflare AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the cloudflare-ai-gateway plugin.
 - [Cloudflare plugin reference](../plugins/reference/cloudflare.md) — Cloudflare R2 storage for named OpenClaw storage locations. Read when: You are installing, configuring, or auditing the cloudflare plugin.
 - [Code Mode Quickjs plugin reference](../plugins/reference/code-mode-quickjs.md) — Hardened JavaScript execution for Code Mode using QuickJS in WebAssembly. Read when: You are installing, configuring, or auditing the code-mode-quickjs plugin.
-- [Codex app-server policy](../plugins/codex-harness/app-server.md) — App-server transport, approval posture, auth order, and environment isolation. Read when: You are choosing an app-server transport or approval posture; You need the Codex auth selection order; You are isolating the Codex app-server environment.
-- [Codex app-server transport](../plugins/codex-harness-reference/app-server-transport.md) — App-server transport selection, the appServer field table, and local testing env overrides. Read when: You are choosing a Codex app-server transport; You need an appServer field default; You are overriding the app-server binary for local testing.

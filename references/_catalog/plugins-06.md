@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Import path reference](../plugins/sdk-migration/import-paths.md) — Which typed-public SDK subpath replaces each legacy import, including the removed channel facades. Read when: You are replacing a broad SDK barrel import with a focused subpath; You need the removed channel facade to channel-outbound mappings.
+- [Inworld plugin reference](../plugins/reference/inworld.md) — Inworld streaming text-to-speech (MP3, OGG_OPUS, PCM telephony). Read when: You are installing, configuring, or auditing the inworld plugin.
 - [IRC plugin reference](../plugins/reference/irc.md) — OpenClaw IRC channel plugin. Read when: You are installing, configuring, or auditing the irc plugin.
 - [Kie plugin reference](../plugins/reference/kie.md) — Adds Kie model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kie plugin.
 - [Kilocode plugin reference](../plugins/reference/kilocode.md) — Adds Kilocode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the kilocode plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Mattermost plugin reference](../plugins/reference/mattermost.md) — OpenClaw Mattermost channel plugin. Read when: You are installing, configuring, or auditing the mattermost plugin.
 - [MCP Relay](../plugins/mcp-relay.md) — Connect ChatGPT and Claude to your Gateway through the opt-in MCP relay plugin. Read when: Connecting a remote MCP client to your OpenClaw Gateway; Pairing or revoking a ChatGPT or Claude connector; Showing the full Control UI in ChatGPT.
 - [Mcp Relay plugin reference](../plugins/reference/mcp-relay.md) — Connect remote MCP clients to your OpenClaw Gateway. Read when: You are installing, configuring, or auditing the mcp-relay plugin.
-- [Meeting plugins](../plugins/meeting-plugins.md) — Choose and configure Google Meet, Microsoft Teams, Slack huddles, or Zoom participation. Read when: You want an OpenClaw agent to join a video meeting; You are choosing between the Google Meet, Microsoft Teams meetings, Slack huddles, and Zoom meetings plugins; You need the shared Chrome, virtual-audio, or meeting-mode setup.
-- [Memory Core plugin reference](../plugins/reference/memory-core.md) — Adds agent-callable tools. Read when: You are installing, configuring, or auditing the memory-core plugin.

@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Cohere plugin reference](../plugins/reference/cohere.md) — OpenClaw Cohere provider plugin. Read when: You are installing, configuring, or auditing the cohere plugin.
+- [ComfyUI plugin reference](../plugins/reference/comfy.md) — Adds ComfyUI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the comfy plugin.
 - [Community plugins](../plugins/community.md) — Find and publish community-maintained OpenClaw plugins. Read when: You want to find third-party OpenClaw plugins; You want to publish or list your own plugin on ClawHub.
 - [Compatibility policy and records](../plugins/sdk-migration/compatibility-policy.md) — The external-plugin compatibility policy and the dated per-surface compatibility records. Read when: You need to know whether a compatibility surface is still supported; You are checking the removal condition for a specific retained contract.
 - [Context engines](../plugins/architecture-internals/context-engines.md) — Registering a context engine plugin that owns session ingest, assembly, and compaction. Read when: Adding a context engine plugin; You are replacing or extending the default context pipeline; You need to delegate compaction back to the runtime.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [FaceTime recovery and removal](../plugins/facetime-recovery.md) — Remove FaceTime native artifacts and restore standard Mac security policy. Read when: You are uninstalling the experimental FaceTime plugin; Helper injection or the paired audio driver needs recovery.
 - [fal plugin reference](../plugins/reference/fal.md) — Adds fal model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fal plugin.
 - [Featherless plugin reference](../plugins/reference/featherless.md) — OpenClaw Featherless AI provider plugin. Read when: You are installing, configuring, or auditing the featherless plugin.
-- [Feature plugins](../plugins/feature-plugins.md) — Build plugins with typed operations, native pages, and replaceable Control UI views. Read when: You want a plugin to add a native Control UI page or customize the workspace; You want the same feature operation available to UI and agent tools; You want an agent to build and propose a local plugin artifact.
-- [Feishu plugin reference](../plugins/reference/feishu.md) — OpenClaw Feishu/Lark channel plugin for chats and workplace tools (community maintained by @m1heng). Read when: You are installing, configuring, or auditing the feishu plugin.

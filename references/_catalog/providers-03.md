@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [OpenAI image generation](../providers/openai/image-and-video.md) — Generate and edit images with OpenAI gpt-image. Read when: You are generating or editing images through the openai provider; You need transparent-background image output.
 - [OpenAI models](../providers/openai/models.md) — Pick an OpenAI model ref, including GPT-6.1 Sol, GPT-6 Astra, Sol, Luna, and the GPT-5.6 tiers. Read when: You are choosing which OpenAI model ref to run; You want to select GPT-6.1 Sol, GPT-6 Sol, or Luna; You want Astra async tools, mid-turn steering, or cached reasoning changes; Your account does not expose a GPT-5.6 tier.
 - [OpenAI runtimes and Codex auth](../providers/openai/runtimes.md) — Choose an OpenAI runtime and understand native Codex auth. Read when: You need to know whether a turn runs on OpenClaw or the native Codex harness; You are mapping the openai, codex, and agentRuntime names to layers; You are debugging native Codex app-server account selection.
 - [OpenAI setup](../providers/openai/setup.md) — Connect OpenAI with an API key, Codex subscription, or Sign in with ChatGPT (Beta). Read when: You are connecting OpenAI to OpenClaw for the first time; You want Codex subscription auth instead of API keys; You are recovering a broken Codex OAuth route or a long-context budget.

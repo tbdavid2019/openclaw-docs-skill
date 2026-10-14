@@ -4,6 +4,10 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Talk and realtime voice migration](../plugins/sdk-migration/talk.md) — Migrating realtime voice, telephony, and meeting code to the unified Talk session API. Read when: You maintain a realtime voice, telephony, or meeting plugin; You are moving off the removed talk.realtime.*, talk.transcription.*, or talk.handoff.* methods.
+- [Talk Voice plugin reference](../plugins/reference/talk-voice.md) — Manage Talk voice selection (list/set). Read when: You are installing, configuring, or auditing the talk-voice plugin.
+- [Tavily plugin reference](../plugins/reference/tavily.md) — Adds agent-callable tools. Adds web search provider support. Read when: You are installing, configuring, or auditing the tavily plugin.
+- [Team Reports plugin](../plugins/team-reports.md) — Daily, weekly, and monthly team reports from GitHub activity and Discord discussion. Read when: You are installing, enabling, or configuring the Team Reports plugin; You want team activity reports in the Control UI; You need to generate, export, or troubleshoot stored team reports.
 - [Team Reports plugin reference](../plugins/reference/team-reports.md) — Daily, weekly, and monthly team activity reports from GitHub and Discord, with model-written summaries, served in the Control UI. Read when: You are installing, configuring, or auditing the team-reports plugin.
 - [Telegram plugin reference](../plugins/reference/telegram.md) — OpenClaw Telegram channel plugin. Read when: You are installing, configuring, or auditing the telegram plugin.
 - [Tencent plugin reference](../plugins/reference/tencent.md) — Adds Tencent TokenHub, Tencent Tokenplan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the tencent plugin.
@@ -30,7 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Voice call troubleshooting](../plugins/voice-call/troubleshooting.md) — Fixes for voice-call setup, webhooks, signatures, Meet dial-in, and silent calls. Read when: A voice call fails to place or webhooks never arrive; Webhook signature verification fails; A realtime call connects but nobody speaks.
 - [Voice call TTS and inbound calls](../plugins/voice-call/tts-and-inbound-calls.md) — Telephony TTS, inbound policy, per-number routing, and call lifecycle timers. Read when: You are choosing the TTS voice used on calls; You are enabling inbound calls or per-number routing; You need to tune the stale call reaper or call duration caps.
 - [Volcengine plugin reference](../plugins/reference/volcengine.md) — Adds Volcengine, Volcengine Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the volcengine plugin.
-- [Voyage plugin reference](../plugins/reference/voyage.md) — Adds embedding provider support, including memory search. Read when: You are installing, configuring, or auditing the voyage plugin.
-- [Vydra plugin reference](../plugins/reference/vydra.md) — Adds Vydra model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vydra plugin.
-- [Web Readability plugin reference](../plugins/reference/web-readability.md) — Extract readable article content from local HTML web fetch responses. Read when: You are installing, configuring, or auditing the web-readability plugin.
-- [WhatsApp plugin reference](../plugins/reference/whatsapp.md) — OpenClaw WhatsApp channel plugin for WhatsApp Web chats. Read when: You are installing, configuring, or auditing the whatsapp plugin.
