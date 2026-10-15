@@ -14,6 +14,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [OpenRouter](../providers/openrouter.md) — Use OpenRouter's unified API to access many models in OpenClaw. Read when: You want a single API key for many LLMs; You want to run models via OpenRouter in OpenClaw; You want to use OpenRouter for image generation; You want to use OpenRouter for music generation; You want to use OpenRouter for video generation.
 - [Perplexity](../providers/perplexity-provider.md) — Perplexity web search provider setup (API key, search modes, filtering). Read when: You want to configure Perplexity as a web search provider; You need the Perplexity API key or OpenRouter proxy setup.
 - [PixVerse](../providers/pixverse.md) — PixVerse video generation setup in OpenClaw. Read when: You want to use PixVerse video generation in OpenClaw; You need the PixVerse API key/env setup; You want to make PixVerse the default video provider.
+- [Poolside (Laguna)](../providers/poolside.md) — Use Poolside Laguna models or the Poolside Agent with OpenClaw. Read when: You want to use Poolside Laguna models with OpenClaw; You want to run the Poolside Agent through ACP.
 - [Provider directory](../providers/index.md) — Model providers (LLMs) supported by OpenClaw. Read when: You want to choose a model provider; You need a quick overview of supported LLM backends.
 - [Qianfan](../providers/qianfan.md) — Use Qianfan's unified API to access many models in OpenClaw. Read when: You want a single API key for many LLMs; You need Baidu Qianfan setup guidance.
 - [Qwen](../providers/qwen.md) — Use Qwen Cloud through its OpenClaw plugin. Read when: You want to use Qwen with OpenClaw; You have an Alibaba Cloud Token Plan subscription.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Vydra](../providers/vydra.md) — Use Vydra image, video, and speech in OpenClaw. Read when: You want Vydra media generation in OpenClaw; You need Vydra API key setup guidance.
 - [xAI](../providers/xai.md) — Use xAI Grok models in OpenClaw. Read when: You want to use Grok models in OpenClaw; You are configuring xAI auth or model ids.
 - [Xiaomi MiMo](../providers/xiaomi.md) — Use Xiaomi MiMo pay-as-you-go and Token Plan models with OpenClaw. Read when: You want Xiaomi MiMo models in OpenClaw; You need Xiaomi MiMo auth or Token Plan setup.
-- [Z.AI](../providers/zai.md) — Use Z.AI (GLM models) with OpenClaw. Read when: You want Z.AI / GLM models in OpenClaw; You need a simple ZAI_API_KEY setup.

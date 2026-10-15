@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Synology Chat plugin reference](../plugins/reference/synology-chat.md) — Synology Chat channel plugin for OpenClaw channels and direct messages. Read when: You are installing, configuring, or auditing the synology-chat plugin.
+- [Synthetic plugin reference](../plugins/reference/synthetic.md) — Adds Synthetic model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the synthetic plugin.
 - [Talk and realtime voice migration](../plugins/sdk-migration/talk.md) — Migrating realtime voice, telephony, and meeting code to the unified Talk session API. Read when: You maintain a realtime voice, telephony, or meeting plugin; You are moving off the removed talk.realtime.*, talk.transcription.*, or talk.handoff.* methods.
 - [Talk Voice plugin reference](../plugins/reference/talk-voice.md) — Manage Talk voice selection (list/set). Read when: You are installing, configuring, or auditing the talk-voice plugin.
 - [Tavily plugin reference](../plugins/reference/tavily.md) — Adds agent-callable tools. Adds web search provider support. Read when: You are installing, configuring, or auditing the tavily plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Voice call realtime and streaming](../plugins/voice-call/realtime-and-streaming.md) — Realtime voice conversations, tool policy, agent voice context, and streaming transcription. Read when: You want a full-duplex realtime voice model on a call; You are tuning realtime tool policy or agent consult; You are streaming Twilio call audio to a transcription provider.
 - [Voice call security and interfaces](../plugins/voice-call/security-and-interfaces.md) — Webhook security options and the CLI, agent tool, and Gateway RPC surfaces. Read when: You are putting a proxy or tunnel in front of the voice webhook; You are looking up a voicecall CLI command; You are calling voice-call over Gateway RPC or the agent tool.
 - [Voice call troubleshooting](../plugins/voice-call/troubleshooting.md) — Fixes for voice-call setup, webhooks, signatures, Meet dial-in, and silent calls. Read when: A voice call fails to place or webhooks never arrive; Webhook signature verification fails; A realtime call connects but nobody speaks.
-- [Voice call TTS and inbound calls](../plugins/voice-call/tts-and-inbound-calls.md) — Telephony TTS, inbound policy, per-number routing, and call lifecycle timers. Read when: You are choosing the TTS voice used on calls; You are enabling inbound calls or per-number routing; You need to tune the stale call reaper or call duration caps.
-- [Volcengine plugin reference](../plugins/reference/volcengine.md) — Adds Volcengine, Volcengine Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the volcengine plugin.

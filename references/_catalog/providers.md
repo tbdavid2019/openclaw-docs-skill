@@ -6,4 +6,5 @@ Choose one section by its title range, then select at most three documents from 
 
 - [Alibaba Model Studio – Hugging Face (inference)](providers-01.md) — 30 documents.
 - [Inworld – OpenAI coverage and cost](providers-02.md) — 30 documents.
-- [OpenAI image generation – Z.AI](providers-03.md) — 30 documents.
+- [OpenAI image generation – Xiaomi MiMo](providers-03.md) — 30 documents.
+- [Z.AI – Z.AI](providers-04.md) — 1 documents.

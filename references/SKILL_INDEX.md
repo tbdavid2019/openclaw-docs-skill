@@ -15,7 +15,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [General](_catalog/general.md) | Top-level concepts and cross-cutting documentation | 12 |
 | [Announcements](_catalog/announcements.md) | Breaking changes and migration announcements | 1 |
 | [Architecture](_catalog/architecture.md) | Documentation under `architecture/` | 1 |
-| [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 18 |
+| [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 19 |
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 110 |
 | [Ci](_catalog/ci.md) | Documentation under `ci/` | 19 |
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 101 |
@@ -23,12 +23,12 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
 | [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 161 |
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 41 |
-| [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 43 |
+| [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 44 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 25 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 26 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 345 |
-| [Providers](_catalog/providers.md) | Model provider authentication and configuration | 90 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 347 |
+| [Providers](_catalog/providers.md) | Model provider authentication and configuration | 91 |
 | [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 3 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 77 |
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 40 |
