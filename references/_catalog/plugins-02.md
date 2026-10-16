@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Awaited transcript and TTS helpers](../plugins/sdk-migration/async-transcript-and-tts.md) — Awaited replacements for historical transcript-key lookup and TTS prompt preparation. Read when: Migrating a plugin from synchronous transcript-key lookup; Preparing TTS prompts without main-thread database reads.
+- [Azure Speech plugin reference](../plugins/reference/azure-speech.md) — Azure AI Speech text-to-speech (MP3, native Ogg/Opus voice notes, PCM telephony). Read when: You are installing, configuring, or auditing the azure-speech plugin.
+- [Baseten plugin reference](../plugins/reference/baseten.md) — OpenClaw Baseten provider plugin. Read when: You are installing, configuring, or auditing the baseten plugin.
 - [Beam plugin](../plugins/beam.md) — Publish coding sessions for shared viewing and independent Team continuation. Read when: Sharing a Claude Code or Codex session with trusted Gateway operators; Continuing a beamed conversation with a Team agent; Configuring an authenticated session-ingest endpoint without connecting a node; Auditing what Beam stores and exposes.
 - [Beam plugin reference](../plugins/reference/beam.md) — Read-only coding-session Beam receiver. Read when: You are installing, configuring, or auditing the beam plugin.
 - [Bonjour plugin reference](../plugins/reference/bonjour.md) — Advertise the local OpenClaw gateway over Bonjour/mDNS. Read when: You are installing, configuring, or auditing the bonjour plugin.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [ClawRouter plugin reference](../plugins/reference/clawrouter.md) — Adds ClawRouter model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the clawrouter plugin.
 - [Clickclack plugin reference](../plugins/reference/clickclack.md) — OpenClaw ClickClack channel plugin. Read when: You are installing, configuring, or auditing the clickclack plugin.
 - [Cloudflare](../plugins/cloudflare.md) — Configure Cloudflare R2 as an encrypted OpenClaw storage location. Read when: You want to store OpenClaw artifacts in Cloudflare R2; You need to configure an R2 bucket, credentials, or jurisdiction; You are diagnosing R2 storage access.
-- [Cloudflare AI Gateway plugin reference](../plugins/reference/cloudflare-ai-gateway.md) — Adds Cloudflare AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the cloudflare-ai-gateway plugin.
-- [Cloudflare plugin reference](../plugins/reference/cloudflare.md) — Cloudflare R2 storage for named OpenClaw storage locations. Read when: You are installing, configuring, or auditing the cloudflare plugin.
-- [Code Mode Quickjs plugin reference](../plugins/reference/code-mode-quickjs.md) — Hardened JavaScript execution for Code Mode using QuickJS in WebAssembly. Read when: You are installing, configuring, or auditing the code-mode-quickjs plugin.

@@ -34,7 +34,10 @@ To intentionally keep it off and silence that notice, set
 The plugin is enabled by default. Connect to the Gateway, then click a public
 GitHub issue, pull request, or commit link in chat. The reader opens beside the
 conversation with a GitHub icon and an **Open on GitHub** link. Hover or focus
-an issue or pull request link to see its preview. Login, OAuth, profile,
+an issue or pull request link to see its preview. Issue and pull request chips
+show the full `owner/repo#number` reference, including shorthand references
+resolved from the session repository. Descriptive link labels stay unchanged.
+Login, OAuth, profile,
 repository, and other general GitHub pages remain ordinary links: neither
 native item previews nor the generic page-preview fallback fetches them.
 A PR or issue URL inside a login redirect query does not make the login link
@@ -173,6 +176,9 @@ hovercard, and GitHub links open externally.
   Refreshes use GitHub ETags for unchanged item and commit responses; identity
   changes, eviction, or a failed refresh retire those cached responses. Repository
   visibility is checked again for every authenticated refresh.
+  Anonymous author and coauthor avatars are shared across previews for up to five
+  minutes, including concurrent reads and previews of different items. Metadata
+  and repository access checks remain scoped to the selected GitHub identity.
 - Slow preview reads (500 ms or longer) log phase durations for identity preparation,
   cache/load wait, delivery credential checks, metadata rendering, optional decoration,
   and upstream authentication/network waits. Network timings cover response headers;

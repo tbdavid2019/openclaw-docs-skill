@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [FaceTime recovery and removal](../plugins/facetime-recovery.md) — Remove FaceTime native artifacts and restore standard Mac security policy. Read when: You are uninstalling the experimental FaceTime plugin; Helper injection or the paired audio driver needs recovery.
+- [fal plugin reference](../plugins/reference/fal.md) — Adds fal model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fal plugin.
+- [Featherless plugin reference](../plugins/reference/featherless.md) — OpenClaw Featherless AI provider plugin. Read when: You are installing, configuring, or auditing the featherless plugin.
 - [Feature plugins](../plugins/feature-plugins.md) — Build plugins with typed operations, native pages, and replaceable Control UI views. Read when: You want a plugin to add a native Control UI page or customize the workspace; You want the same feature operation available to UI and agent tools; You want an agent to build and propose a local plugin artifact.
 - [Feishu plugin reference](../plugins/reference/feishu.md) — OpenClaw Feishu/Lark channel plugin for chats and workplace tools (community maintained by @m1heng). Read when: You are installing, configuring, or auditing the feishu plugin.
 - [File Transfer plugin reference](../plugins/reference/file-transfer.md) — Fetch, list, and write files on paired nodes via dedicated node commands. Bypasses bash stdout truncation by using base64 over node.invoke for binaries up to 16 MB. Read when: You are installing, configuring, or auditing the file-transfer plugin.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Groq plugin reference](../plugins/reference/groq.md) — Adds Groq model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the groq plugin.
 - [Hook reference](../plugins/hooks/reference.md) — How plugin hooks register and execute, plus the complete typed hook catalog. Read when: You are wiring a typed handler and need the ordering, timeout, and failure rules; You want to know which typed hook exists for a surface; You are registering a skill lifecycle or pairing observer.
 - [How to migrate a plugin](../plugins/sdk-migration/how-to-migrate.md) — Ordered steps for moving a plugin off the removed SDK compatibility layer. Read when: You are migrating a plugin to the modern plugin SDK right now; You need the ordered steps for config, middleware, approval, and import changes.
-- [Hugging Face plugin reference](../plugins/reference/huggingface.md) — Adds Hugging Face model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the huggingface plugin.
-- [Imap plugin reference](../plugins/reference/imap.md) — Watch IMAP mailboxes and dispatch authenticated incoming email to isolated agent sessions. Read when: You are installing, configuring, or auditing the imap plugin.
-- [iMessage plugin reference](../plugins/reference/imessage.md) — OpenClaw iMessage channel plugin using imsg on a signed-in Mac. Read when: You are installing, configuring, or auditing the imessage plugin.

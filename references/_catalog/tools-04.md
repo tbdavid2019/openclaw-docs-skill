@@ -4,6 +4,7 @@ Agent tools, browser, exec, web, skills, and permissions.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Swarm](../tools/swarm.md) — Orchestrate concurrent sub-agents from Code Mode scripts with structured results, bounded fan-out, and live progress. Read when: You want a Code Mode script to fan out work across several agents; You need structured child results, decision gates, or first-completion pipelines; You are disabling Swarm or tuning tools.swarm limits; You want to observe collector children in chat.
 - [Tavily](../tools/tavily.md) — Tavily search and extract tools. Read when: You want Tavily-backed web search; You need a Tavily API key; You want Tavily as a web_search provider; You want content extraction from URLs.
 - [Text-to-speech](../tools/tts.md) — Index of the OpenClaw text-to-speech documentation, one page per reader job. Read when: Enabling text-to-speech for replies; Configuring a TTS provider, fallback chain, or persona; Using /tts commands or directives.
 - [Text-to-speech agent tool and Gateway RPC](../tools/tts/api.md) — The tts agent tool and the Gateway TTS RPC methods. Read when: You are calling TTS from an agent tool call; You need the Gateway tts.* RPC method list.

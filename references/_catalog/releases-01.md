@@ -8,6 +8,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.10.1](../releases/2026.10.1.md) — Installed-skill discovery, MCP Apps and full backups, with updates across chat, native apps and automations.
 - [v2026.10.2](../releases/2026.10.2.md) — Upgrade and repair fixes, missing or repeated replies, long conversations and credential masking.
 - [v2026.10.3](../releases/2026.10.3.md) — Update and Doctor repairs, Mac setup, conversation continuation, Muse Wonder and MiniMax fixes.
+- [v2026.10.4](../releases/2026.10.4.md) — Update and recovery fixes, chat refresh, messaging and sign-in repairs.
 - [v2026.6.11](../releases/2026.6.11.md) — Reliability fixes for replies, sends, reconnects, model setup, sessions, and safer admin defaults.
 - [v2026.7.1](../releases/2026.7.1.md) — Major Control UI and onboarding overhauls, big iOS, Android, and macOS updates, expanded model support, and substantial Telegram, Slack, Discord, and Apple Messages improvements.
 - [v2026.8.1 (AKA OpenClaw 2.0)](../releases/2026.8.1.md) — A rebuilt web experience, simpler onboarding, stronger memory and session continuity, and a very large reliability pass across OpenClaw.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.8.1: Security and Privacy](../releases/2026.8.1/security-and-privacy.md)
 - [v2026.8.1: Skills](../releases/2026.8.1/skills.md)
 - [v2026.8.1: The New Web UI](../releases/2026.8.1/the-new-web-ui.md)
-- [v2026.8.1: Updates and Maintenance](../releases/2026.8.1/updates-and-maintenance.md)

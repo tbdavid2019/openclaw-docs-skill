@@ -4,15 +4,15 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Choose one section by its title range, then select at most three documents from it.
 
-- [1Password plugin – Baseten plugin reference](plugins-01.md) — 30 documents.
-- [Beam plugin – Code Mode Quickjs plugin reference](plugins-02.md) — 30 documents.
-- [Codex app-server policy – Codex workspace bootstrap files](plugins-03.md) — 30 documents.
-- [Cohere plugin reference – Featherless plugin reference](plugins-04.md) — 30 documents.
-- [Feature plugins – iMessage plugin reference](plugins-05.md) — 30 documents.
-- [Import path reference – MCP Relay](plugins-06.md) — 30 documents.
-- [Mcp Relay plugin reference – NVIDIA plugin reference](plugins-07.md) — 30 documents.
-- [OC Path plugin – Plugin runtime config and utilities](plugins-08.md) — 30 documents.
-- [Plugin runtime Gateway and nodes – Provider hook wiring](plugins-09.md) — 30 documents.
-- [Provider media and search – Supervise Codex sessions](plugins-10.md) — 30 documents.
-- [Synology Chat plugin reference – Voice call troubleshooting](plugins-11.md) — 30 documents.
-- [Voice call TTS and inbound calls – Zoom meetings plugin reference](plugins-12.md) — 17 documents.
+- [1Password plugin – Autoreview plugin reference](plugins-01.md) — 30 documents.
+- [Awaited transcript and TTS helpers – Cloudflare](plugins-02.md) — 30 documents.
+- [Cloudflare AI Gateway plugin reference – Codex session catalog and supervision](plugins-03.md) — 30 documents.
+- [Codex thread bindings and supervision – Facetime plugin reference](plugins-04.md) — 30 documents.
+- [FaceTime recovery and removal – How to migrate a plugin](plugins-05.md) — 30 documents.
+- [Hugging Face plugin reference – Matrix plugin reference](plugins-06.md) — 30 documents.
+- [Mattermost plugin reference – Nextcloud Talk plugin reference](plugins-07.md) — 30 documents.
+- [Nostr plugin reference – Plugin runtime agent helpers](plugins-08.md) — 30 documents.
+- [Plugin runtime background work – Policy plugin reference](plugins-09.md) — 30 documents.
+- [Prompt and session hooks – Slack plugin reference](plugins-10.md) — 30 documents.
+- [Sms plugin reference – Voice Call plugin reference](plugins-11.md) — 30 documents.
+- [Voice call realtime and streaming – Zoom meetings plugin reference](plugins-12.md) — 20 documents.

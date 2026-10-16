@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Hugging Face plugin reference](../plugins/reference/huggingface.md) — Adds Hugging Face model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the huggingface plugin.
+- [Imap plugin reference](../plugins/reference/imap.md) — Watch IMAP mailboxes and dispatch authenticated incoming email to isolated agent sessions. Read when: You are installing, configuring, or auditing the imap plugin.
+- [iMessage plugin reference](../plugins/reference/imessage.md) — OpenClaw iMessage channel plugin using imsg on a signed-in Mac. Read when: You are installing, configuring, or auditing the imessage plugin.
 - [Import path reference](../plugins/sdk-migration/import-paths.md) — Which typed-public SDK subpath replaces each legacy import, including the removed channel facades. Read when: You are replacing a broad SDK barrel import with a focused subpath; You need the removed channel facade to channel-outbound mappings.
 - [Inworld plugin reference](../plugins/reference/inworld.md) — Inworld streaming text-to-speech (MP3, OGG_OPUS, PCM telephony). Read when: You are installing, configuring, or auditing the inworld plugin.
 - [IRC plugin reference](../plugins/reference/irc.md) — OpenClaw IRC channel plugin. Read when: You are installing, configuring, or auditing the irc plugin.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Manifest setup and auth fields](../plugins/manifest/setup-and-auth.md) — Manifest setup descriptors, auth choices, conversation discovery, and config UI hints. Read when: You are wiring a plugin into onboarding or provider setup; You need auth choices, CLI flags, or env vars read before runtime loads; You are labelling config fields for the setup and Control UI surfaces.
 - [Manifest versus package.json](../plugins/manifest/package-json.md) — Which pre-runtime metadata lives in package.json, and which duplicate plugin id wins. Read when: You are unsure whether metadata belongs in the manifest or package.json; You are declaring entrypoints, install hints, or channel catalog metadata; Two plugin roots share an id and you need to know which one loads.
 - [Matrix plugin reference](../plugins/reference/matrix.md) — OpenClaw Matrix channel plugin for rooms and direct messages. Read when: You are installing, configuring, or auditing the matrix plugin.
-- [Mattermost plugin reference](../plugins/reference/mattermost.md) — OpenClaw Mattermost channel plugin. Read when: You are installing, configuring, or auditing the mattermost plugin.
-- [Mcp Events plugin reference](../plugins/reference/mcp-events.md) — Subscribe to events from configured MCP accounts and trigger authored automations. Read when: You are installing, configuring, or auditing the mcp-events plugin.
-- [MCP Relay](../plugins/mcp-relay.md) — Connect ChatGPT and Claude to your Gateway through the opt-in MCP relay plugin. Read when: Connecting a remote MCP client to your OpenClaw Gateway; Pairing or revoking a ChatGPT or Claude connector; Showing the full Control UI in ChatGPT.

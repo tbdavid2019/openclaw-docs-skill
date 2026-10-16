@@ -84,8 +84,11 @@ activity without a completed parent turn does not invent a parent wait.
 The parent’s own working indicator remains visible while the parent is actively
 working. There is no additional waiting-status line above the composer. Once
 everything it waited on has finished, the activity rows disappear until the agent resumes. Tool rows you opened stay open through the handoff. A
-successful `sessions_yield` leaves no marker in the transcript, and its private
-continuation context stays hidden.
+successful `sessions_yield` waiting for an incoming message shows its public
+acknowledgment, or **Waiting for a message** when none was recorded. Child handoffs
+keep their existing activity rows. Private continuation context stays hidden.
+Turns with only tool calls use the usual activity rows; entries with nothing
+displayable do not leave an empty assistant reply.
 
 When the last subagent finishes, its activity row disappears and the block stays as it
 is, without a working indicator, until the turn resumes. Its answer then
@@ -148,6 +151,47 @@ When the macOS app embeds a single conversation beside its native sidebar, the c
 In the macOS Web experience and Tauri desktop app on macOS, Linux, and Windows, the navigation panel header and content header share the 52px titlebar row, with back/forward before the conversation title and search in the persistent rail.
 Collapsing the panel leaves only expand-sidebar beside the rail, which keeps New session and search; the content header still starts with back/forward.
 Drag an empty area of the titlebar row to move the window; its buttons keep their normal actions.
+
+## Context breakdown
+
+Open **Details → Context** to see the current usage and an estimated breakdown
+of messages and other context, workspace memory, tool schemas, skills, and the
+remaining system prompt. Expand memory, tools, or skills to inspect individual
+contributors. The report loads only while this section is open; **Refresh**
+reloads the saved report without starting an agent turn.
+
+Contributor sizes use character-based token estimates from the last matching
+run report, not the provider's tokenizer. Workspace memory and skills are
+subtracted from the system prompt so they are not counted twice. **Messages &
+other** is the estimated remainder, including context the report does not track
+separately. Unverified injection sizes stay unknown rather than showing zero.
+MCP and deferred tools are not separate categories in this report.
+
+When a matching last-run prompt budget is available, the section shows the
+remaining budget and the reserve outside it. These are estimates, not a promise
+of the exact auto-compaction point. **Compact session** uses the existing
+compaction command and appears only with the required permissions; it is
+disabled while a run is active. It preserves the composer draft.
+
+## Image viewing
+
+Uploaded and managed chat images use compressed, size-bounded previews instead
+of downloading original photos for display. The browser selects an appropriate pixel density
+for signed image URLs; authenticated image requests choose a bounded rendition
+for the viewport. Offscreen images wait until they approach the viewport.
+Artifact images also receive bounded previews over the authenticated WebSocket
+when the Gateway is on another origin or its HTTP media route is unavailable.
+A failed preview never silently falls back to downloading original bytes.
+
+Tap an image to open the zoomable viewer. The existing preview stays visible
+while a sharper, screen-sized rendition loads. If that request fails, **Retry**
+loads it again without replacing the preview or opening another tab. Swiping to
+a gallery image loads that selection, not the rest of the gallery in advance.
+**Download image** fetches the original only when selected. Copy and download
+also remain available from the image's action menu when a preview cannot load.
+Third-party image URLs retain a secondary browser link because their servers
+may allow image display but block cross-origin downloads; this is not a recovery
+action for uploaded or managed previews.
 
 ## Collaborator drafts
 
@@ -261,6 +305,8 @@ start a turn in that session. These out-of-root previews are read-only.
 
 In Chat and New Session, provider groups retain their expanded or collapsed state when you close and reopen the same model picker. Closing clears the search text without resetting those toggles. Reloading the page initializes the groups from the selected model again.
 
+For providers without recommendations, the model picker initially shows up to nine choices, keeping the current model and **Default** first when available. Choose **All models** to browse the rest, or search the complete catalog directly.
+
 While composing text with an input method in model search, Enter, Escape, and arrow keys stay with the input method. They do not select a model, clear the search, or move the highlighted model until composition finishes. Open tooltips also leave Escape to the input method.
 
 When authentication status is available, each provider heading in the chat model picker says how that provider is signed in: **API** for an API key (or an explicitly selected API-key account), the plan name for a provider with one subscription, and **Subscription** for a provider with several. With several subscriptions, the heading adds the email of an explicitly selected account when the Gateway supplies it, and the **Account** rows show each account's email; automatic selection shows no account identity. Hover a truncated heading to read the full text.
@@ -325,6 +371,20 @@ When `tools.web.search.enabled` is `false`, **Web search** stays off in Chat and
 For attachments in Chat and New Session, Android Chrome, Edge, Firefox, and Samsung Internet send **Take photo** straight to the device capture input, without opening a web-camera preview first. **Photo** and **File** remain separate choices. Desktop browsers keep the preview, capture, and retake flow; iPhone and iPad Safari keep their single **Attach…** picker. Embedded native hosts keep their existing behavior. Canceling capture leaves the message draft unchanged.
 
 Video files selected in Chat or New Session show a small local frame preview with a play badge beside the filename. The slot keeps its size while loading. If the browser cannot decode the video promptly, the play icon remains. Removing the attachment releases its preview; generating the preview does not upload the video.
+
+When a selected video exceeds the attachment limit or the remaining batch budget,
+select **Compress to fit** to prepare a smaller copy on your device. Compression
+starts only after you choose it; ordinary files and videos that already fit stay
+unchanged. The encoder loads on demand and runs in a background worker, with
+per-file progress while you keep typing. Remove the file to cancel. Nothing is
+uploaded until preparation finishes and you send the message.
+
+The copy preserves audio and orientation, uses MP4 when the browser supports the
+required codecs or WebM otherwise, and limits the longest edge to 1920 pixels
+and frame rate to 30 fps. The original file is never changed. The final bytes
+must fit the advertised per-file and batch limits; if the browser cannot decode
+or encode the video with its audio, or a smaller copy still cannot fit, the slot
+shows an error. Choose a smaller file, trim the video, or try another browser.
 
 In **Connectors**, administrators can select **Add MCP server…** and choose a scope. **This session** saves the server definition globally but disabled by default, then enables it only for the current session. **Everywhere** saves the definition enabled globally. Transport, authentication, and other server-definition fields are always global. Session policy can override server enablement and deny individual tools through **Tool access**.
 
@@ -495,7 +555,7 @@ Run-error banners offer **Refresh** to reload the conversation without resending
 <AccordionGroup>
   <Accordion title="Send and history semantics">
     - `chat.send` is **non-blocking**: it acknowledges admission with `{ runId, status: "started" }` and the response streams via `chat` events. An optional `messageSeq` identifies an already committed transcript position; it is omitted when input remains only in accepted custody. Trusted Control UI clients may also receive optional ACK timing metadata for local diagnostics.
-    - Chat uploads accept images plus non-video files. Images keep the native image path; other files are stored as managed media and shown in history as attachment links. Files appear in their final composer slots as soon as preparation starts, with a per-file progress fill and an in-place error icon if reading fails. Before sending, use **Remove attachment** at the corner of a staged attachment, including one still being prepared; the control supports touch and keyboard input in both Chat and New Session.
+    - Chat uploads accept images, videos, and other files. Images keep the native image path; other files are stored as managed media and shown in history as attachment links. Files appear in their final composer slots as soon as preparation starts, with a per-file progress fill and an in-place error icon if reading fails. Before sending, use **Remove attachment** at the corner of a staged attachment, including one still being prepared; the control supports touch and keyboard input in both Chat and New Session.
     - Opening a Markdown attachment (`.md`, `.markdown`, or a Markdown MIME type) in the side panel shows formatted headings, lists, tables, and code blocks. HTML attachments open a sandboxed page with a **Source** switch; other text attachments stay literal. HTML attachment previews accept up to 2 MiB of UTF-8 content; other text previews keep the 256 KiB limit. All retain the original download link; Markdown does not execute embedded HTML or automatically load remote images.
     - Same-origin PDF attachments up to 16 MiB open in a native reader that fills the side panel. Background download-link renewal keeps the reader’s page and zoom when the document is unchanged. Unavailable or oversized previews offer the original download instead; external PDFs and Office documents remain download-only.
     - Staged attachments scroll horizontally when they no longer fit. Faded edges show where more attachments remain, including after adding files or resizing the composer.
@@ -504,8 +564,8 @@ Run-error banners offer **Refresh** to reload the conversation without resending
     - Long tool output uses 2,000-character text previews in history. Complete structured results keep their existing display limit so source cards and embedded views remain available. Choose **Show full output** to load the captured result on demand; copying or downloading from that view uses the full result. User and assistant text keep their separate display limits.
     - When a visible assistant message was truncated in `chat.history`, the Control UI automatically fetches the full display-normalized transcript entry through `chat.message.get` by `sessionKey`, active `agentId` when needed, and transcript `messageId`. The preview remains visible while the entry loads; recovered text replaces it inline.
     - Image previews reserve their space while loading. New uploaded images retain their pixel dimensions in saved messages; older images without dimensions fit inside a stable 3:2 preview instead of shifting the surrounding conversation when they load. Open an image to view its full size.
-    - Assistant/generated images are persisted as managed media references. New clients resolve their stable artifact ids through authenticated `artifacts.download` and receive short-lived, exact-resource media URLs, so reloads do not depend on raw base64 payloads or reusable credentials in image URLs. The chat uses bounded thumbnails and provides Open, Download, and Copy actions for the full image. These actions share the browser's bounded in-memory image cache, avoiding repeated full-image downloads while the image remains cached.
-    - When rendering `chat.history`, the Control UI strips display-only inline directive tags from visible assistant text (for example `[[reply_to_*]]` and `[[audio_as_voice]]`), plain-text tool-call XML payloads (including `<tool_call>...</tool_call>`, `<function_call>...</function_call>`, `<tool_calls>...</tool_calls>`, `<function_calls>...</function_calls>`, and truncated tool-call blocks), and leaked ASCII/full-width model control tokens. It omits assistant entries whose whole visible text is only the exact silent token `NO_REPLY` / `no_reply` or the heartbeat acknowledgement token `HEARTBEAT_OK`.
+    - Assistant/generated images are persisted as managed media references. New clients resolve their stable artifact ids through authenticated `artifacts.download` and receive short-lived, exact-resource media URLs, so reloads do not depend on raw base64 payloads or reusable credentials in image URLs. The chat uses bounded thumbnails for still images. GIF attachments load their original bytes inline so they animate without opening the image viewer. Opening uses a screen-sized rendition; Download and Copy explicitly request the full image. These actions share the browser's bounded in-memory image cache, avoiding repeated downloads while a rendition remains cached.
+    - The Gateway prepares `chat.history` for display, stripping inline directive tags (for example `[[reply_to_*]]` and `[[audio_as_voice]]`), plain-text tool-call XML payloads (`<tool_call>`, `<function_call>`, `<tool_calls>`, `<function_calls>`, and truncated blocks), and leaked ASCII/full-width model control tokens. Stored assistant visibility honors display, phase, and final-source facts first, then omits raw assistant text that trims to uppercase `NO_REPLY`; lowercase and wrapped forms remain visible. User text is never classified as silence. Heartbeat acknowledgments retain their separate display rules. The Control UI renders prepared history and live output without parsing silence tokens.
     - During an active send and the final history refresh, the chat view keeps local optimistic user/assistant messages visible if `chat.history` briefly returns an older snapshot; the saved transcript replaces those local messages once the Gateway history catches up. Pending sends in shared sessions remain a single bubble while incremental history catches up, even when another participant's reply arrives first. Saved commentary also replaces its matching live item when incremental history arrives after completion, cancellation, or failure, keeping the progress text in its original place.
     - Your pending prompt stays before its own saved assistant reply even when the reply arrives before history recovery finishes after reconnect; existing saved messages keep their transcript order.
     - Live `chat` events are delivery state, while `chat.history` is rebuilt from the durable session transcript. After tool-final events the Control UI reloads history and merges only a small optimistic tail; the transcript boundary is documented in [WebChat](/web/webchat). After an in-place `/clear` or `/reset`, fresh turns keep their user-before-reply order across live updates, incremental history catch-up, and reload.
@@ -863,6 +923,14 @@ requires that origin to permit embedded playback. Direct video attachments and
 HTML widget media keep their existing behavior.
 
 ## Session Details
+
+When a dashboard or another page is the main view, **Chat** in its header toggles
+that session’s existing conversation, not Side chat. The page and chat retain their
+content and drafts. On phones, Chat takes the content area; toggle it off to return
+to the same page. **Layout** remains for tools, docking, and split views.
+
+Open **⋯ → Session details** for context and progress without opening Chat. It works
+with full-screen pages too. Regular desktop chats also retain the **Details** button.
 
 **Details** brings session context and task progress together beside the conversation.
 On wide chat panes it opens automatically as a docked right-hand column, with
