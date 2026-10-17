@@ -11,8 +11,8 @@ Choose one section by its title range, then select at most three documents from 
 - [FaceTime recovery and removal – How to migrate a plugin](plugins-05.md) — 30 documents.
 - [Hugging Face plugin reference – Matrix plugin reference](plugins-06.md) — 30 documents.
 - [Mattermost plugin reference – Nextcloud Talk plugin reference](plugins-07.md) — 30 documents.
-- [Nostr plugin reference – Plugin runtime agent helpers](plugins-08.md) — 30 documents.
-- [Plugin runtime background work – Policy plugin reference](plugins-09.md) — 30 documents.
-- [Prompt and session hooks – Slack plugin reference](plugins-10.md) — 30 documents.
-- [Sms plugin reference – Voice Call plugin reference](plugins-11.md) — 30 documents.
-- [Voice call realtime and streaming – Zoom meetings plugin reference](plugins-12.md) — 20 documents.
+- [Nostr plugin reference – Plugin reference](plugins-08.md) — 30 documents.
+- [Plugin runtime agent helpers – Plugin testing](plugins-09.md) — 30 documents.
+- [Policy plugin reference – Slack huddles plugin reference](plugins-10.md) — 30 documents.
+- [Slack plugin reference – Voice call plugin](plugins-11.md) — 30 documents.
+- [Voice Call plugin reference – Zoom meetings plugin reference](plugins-12.md) — 21 documents.

@@ -21,14 +21,14 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 101 |
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 80 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
-| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 161 |
+| [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 162 |
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 41 |
 | [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 44 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 25 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 26 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 350 |
-| [Providers](_catalog/providers.md) | Model provider authentication and configuration | 91 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 351 |
+| [Providers](_catalog/providers.md) | Model provider authentication and configuration | 92 |
 | [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 3 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 77 |
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 41 |

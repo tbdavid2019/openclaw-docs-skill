@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Slack plugin reference](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
 - [Sms plugin reference](../plugins/reference/sms.md) — Twilio SMS/MMS channel plugin for OpenClaw messages. Read when: You are installing, configuring, or auditing the sms plugin.
 - [StepFun plugin reference](../plugins/reference/stepfun.md) — Adds StepFun, StepFun Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the stepfun plugin.
 - [Supervise Codex sessions](../plugins/codex-supervision.md) — Browse non-archived native Codex sessions and paginated transcripts across OpenClaw nodes. Read when: You want Codex Desktop or CLI sessions to appear in OpenClaw; You need to continue a stored or idle Codex session or archive a local one; You are exposing Codex sessions and transcript history from paired nodes.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [vLLM plugin reference](../plugins/reference/vllm.md) — Adds vLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vllm plugin.
 - [Voice call configuration](../plugins/voice-call/configuration.md) — Plugin config keys, the call owner, the config reference table, and session scope. Read when: You are setting up voice-call plugin config keys; You need the default for a voice-call config key; You are choosing how call sessions are scoped.
 - [Voice call plugin](../plugins/voice-call.md) — Place outbound and accept inbound voice calls via Twilio, Telnyx, or Plivo, with optional realtime voice and streaming transcription. Read when: You want to place an outbound voice call from OpenClaw; You are configuring or developing the voice-call plugin; You need realtime voice or streaming transcription on telephony.
-- [Voice Call plugin reference](../plugins/reference/voice-call.md) — OpenClaw voice-call plugin for Twilio, Telnyx, and Plivo phone calls. Read when: You are installing, configuring, or auditing the voice-call plugin.

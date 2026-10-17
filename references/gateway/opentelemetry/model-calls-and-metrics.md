@@ -34,6 +34,19 @@ session titles, Activity recaps, and plugin `runtime.llm.complete` calls.
 Each request records a start and one completion or error with its duration;
 token and cost accounting remains separate in `model.usage`.
 
+Codex app-server turns also emit one `model.response.observed` diagnostic for
+each distinct provider response received during the turn. OpenTelemetry records
+it as an `openclaw.model.response.observed` event on the turn's model-call span,
+with a hashed response identifier and token fields reported by the native
+runtime (`usage_source = native-normalized`, `usage_scope = response`).
+Its timestamp records receipt by OpenClaw, not provider completion. Missing
+usage stays absent, including cache-write counts or totals omitted by the native
+runtime. Uncached input is derived only when every cache component was reported;
+prompt tokens use the native input count. No request duration or tool-to-response relationship is
+inferred. These events do not add token or duration metrics. Aggregate accounting
+continues to use `model.usage`; dropped diagnostic events or missing provider
+usage can leave the response observations incomplete.
+
 ## Claude Code CLI model-call fidelity
 
 Claude Code CLI turns emit one synthetic, turn-level `openclaw.model.call`
@@ -154,6 +167,25 @@ CPU time or event-loop blocking time.
 Observations use the bounded diagnostic queue. Check
 `openclaw.diagnostic.async_queue.dropped` before treating counts or latency
 distributions as complete during saturation.
+
+### Gateway WebSocket events
+
+| Metric                                     | Type    | Measurement                                                    |
+| ------------------------------------------ | ------- | -------------------------------------------------------------- |
+| `openclaw.gateway.ws.events`               | counter | Outbound event frames accepted by the sender, once per socket  |
+| `openclaw.gateway.ws.event_bytes`          | counter | Encoded UTF-8 bytes of those full JSON frames, once per socket |
+| `openclaw.gateway.ws.operator_connections` | gauge   | Connected authenticated operator sockets                       |
+
+The counters have only `openclaw.gateway.ws.event`: a known protocol event name,
+or `other` for an unrecognized name. The connection gauge has no attributes; it
+updates on connect/disconnect and refreshes every 30 seconds to recover dropped
+snapshots or initialize late-starting exporters.
+Event observations are batched by event name within one event-loop turn; fan-out
+still counts each socket separately. Bytes exclude WebSocket framing and
+compression, and send acceptance does not prove client receipt. No event payload,
+session, user, or connection identifiers are exported. These metrics use the
+same bounded diagnostic queue as Gateway RPC observations; check
+`openclaw.diagnostic.async_queue.dropped` when interpreting traffic totals.
 
 ### Model usage
 
