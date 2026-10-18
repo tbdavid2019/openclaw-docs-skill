@@ -209,8 +209,10 @@ counts. A failed full rebuild retains
 its full-retry state; ordinary dirty content does not itself force a rebuild.
 An index built before any content exists remains valid as content arrives;
 restarting does not require a full rebuild just because the index started empty.
-Growing session transcripts retain unchanged indexed chunks and embed only new
-or changed chunks, even when the embedding cache is disabled. An explicit full
+Growing session transcripts and edited memory files retain unchanged indexed
+chunks and embed only new or changed chunks, even when the embedding cache is
+disabled. An edit that changes every chunk of a memory file, such as a line
+inserted at the top, still replaces that file's chunks. An explicit full
 rebuild still replaces the complete index.
 If a memory file changes or disappears during indexing, only that file's
 unfinished work is retried incrementally. Other files finish indexing, and
@@ -233,6 +235,13 @@ not require directory traversal on the Gateway's main thread. Indexing stays wit
 the memory manager, which receives dirty notifications before debounce and reads
 published watcher health without polling the worker. Startup waits for watcher
 readiness; shutdown joins native cleanup, and the last watcher closes the worker.
+
+If the shared file worker exits unexpectedly, Memory Core reports unavailable
+watcher health and logs a warning. It restarts after 0.5, 2, and 5 seconds,
+restoring live subscriptions and rescanning their scopes to catch missed edits.
+Four failures within one minute stop automatic restarts; health remains unavailable
+and searches refresh memory in the background. Restart the Gateway after resolving
+the worker failure to resume observation. Normal shutdown does not restart the worker.
 
 When native file watching is unavailable, Memory Core uses background polling
 with a 30-second default interval, including when polling is explicitly enabled

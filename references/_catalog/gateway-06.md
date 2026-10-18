@@ -4,6 +4,7 @@ Gateway configuration, operations, security, and networking.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Tool and agent permissions](../gateway/security/tool-permissions.md) — Cross-provider messaging, control-plane tools, node execution, plugins, sandboxing, and per-agent access profiles. Read when: Deciding which tools an agent may call; Restricting messaging across conversations or channel providers; Sandboxing an agent or a delegated sub-agent run; Giving several agents different levels of access on one Gateway.
 - [Tools invoke API](../gateway/tools-invoke-http-api.md) — Invoke a single tool directly via the Gateway HTTP endpoint. Read when: Calling tools without running a full agent turn; Building automations that need tool policy enforcement.
 - [Troubleshooting](../gateway/troubleshooting.md) — Index of the deep gateway troubleshooting runbook, grouped by symptom area. Read when: The troubleshooting hub pointed you here for deeper diagnosis; You need stable symptom based runbook sections with exact commands.
 - [Trusted proxy auth](../gateway/trusted-proxy-auth.md) — Delegate gateway authentication to a trusted reverse proxy (Pomerium, Caddy, nginx + OAuth). Read when: Running OpenClaw behind an identity-aware proxy; Setting up Pomerium, Caddy, or nginx with OAuth in front of OpenClaw; Fixing WebSocket 1008 unauthorized errors with reverse proxy setups; Deciding where to set HSTS and other HTTP hardening headers.

@@ -57,6 +57,22 @@ and the agent's
 The lifecycle owner closes its read scope and drains accepted writes before
 retiring the store.
 
+Manual legacy compaction prepares its transcript, current session entry, persisted
+window owner, and primary conversation in one worker snapshot. The held session
+lifecycle carries those facts through execution. Its existing compaction-boundary
+command commits the transcript and same-key accounting together, with live authority
+checked before commit. Aliases that share a transcript retain their own accounting
+row; a changed final token estimate updates accounting without counting compaction
+twice. Shared-state events follow the agent-store commit, and memory indexing keeps
+its existing post-compaction policy.
+
+Compaction and transcript writers compare already admitted database identities
+when a state directory has multiple path spellings, such as a symlink and its
+canonical path. SQLite uses physical file identity and birthtime; PostgreSQL uses
+namespace and store ID. These comparisons do not probe the filesystem or admit a
+new store. Agent, session, key, storage environment, lifecycle, and writer-claim
+checks still bind each write to its original target.
+
 Public GitHub coauthor attribution reads merge aliases, verified accounts, and
 credit preferences in one worker-owned snapshot statement. Enterprise attribution
 keeps a read transaction for its additional verified-email binding lookup. Both
@@ -132,6 +148,12 @@ Unconfirmed native cleanup quarantines its slot without releasing that custody.
 Reads use remaining healthy capacity; four quarantined slots reject visibly
 instead of launching another process or waiting indefinitely.
 
+Plugin model catalogs use a read-only task worker with the Gateway's admission
+relay. Each task closes its native reader before transferring the result in
+bounded frames, while physical admission facts survive for subsequent reads.
+Owner-published schema and quarantine changes invalidate those facts. Catalog
+rows are read on every request, and reads do not create missing databases.
+
 Paced page-cache warming leases one of those same slots until its caller scope
 closes. Its iterator stays in one exclusive child across `begin` and `step`
 requests; other reads cannot interleave or evict it. Closing the scope joins child
@@ -153,7 +175,16 @@ Synchronous boot admission, migrations, Doctor/CLI one-shots, and lock primitive
 are the limited exceptions. Runtime access still using them is migration debt.
 For engine stores, the synchronous `withEngineStoreAdmission` scope is lexical:
 it cannot return a Promise, and a retained connection does not extend it.
-PostgreSQL rejects construction and SQL on the main thread outside that scope.
+PostgreSQL rejects construction and SQL on the Gateway main thread outside that
+scope. The CLI entry records an immutable process role before state access;
+one-shot CLI and Doctor processes may use the synchronous PostgreSQL bridge.
+An unset role still refuses main-thread access. Interactive onboarding and
+`setup` (including `crestodian`) keep the CLI role through their prompts and
+local setup console. Any Gateway they start runs in a separate process with
+the Gateway role. The setup console supplies its own in-memory TUI backend;
+rendering an interactive console does not turn the CLI into a Gateway.
+Bare-root launch retains its conservative Gateway role. The embedded Gateway
+entry requires that role and refuses a process already classified as a one-shot.
 Each `openEngineStore` caller supplies `inspectSqlite()` with explicit
 `hasExistingData` and `hasEngineAnchor` facts; table-name prefixes cannot decide
 whether an engine switch is safe. See
@@ -264,6 +295,9 @@ inventories park until a receipt arrives; retained rows schedule their next
 deadline. Refreshes consume the dirty flag before awaiting a worker so a receipt
 received during the read remains pending. These facts schedule maintenance;
 credential, lease, and external-effect authority stays with the execution owner.
+Ingress health refreshes missing failed-count and pressure facts in one worker
+request. Claim expiry refreshes only pressure; each diagnostic retains its own
+error outcome and successful facts remain reusable.
 Cron retains a memory-only clock check for future jobs so forward clock changes
 can trigger overdue work without reloading SQL every minute.
 
@@ -362,6 +396,12 @@ remain with the history owner. See
 [`session-actor.worker.ts`](https://github.com/openclaw/openclaw/blob/main/src/config/sessions/session-actor.worker.ts)
 and [`session-actor-replica.ts`](https://github.com/openclaw/openclaw/blob/main/src/config/sessions/session-actor-replica.ts).
 
+Replica lookups resolve configured path spellings through the existing admission
+registry: SQLite uses the admitted physical identity and birthtime; PostgreSQL
+uses the admitted namespace and store ID. Symlinked and canonical paths therefore
+share warm state without a filesystem probe. Scoped write receipts still reject
+stale transcript facts and facts from a different store.
+
 Durable actor residency retains only tree links (`type`, `id`, `parentId`,
 `targetId`, `appendParentId`, and `appendMode`) and exact byte accounting.
 Cold hydration projects those fields in SQL; model-context navigation belongs
@@ -401,6 +441,14 @@ context. See [built-in memory freshness](/concepts/memory-builtin) for timing,
 shutdown, and restart catch-up, and
 [`manager-session-sync-ops.ts`](https://github.com/openclaw/openclaw/blob/main/extensions/memory-core/src/memory/manager-session-sync-ops.ts)
 for scheduling ownership.
+
+Memory publication workers advance the index revision once per committed batch,
+inside the same transaction as source and chunk changes. Forget, purge, reset,
+and shadow publication follow that contract too. Committed receipts publish the
+new revision before retrieval caches can reuse their facts; failed transactions
+publish neither rows nor a revision. Schema 31 retires the per-row revision
+triggers on both engines without changing search projection triggers or retained
+content. See [memory index batch revisions](/reference/database-schemas/storage-changes#memory-index-batch-revisions).
 
 Usage rollup refreshes share one queue per database and scope. Session usage reads
 promote only their requested sessions and wait for those refreshes to commit,
@@ -2097,6 +2145,13 @@ Both stages still read the exact stored payload bytes, and the conditional updat
 rejects concurrent edits. Missing residency uses the existing worker readers.
 Admission- and projection-preserving rewrites publish through the same actor owner;
 resets, cold archives, and incompatible writes invalidate its retained facts.
+SQLite and PostgreSQL turn preparation in the serialized execution worker reuse the actor's
+committed exact entry, window, pending-input rows, and transcript version. Existing
+write receipts keep these facts current; missing residency, moved keys, cold
+archives, and turn mutations retain canonical readers. Idempotency still reads
+the canonical identity because a bounded transcript window cannot prove absence.
+Source validation, pending-input custody, and final write authority remain with
+their existing owners.
 Bounded context reads inside the actor transaction also derive logical parents
 from its active positions and identities and reuse its projection, reset, and
 prefix facts; standalone reads retain their SQL lookups. Hydration does not
@@ -5080,6 +5135,10 @@ The shipped SDK `claimNext` API retains its standalone selection behavior.
 Accepted enqueues, claims, and resubmissions return the mutation's row directly;
 only duplicate enqueues read the retained row. Claims atomically update pending
 rows, and corrupt payloads are tombstoned in that same writer transaction.
+Adapter batches use one enqueue command and transaction, inserting up to 100
+unique events per statement and reading duplicate IDs together. Repeated IDs
+retain the first payload and results follow input order. Corrupt duplicate
+tombstones return the updated row without a follow-up read.
 
 Inbound envelope timestamps use the existing session read worker. Bundled channels
 await preparation at their formatting boundary and carry the timestamp through
@@ -5647,6 +5706,8 @@ compressed-payload bound, before streaming 64 KiB frames; oversized identity tex
 keeps native slice queries. Large compressed-event frame buffers transfer ownership to the host. The
 cursor and follow-up reads retain one SQLite snapshot across transport
 acknowledgments.
+SQLite streams the ordered cursor through a native iterator; PostgreSQL uses
+16-row keyset batches because its bridge buffers results.
 Manual compaction reads entry and transcript statistics after the previous writer
 settles, then reuses them while its lifecycle owner holds admission closed.
 The initial canonical lookup supplies session identity without an unchanged-entry
@@ -5700,7 +5761,10 @@ the agent writer, with foreground priority and a session identity check before
 publication. Ordinary active-message appends carry preview and terminal-model facts
 in the existing committed transcript receipt and persist them in the same mutation
 statement. Resident rows publish them immediately; newer receipt facts supersede
-an older pending backfill. Actor commands carry this publication through native
+an older pending backfill. Ordinary user appends preserve the resident owner's
+known assistant preview, including a known empty result, without another tail
+read. Unknown cold or legacy facts and invalidated transcript projections still
+use bounded backfill. Actor commands carry this publication through native
 settlement before installing their full replica. Complete participant receipts
 retain unaffected transcript, Board, and runtime facts. Preview reads retain the
 64 KiB bound; terminal-model reads retain the 256 KiB bound. An oversized newest

@@ -151,16 +151,22 @@ between settlement and transport.
 
 Streaming deltas and session-roster notifications must not trigger unrelated
 renders. The shell processes session deletion and document-title updates directly,
-without rendering for roster publications. The chat stream owns its frame queue;
-chat-page session subscriptions coalesce presentation updates through
-`SubscriptionsController`. State synchronization stays immediate, while the Lit
-commit runs inside the scheduled frame so child property bindings do not escape
-into a later microtask. Disconnecting or replacing a subscription retires its
-queued frame. Hidden documents retain immediate invalidation because animation
-frames may be suspended.
+without rendering for roster publications. The pane runtime owns session
+observations and synchronizes their state immediately. The chat state owner
+coalesces eligible background invalidations in an animation frame. Solid
+projections and the pane render lifecycle publish presentation and run
+post-commit work after DOM bindings. Hidden documents bypass frame scheduling;
+retained hidden panes park presentation until shown. Retiring the render-lifecycle
+scope cancels queued background work.
 
 The `chat-stream-runtime-budgets.e2e.test.ts` suite protects streaming with
 structural update counts; chat-page unit tests cover intervening roster publications.
+
+Session descriptors share connection-scoped reads. Full row changes invalidate
+them; unchanged ancestor references reuse the settled read. Swarm progress follows
+the collector's parent summary, not a child provider's terminal status. Child rows
+already update their own presentation, while changed collector summaries and
+membership still refresh the parent details.
 
 Shell callbacks retain their identity across renders so a background session update
 does not redraw navigation twice. The outbox subscription still invalidates draft
