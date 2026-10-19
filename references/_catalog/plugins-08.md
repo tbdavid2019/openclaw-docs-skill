@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Nextcloud Talk plugin reference](../plugins/reference/nextcloud-talk.md) — OpenClaw Nextcloud Talk channel plugin for conversations. Read when: You are installing, configuring, or auditing the nextcloud-talk plugin.
 - [Nostr plugin reference](../plugins/reference/nostr.md) — OpenClaw Nostr channel plugin for NIP-04 encrypted direct messages. Read when: You are installing, configuring, or auditing the nostr plugin.
 - [Novita plugin reference](../plugins/reference/novita.md) — Adds Novita, Novita AI, Novitaai model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the novita plugin.
 - [NVIDIA plugin reference](../plugins/reference/nvidia.md) — Adds NVIDIA model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the nvidia plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Plugin load pipeline and registry](../plugins/architecture-internals/load-pipeline.md) — How OpenClaw discovers, gates, loads, and registers plugins, and what the plugin cache holds. Read when: Debugging plugin load order or registry state; You need to know when OpenClaw reads manifests instead of loading plugin runtime; You are reasoning about plugin cache generations and what they retain.
 - [Plugin manifest](../plugins/manifest.md) — Plugin manifest + JSON schema requirements (strict config validation). Read when: You are building an OpenClaw plugin; You need to ship a plugin config schema or debug plugin validation errors.
 - [Plugin permission requests](../plugins/plugin-permission-requests.md) — Ask users to approve plugin tool calls and plugin-owned permission prompts. Read when: You need a plugin hook or tool to ask before a side effect runs; You need to configure where plugin approval prompts are delivered; You are deciding between optional tools, exec approvals, and plugin approvals.
-- [Plugin reference](../plugins/reference.md) — Pointer to the generated OpenClaw plugin reference pages. Read when: You need a reference page for a specific OpenClaw plugin; You are auditing plugin docs coverage.

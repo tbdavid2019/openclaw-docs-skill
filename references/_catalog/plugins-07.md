@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Matrix plugin reference](../plugins/reference/matrix.md) — OpenClaw Matrix channel plugin for rooms and direct messages. Read when: You are installing, configuring, or auditing the matrix plugin.
 - [Mattermost plugin reference](../plugins/reference/mattermost.md) — OpenClaw Mattermost channel plugin. Read when: You are installing, configuring, or auditing the mattermost plugin.
 - [Mcp Events plugin reference](../plugins/reference/mcp-events.md) — Subscribe to events from configured MCP accounts and trigger authored automations. Read when: You are installing, configuring, or auditing the mcp-events plugin.
 - [MCP Relay](../plugins/mcp-relay.md) — Connect ChatGPT and Claude to your Gateway through the opt-in MCP relay plugin. Read when: Connecting a remote MCP client to your OpenClaw Gateway; Pairing or revoking a ChatGPT or Claude connector; Showing the full Control UI in ChatGPT.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Mxc plugin reference](../plugins/reference/mxc.md) — OS-level sandboxed tool execution via MXC: runs commands in a Windows ProcessContainer with configured MXC policy files. Read when: You are installing, configuring, or auditing the mxc plugin.
 - [Native Codex plugins](../plugins/codex-native-plugins.md) — Configure native Codex plugins for Codex-mode OpenClaw agents. Read when: You want Codex-mode OpenClaw agents to use native Codex plugins; You are migrating source-installed openai-curated Codex plugins; You are discovering or installing a Codex marketplace plugin; You are troubleshooting codexPlugins, app inventory, destructive actions, or plugin app diagnostics; You need the precedence of OpenClaw policy, native app defaults, and per-tool overrides.
 - [Native Codex state and features](../plugins/codex-harness/native-features.md) — Share native Codex threads, supervise sessions, and enable native plugins and Computer Use. Read when: You want OpenClaw to share the native Codex home; You want to use your existing local Codex config.toml and login; You are enabling Codex supervision; You are enabling native Codex plugins or Computer Use.
-- [Nextcloud Talk plugin reference](../plugins/reference/nextcloud-talk.md) — OpenClaw Nextcloud Talk channel plugin for conversations. Read when: You are installing, configuring, or auditing the nextcloud-talk plugin.

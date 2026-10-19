@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [OpenAI authentication](../providers/openai/authentication.md) — Choose Codex login, Sign in with ChatGPT (Beta), or an API key for the OpenAI capabilities you need. Read when: You are choosing between Codex login, an API key, and Sign in with ChatGPT (Beta); You want to use OpenAI-hosted plugins with OpenClaw; You are connecting an OpenAI account for an agent or a person.
 - [OpenAI coverage and cost](../providers/openai/coverage-and-cost.md) — Which OpenAI capabilities OpenClaw exposes, embeddings, and spend reporting. Read when: You want to know which OpenAI capability maps to which OpenClaw surface; You are reconciling subscription quota against Platform API billing; You are pointing memory_search at OpenAI embeddings.
 - [OpenAI image generation](../providers/openai/image-and-video.md) — Generate and edit images with OpenAI gpt-image. Read when: You are generating or editing images through the openai provider; You need transparent-background image output.
 - [OpenAI models](../providers/openai/models.md) — Pick an OpenAI model ref, including GPT-6.1 Sol, GPT-6 Astra, Sol, Luna, and the GPT-5.6 tiers. Read when: You are choosing which OpenAI model ref to run; You want to select GPT-6.1 Sol, GPT-6 Sol, or Luna; You want Astra async tools, mid-turn steering, or cached reasoning changes; Your account does not expose a GPT-5.6 tier.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [vLLM](../providers/vllm.md) — Run OpenClaw with vLLM (OpenAI-compatible local server). Read when: You want to run OpenClaw against a local vLLM server; You want OpenAI-compatible /v1 endpoints with your own models.
 - [Volcengine (Doubao)](../providers/volcengine.md) — Volcano Engine setup (Doubao models, coding endpoints, and Seed Speech TTS). Read when: You want to use Volcano Engine or Doubao models with OpenClaw; You need the Volcengine API key setup; You want to use Volcengine Speech text-to-speech.
 - [Vydra](../providers/vydra.md) — Use Vydra image, video, and speech in OpenClaw. Read when: You want Vydra media generation in OpenClaw; You need Vydra API key setup guidance.
-- [xAI](../providers/xai.md) — Use xAI Grok models in OpenClaw. Read when: You want to use Grok models in OpenClaw; You are configuring xAI auth or model ids.
