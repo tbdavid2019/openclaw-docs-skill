@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Visitor Access plugin reference](../plugins/reference/visitor-access.md) — Manage expiring visitor grants through one Cloudflare Access email policy. Read when: You are installing, configuring, or auditing the visitor-access plugin.
 - [vLLM plugin reference](../plugins/reference/vllm.md) — Adds vLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vllm plugin.
 - [Voice call configuration](../plugins/voice-call/configuration.md) — Plugin config keys, the call owner, the config reference table, and session scope. Read when: You are setting up voice-call plugin config keys; You need the default for a voice-call config key; You are choosing how call sessions are scoped.
 - [Voice call plugin](../plugins/voice-call.md) — Place outbound and accept inbound voice calls via Twilio, Telnyx, or Plivo, with optional realtime voice and streaming transcription. Read when: You want to place an outbound voice call from OpenClaw; You are configuring or developing the voice-call plugin; You need realtime voice or streaming transcription on telephony.

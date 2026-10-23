@@ -4,6 +4,7 @@ Documentation under `releases/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [v2026.8.1: Skills](../releases/2026.8.1/skills.md)
 - [v2026.8.1: The New Web UI](../releases/2026.8.1/the-new-web-ui.md)
 - [v2026.8.1: Updates and Maintenance](../releases/2026.8.1/updates-and-maintenance.md)
 - [v2026.8.2](../releases/2026.8.2.md) — Home beside your work, a Linux desktop companion, background sessions, browser control without a running Gateway, four new Control UI looks, and focused reply, voice, update, and recovery fixes.

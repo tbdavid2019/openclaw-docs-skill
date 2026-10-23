@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Plugin setup and config](../plugins/sdk-setup.md) — Setup wizards, setup-entry.ts, config schemas, and package.json metadata. Read when: You are adding a setup wizard to a plugin; You need to understand setup-entry.ts vs index.ts; You are defining plugin config schemas or package.json openclaw metadata.
 - [Plugin testing](../plugins/sdk-testing.md) — Testing utilities and patterns for OpenClaw plugins. Read when: You are writing tests for a plugin; You need test utilities from the plugin SDK; You want to understand contract tests for bundled plugins.
 - [Policy plugin reference](../plugins/reference/policy.md) — Adds policy-backed doctor checks for workspace conformance. Read when: You are installing, configuring, or auditing the policy plugin.
 - [Prompt and session hooks](../plugins/hooks/prompt-and-session.md) — Override the model, shape the prompt, and persist plugin-owned session state. Read when: You are overriding the provider or model for an agent turn; You are adding prompt context or narrowing the tool surface for a turn; You need authorized post-policy prompt enrichment; You are persisting session extensions or queuing next-turn injections.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Session Share plugin reference](../plugins/reference/session-share.md) — Read-only OpenClaw sessions on paired gateways. Read when: You are installing, configuring, or auditing the session-share plugin.
 - [SGLang plugin reference](../plugins/reference/sglang.md) — Adds SGLang model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the sglang plugin.
 - [Signal plugin reference](../plugins/reference/signal.md) — OpenClaw Signal channel plugin. Read when: You are installing, configuring, or auditing the signal plugin.
-- [Slack huddles plugin](../plugins/slack-huddles.md) — Slack huddles plugin: join active huddles through a signed-in Chrome user account. Read when: You want an OpenClaw agent to join a Slack huddle; You need to set up the dedicated Slack user or understand manual actions.

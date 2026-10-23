@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Hugging Face (inference)](../providers/huggingface.md) — Hugging Face Inference setup (auth + model selection). Read when: You want to use Hugging Face Inference with OpenClaw; You need the HF token env var or CLI auth choice.
 - [Inworld](../providers/inworld.md) — Inworld streaming text-to-speech for OpenClaw replies. Read when: You want Inworld speech synthesis for outbound replies; You need PCM telephony or OGG_OPUS voice-note output from Inworld.
 - [Kie AI](../providers/kie.md) — Kie AI video generation setup and supported models. Read when: You want to generate videos through Kie AI; You need KIE_API_KEY setup or supported video models.
 - [Kilo Gateway](../providers/kilocode.md) — Use Kilo Gateway's unified API to access many models in OpenClaw. Read when: You want a single API key for many LLMs; You want to run models via Kilo Gateway in OpenClaw.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Ollama Web Search](../providers/ollama/web-search.md) — Use Ollama as the OpenClaw web_search provider. Read when: You want Ollama to serve the web_search tool; You need the host, auth, and requirement rules for Ollama search.
 - [oMLX](../providers/omlx.md) — Use oMLX for local chat and memory embeddings on Apple Silicon. Read when: You want to use oMLX with OpenClaw; You want local memory embeddings on an Apple Silicon Mac.
 - [OpenAI](../providers/openai.md) — Use OpenAI via API keys or Codex subscription in OpenClaw. Read when: You want to use OpenAI models in OpenClaw; You want Codex subscription auth instead of API keys; You want Astra async tools, mid-turn steering, or cached reasoning changes; You need stricter GPT-5 agent execution behavior.
-- [OpenAI advanced configuration](../providers/openai/advanced.md) — Prompt contribution, transport, Fast mode, compaction, and route compat. Read when: You are tuning transport, Fast mode, or service tier for openai/*; You need stricter GPT-5 agent execution behavior; You are debugging server-side compaction or OpenAI-compatible proxy behavior.

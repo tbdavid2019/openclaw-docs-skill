@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Codex session catalog and supervision](../plugins/codex-harness-reference/supervision.md) — Native Codex session discovery and agent-facing supervision settings. Read when: You are enabling or disabling native Codex session discovery; You need the supervision config fields and endpoint fields; You are registering additional local Codex homes.
 - [Codex thread bindings and supervision](../plugins/codex-harness-runtime/threads.md) — How OpenClaw binds native Codex threads, changes models, and continues supervised sessions. Read when: You are switching models on an attached Codex thread; You are branching or archiving a supervised Codex session.
 - [Codex timeouts and turn settlement](../plugins/codex-harness-reference/timeouts.md) — Dynamic tool timeout order, turn execution budgets, and local settlement. Read when: You need the dynamic tool timeout order; You are changing the turn execution budget; You are debugging a turn that never settles.
 - [Codex workspace bootstrap files](../plugins/codex-harness-reference/workspace-bootstrap-files.md) — Which workspace bootstrap files reach a Codex turn, and how they are carried. Read when: You need to know how AGENTS.md reaches Codex; You are debugging persona or memory context in Codex turns; You are hitting prepared-context size limits.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Elevenlabs plugin reference](../plugins/reference/elevenlabs.md) — Adds media understanding provider support. Adds realtime transcription provider support. Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the elevenlabs plugin.
 - [Exa plugin reference](../plugins/reference/exa.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the exa plugin.
 - [FaceTime plugin](../plugins/facetime.md) — Set up FaceTime voice calls with your OpenClaw agent on a Mac. Read when: You want to configure FaceTime calls with your OpenClaw agent; You need to install the native helper and configure Mac audio.
-- [Facetime plugin reference](../plugins/reference/facetime.md) — Experimental FaceTime realtime voice carrier for OpenClaw agents. Read when: You are installing, configuring, or auditing the facetime plugin.

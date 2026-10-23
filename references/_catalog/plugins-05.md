@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Facetime plugin reference](../plugins/reference/facetime.md) — Experimental FaceTime realtime voice carrier for OpenClaw agents. Read when: You are installing, configuring, or auditing the facetime plugin.
 - [FaceTime recovery and removal](../plugins/facetime-recovery.md) — Remove FaceTime native artifacts and restore standard Mac security policy. Read when: You are uninstalling the experimental FaceTime plugin; Helper injection or the paired audio driver needs recovery.
 - [fal plugin reference](../plugins/reference/fal.md) — Adds fal model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the fal plugin.
 - [Featherless plugin reference](../plugins/reference/featherless.md) — OpenClaw Featherless AI provider plugin. Read when: You are installing, configuring, or auditing the featherless plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Gradium plugin reference](../plugins/reference/gradium.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the gradium plugin.
 - [Groq plugin reference](../plugins/reference/groq.md) — Adds Groq model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the groq plugin.
 - [Hook reference](../plugins/hooks/reference.md) — How plugin hooks register and execute, plus the complete typed hook catalog. Read when: You are wiring a typed handler and need the ordering, timeout, and failure rules; You want to know which typed hook exists for a surface; You are registering a skill lifecycle or pairing observer.
-- [How to migrate a plugin](../plugins/sdk-migration/how-to-migrate.md) — Ordered steps for moving a plugin off the removed SDK compatibility layer. Read when: You are migrating a plugin to the modern plugin SDK right now; You need the ordered steps for config, middleware, approval, and import changes.

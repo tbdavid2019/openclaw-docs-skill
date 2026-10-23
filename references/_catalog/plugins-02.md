@@ -9,6 +9,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Baseten plugin reference](../plugins/reference/baseten.md) — OpenClaw Baseten provider plugin. Read when: You are installing, configuring, or auditing the baseten plugin.
 - [Beam plugin](../plugins/beam.md) — Publish coding sessions for shared viewing and independent Team continuation. Read when: Sharing a Claude Code or Codex session with trusted Gateway operators; Continuing a beamed conversation with a Team agent; Configuring an authenticated session-ingest endpoint without connecting a node; Auditing what Beam stores and exposes.
 - [Beam plugin reference](../plugins/reference/beam.md) — Read-only coding-session Beam receiver. Read when: You are installing, configuring, or auditing the beam plugin.
+- [Bifrost plugin reference](../plugins/reference/bifrost.md) — Adds Bifrost model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the bifrost plugin.
 - [Bonjour plugin reference](../plugins/reference/bonjour.md) — Advertise the local OpenClaw gateway over Bonjour/mDNS. Read when: You are installing, configuring, or auditing the bonjour plugin.
 - [Brave plugin reference](../plugins/reference/brave.md) — OpenClaw Brave Search provider plugin for web search. Read when: You are installing, configuring, or auditing the brave plugin.
 - [Browser plugin reference](../plugins/reference/browser.md) — Adds agent-callable tools. Read when: You are installing, configuring, or auditing the browser plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Chutes plugin reference](../plugins/reference/chutes.md) — Adds Chutes model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the chutes plugin.
 - [ClawRouter plugin reference](../plugins/reference/clawrouter.md) — Adds ClawRouter model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the clawrouter plugin.
 - [Clickclack plugin reference](../plugins/reference/clickclack.md) — OpenClaw ClickClack channel plugin. Read when: You are installing, configuring, or auditing the clickclack plugin.
-- [Cloudflare](../plugins/cloudflare.md) — Configure Cloudflare R2 as an encrypted OpenClaw storage location. Read when: You want to store OpenClaw artifacts in Cloudflare R2; You need to configure an R2 bucket, credentials, or jurisdiction; You are diagnosing R2 storage access.
