@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Autoreview plugin reference](../plugins/reference/autoreview.md) — Review changes in the current sandbox with the installed Auto Review helper. Read when: You are installing, configuring, or auditing the autoreview plugin.
 - [Awaited transcript and TTS helpers](../plugins/sdk-migration/async-transcript-and-tts.md) — Awaited replacements for historical transcript-key lookup and TTS prompt preparation. Read when: Migrating a plugin from synchronous transcript-key lookup; Preparing TTS prompts without main-thread database reads.
 - [Azure Speech plugin reference](../plugins/reference/azure-speech.md) — Azure AI Speech text-to-speech (MP3, native Ogg/Opus voice notes, PCM telephony). Read when: You are installing, configuring, or auditing the azure-speech plugin.
 - [Baseten plugin reference](../plugins/reference/baseten.md) — OpenClaw Baseten provider plugin. Read when: You are installing, configuring, or auditing the baseten plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Channel surfaces](../plugins/architecture-internals/channel-surfaces.md) — Conversation binding callbacks, message tool schemas, target resolution, config-backed directories, and read-only inspection. Read when: Implementing channel lifecycle surfaces; You are resolving channel targets or building config-backed directories; You are adding read-only channel inspection for status and doctor paths.
 - [Chutes plugin reference](../plugins/reference/chutes.md) — Adds Chutes model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the chutes plugin.
 - [ClawRouter plugin reference](../plugins/reference/clawrouter.md) — Adds ClawRouter model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the clawrouter plugin.
-- [Clickclack plugin reference](../plugins/reference/clickclack.md) — OpenClaw ClickClack channel plugin. Read when: You are installing, configuring, or auditing the clickclack plugin.

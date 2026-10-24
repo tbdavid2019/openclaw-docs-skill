@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [SGLang plugin reference](../plugins/reference/sglang.md) — Adds SGLang model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the sglang plugin.
+- [Signal plugin reference](../plugins/reference/signal.md) — OpenClaw Signal channel plugin. Read when: You are installing, configuring, or auditing the signal plugin.
 - [Slack huddles plugin](../plugins/slack-huddles.md) — Slack huddles plugin: join active huddles through a signed-in Chrome user account. Read when: You want an OpenClaw agent to join a Slack huddle; You need to set up the dedicated Slack user or understand manual actions.
 - [Slack huddles plugin reference](../plugins/reference/slack-huddles.md) — Join Slack huddles through a dedicated Slack user in Chrome. Read when: You are installing, configuring, or auditing the slack-huddles plugin.
 - [Slack plugin reference](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Typesafe plugin reference](../plugins/reference/typesafe.md) — Typed decision provider for hosted Jev and local System One models. Read when: You are installing, configuring, or auditing the typesafe plugin.
 - [Vault plugin reference](../plugins/reference/vault.md) — HashiCorp Vault SecretRef provider integration. Read when: You are installing, configuring, or auditing the vault plugin.
 - [Vault SecretRefs](../plugins/vault.md) — Use the bundled Vault plugin to resolve SecretRefs from HashiCorp Vault. Read when: You want OpenClaw to read API keys from HashiCorp Vault; You are setting up SecretRefs on a local machine or server; You need to configure Vault-backed model provider credentials.
-- [Venice plugin reference](../plugins/reference/venice.md) — Adds Venice model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the venice plugin.
-- [Vercel AI Gateway plugin reference](../plugins/reference/vercel-ai-gateway.md) — Adds Vercel AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vercel-ai-gateway plugin.

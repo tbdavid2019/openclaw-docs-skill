@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Abliteration](../providers/abliteration.md) — Abliteration setup, model selection, reasoning, and prompt caching. Read when: You want to use Abliteration with OpenClaw; You need Abliteration model capabilities or thinking-level mappings.
 - [Alibaba Model Studio](../providers/alibaba.md) — Alibaba Model Studio Wan video generation in OpenClaw. Read when: You want to use Alibaba Wan video generation in OpenClaw; You need Model Studio or DashScope API key setup for video generation.
 - [Amazon Bedrock](../providers/bedrock.md) — Use Amazon Bedrock (Converse API) models with OpenClaw. Read when: You want to use Amazon Bedrock models with OpenClaw; You need AWS credential/region setup for model calls.
 - [Amazon Bedrock Mantle](../providers/bedrock-mantle.md) — Use Amazon Bedrock Mantle OpenAI-compatible and Claude Messages models with OpenClaw. Read when: You want to use Bedrock Mantle hosted OSS models with OpenClaw; You need the Mantle OpenAI-compatible endpoint for GPT-OSS, Qwen, Kimi, or GLM; You want to use Claude Opus 5, Sonnet 5, or Mythos 5 through Amazon Bedrock Mantle.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [GMI Cloud](../providers/gmi.md) — Use GMI Cloud's OpenAI-compatible API with OpenClaw. Read when: You want to run OpenClaw with GMI Cloud models; You need the GMI provider id, key, or endpoint.
 - [Google (Gemini)](../providers/google.md) — Google Gemini setup (AI Studio API key, Vertex AI, optional CLI runtime, and multimodal tools). Read when: You want to use Google Gemini models with OpenClaw; You need Google AI Studio, Vertex AI, or Gemini CLI runtime guidance.
 - [Gradium](../providers/gradium.md) — Use Gradium text-to-speech in OpenClaw. Read when: You want Gradium for text-to-speech; You need Gradium API key, voice, or directive token configuration.
-- [Groq](../providers/groq.md) — Groq setup (auth + model selection + Whisper transcription). Read when: You want to use Groq with OpenClaw; You need the API key env var or CLI auth choice; You are configuring Whisper audio transcription on Groq.
