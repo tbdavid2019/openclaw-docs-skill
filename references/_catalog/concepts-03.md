@@ -4,6 +4,7 @@ Architecture, agents, sessions, memory, models, and routing.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Session management](../concepts/session.md) — How OpenClaw manages conversation sessions. Read when: You want to understand session routing and isolation; You want to configure DM scope for multi-user setups; You are debugging daily or idle session resets.
 - [Session pruning](../concepts/session-pruning.md) — Trimming old tool results to keep context lean and caching efficient. Read when: You want to reduce context growth from tool outputs; You want to understand Anthropic prompt cache optimization.
 - [Session search](../concepts/session-search.md) — Search past session transcripts and reopen the matching context. Read when: You need to find something discussed in an earlier session; You want to understand session search privacy or indexing.
 - [Session state awareness](../concepts/session-state.md) — Durable session state signal log: state versions, watchers, stale-state notices, and reconciliation. Read when: You want agents to notice when humans or other agents change a session behind their back; You are debugging state-change notices, watch cursors, or session_status changesSince; You want to understand how parent agents stay synchronized with child sessions.

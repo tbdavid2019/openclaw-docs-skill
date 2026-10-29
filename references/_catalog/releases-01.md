@@ -11,6 +11,8 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.10.4](../releases/2026.10.4.md) — Update and recovery fixes, chat refresh, messaging and sign-in repairs.
 - [v2026.10.5](../releases/2026.10.5.md) — A refreshed sidebar, Skill Workshop 2.0, and public conversation links.
 - [v2026.10.6](../releases/2026.10.6.md) — Windows setup, Discord commands, and iPhone Talk fixes.
+- [v2026.10.7](../releases/2026.10.7.md)
+- [v2026.10.8](../releases/2026.10.8.md)
 - [v2026.6.11](../releases/2026.6.11.md) — Reliability fixes for replies, sends, reconnects, model setup, sessions, and safer admin defaults.
 - [v2026.7.1](../releases/2026.7.1.md) — Major Control UI and onboarding overhauls, big iOS, Android, and macOS updates, expanded model support, and substantial Telegram, Slack, Discord, and Apple Messages improvements.
 - [v2026.8.1 (AKA OpenClaw 2.0)](../releases/2026.8.1.md) — A rebuilt web experience, simpler onboarding, stronger memory and session continuity, and a very large reliability pass across OpenClaw.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.8.1: Native Apps](../releases/2026.8.1/native-apps.md)
 - [v2026.8.1: Other Bug Fixes](../releases/2026.8.1/other-bug-fixes.md)
 - [v2026.8.1: Plugins and Integrations](../releases/2026.8.1/plugins-and-integrations.md)
-- [v2026.8.1: Quality-of-Life Improvements](../releases/2026.8.1/quality-of-life-improvements.md)
-- [v2026.8.1: Security and Privacy](../releases/2026.8.1/security-and-privacy.md)

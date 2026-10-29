@@ -4,6 +4,8 @@ Documentation under `releases/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [v2026.8.1: Quality-of-Life Improvements](../releases/2026.8.1/quality-of-life-improvements.md)
+- [v2026.8.1: Security and Privacy](../releases/2026.8.1/security-and-privacy.md)
 - [v2026.8.1: Skills](../releases/2026.8.1/skills.md)
 - [v2026.8.1: The New Web UI](../releases/2026.8.1/the-new-web-ui.md)
 - [v2026.8.1: Updates and Maintenance](../releases/2026.8.1/updates-and-maintenance.md)

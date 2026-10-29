@@ -4,6 +4,8 @@ Documentation under `reference/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Silent turns and the memory flush](../reference/session-management-compaction/housekeeping.md) — The NO_REPLY silent-turn contract and the pre-compaction memory flush configuration. Read when: You want to implement memory flushes or silent system turns; Tuning agents.defaults.compaction.memoryFlush.
+- [SOUL.dev template](../reference/templates/SOUL.dev.md) — Dev agent soul (C-3PO). Read when: Using the dev gateway templates; Updating the default dev agent identity.
 - [SOUL.md template](../reference/templates/SOUL.md) — Workspace template for SOUL.md. Read when: Bootstrapping a workspace manually.
 - [State schema history](../reference/database-schemas/state-schema-history.md) — Shared state database schema versions, their changes, and their first releases. Read when: Looking up which release first shipped a state schema version; Reading the per-version notes for a recent state schema change.
 - [Storage changes and release preflight](../reference/database-schemas/storage-changes.md) — Proposing a persistent-store change, the review checkpoint, and preflighting a target release. Read when: Proposing a SQLite or persistent-store change, or another database backend; Preflighting a copied state database against a target release before activation.

@@ -200,6 +200,13 @@ the stalled check and leaves the original Gateway running; ownership refusals
 are never retried. The installed updater owns this sequence, so a candidate
 cannot change an older updater's stop behavior during its first update.
 
+During finalization, an explicit update timeout includes Doctor preparation,
+maintenance admission, and the fresh Doctor process. Nested service inspection
+and stop attempts receive only the remaining allowance. An expired allowance
+prevents new effects; an already admitted stop still settles and retains the
+existing restoration path. This requires the running updater to contain the fix;
+a new candidate cannot change an older updater’s parent deadline.
+
 Unavailable service inspection produces a recorded `managed-service` warning,
 including the manual restart action. A stale, uninspectable service record cannot
 select the update's package root, Node executable, or state directory. Staging,
@@ -1012,7 +1019,9 @@ The Gateway stays available during validation. Before replacing its installed
 code, the updater asks that exact Gateway to drain work and close its services,
 databases, and listener. A foreground Gateway launches a fresh process only after
 the updater settles; it does not reopen its old module graph after replacement.
-Managed services restart through their existing service manager.
+Managed services restart through their existing service manager. Android
+(Termux) verifies a foreground Gateway with the same Linux kernel process and
+boot identities as Linux.
 
 Chat updates retain the requester's original person-access grant while staging
 and validation run. Revoking that grant stops the pending update and leaves the

@@ -19,21 +19,21 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 110 |
 | [Ci](_catalog/ci.md) | Documentation under `ci/` | 19 |
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 101 |
-| [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 81 |
+| [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 82 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
 | [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 163 |
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 42 |
-| [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 44 |
+| [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 45 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 25 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 26 |
-| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 357 |
-| [Providers](_catalog/providers.md) | Model provider authentication and configuration | 96 |
+| [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 373 |
+| [Providers](_catalog/providers.md) | Model provider authentication and configuration | 98 |
 | [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 3 |
-| [Reference](_catalog/reference.md) | Documentation under `reference/` | 77 |
-| [Releases](_catalog/releases.md) | Documentation under `releases/` | 43 |
+| [Reference](_catalog/reference.md) | Documentation under `reference/` | 79 |
+| [Releases](_catalog/releases.md) | Documentation under `releases/` | 45 |
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 13 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 2 |
 | [Start](_catalog/start.md) | Getting started, onboarding, and setup | 21 |
 | [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 111 |
-| [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 19 |
+| [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 20 |

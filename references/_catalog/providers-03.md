@@ -4,6 +4,8 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Ollama Web Search](../providers/ollama/web-search.md) — Use Ollama as the OpenClaw web_search provider. Read when: You want Ollama to serve the web_search tool; You need the host, auth, and requirement rules for Ollama search.
+- [oMLX](../providers/omlx.md) — Use oMLX for local chat and memory embeddings on Apple Silicon. Read when: You want to use oMLX with OpenClaw; You want local memory embeddings on an Apple Silicon Mac.
 - [OpenAI](../providers/openai.md) — Use OpenAI via API keys or Codex subscription in OpenClaw. Read when: You want to use OpenAI models in OpenClaw; You want Codex subscription auth instead of API keys; You want Astra async tools, mid-turn steering, or cached reasoning changes; You need stricter GPT-5 agent execution behavior.
 - [OpenAI advanced configuration](../providers/openai/advanced.md) — Prompt contribution, transport, Fast mode, compaction, and route compat. Read when: You are tuning transport, Fast mode, or service tier for openai/*; You need stricter GPT-5 agent execution behavior; You are debugging server-side compaction or OpenAI-compatible proxy behavior.
 - [OpenAI authentication](../providers/openai/authentication.md) — Choose Codex login, Sign in with ChatGPT (Beta), or an API key for the OpenAI capabilities you need. Read when: You are choosing between Codex login, an API key, and Sign in with ChatGPT (Beta); You want to use OpenAI-hosted plugins with OpenClaw; You are connecting an OpenAI account for an agent or a person.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Telnyx](../providers/telnyx.md) — Telnyx setup for OpenAI-compatible AI inference. Read when: You want to run Telnyx-hosted models in OpenClaw; You want one OpenAI-compatible API for Telnyx AI inference.
 - [Tencent Cloud (TokenHub / TokenPlan)](../providers/tencent.md) — Tencent Cloud TokenHub and TokenPlan setup for hy4-preview. Read when: You want to use Tencent hy4-preview with OpenClaw; You need the TokenHub or TokenPlan API key setup.
 - [Together AI](../providers/together.md) — Together AI setup (auth + model selection). Read when: You want to use Together AI with OpenClaw; You need the API key env var or CLI auth choice.
-- [Venice AI](../providers/venice.md) — Use Venice AI privacy-focused models in OpenClaw. Read when: You want privacy-focused inference in OpenClaw; You want Venice AI setup guidance.
-- [Vercel AI gateway](../providers/vercel-ai-gateway.md) — Vercel AI Gateway setup (auth + model selection). Read when: You want to use Vercel AI Gateway with OpenClaw; You need the API key env var or CLI auth choice.

@@ -4,7 +4,6 @@ Exact OpenClaw CLI command reference.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Gateway and service recovery](../cli/doctor/recovery.md) — Recover the Gateway service, a remote Gateway, Control UI assets, and Gateway tokens. Read when: Doctor reports a missing, stale, or unmanaged Gateway service; You hit persistent unauthorized errors or missing Control UI assets.
 - [Health](../cli/health.md) — CLI reference for `openclaw health` (gateway health snapshot via RPC). Read when: You want to quickly check the running Gateway's health.
 - [Hooks CLI](../cli/hooks.md) — CLI reference for internal hook discovery, eligibility, enablement, and hook packs. Read when: You want to inspect internal hooks on a local or remote Gateway; You want to enable or disable a hook in local config; You need hook command flags or JSON report fields.
 - [How an update runs](../cli/update/how-updates-run.md) — How `openclaw update` switches channels, checks the new version, hands off the restart, and updates a Git checkout. Read when: You want to know what an update does before you run one; You are debugging a restart handoff or a control-plane update response; You maintain a source checkout and need the Git update and plugin sync steps.
@@ -34,3 +33,4 @@ Open only the entries relevant to the current request. Start with at most three 
 - [openclaw tui](../cli/tui.md) — CLI reference for `openclaw tui` (Gateway-backed or local embedded terminal UI). Read when: You want a terminal UI for the Gateway (remote-friendly); You want to pass url/token/session from scripts; You want to run the TUI in local embedded mode without a Gateway; You want to use openclaw chat or openclaw tui --local.
 - [Other checks and repairs](../cli/doctor/checks.md) — The remaining doctor checks and repairs, from Nix mode to plugins, sandbox, and channels. Read when: You want to know whether doctor covers a specific check or repair; Doctor reported a check you do not recognise.
 - [Pairing CLI](../cli/pairing.md) — CLI reference for `openclaw pairing` (approve/list pairing requests). Read when: You're using pairing-mode DMs and need to approve senders.
+- [Path](../cli/path.md) — CLI reference for `openclaw path` (inspect and edit workspace files via the `oc://` addressing scheme). Read when: You want to read or write a leaf inside a workspace file from the terminal; You're scripting against workspace state and want a stable, kind-agnostic addressing scheme; You're debugging a `oc://` path (validate the syntax, see what it resolves to).

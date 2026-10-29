@@ -4,6 +4,7 @@ Installation, updates, migration, deployment, and uninstall.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Node.js compatibility](../install/node-compatibility.md) — Supported Node.js versions, SQLite requirements, platform limits, and release history. Read when: You need to check which Node.js versions OpenClaw supports; You want to understand a Node.js minimum version or platform support change.
 - [Northflank](../install/northflank.mdx) — Deploy OpenClaw on Northflank with one-click template. Read when: Deploying OpenClaw to Northflank; You want a one-click cloud deploy with browser-based Control UI.
 - [Oracle Cloud](../install/oracle.md) — Host OpenClaw on Oracle Cloud's Always Free ARM tier. Read when: Setting up OpenClaw on Oracle Cloud; Looking for free VPS hosting for OpenClaw; Want 24/7 OpenClaw on a small server.
 - [Other update methods](../install/updating/update-methods.md) — Switching install types, the source-server script, re-running the installer, and manual npm/pnpm/bun updates. Read when: You want to switch an install between a package manager and a git checkout; You run a gateway directly from a git checkout on a server; You need to update or recover OpenClaw with npm, pnpm, or bun directly.

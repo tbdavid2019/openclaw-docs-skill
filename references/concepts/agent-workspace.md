@@ -51,6 +51,9 @@ Run workspace selection rejects an explicitly supplied blank or invalid agent ID
 
 `openclaw onboard`, `openclaw configure`, or `openclaw setup` create the workspace and seed the bootstrap files if they are missing.
 
+Already-provisioned workspaces can continue if packaged templates are unavailable.
+Creating missing files still requires a working template installation.
+
 <Note>
 Sandbox seed copies only accept regular in-workspace files; symlink/hardlink aliases that resolve outside the source workspace are ignored.
 </Note>
@@ -150,6 +153,9 @@ Git is optional. An empty `.git` directory is treated as a non-Git workspace and
 left untouched. Partial Git metadata or a linked worktree whose metadata is missing
 still blocks Git operations with checkout-preservation guidance; repair the original
 repository metadata before retrying.
+
+Commit timing follows your instructions and workspace conventions. A pending
+`BOOTSTRAP.md` does not require committing edits before you review them.
 
 Run these steps on the machine where the Gateway runs (that is where the workspace lives).
 
