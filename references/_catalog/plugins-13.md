@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Vydra plugin reference](../plugins/reference/vydra.md) — Adds Vydra model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vydra plugin.
 - [Web Readability plugin reference](../plugins/reference/web-readability.md) — Extract readable article content from local HTML web fetch responses. Read when: You are installing, configuring, or auditing the web-readability plugin.
 - [WhatsApp plugin reference](../plugins/reference/whatsapp.md) — OpenClaw WhatsApp channel plugin for WhatsApp Web chats. Read when: You are installing, configuring, or auditing the whatsapp plugin.
 - [Workboard plugin](../plugins/workboard.md) — Optional Workboard boards for agent-owned cards and rule-based session views. Read when: You want a Kanban-style workboard in the Control UI; You are enabling or disabling the bundled Workboard plugin; You want to track planned agent work without an external project manager; You want sessions grouped by session status, observer health, and pull-request state.

@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Qianfan plugin reference](../plugins/reference/qianfan.md) — Adds Qianfan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qianfan plugin.
 - [QQ Bot plugin reference](../plugins/reference/qqbot.md) — OpenClaw QQ Bot channel plugin for group and direct-message workflows. Read when: You are installing, configuring, or auditing the qqbot plugin.
 - [Qwen plugin reference](../plugins/reference/qwen.md) — Adds Qwen, Qwen Cloud, Model Studio, DashScope, Qwen Token Plan, Bailian Token Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qwen plugin.
 - [Radius plugin reference](../plugins/reference/radius.md) — Radius model gateway provider. Read when: You are installing, configuring, or auditing the radius plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Synology Chat plugin reference](../plugins/reference/synology-chat.md) — Synology Chat channel plugin for OpenClaw channels and direct messages. Read when: You are installing, configuring, or auditing the synology-chat plugin.
 - [Synthetic plugin reference](../plugins/reference/synthetic.md) — Adds Synthetic model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the synthetic plugin.
 - [Talk and realtime voice migration](../plugins/sdk-migration/talk.md) — Migrating realtime voice, telephony, and meeting code to the unified Talk session API. Read when: You maintain a realtime voice, telephony, or meeting plugin; You are moving off the removed talk.realtime.*, talk.transcription.*, or talk.handoff.* methods.
-- [Talk Voice plugin reference](../plugins/reference/talk-voice.md) — Manage Talk voice selection (list/set). Read when: You are installing, configuring, or auditing the talk-voice plugin.
