@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Ollama vision and image description](../providers/ollama/vision.md) — Route image understanding through local or hosted Ollama vision models. Read when: You want image description through an Ollama vision model; You are configuring an image-model default for Ollama.
 - [Ollama Web Search](../providers/ollama/web-search.md) — Use Ollama as the OpenClaw web_search provider. Read when: You want Ollama to serve the web_search tool; You need the host, auth, and requirement rules for Ollama search.
 - [oMLX](../providers/omlx.md) — Use oMLX for local chat and memory embeddings on Apple Silicon. Read when: You want to use oMLX with OpenClaw; You want local memory embeddings on an Apple Silicon Mac.
 - [OpenAI](../providers/openai.md) — Use OpenAI via API keys or Codex subscription in OpenClaw. Read when: You want to use OpenAI models in OpenClaw; You want Codex subscription auth instead of API keys; You want Astra async tools, mid-turn steering, or cached reasoning changes; You need stricter GPT-5 agent execution behavior.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [StepFun](../providers/stepfun.md) — Use StepFun models with OpenClaw. Read when: You want StepFun models in OpenClaw; You need StepFun setup guidance.
 - [Synthetic](../providers/synthetic.md) — Use Synthetic's Anthropic-compatible API in OpenClaw. Read when: You want to use Synthetic as a model provider; You need a Synthetic API key or base URL setup.
 - [Telnyx](../providers/telnyx.md) — Telnyx setup for OpenAI-compatible AI inference. Read when: You want to run Telnyx-hosted models in OpenClaw; You want one OpenAI-compatible API for Telnyx AI inference.
-- [Tencent Cloud (TokenHub / TokenPlan)](../providers/tencent.md) — Tencent Cloud TokenHub and TokenPlan setup for hy4-preview. Read when: You want to use Tencent hy4-preview with OpenClaw; You need the TokenHub or TokenPlan API key setup.

@@ -5,7 +5,7 @@ Exact OpenClaw CLI command reference.
 Open only the entries relevant to the current request. Start with at most three documents.
 
 - [Accept and watch policy state](../cli/policy/attestation.md) — Policy evidence, the attestation hash tuple, and `policy watch` drift detection. Read when: You need a policy attestation hash for audit evidence; You want to accept a clean policy state and detect later drift; You are wiring policy into a CI or release gate.
-- [ACP](../cli/acp.md) — Run the ACP bridge for IDE integrations. Read when: Setting up ACP-based IDE integrations; Debugging ACP session routing to the Gateway.
+- [ACP](../cli/acp.md) — Run the ACP bridge for IDE integrations. Read when: Setting up ACP-based IDE integrations; Checking T3 Code ACP compatibility; Debugging ACP session routing to the Gateway.
 - [Agent](../cli/agent.md) — CLI reference for Gateway-backed `openclaw agent` turns and isolated `agent exec` runs. Read when: You want to run one agent turn from scripts (optionally deliver reply); You want a strict, ephemeral one-shot agent run for CI.
 - [Agents](../cli/agents.md) — CLI reference for `openclaw agents` (roles, teams, workspaces, routing, and identity). Read when: You want multiple isolated agents (workspaces + routing + auth); You want to create an agent from a role or set up a coordinated team.
 - [Approvals](../cli/approvals.md) — CLI reference for `openclaw approvals` and `openclaw exec-policy`. Read when: You want to edit exec approvals from the CLI; You need to manage allowlists on gateway or node hosts; You need to list or resolve a pending approval without a chat surface; An agent cannot run commands and you need to distinguish tool access from approvals.

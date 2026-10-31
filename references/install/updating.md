@@ -45,6 +45,23 @@ backup.
 
 ## Update implementation contract
 
+Managed systemd Gateway activation also covers packages replaced outside
+`openclaw update`. Before ordinary startup admission, the native service reader
+must identify this process as the running unit's MainPID. Only older database
+schemas trigger Doctor's exclusive maintenance, verified pre-migration backups,
+and forward migration owners. The activation adapter does not control services
+or run the full Doctor health-repair flow on normal restarts. Unverifiable,
+foreign-owned, and newer state retains its refusal and recovery guidance.
+
+Durable background exec adds an optional, first-use `durable_background_processes`
+table through the existing shared-state worker and schema owner. The candidate
+contains this addition; the installed updater needs no new protocol. Existing
+databases keep their schema version and records, and startup reads do not create
+the table. Candidate startup re-adopts retained user units without restarting
+their commands. Rollback binaries leave the additive table and systemd units
+alone; inspect and stop those units with the systemd user manager before returning
+to a binary without durable-process support.
+
 Linux managed updates run in a separate user service and slice, so an agent exec's
 descendant cleanup, Gateway restarts, and the Gateway unit's memory limit do not
 own the handoff. If its recorded helper and updater die, update status or startup
@@ -174,6 +191,22 @@ findings in update history. If readiness, inspection, or history recording fails
 the update stays accepted and the pending checks remain retryable with
 `openclaw update finish`; the result reports the next action. Migration admission,
 repairs, backup verification, and recovery fences still complete before startup.
+
+Cold transcript navigation backfill uses about ten minutes of archive work per
+Doctor invocation, finishing the current archive transaction before stopping.
+Doctor and the native update receipt report migrated and pending archive counts;
+pending navigation is a recoverable warning, so it does not fail or roll back the
+update. `openclaw update finish` retains the warning in update history. Every
+later native update runs candidate Doctor again even when database schemas are
+already current, and resumes the remaining archives. Operators can also run
+`openclaw doctor --fix`; pending archives retain their existing cold-restore path.
+
+During a native update, when plugins are unchanged and only deferred model retirement
+remains, a supporting candidate completes the second Doctor pass with the required
+config, auth, session, and cron repairs and final validation. Startup, database admission, and config
+preparation still run in full. Other pending work or incomplete discovery selects
+the full Doctor flow; older candidates and standalone `openclaw update repair`
+continue using the full pass.
 
 Stopped update and Doctor database snapshots tolerate concurrent read-only SQLite
 probes. The transient `-shm` WAL index is rebuilt privately, never copied or used
@@ -451,6 +484,12 @@ Before post-core plugin work, the updater releases its temporary Doctor database
 ownership before rechecking profile-backed requester authority. Service custody
 remains with the updater; the next Doctor acquires its own database ownership.
 This avoids refusing the updater's own policy reads during its maintenance window.
+
+Plugin lifecycle work in update finalization and repair renews its lease from a
+worker, so a blocked main thread cannot expire the lease. Native Doctor and plugin
+install/update operations share this renewal behavior. Ownership checks,
+cancellation, and release still apply. The runtime holding the lease must contain
+this fix; a newer candidate cannot change an already-running lease owner.
 
 After a Doctor child settles, the updater drains its retained handles for the
 affected shared-state database and revokes their schema admission, even when
@@ -947,11 +986,21 @@ containing the managed-helper authority fix, subsequent updates started through
 Registry package updates inspect the exact target's Node requirement before
 staging or running package lifecycle scripts. An incompatible Gateway runtime
 produces `preflight-node-runtime-incompatible`, with the target version, required
-engine range, selected Node version, and an upgrade command. If the Gateway
-service pins a Node executable, update that service definition too; changing
-the shell's Node alone does not change the service. The updater keeps the
+engine range, selected Node version, and an upgrade command. The updater prefers
+the inspected managed service's Node executable. A compatible service Node is
+retained even when a different Node on `PATH` cannot run the target. If the
+service's runtime has changed (for example, a Homebrew symlink now selects another
+version), an owned, writable service can use a compatible updater or `PATH` Node
+when the update will refresh its definition. Refusals name the service and updater
+runtimes, the `PATH` executable, and the inspected Gateway installation root. A protected
+definition or `--no-restart` still requires its pinned runtime to be compatible;
+changing the shell's Node alone does not change that service. The updater keeps the
 requested OpenClaw target and does not select another release automatically.
 Later runtime capability checks can still produce `node-runtime-preflight`.
+This selection repair must be present in the installed updater. A 2026.10.7
+driver that refuses before staging cannot obtain it from a newer candidate;
+use the [manual package-manager update](/install/updating/update-methods#alternative-manual-npm-pnpm-or-bun)
+once, preserving the installation owner and service account/state selectors.
 If the managed helper exits before acknowledging startup, the update report includes
 a bounded, redacted tail of its startup errors. The Gateway keeps serving. This
 diagnostic capture must be present in the installed updater; a newer candidate

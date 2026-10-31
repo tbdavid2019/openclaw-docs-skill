@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Gradium](../providers/gradium.md) — Use Gradium text-to-speech in OpenClaw. Read when: You want Gradium for text-to-speech; You need Gradium API key, voice, or directive token configuration.
 - [Groq](../providers/groq.md) — Groq setup (auth + model selection + Whisper transcription). Read when: You want to use Groq with OpenClaw; You need the API key env var or CLI auth choice; You are configuring Whisper audio transcription on Groq.
 - [Hugging Face (inference)](../providers/huggingface.md) — Hugging Face Inference setup (auth + model selection). Read when: You want to use Hugging Face Inference with OpenClaw; You need the HF token env var or CLI auth choice.
 - [Inworld](../providers/inworld.md) — Inworld streaming text-to-speech for OpenClaw replies. Read when: You want Inworld speech synthesis for outbound replies; You need PCM telephony or OGG_OPUS voice-note output from Inworld.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Ollama node-local inference](../providers/ollama/node-local-inference.md) — Delegate a bounded prompt to an Ollama model running on a paired node. Read when: You want an agent to run a model on a paired desktop or server node; You need the node pairing and approval steps for Ollama commands; You want to verify node commands without an agent turn.
 - [Ollama setup](../providers/ollama/setup.md) — Connect OpenClaw to Ollama: auth rules, onboarding, and cloud models through a local host. Read when: You are connecting OpenClaw to Ollama for the first time; You need the auth rules for local, LAN, remote, or cloud hosts; You want cloud and local models served through one Ollama host.
 - [Ollama troubleshooting](../providers/ollama/troubleshooting.md) — Fixes for common Ollama failures in OpenClaw. Read when: Ollama is not detected, or no models are available; You hit connection refused, garbled output, or timeouts; A WSL2 setup reboots repeatedly.
-- [Ollama vision and image description](../providers/ollama/vision.md) — Route image understanding through local or hosted Ollama vision models. Read when: You want image description through an Ollama vision model; You are configuring an image-model default for Ollama.

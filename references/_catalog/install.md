@@ -5,4 +5,4 @@ Installation, updates, migration, deployment, and uninstall.
 Choose one section by its title range, then select at most three documents from it.
 
 - [Ansible – Node.js](install-01.md) — 30 documents.
-- [Node.js compatibility – Upstash Box](install-02.md) — 15 documents.
+- [Node.js compatibility – Upstash Box](install-02.md) — 16 documents.
