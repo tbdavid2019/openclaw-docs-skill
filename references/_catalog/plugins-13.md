@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Voyage plugin reference](../plugins/reference/voyage.md) — Adds embedding provider support, including memory search. Read when: You are installing, configuring, or auditing the voyage plugin.
 - [Vydra plugin reference](../plugins/reference/vydra.md) — Adds Vydra model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vydra plugin.
 - [Web Readability plugin reference](../plugins/reference/web-readability.md) — Extract readable article content from local HTML web fetch responses. Read when: You are installing, configuring, or auditing the web-readability plugin.
 - [WhatsApp plugin reference](../plugins/reference/whatsapp.md) — OpenClaw WhatsApp channel plugin for WhatsApp Web chats. Read when: You are installing, configuring, or auditing the whatsapp plugin.

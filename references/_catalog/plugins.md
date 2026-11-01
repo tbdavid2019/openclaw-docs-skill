@@ -14,6 +14,6 @@ Choose one section by its title range, then select at most three documents from 
 - [Meta plugin reference – OpenCode plugin reference](plugins-08.md) — 30 documents.
 - [OpenRouter plugin reference – Plugin SDK capability registration](plugins-09.md) — 30 documents.
 - [Plugin SDK CLI and discovery registration – QA Lab plugin reference](plugins-10.md) — 30 documents.
-- [Qianfan plugin reference – Talk and realtime voice migration](plugins-11.md) — 30 documents.
-- [Talk Voice plugin reference – Voyage plugin reference](plugins-12.md) — 30 documents.
-- [Vydra plugin reference – Zoom meetings plugin reference](plugins-13.md) — 14 documents.
+- [Qianfan plugin reference – Synthetic plugin reference](plugins-11.md) — 30 documents.
+- [Talk and realtime voice migration – Volcengine plugin reference](plugins-12.md) — 30 documents.
+- [Voyage plugin reference – Zoom meetings plugin reference](plugins-13.md) — 15 documents.
