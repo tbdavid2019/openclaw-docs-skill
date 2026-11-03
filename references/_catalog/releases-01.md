@@ -6,6 +6,7 @@ Open only the entries relevant to the current request. Start with at most three 
 
 - [Release notes](../releases/index.md) — OpenClaw release notes, complete Markdown changelogs, and contribution records.
 - [v2026.10.1](../releases/2026.10.1.md) — Installed-skill discovery, MCP Apps and full backups, with updates across chat, native apps and automations.
+- [v2026.10.10](../releases/2026.10.10.md) — Chat Details, experimental Advisor and split mode for browser Talk.
 - [v2026.10.2](../releases/2026.10.2.md) — Upgrade and repair fixes, missing or repeated replies, long conversations and credential masking.
 - [v2026.10.3](../releases/2026.10.3.md) — Update and Doctor repairs, Mac setup, conversation continuation, Muse Wonder and MiniMax fixes.
 - [v2026.10.4](../releases/2026.10.4.md) — Update and recovery fixes, chat refresh, messaging and sign-in repairs.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.8.1: Messaging](../releases/2026.8.1/messaging.md)
 - [v2026.8.1: Models and Providers](../releases/2026.8.1/models-and-providers.md)
 - [v2026.8.1: Native Apps](../releases/2026.8.1/native-apps.md)
-- [v2026.8.1: Other Bug Fixes](../releases/2026.8.1/other-bug-fixes.md)

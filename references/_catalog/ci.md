@@ -4,6 +4,7 @@ Documentation under `ci/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Adaptive CI experiments](../ci/adaptive-testing.md) — Export test evidence and evaluate adaptive CI without changing test execution. Read when: Investigating test selection or CI cost; Exporting Vitest resource-reporter observations.
 - [CI capacity and shard weights](../ci/capacity.md) — Runner registration budget, concurrency headroom, and measured shard timings. Read when: You are tuning CI concurrency or shard counts; You need the measured timings behind shard packing.
 - [CI checkout ownership](../ci/checkout.md) — Shared checkout anchors, retry budgets, and trusted action policy. Read when: A CI checkout step failed or retried; You are changing checkout anchors or trusted action policy.
 - [CI pipeline jobs](../ci/pipeline.md) — Job graph, failure reporting, and the Control UI size budgets. Read when: You need to know which CI job owns a check; You want the order jobs run in and what blocks what; You need to satisfy or configure security-sensitive pull request review.
