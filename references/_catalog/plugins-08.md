@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Message presentation](../plugins/message-presentation.md) — Semantic message cards, charts, tables, controls, fallback text, and delivery hints for channel plugins. Read when: Adding or modifying message card, chart, table, button, or select rendering; Building a channel plugin that supports rich outbound messages; Changing message tool presentation or delivery capabilities; Debugging provider-specific card/block/component rendering regressions.
 - [Meta plugin reference](../plugins/reference/meta.md) — Adds Meta model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the meta plugin.
 - [Microsoft Foundry plugin reference](../plugins/reference/microsoft-foundry.md) — Adds Microsoft Foundry model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the microsoft-foundry plugin.
 - [Microsoft plugin reference](../plugins/reference/microsoft.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the microsoft plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Onnx plugin reference](../plugins/reference/onnx.md) — Local typed decisions using pinned ONNX classifiers. Read when: You are installing, configuring, or auditing the onnx plugin.
 - [OpenAI plugin reference](../plugins/reference/openai.md) — Adds OpenAI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the openai plugin.
 - [OpenCode Go plugin reference](../plugins/reference/opencode-go.md) — Adds OpenCode Go model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the opencode-go plugin.
-- [OpenCode plugin reference](../plugins/reference/opencode.md) — Adds OpenCode model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the opencode plugin.

@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Groq plugin reference](../plugins/reference/groq.md) — Adds Groq model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the groq plugin.
 - [Hook reference](../plugins/hooks/reference.md) — How plugin hooks register and execute, plus the complete typed hook catalog. Read when: You are wiring a typed handler and need the ordering, timeout, and failure rules; You want to know which typed hook exists for a surface; You are registering a skill lifecycle or pairing observer.
 - [How to migrate a plugin](../plugins/sdk-migration/how-to-migrate.md) — Ordered steps for moving a plugin off the removed SDK compatibility layer. Read when: You are migrating a plugin to the modern plugin SDK right now; You need the ordered steps for config, middleware, approval, and import changes.
 - [Hugging Face plugin reference](../plugins/reference/huggingface.md) — Adds Hugging Face model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the huggingface plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [LINE plugin reference](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
 - [Linux Node plugin reference](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
 - [Liquid AI plugin reference](../plugins/reference/liquid-ai.md) — Adds Liquid AI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the liquid-ai plugin.
-- [LiteLLM plugin reference](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.

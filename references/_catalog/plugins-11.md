@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [QA Lab plugin reference](../plugins/reference/qa-lab.md) — OpenClaw QA lab plugin with private debugger UI and scenario runner. Read when: You are installing, configuring, or auditing the qa-lab plugin.
 - [Qianfan plugin reference](../plugins/reference/qianfan.md) — Adds Qianfan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qianfan plugin.
 - [QQ Bot plugin reference](../plugins/reference/qqbot.md) — OpenClaw QQ Bot channel plugin for group and direct-message workflows. Read when: You are installing, configuring, or auditing the qqbot plugin.
 - [Qwen plugin reference](../plugins/reference/qwen.md) — Adds Qwen, Qwen Cloud, Model Studio, DashScope, Qwen Token Plan, Bailian Token Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qwen plugin.
@@ -15,6 +16,8 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Removal timeline](../plugins/sdk-migration/removal-timeline.md) — When deprecated plugin SDK surfaces become eligible for removal. Read when: You need the removal date or gate for an SDK subpath you import; You are planning migration work around a compatibility window.
 - [Removed surfaces and replacements](../plugins/sdk-migration/removed-surfaces.md) — Removed SDK surfaces and the replacement for each removed or deprecated API. Read when: A removed export, hook, or manifest field is breaking your plugin; You need the replacement for a specific legacy API.
 - [Requesty plugin reference](../plugins/reference/requesty.md) — Adds Requesty model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the requesty plugin.
+- [Rerank plugin reference](../plugins/reference/rerank.md) — Use any /rerank endpoint as a Decision model. Read when: You are installing, configuring, or auditing the rerank plugin.
+- [Research adapters](../plugins/research-adapters.md) — Versioned managed-research adapters over existing plugin RPC. Read when: Implementing or qualifying a managed research provider.
 - [Run Codex on another machine](../plugins/codex-harness/placement.md) — Place Codex native execution on a paired device or a cloud worker. Read when: You want Codex commands to run on another machine; You are approving the Codex node exec-server command; You are placing a Codex session on a cloud worker.
 - [Runway plugin reference](../plugins/reference/runway.md) — Adds video generation provider support. Read when: You are installing, configuring, or auditing the runway plugin.
 - [SearXNG plugin reference](../plugins/reference/searxng.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the searxng plugin.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [StepFun plugin reference](../plugins/reference/stepfun.md) — Adds StepFun, StepFun Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the stepfun plugin.
 - [SubQ](../plugins/subq.md) — Use SubQ Snap for typed decisions, not chat completions. Read when: Configuring SubQ Snap as a decision model; Using the SubQ Decisions API from OpenClaw.
 - [Subq plugin reference](../plugins/reference/subq.md) — SubQ Snap typed decisions (not a conversational model). Read when: You are installing, configuring, or auditing the subq plugin.
-- [Supervise Codex sessions](../plugins/codex-supervision.md) — Browse non-archived native Codex sessions and paginated transcripts across OpenClaw nodes. Read when: You want Codex Desktop or CLI sessions to appear in OpenClaw; You need to continue a stored or idle Codex session or archive a local one; You are exposing Codex sessions and transcript history from paired nodes.
-- [Synology Chat plugin reference](../plugins/reference/synology-chat.md) — Synology Chat channel plugin for OpenClaw channels and direct messages. Read when: You are installing, configuring, or auditing the synology-chat plugin.
-- [Synthetic plugin reference](../plugins/reference/synthetic.md) — Adds Synthetic model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the synthetic plugin.

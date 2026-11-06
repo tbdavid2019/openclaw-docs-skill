@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Exa plugin reference](../plugins/reference/exa.md) — Adds web search provider support. Read when: You are installing, configuring, or auditing the exa plugin.
 - [FaceTime plugin](../plugins/facetime.md) — Set up FaceTime voice calls with your OpenClaw agent on a Mac. Read when: You want to configure FaceTime calls with your OpenClaw agent; You need to install the native helper and configure Mac audio.
 - [Facetime plugin reference](../plugins/reference/facetime.md) — Experimental FaceTime realtime voice carrier for OpenClaw agents. Read when: You are installing, configuring, or auditing the facetime plugin.
 - [FaceTime recovery and removal](../plugins/facetime-recovery.md) — Remove FaceTime native artifacts and restore standard Mac security policy. Read when: You are uninstalling the experimental FaceTime plugin; Helper injection or the paired audio driver needs recovery.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Google Meet troubleshooting](../plugins/google-meet/troubleshooting.md) — Google Meet live test checklist and fixes for join, speech, creation, and Twilio failures. Read when: You are checking a Google Meet setup before an unattended agent joins; An agent joined a Meet call but cannot see, hear, or talk; A Twilio dial-in leg never enters the Meet room.
 - [Google plugin reference](../plugins/reference/google.md) — Adds Google, Google Gemini CLI, Google Vertex model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the google plugin.
 - [Gradium plugin reference](../plugins/reference/gradium.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the gradium plugin.
-- [Groq plugin reference](../plugins/reference/groq.md) — Adds Groq model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the groq plugin.

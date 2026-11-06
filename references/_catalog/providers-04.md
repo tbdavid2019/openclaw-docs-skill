@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Telnyx](../providers/telnyx.md) — Telnyx setup for OpenAI-compatible AI inference. Read when: You want to run Telnyx-hosted models in OpenClaw; You want one OpenAI-compatible API for Telnyx AI inference.
 - [Tencent Cloud (TokenHub / TokenPlan)](../providers/tencent.md) — Tencent Cloud TokenHub and TokenPlan setup for hy4-preview. Read when: You want to use Tencent hy4-preview with OpenClaw; You need the TokenHub or TokenPlan API key setup.
 - [Together AI](../providers/together.md) — Together AI setup (auth + model selection). Read when: You want to use Together AI with OpenClaw; You need the API key env var or CLI auth choice.
 - [Venice AI](../providers/venice.md) — Use Venice AI privacy-focused models in OpenClaw. Read when: You want privacy-focused inference in OpenClaw; You want Venice AI setup guidance.
