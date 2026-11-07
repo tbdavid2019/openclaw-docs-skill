@@ -11,9 +11,9 @@ Choose one section by its title range, then select at most three documents from 
 - [Exa plugin reference – Gradium plugin reference](plugins-05.md) — 30 documents.
 - [Groq plugin reference – Liquid AI plugin reference](plugins-06.md) — 30 documents.
 - [LiteLLM plugin reference – Message and delivery hooks](plugins-07.md) — 30 documents.
-- [Message presentation – OpenCode Go plugin reference](plugins-08.md) — 30 documents.
-- [OpenCode plugin reference – Plugin runtime state and system](plugins-09.md) — 30 documents.
-- [Plugin SDK capability registration – QA Channel plugin reference](plugins-10.md) — 30 documents.
-- [QA Lab plugin reference – Subq plugin reference](plugins-11.md) — 30 documents.
-- [Supervise Codex sessions – Voice call security and interfaces](plugins-12.md) — 30 documents.
-- [Voice call troubleshooting – Zoom meetings plugin reference](plugins-13.md) — 18 documents.
+- [Message presentation – Openclaw Id Access plugin reference](plugins-08.md) — 30 documents.
+- [OpenCode Go plugin reference – Plugin runtime model helpers](plugins-09.md) — 30 documents.
+- [Plugin runtime state and system – Provider voice capabilities](plugins-10.md) — 30 documents.
+- [QA Channel plugin reference – SubQ](plugins-11.md) — 30 documents.
+- [Subq plugin reference – Voice call realtime and streaming](plugins-12.md) — 30 documents.
+- [Voice call security and interfaces – Zoom meetings plugin reference](plugins-13.md) — 19 documents.

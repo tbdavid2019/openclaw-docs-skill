@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [QA Channel plugin reference](../plugins/reference/qa-channel.md) — OpenClaw QA synthetic channel plugin. Read when: You are installing, configuring, or auditing the qa-channel plugin.
 - [QA Lab plugin reference](../plugins/reference/qa-lab.md) — OpenClaw QA lab plugin with private debugger UI and scenario runner. Read when: You are installing, configuring, or auditing the qa-lab plugin.
 - [Qianfan plugin reference](../plugins/reference/qianfan.md) — Adds Qianfan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qianfan plugin.
 - [QQ Bot plugin reference](../plugins/reference/qqbot.md) — OpenClaw QQ Bot channel plugin for group and direct-message workflows. Read when: You are installing, configuring, or auditing the qqbot plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Sms plugin reference](../plugins/reference/sms.md) — Twilio SMS/MMS channel plugin for OpenClaw messages. Read when: You are installing, configuring, or auditing the sms plugin.
 - [StepFun plugin reference](../plugins/reference/stepfun.md) — Adds StepFun, StepFun Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the stepfun plugin.
 - [SubQ](../plugins/subq.md) — Use SubQ Snap for typed decisions, not chat completions. Read when: Configuring SubQ Snap as a decision model; Using the SubQ Decisions API from OpenClaw.
-- [Subq plugin reference](../plugins/reference/subq.md) — SubQ Snap typed decisions (not a conversational model). Read when: You are installing, configuring, or auditing the subq plugin.
