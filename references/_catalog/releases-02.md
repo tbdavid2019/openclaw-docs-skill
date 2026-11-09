@@ -4,6 +4,7 @@ Documentation under `releases/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [v2026.8.1: Models and Providers](../releases/2026.8.1/models-and-providers.md)
 - [v2026.8.1: Native Apps](../releases/2026.8.1/native-apps.md)
 - [v2026.8.1: Other Bug Fixes](../releases/2026.8.1/other-bug-fixes.md)
 - [v2026.8.1: Plugins and Integrations](../releases/2026.8.1/plugins-and-integrations.md)
