@@ -18,7 +18,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Automation](_catalog/automation.md) | Cron, hooks, tasks, standing orders, and webhooks | 19 |
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 110 |
 | [Ci](_catalog/ci.md) | Documentation under `ci/` | 20 |
-| [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 101 |
+| [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 102 |
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 82 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
 | [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 162 |
