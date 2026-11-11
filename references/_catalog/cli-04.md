@@ -4,6 +4,7 @@ Exact OpenClaw CLI command reference.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Transports and OAuth](../cli/mcp/transports.md) — Stdio, SSE/HTTP, and Streamable HTTP transport fields plus the MCP OAuth workflow. Read when: Choosing a transport for a saved MCP server; Looking up a transport config field; Running or repairing the MCP OAuth login flow.
 - [Triage](../cli/triage.md) — CLI reference for `openclaw triage` (sanitized diagnostics and agent handoff). Read when: OpenClaw is misbehaving and you want an agent-ready debugging prompt; An update failed and you want a local coding agent to repair it; You need a sanitized diagnostics bundle without starting an agent.
 - [Uninstall and update plugins](../cli/plugins/uninstall-and-update.md) — What `plugins uninstall` removes, how `plugins update` resolves sources, channels, pins, and integrity drift, and reloading edited plugins. Read when: You want to remove a plugin and know exactly what uninstall touches; You want to update a plugin and understand pin, channel, and integrity rules; You want to reload an edited plugin without restarting the Gateway.
 - [Uninstall CLI](../cli/uninstall.md) — CLI reference for `openclaw uninstall` (remove gateway service + local data). Read when: You want to remove the gateway service and/or local state; You want a dry-run first.
