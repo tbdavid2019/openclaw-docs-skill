@@ -4,6 +4,7 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [ClawRouter plugin reference](../plugins/reference/clawrouter.md) — Adds ClawRouter model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the clawrouter plugin.
 - [Clickclack plugin reference](../plugins/reference/clickclack.md) — OpenClaw ClickClack channel plugin. Read when: You are installing, configuring, or auditing the clickclack plugin.
 - [Cloudflare](../plugins/cloudflare.md) — Configure Cloudflare R2 as an encrypted OpenClaw storage location. Read when: You want to store OpenClaw artifacts in Cloudflare R2; You need to configure an R2 bucket, credentials, or jurisdiction; You are diagnosing R2 storage access.
 - [Cloudflare AI Gateway plugin reference](../plugins/reference/cloudflare-ai-gateway.md) — Adds Cloudflare AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the cloudflare-ai-gateway plugin.
@@ -33,4 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Codex restricted turns](../plugins/codex-harness-reference/restricted-turns.md) — When a tool policy restricts the Codex native surface, and what ring zero adds. Read when: You are setting a tool allow or deny policy for Codex; You need the audited safe-deny tool names; You are debugging a turn with no native Code Mode.
 - [Codex routing and deployment](../plugins/codex-harness/routing.md) — Choose which OpenAI routes select Codex and shape the deployment around them. Read when: You need to know which model refs select the Codex runtime; You want to require Codex for execution; You are configuring a mixed-provider fleet.
 - [Codex runtime behavior](../plugins/codex-harness/runtime-behavior.md) — Dynamic tools, web search, image loading, turn liveness, and runtime boundaries. Read when: You want to know which OpenClaw tools reach a Codex turn; You are debugging turn liveness or parallel chats; You need the ownership split between OpenClaw and Codex.
-- [Codex runtime v1 support contract](../plugins/codex-harness-runtime/v1-support-contract.md) — What is and is not supported in Codex runtime v1, with the reason for each boundary. Read when: You need the Codex runtime v1 support contract; You are checking whether a plugin surface works on Codex turns.

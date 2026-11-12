@@ -4,6 +4,9 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Ollama node-local inference](../providers/ollama/node-local-inference.md) — Delegate a bounded prompt to an Ollama model running on a paired node. Read when: You want an agent to run a model on a paired desktop or server node; You need the node pairing and approval steps for Ollama commands; You want to verify node commands without an agent turn.
+- [Ollama setup](../providers/ollama/setup.md) — Connect OpenClaw to Ollama: auth rules, onboarding, and cloud models through a local host. Read when: You are connecting OpenClaw to Ollama for the first time; You need the auth rules for local, LAN, remote, or cloud hosts; You want cloud and local models served through one Ollama host.
+- [Ollama troubleshooting](../providers/ollama/troubleshooting.md) — Fixes for common Ollama failures in OpenClaw. Read when: Ollama is not detected, or no models are available; You hit connection refused, garbled output, or timeouts; A WSL2 setup reboots repeatedly.
 - [Ollama vision and image description](../providers/ollama/vision.md) — Route image understanding through local or hosted Ollama vision models. Read when: You want image description through an Ollama vision model; You are configuring an image-model default for Ollama.
 - [Ollama Web Search](../providers/ollama/web-search.md) — Use Ollama as the OpenClaw web_search provider. Read when: You want Ollama to serve the web_search tool; You need the host, auth, and requirement rules for Ollama search.
 - [oMLX](../providers/omlx.md) — Use oMLX for local chat and memory embeddings on Apple Silicon. Read when: You want to use oMLX with OpenClaw; You want local memory embeddings on an Apple Silicon Mac.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Rerank (Decision models)](../providers/rerank.md) — Use any /rerank endpoint (vLLM, TEI, Infinity, Cohere, Jina, Voyage) as a Decision model. Read when: You already run a reranker and want to use it as a Decision model; You want a local, keyless Decision model for the Knowledge recall gate.
 - [Runway](../providers/runway.md) — Runway video generation setup in OpenClaw. Read when: You want to use Runway video generation in OpenClaw; You need the Runway API key/env setup; You want to make Runway the default video provider.
 - [SenseAudio](../providers/senseaudio.md) — SenseAudio batch speech-to-text for inbound voice notes. Read when: You want SenseAudio speech-to-text for audio attachments; You need the SenseAudio API key env var or audio config path.
-- [SGLang](../providers/sglang.md) — Run OpenClaw with SGLang (OpenAI-compatible self-hosted server). Read when: You want to run OpenClaw against a local SGLang server; You want OpenAI-compatible /v1 endpoints with your own models.
-- [StepFun](../providers/stepfun.md) — Use StepFun models with OpenClaw. Read when: You want StepFun models in OpenClaw; You need StepFun setup guidance.
-- [Synthetic](../providers/synthetic.md) — Use Synthetic's Anthropic-compatible API in OpenClaw. Read when: You want to use Synthetic as a model provider; You need a Synthetic API key or base URL setup.

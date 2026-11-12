@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Google plugin reference](../plugins/reference/google.md) — Adds Google, Google Gemini CLI, Google Vertex model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the google plugin.
+- [Gradium plugin reference](../plugins/reference/gradium.md) — Adds text-to-speech provider support. Read when: You are installing, configuring, or auditing the gradium plugin.
 - [Groq plugin reference](../plugins/reference/groq.md) — Adds Groq model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the groq plugin.
 - [Hook reference](../plugins/hooks/reference.md) — How plugin hooks register and execute, plus the complete typed hook catalog. Read when: You are wiring a typed handler and need the ordering, timeout, and failure rules; You want to know which typed hook exists for a surface; You are registering a skill lifecycle or pairing observer.
 - [How to migrate a plugin](../plugins/sdk-migration/how-to-migrate.md) — Ordered steps for moving a plugin off the removed SDK compatibility layer. Read when: You are migrating a plugin to the modern plugin SDK right now; You need the ordered steps for config, middleware, approval, and import changes.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Knowledge tools](../plugins/knowledge/tools.md) — Knowledge agent tools: inputs, defaults, pagination, response limits, remembering, structured authoring, and attachments. Read when: You are calling knowledge_* tools directly or writing a skill that uses them; You need the pagination, limit, or response-budget rules for Knowledge reads; You are authoring claims, relationships, or page edits through tools.
 - [Levanto plugin reference](../plugins/reference/levanto.md) — Native Yes/No, Choice, Scale, Sort, and Tags decisions with explicit abstention. Read when: You are installing, configuring, or auditing the levanto plugin.
 - [LINE plugin reference](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
-- [Linux Node plugin reference](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
-- [Liquid AI plugin reference](../plugins/reference/liquid-ai.md) — Adds Liquid AI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the liquid-ai plugin.

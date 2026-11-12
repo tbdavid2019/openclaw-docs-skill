@@ -4,6 +4,9 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Provider model catalogs](../plugins/sdk-provider-plugins/model-catalogs.md) — Live model discovery, catalog helpers, and provider-owned pricing normalization. Read when: You are opting a provider into shared live model discovery; You need the liveModelDiscovery contract, cache, and failure rules; You are normalizing a provider-owned pricing feed; You want the narrower single-provider plugin entry helper.
+- [Provider runtime hooks and catalogs](../plugins/architecture-internals/provider-hooks.md) — The provider hook order table, worked provider example, bundled hook shapes, and model catalog registration. Read when: Implementing provider runtime hooks; You need the hook order and the decision guide for a model provider plugin; You are publishing model catalog rows from a plugin.
+- [Provider voice capabilities](../plugins/sdk-provider-plugins/voice-and-audio.md) — Speech, realtime transcription, realtime voice, and media understanding provider capabilities. Read when: You are adding text-to-speech to a provider plugin; You are implementing realtime transcription or realtime voice; You need the realtime voice mark, tool-result, and delegation contract; You are registering a media understanding provider.
 - [QA Channel plugin reference](../plugins/reference/qa-channel.md) — OpenClaw QA synthetic channel plugin. Read when: You are installing, configuring, or auditing the qa-channel plugin.
 - [QA Lab plugin reference](../plugins/reference/qa-lab.md) — OpenClaw QA lab plugin with private debugger UI and scenario runner. Read when: You are installing, configuring, or auditing the qa-lab plugin.
 - [Qianfan plugin reference](../plugins/reference/qianfan.md) — Adds Qianfan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the qianfan plugin.
@@ -31,6 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Slack huddles plugin](../plugins/slack-huddles.md) — Slack huddles plugin: join active huddles through a signed-in Chrome user account. Read when: You want an OpenClaw agent to join a Slack huddle; You need to set up the dedicated Slack user or understand manual actions.
 - [Slack huddles plugin reference](../plugins/reference/slack-huddles.md) — Join Slack huddles through a dedicated Slack user in Chrome. Read when: You are installing, configuring, or auditing the slack-huddles plugin.
 - [Slack plugin reference](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
-- [Sms plugin reference](../plugins/reference/sms.md) — Twilio SMS/MMS channel plugin for OpenClaw messages. Read when: You are installing, configuring, or auditing the sms plugin.
-- [StepFun plugin reference](../plugins/reference/stepfun.md) — Adds StepFun, StepFun Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the stepfun plugin.
-- [SubQ](../plugins/subq.md) — Use SubQ Snap for typed decisions, not chat completions. Read when: Configuring SubQ Snap as a decision model; Using the SubQ Decisions API from OpenClaw.
