@@ -4,7 +4,7 @@ Documentation under `reference/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Per-person and companion storage](../reference/database-schemas/personal-data.md) — Where personal GitHub connections, personal model accounts, and Apple companion journals live. Read when: Checking where per-person credentials and selections are stored; Understanding Apple companion delivery journals and their migration behaviour.
+- [Per-person and companion storage](../reference/database-schemas/personal-data.md) — Where personal GitHub connections, personal model accounts, Apple companion journals, and native chat drafts live. Read when: Checking where per-person credentials and selections are stored; Understanding Apple companion delivery journals and their migration behaviour; Changing how the iOS or macOS chat composer keeps unsent drafts.
 - [PR GitHub transport](../reference/scripts/github-transport.md) — GitHub observations, publication, and protected Octopool dispatch for scripts/pr. Read when: Changing GitHub observation, publication, or protected PR merge transport.
 - [PR merge admission](../reference/scripts/merge-admission.md) — Main movement, mergeability, transport, and receipt contracts for scripts/pr. Read when: Changing PR merge admission, main-drift handling, or merge receipt verification.
 - [PR merge recovery](../reference/scripts/merge-recovery.md) — Retained merge outcomes, investigated recovery, and ownership-checked completion. Read when: Recovering a failed, accepted, or uncertain PR merge or maintaining its cleanup lifecycle.
