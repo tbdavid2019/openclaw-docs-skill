@@ -23,7 +23,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
 | [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 162 |
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 42 |
-| [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 46 |
+| [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 47 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 25 |
 | [Platforms](_catalog/platforms.md) | Platform-specific setup and operation | 26 |

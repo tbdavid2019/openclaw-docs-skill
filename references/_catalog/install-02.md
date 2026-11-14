@@ -4,6 +4,7 @@ Installation, updates, migration, deployment, and uninstall.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Node.js](../install/node.md) — Install and configure Node.js for OpenClaw - version requirements, install options, and PATH troubleshooting. Read when: You need to install Node.js before installing OpenClaw; You installed OpenClaw but `openclaw` is command not found; npm install -g fails with permissions or PATH issues.
 - [Node.js compatibility](../install/node-compatibility.md) — Supported Node.js versions, SQLite requirements, platform limits, and release history. Read when: You need to check which Node.js versions OpenClaw supports; You want to understand a Node.js minimum version or platform support change.
 - [Northflank](../install/northflank.mdx) — Deploy OpenClaw on Northflank with one-click template. Read when: Deploying OpenClaw to Northflank; You want a one-click cloud deploy with browser-based Control UI.
 - [NVIDIA Jetson](../install/jetson.md) — Jetson-specific preparation for hosting an OpenClaw Gateway on Linux ARM64. Read when: Setting up OpenClaw on an NVIDIA Jetson; Checking Jetson power, memory, or headless service behavior.
