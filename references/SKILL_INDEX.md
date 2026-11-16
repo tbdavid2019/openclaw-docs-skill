@@ -19,7 +19,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Channels](_catalog/channels.md) | Messaging channel setup, routing, and troubleshooting | 110 |
 | [Ci](_catalog/ci.md) | Documentation under `ci/` | 20 |
 | [Cli](_catalog/cli.md) | Exact OpenClaw CLI command reference | 103 |
-| [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 82 |
+| [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 83 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
 | [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 162 |
 | [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 42 |

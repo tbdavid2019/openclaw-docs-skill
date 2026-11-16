@@ -4,6 +4,7 @@ Architecture, agents, sessions, memory, models, and routing.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Session controls](../concepts/active-memory/session-controls.md) — Pause or resume active memory per session or globally, and surface its status, debug summary, and raw hidden prefix in a chat. Read when: You want to pause active memory for one conversation; You want to see what active memory injected.
 - [Session management](../concepts/session.md) — How OpenClaw manages conversation sessions. Read when: You want to understand session routing and isolation; You want to configure DM scope for multi-user setups; You are debugging daily or idle session resets.
 - [Session pruning](../concepts/session-pruning.md) — Trimming old tool results to keep context lean and caching efficient. Read when: You want to reduce context growth from tool outputs; You want to understand Anthropic prompt cache optimization.
 - [Session search](../concepts/session-search.md) — Search past session transcripts and reopen the matching context. Read when: You need to find something discussed in an earlier session; You want to understand session search privacy or indexing.
