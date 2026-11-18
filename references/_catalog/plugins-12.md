@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Slack huddles plugin reference](../plugins/reference/slack-huddles.md) — Join Slack huddles through a dedicated Slack user in Chrome. Read when: You are installing, configuring, or auditing the slack-huddles plugin.
+- [Slack plugin reference](../plugins/reference/slack.md) — OpenClaw Slack channel plugin for channels, DMs, commands, and app events. Read when: You are installing, configuring, or auditing the slack plugin.
 - [Sms plugin reference](../plugins/reference/sms.md) — Twilio SMS/MMS channel plugin for OpenClaw messages. Read when: You are installing, configuring, or auditing the sms plugin.
 - [StepFun plugin reference](../plugins/reference/stepfun.md) — Adds StepFun, StepFun Plan model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the stepfun plugin.
 - [SubQ](../plugins/subq.md) — Use SubQ Snap for typed decisions, not chat completions. Read when: Configuring SubQ Snap as a decision model; Using the SubQ Decisions API from OpenClaw.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Venice plugin reference](../plugins/reference/venice.md) — Adds Venice model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the venice plugin.
 - [Vercel AI Gateway plugin reference](../plugins/reference/vercel-ai-gateway.md) — Adds Vercel AI Gateway model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vercel-ai-gateway plugin.
 - [Visitor Access plugin reference](../plugins/reference/visitor-access.md) — Manage expiring visitor grants through one Cloudflare Access email policy. Read when: You are installing, configuring, or auditing the visitor-access plugin.
-- [vLLM plugin reference](../plugins/reference/vllm.md) — Adds vLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the vllm plugin.
-- [Voice call configuration](../plugins/voice-call/configuration.md) — Plugin config keys, the call owner, the config reference table, and session scope. Read when: You are setting up voice-call plugin config keys; You need the default for a voice-call config key; You are choosing how call sessions are scoped.

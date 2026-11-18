@@ -8,12 +8,12 @@ Choose one section by its title range, then select at most three documents from 
 - [Autoreview plugin reference – Chutes plugin reference](plugins-02.md) — 30 documents.
 - [ClawRouter plugin reference – Codex runtime behavior](plugins-03.md) — 30 documents.
 - [Codex runtime v1 support contract – Durable channel ingress](plugins-04.md) — 30 documents.
-- [Elevenlabs plugin reference – Google Meet troubleshooting](plugins-05.md) — 30 documents.
-- [Google plugin reference – LINE plugin reference](plugins-06.md) — 30 documents.
-- [Linux Node plugin reference – Memory wiki](plugins-07.md) — 30 documents.
-- [Memory Wiki plugin reference – Onepassword plugin reference](plugins-08.md) — 30 documents.
-- [Onnx plugin reference – Plugin runtime Gateway and nodes](plugins-09.md) — 30 documents.
-- [Plugin runtime helpers – Provider media and search](plugins-10.md) — 30 documents.
-- [Provider model catalogs – Slack plugin reference](plugins-11.md) — 30 documents.
-- [Sms plugin reference – Voice call configuration](plugins-12.md) — 30 documents.
-- [Voice call plugin – Zoom meetings plugin reference](plugins-13.md) — 22 documents.
+- [Elevenlabs plugin reference – Google Meet tool and modes](plugins-05.md) — 30 documents.
+- [Google Meet transports and hosts – Knowledge tools](plugins-06.md) — 30 documents.
+- [Levanto plugin reference – Memory LanceDB](plugins-07.md) — 30 documents.
+- [Memory Lancedb plugin reference – Ollama plugin reference](plugins-08.md) — 30 documents.
+- [Omlx plugin reference – Plugin runtime compatibility](plugins-09.md) — 30 documents.
+- [Plugin runtime config and utilities – Provider hook families](plugins-10.md) — 30 documents.
+- [Provider hook wiring – Slack huddles plugin](plugins-11.md) — 30 documents.
+- [Slack huddles plugin reference – Visitor Access plugin reference](plugins-12.md) — 30 documents.
+- [vLLM plugin reference – Zoom meetings plugin reference](plugins-13.md) — 24 documents.

@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Levanto plugin reference](../plugins/reference/levanto.md) — Native Yes/No, Choice, Scale, Sort, and Tags decisions with explicit abstention. Read when: You are installing, configuring, or auditing the levanto plugin.
+- [LINE plugin reference](../plugins/reference/line.md) — OpenClaw LINE channel plugin for LINE Bot API chats. Read when: You are installing, configuring, or auditing the line plugin.
 - [Linux Node plugin reference](../plugins/reference/linux-node.md) — Desktop notifications, camera capture, and location for Linux node hosts. Read when: You are installing, configuring, or auditing the linux-node plugin.
 - [Liquid AI plugin reference](../plugins/reference/liquid-ai.md) — Adds Liquid AI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the liquid-ai plugin.
 - [LiteLLM plugin reference](../plugins/reference/litellm.md) — Adds LiteLLM model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the litellm plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Meeting plugins](../plugins/meeting-plugins.md) — Choose and configure Google Meet, Microsoft Teams, Slack huddles, or Zoom participation. Read when: You want an OpenClaw agent to join a video meeting; You are choosing between the Google Meet, Microsoft Teams meetings, Slack huddles, and Zoom meetings plugins; You need the shared Chrome, virtual-audio, or meeting-mode setup.
 - [Memory Core plugin reference](../plugins/reference/memory-core.md) — Adds agent-callable tools. Read when: You are installing, configuring, or auditing the memory-core plugin.
 - [Memory LanceDB](../plugins/memory-lancedb.md) — Configure the official external LanceDB memory plugin, including local Ollama-compatible embeddings. Read when: You are configuring the memory-lancedb plugin; You want LanceDB-backed long-term memory with auto-recall or auto-capture; You are using local OpenAI-compatible embeddings such as Ollama.
-- [Memory Lancedb plugin reference](../plugins/reference/memory-lancedb.md) — OpenClaw LanceDB-backed long-term memory plugin with auto-recall, auto-capture, and vector search. Read when: You are installing, configuring, or auditing the memory-lancedb plugin.
-- [Memory wiki](../plugins/memory-wiki.md) — memory-wiki: compiled knowledge vault with provenance, claims, dashboards, and bridge mode. Read when: You want persistent knowledge beyond plain MEMORY.md notes; You are configuring the bundled memory-wiki plugin; You need separate wiki vaults for agents in one Gateway; You want to understand wiki_search, wiki_get, or bridge mode.

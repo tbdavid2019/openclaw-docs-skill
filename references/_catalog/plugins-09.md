@@ -4,6 +4,8 @@ Plugin architecture, SDKs, and bundled integrations.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Omlx plugin reference](../plugins/reference/omlx.md) — Adds Omlx model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the omlx plugin.
+- [Onepassword plugin reference](../plugins/reference/onepassword.md) — 1Password SecretRef resolver and curated agent broker with approval policy and SQLite audit history. Read when: You are installing, configuring, or auditing the onepassword plugin.
 - [Onnx plugin reference](../plugins/reference/onnx.md) — Local typed decisions using pinned ONNX classifiers. Read when: You are installing, configuring, or auditing the onnx plugin.
 - [OpenAI plugin reference](../plugins/reference/openai.md) — Adds OpenAI model provider support to OpenClaw. Read when: You are installing, configuring, or auditing the openai plugin.
 - [Openclaw Id Access plugin reference](../plugins/reference/openclaw-id-access.md) — Choose who can reach this claw remotely: invite people, approve their requests, and see and remove members. Read when: You are installing, configuring, or auditing the openclaw-id-access plugin.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [Plugin runtime background work](../plugins/sdk-runtime/background-work.md) — Hook agent turns and subagent runs. Read when: You are dispatching an agent turn for untrusted external content; You are launching or waiting on a background subagent run.
 - [Plugin runtime channel helpers](../plugins/sdk-runtime/channel.md) — Channel-specific runtime helper groups for chunking, routing, pairing, media, and mentions. Read when: You are building or maintaining a channel plugin; You need channel media download, mention policy, or inbound kernel helpers.
 - [Plugin runtime compatibility](../plugins/runtime-compatibility.md) — Inspect plugin and dependency runtime hazards without activating the plugin. Read when: You are preparing a plugin for Node, Bun, or a compiled desktop host; An install reports a runtime compatibility warning.
-- [Plugin runtime config and utilities](../plugins/sdk-runtime/config-and-utilities.md) — Runtime config reads and writes, plus the shared process, error, and model-picker utilities. Read when: You are reading or writing OpenClaw config from plugin code; You need a shared process, error, or timing utility instead of a host import; You are wiring model-picker persistence or bot-loop protection.
-- [Plugin runtime Gateway and nodes](../plugins/sdk-runtime/gateway-and-nodes.md) — In-process Gateway requests, paired node invocation, and Gateway service events. Read when: You are calling another Gateway method from a trusted plugin; You are invoking or streaming to a command on a paired node; You are registering a long-lived Gateway service.
