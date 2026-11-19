@@ -193,9 +193,16 @@ python3 scripts/generate_index.py --check
 每日文件快照由 GitHub 提供。安裝器改版時才發佈新的 npm 版本。可先執行 `npm ci --ignore-scripts`
 及 `npm pack` 產生 tarball，測試後用有發佈權限的 npm 帳號執行
 `npm publish <tarball> --access public` 上架首版。
-接著為 `tbdavid2019/openclaw-docs-skill` 的 `publish-npm.yml` 設定 npm Trusted Publishing，
-並允許 `npm publish`。之後更新套件版本與 lockfile，推送符合 `v<version>` 的 tag，
-發佈流程會先測試打包好的安裝器。 [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)
+
+準備下一版時，先更新套件版本與 lockfile，再用 npm CLI 11.15 以上設定 Trusted Publishing。
+
+```bash
+npm trust github openclaw-docs-skill --repo tbdavid2019/openclaw-docs-skill \
+  --file publish-npm.yml --allow-publish
+```
+
+推送符合 `v<version>` 的 tag 後，工作流程會測試打包好的安裝器並上架。
+首次 OIDC 發佈須在建立信任設定後兩天內成功。 [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)
 
 ## 文件來源
 

@@ -204,10 +204,19 @@ Do not hand-edit synchronized documents, `references/SOURCE.json`,
 Daily documentation updates are served from GitHub. Create a new npm version when the
 installer changes. Use `npm ci --ignore-scripts` and `npm pack` to build the package locally.
 For the first public release, test the tarball and run `npm publish <tarball> --access public`
-with a verified npm account. Then configure npm Trusted Publishing for
-`tbdavid2019/openclaw-docs-skill`, workflow `publish-npm.yml`, with `npm publish` allowed.
-For subsequent releases, update the version and lockfile, then push a tag matching `v<version>`.
-The release workflow tests the packed CLI before publishing it. [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)
+with a verified npm account.
+
+For the next release, update the version and lockfile first. When you are ready to publish,
+register the workflow as a trusted publisher with npm CLI 11.15 or later:
+
+```bash
+npm trust github openclaw-docs-skill --repo tbdavid2019/openclaw-docs-skill \
+  --file publish-npm.yml --allow-publish
+```
+
+Push a tag matching `v<version>` to test and publish the packed CLI. The first successful
+OIDC publish must complete within two days of creating the trust configuration.
+[npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)
 
 ## Documentation source
 
