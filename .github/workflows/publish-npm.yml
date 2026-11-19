@@ -1,0 +1,39 @@
+name: Publish npm installer
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+      - name: Validate release tag
+        run: |
+          version=$(node -p 'require("./package.json").version')
+          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
+            echo "Expected release tag v$version, got $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
+      - run: npm ci --ignore-scripts
+      - name: Pack and smoke-test installer
+        run: |
+          archive="$RUNNER_TEMP/$(npm pack --pack-destination "$RUNNER_TEMP")"
+          project=$(mktemp -d)
+          cd "$project"
+          npx --yes --package "$archive" openclaw-docs-skill --agent codex
+          test -s .agents/skills/openclaw-docs/references/SOURCE.json
+          echo "NPM_ARCHIVE=$archive" >> "$GITHUB_ENV"
+      - name: Publish npm package
+        run: npm publish "$NPM_ARCHIVE" --access public

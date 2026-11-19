@@ -1,7 +1,7 @@
 # OpenClaw documentation router
 
-Use this compact router only for broad topics. For an exact error message, CLI
-command, or configuration key, search `references/` directly instead.
+Use this compact router for unclear or cross-topic questions. For an exact error
+message, command, or configuration key, search the relevant reference directory first.
 
 Open one topic catalog, then load at most three relevant documents. Expand only
 when those documents do not answer the request.

@@ -17,21 +17,39 @@ and generates compact topic catalogs for progressive disclosure.
 
 ## Progressive disclosure
 
-The full documentation set is intentionally not injected into the model context.
+The agent starts with `SKILL.md` and reads only the sections relevant to the task. Common tasks
+such as Gateway health checks and Telegram setup link directly to the upstream sections.
 
-```text
-SKILL.md
-  → compact references/SKILL_INDEX.md
-  → one references/_catalog/<topic>.md
-  → at most 1–3 relevant documents
-  → only the relevant sections
-```
-
-Exact errors, CLI commands, and configuration keys bypass the catalog and are searched directly
-across `references/`. The generated catalogs use each upstream page's `title`, `summary`, and
-`read_when` metadata.
+For an exact error, CLI command, or configuration key, the agent searches the relevant local
+topic directory first and expands the search as needed. Broad questions start at a topic
+catalog. The compact `references/SKILL_INDEX.md` helps find a catalog when the topic is unclear.
+Catalog entries use upstream `title`, `summary`, and `read_when` metadata to narrow the search
+to at most three candidate documents at a time.
 
 ## Install
+
+### Via npm
+
+Once the npm package is published, run this command from your project with Node.js 22.20 or later
+and Git. The default Codex destination is `.agents/skills/openclaw-docs`.
+
+```bash
+npx -y openclaw-docs-skill@latest
+```
+
+Use `--global` to install in your user directory or `--agent` to select another host.
+[Supported agents](https://github.com/vercel-labs/skills/blob/main/docs/agents.md)
+
+```bash
+npx -y openclaw-docs-skill@latest --global
+npx -y openclaw-docs-skill@latest --agent openclaw
+```
+
+Re-run the same command with the same options to refresh an npm-managed installation. The
+installer fetches the latest synchronized GitHub snapshot, verifies it, and prints the installed
+path, skill repository commit, and upstream documentation commit. Daily GitHub syncs are
+available immediately to new installs and explicit updates. The agent reads the installed
+snapshot locally during normal use.
 
 ### Via SkillHub (CLI)
 
@@ -50,8 +68,8 @@ npx skillhub install tbdavid2019/openclaw-docs-skill/openclaw-docs -g
 
 ### Via Git Clone
 
-Install as a Git checkout so it can be updated reliably. Replace the destination with the skills
-directory used by your agent:
+Use Git checkout mode if you want a working copy of the repository. Replace the destination with
+the skills directory used by your agent.
 
 ```bash
 git clone https://github.com/tbdavid2019/openclaw-docs-skill.git \
@@ -94,18 +112,14 @@ The copied snapshot remains usable but cannot update itself as a Git checkout.
 
 When a user gives you this repository URL and asks you to install the skill:
 
-1. Detect the host and resolve its actual skills directory before writing. For Codex, prefer
-   `$CODEX_HOME/skills/openclaw-docs` when `CODEX_HOME` is set; otherwise use
-   `~/.codex/skills/openclaw-docs`. A typical Antigravity destination is
-   `~/.gemini/antigravity/skills/openclaw-docs`. For another host, inspect its configuration or
-   ask the user instead of guessing.
-2. Inspect the destination. If it does not exist, clone this repository with the final directory
-   name `openclaw-docs`. If it is already this repository's Git checkout, keep it. Do not overwrite
-   a non-Git directory; explain the conflict and ask the user how to proceed.
-3. You MUST run the installer before verification:
-   `bash <skill-directory>/scripts/install-skill.sh`. For an existing checkout, the installer MUST
-   successfully complete `git pull --ff-only`; a pull or validation failure means the installation
-   or update failed. Run the installer after a new clone as well so the same validation is applied.
+1. Identify the host and whether the user wants a project or global installation. Check how any
+   existing installation is managed. Keep its original update method and resolve any conflicting
+   destination with the user.
+2. For a new npm installation, or to refresh one, run `npx -y openclaw-docs-skill@latest` with
+   the appropriate `--agent` and `--global` options. For a SkillHub-managed copy, use SkillHub.
+3. For a Git checkout, verify the repository and destination. You MUST run the installer
+   `bash <skill-directory>/scripts/install-skill.sh` after cloning or to update an existing
+   checkout. The installer must complete `git pull --ff-only` and validation successfully.
 4. Read the installed `SKILL.md`. Do not run `scripts/sync-docs.sh` or
    `scripts/generate_index.py` as part of installation. They are maintainer tools; an installation
    must use the repository's committed snapshot.
@@ -115,7 +129,7 @@ When a user gives you this repository URL and asks you to install the skill:
    repository commit, and the upstream documentation commit. The installer prints all three.
 7. Tell the user to reload or restart the host if it discovers skills only at startup. Then test
    discovery with: `Use $openclaw-docs to explain how to check OpenClaw Gateway health.`
-8. Do not claim installation success until pull, validation, commit reporting, and any required
+8. Do not claim installation success until installation or update, validation, commit reporting, and any required
    reload instruction have completed. Never print credentials or unrelated configuration values.
 
 Copy-paste installation request:
@@ -125,8 +139,8 @@ Install the following repository as the OpenClaw documentation skill:
 https://github.com/tbdavid2019/openclaw-docs-skill
 
 Follow README.md's "AI Agent Installation Contract":
-1. Clone it into your skills directory with the final directory name openclaw-docs.
-2. Run scripts/install-skill.sh. An existing checkout must complete git pull --ff-only.
+1. Identify my host and install at the appropriate scope. Prefer the npm installer for a new installation.
+2. For an existing installation, use the same method that installed it.
 3. Read SKILL.md.
 4. Verify references/SOURCE.json, references/SKILL_INDEX.md, and references/_catalog/.
 5. Report the installation directory, Skill repository commit, and upstream documentation commit.
@@ -136,8 +150,7 @@ Use $openclaw-docs and the locally synchronized official OpenClaw documentation 
 to check Gateway health. Cite the local document paths and distinguish documentation facts from
 your inferences.
 
-The GitHub repository is synchronized daily, but an installed checkout does not update itself.
-Re-run the installer, which performs git pull --ff-only, before relying on the latest snapshot.
+The GitHub repository is synchronized daily. Re-run the matching installer to refresh the local snapshot.
 ```
 
 ## Repository structure
@@ -145,13 +158,16 @@ Re-run the installer, which performs git pull --ff-only, before relying on the l
 ```text
 openclaw-docs-skill/
 ├── SKILL.md
+├── package.json
 ├── agents/openai.yaml
 ├── scripts/
+│   ├── install-npm.mjs
 │   ├── install-skill.sh
 │   ├── sync-docs.sh
 │   └── generate_index.py
 ├── tests/test_repo.py
 ├── .github/workflows/auto-sync.yml
+├── .github/workflows/publish-npm.yml
 └── references/
     ├── SOURCE.json
     ├── SKILL_INDEX.md
@@ -182,6 +198,16 @@ count, missing required page, or invalid generated index leaves the current refe
 
 Do not hand-edit synchronized documents, `references/SOURCE.json`,
 `references/SKILL_INDEX.md`, or `references/_catalog/`.
+
+### Release the npm installer
+
+Daily documentation updates are served from GitHub. Create a new npm version when the
+installer changes. Use `npm ci --ignore-scripts` and `npm pack` to build the package locally.
+For the first public release, test the tarball and run `npm publish <tarball> --access public`
+with a verified npm account. Then configure npm Trusted Publishing for
+`tbdavid2019/openclaw-docs-skill`, workflow `publish-npm.yml`, with `npm publish` allowed.
+For subsequent releases, update the version and lockfile, then push a tag matching `v<version>`.
+The release workflow tests the packed CLI before publishing it. [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)
 
 ## Documentation source
 

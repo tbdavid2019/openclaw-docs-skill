@@ -16,20 +16,34 @@
 
 ## 逐層披露
 
-完整文件不會一次塞進模型上下文：
+Agent 從 `SKILL.md` 開始，只讀取任務相關段落。Gateway 健康檢查和 Telegram 設定
+等常見任務有直達連結。
 
-```text
-SKILL.md
-  → 精簡的 references/SKILL_INDEX.md
-  → 一個 references/_catalog/<topic>.md
-  → 最相關的 1–3 篇文件
-  → 只讀取需要的段落
-```
-
-若使用者提供精確錯誤、CLI 指令或設定鍵，模型會直接搜尋 `references/`，不必先載入索引。
-分類索引會利用上游文件既有的 `title`、`summary` 與 `read_when` metadata。
+遇到精確錯誤、CLI 指令或設定鍵時，先搜尋相關主題的本機文件，再視需要擴大範圍。
+廣泛問題先選主題索引，主題不明時使用精簡的 `references/SKILL_INDEX.md`。
+分類索引利用上游的 `title`、`summary` 與 `read_when`，每次縮小到最多三篇候選文件。
 
 ## 安裝
+
+### 透過 npm 安裝
+
+npm 套件上架後，在專案目錄用 Node.js 22.20 以上與 Git 執行以下指令。
+Codex 的預設安裝路徑是 `.agents/skills/openclaw-docs`。
+
+```bash
+npx -y openclaw-docs-skill@latest
+```
+
+可用 `--global` 安裝至使用者目錄，或用 `--agent` 指定其他宿主。 [支援的 Agent](https://github.com/vercel-labs/skills/blob/main/docs/agents.md)
+
+```bash
+npx -y openclaw-docs-skill@latest --global
+npx -y openclaw-docs-skill@latest --agent openclaw
+```
+
+npm 安裝後，用相同指令和選項更新。安裝器會從 GitHub 取得最新的同步快照，驗證後回報
+安裝路徑、Skill repository commit 和上游文件 commit。GitHub 每日同步完成後，新安裝
+與主動更新即可取得新版文件。平常使用時，Agent 直接查閱本機快照。
 
 ### 透過 SkillHub 安裝（CLI）
 
@@ -48,7 +62,7 @@ npx skillhub install tbdavid2019/openclaw-docs-skill/openclaw-docs -g
 
 ### 透過 Git Clone 安裝
 
-請用 Git checkout 安裝，才能可靠更新。依 AI Agent 使用的 Skills 目錄調整目的地：
+需要 Git 工作副本時，可以依 Agent 的 Skills 目錄調整 clone 目的地。
 
 ```bash
 git clone https://github.com/tbdavid2019/openclaw-docs-skill.git \
@@ -91,16 +105,12 @@ installer 或 `git pull` 才會改變。
 
 當使用者提供這個 repository URL 並要求安裝 Skill 時：
 
-1. 寫入前先辨識宿主平台，確認實際的 Skills 目錄。Codex 若有設定 `CODEX_HOME`，優先使用
-   `$CODEX_HOME/skills/openclaw-docs`，否則使用 `~/.codex/skills/openclaw-docs`。
-   Antigravity 常見位置是 `~/.gemini/antigravity/skills/openclaw-docs`。其他宿主應先檢查
-   設定；無法確認時詢問使用者，不要猜測。
-2. 檢查目的地。不存在時 clone 本 repository，最終目錄名稱使用 `openclaw-docs`；若已是
-   本 repository 的 Git checkout，保留該目錄。若是非 Git 目錄，不得覆蓋，應說明衝突
-   並詢問使用者如何處理。
-3. 驗證前必須執行 installer：`bash <skill-directory>/scripts/install-skill.sh`。既有
-   checkout 必須成功完成 `git pull --ff-only`；pull 或驗證失敗即表示安裝或更新失敗。
-   新 clone 之後也必須執行 installer，套用相同驗證。
+1. 辨識宿主與安裝範圍。若已有安裝，先確認其管理方式並沿用原本的更新機制。
+   若目的地與既有安裝衝突，先和使用者確認處理方式。
+2. 新安裝或更新 npm 管理的 Skill 時，使用 `npx -y openclaw-docs-skill@latest`，
+   並依宿主和範圍指定 `--agent` 和 `--global`。SkillHub 管理的安裝請使用 SkillHub。
+3. 若走 Git checkout，先驗證來源及目的地。新 clone 或更新既有 checkout 時必須執行 installer
+   `bash <skill-directory>/scripts/install-skill.sh`，並確認 `git pull --ff-only` 和驗證都成功。
 4. 讀取已安裝的 `SKILL.md`。安裝時不要執行 `scripts/sync-docs.sh` 或
    `scripts/generate_index.py`。這些是維護者工具；安裝程序應使用 repository 已提交的
    文件 snapshot。
@@ -110,8 +120,8 @@ installer 或 `git pull` 才會改變。
    commit；installer 會輸出這三項資訊。
 7. 若宿主只在啟動時探索 Skills，請使用者 reload 或 restart。接著用以下 prompt 測試：
    `Use $openclaw-docs to explain how to check OpenClaw Gateway health.`
-8. pull、驗證、commit 回報及必要的 reload 指示全部完成前，不要宣稱安裝成功。不得輸出
-   憑證或不相關的設定值。
+8. 安裝或更新、驗證、commit 回報及必要的 reload 指示全部完成前，不要宣稱安裝成功。
+   回報時僅列出安裝相關資訊。
 
 可直接交給 AI Agent 的安裝要求：
 
@@ -120,8 +130,8 @@ installer 或 `git pull` 才會改變。
 https://github.com/tbdavid2019/openclaw-docs-skill
 
 請依 README.md 的「AI Agent Installation Contract」執行：
-1. Clone 到你的 Skills 目錄，最終目錄名稱使用 openclaw-docs。
-2. 執行 scripts/install-skill.sh；既有 checkout 必須完成 git pull --ff-only。
+1. 辨識宿主平台並確認安裝範圍。新安裝優先使用 npm 安裝器。
+2. 若已有安裝，沿用原本的安裝方式更新。
 3. 讀取 SKILL.md。
 4. 確認 references/SOURCE.json、references/SKILL_INDEX.md 與 references/_catalog/ 存在。
 5. 回報安裝目錄、Skill repository commit 與目前 upstream documentation commit。
@@ -130,22 +140,24 @@ https://github.com/tbdavid2019/openclaw-docs-skill
 使用 $openclaw-docs，依本地同步的 OpenClaw 官方文件，說明如何檢查 Gateway health。
 請列出引用的本地文件路徑，並區分官方文件事實與你的推論。
 
-GitHub repository 每日自動同步，但已安裝的 Skill checkout 不會自己更新。
-需要最新 snapshot 時，必須重新執行 installer；installer 會執行 git pull --ff-only。
+GitHub repository 每日自動同步。需要最新快照時，重新執行相應的安裝器。
 ```
 
 ## Repository 結構
 
 ```text
 openclaw-docs-skill/
+├── package.json
 ├── SKILL.md
 ├── agents/openai.yaml
 ├── scripts/
+│   ├── install-npm.mjs
 │   ├── install-skill.sh
 │   ├── sync-docs.sh
 │   └── generate_index.py
 ├── tests/test_repo.py
 ├── .github/workflows/auto-sync.yml
+├── .github/workflows/publish-npm.yml
 └── references/
     ├── SOURCE.json
     ├── SKILL_INDEX.md
@@ -175,6 +187,15 @@ python3 scripts/generate_index.py --check
 
 請勿手動修改同步文件、`references/SOURCE.json`、`references/SKILL_INDEX.md`
 或 `references/_catalog/`。
+
+### 發佈 npm 安裝器
+
+每日文件快照由 GitHub 提供。安裝器改版時才發佈新的 npm 版本。可先執行 `npm ci --ignore-scripts`
+及 `npm pack` 產生 tarball，測試後用有發佈權限的 npm 帳號執行
+`npm publish <tarball> --access public` 上架首版。
+接著為 `tbdavid2019/openclaw-docs-skill` 的 `publish-npm.yml` 設定 npm Trusted Publishing，
+並允許 `npm publish`。之後更新套件版本與 lockfile，推送符合 `v<version>` 的 tag，
+發佈流程會先測試打包好的安裝器。 [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)
 
 ## 文件來源
 

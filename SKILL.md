@@ -22,35 +22,43 @@ blocking the user. Refresh only when the user asks to install or update the skil
 
 ## Find documentation progressively
 
-Choose the narrowest route that fits the request.
+Resolve `references/` relative to this `SKILL.md`. It lives in the installed skill directory,
+which may differ from the current project. Choose the narrowest route below.
 
 ### Exact error, command, or configuration key
 
-Search `references/` directly for:
-
-- the exact error message first;
-- the full CLI command or subcommand;
-- the complete configuration key;
-- distinctive log text, provider name, or channel name.
-
-When shell search is available, prefer:
+Search the relevant topic directory first when the topic is known. Start with the exact error,
+full command or configuration key, or distinctive log text. This command finds Gateway matches.
 
 ```bash
-rg -n -i --glob '*.md' --glob '*.mdx' '<exact text>' references
-rg -l -i --glob '*.md' --glob '*.mdx' '<keyword>' references
+rg -l -i -F --glob '*.md' --glob '*.mdx' -- 'openclaw gateway status' "$skill_dir/references/gateway"
 ```
 
-Use the host's equivalent file-search tool when `rg` is unavailable. Do not load the global
-router before an exact search unless the search produces no useful candidate.
+Set `skill_dir` to the directory containing this `SKILL.md`. Use the host's file-search
+tool when `rg` is unavailable. Start with up to three matching paths and read only the relevant
+sections. Expand to the related topic or the full reference tree if needed. Skip generated
+`_catalog/` pages during exact searches. Include `releases/` first for version, migration, or
+regression questions and expand into it as needed for other queries.
+
+### Common tasks
+
+| Task | Start with |
+|---|---|
+| Get started with OpenClaw | [Getting started → Quick setup](references/start/getting-started.md#quick-setup) |
+| Check Gateway health | [Health checks → Quick checks](references/gateway/health.md#quick-checks) |
+| Set up Telegram | [Telegram setup → Quick setup](references/channels/telegram/setup.md#quick-setup) |
+
+Open the linked section directly. If the page or heading has moved in the local snapshot,
+search its topic directory or use the topic catalog below.
 
 ### Broad topic
 
-1. Read [references/SKILL_INDEX.md](references/SKILL_INDEX.md).
-2. Open exactly one matching catalog under `references/_catalog/`.
-3. If that catalog links to alphabetical sections, open exactly one matching section.
-4. Select at most three candidate documents using their `summary` and `read_when` metadata.
-5. Inspect headings or search within those documents before reading long sections.
-6. Expand to another document, section, or catalog only when the first candidates are insufficient.
+1. For a known topic, go directly to the matching catalog below. For an unclear or cross-topic
+   request, use [references/SKILL_INDEX.md](references/SKILL_INDEX.md) to choose a catalog.
+2. Open the selected catalog. If it has alphabetical sections, choose one matching section.
+3. Select at most three candidate documents using their `summary` and `read_when` metadata.
+4. Inspect headings or search within those documents before reading long sections.
+5. Expand to another document, section, or catalog only when the first candidates are insufficient.
 
 ### Topic routing
 
@@ -121,6 +129,9 @@ sh scripts/sync-docs.sh
 python3 scripts/generate_index.py --check
 python3 -m unittest -v tests/test_repo.py
 ```
+
+For an npm-managed installation, re-run `npx -y openclaw-docs-skill@latest` with the same
+agent and scope options to refresh the local snapshot.
 
 For an installed Git checkout, install or update with:
 
