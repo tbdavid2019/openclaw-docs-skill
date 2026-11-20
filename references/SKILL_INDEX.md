@@ -31,7 +31,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 104 |
 | [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 3 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 79 |
-| [Releases](_catalog/releases.md) | Documentation under `releases/` | 52 |
+| [Releases](_catalog/releases.md) | Documentation under `releases/` | 53 |
 | [Screens](_catalog/screens.md) | Documentation under `screens/` | 1 |
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 13 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 2 |
