@@ -30,11 +30,11 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Plugins](_catalog/plugins.md) | Plugin architecture, SDKs, and bundled integrations | 384 |
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 104 |
 | [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 3 |
-| [Reference](_catalog/reference.md) | Documentation under `reference/` | 79 |
+| [Reference](_catalog/reference.md) | Documentation under `reference/` | 80 |
 | [Releases](_catalog/releases.md) | Documentation under `releases/` | 53 |
 | [Screens](_catalog/screens.md) | Documentation under `screens/` | 1 |
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 13 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 2 |
 | [Start](_catalog/start.md) | Getting started, onboarding, and setup | 21 |
-| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 112 |
+| [Tools](_catalog/tools.md) | Agent tools, browser, exec, web, skills, and permissions | 113 |
 | [Web](_catalog/web.md) | Control UI, dashboard, WebChat, and TUI | 20 |

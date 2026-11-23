@@ -4,6 +4,7 @@ Agent tools, browser, exec, web, skills, and permissions.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Sub-agent tool reference](../tools/subagents/tool-reference.md) — Context modes and the sessions_spawn, sessions_yield, and subagents tool contracts. Read when: You are calling sessions_spawn and need its parameters; You need to choose between isolated and forked child context; You are waiting for child results with sessions_yield.
 - [Sub-agents](../tools/subagents.md) — Index of the OpenClaw sub-agent documentation, one page per reader job. Read when: You want background or parallel work via the agent; You are changing sessions_spawn or sub-agent tool policy; You are implementing or troubleshooting thread-bound subagent sessions; You are looking for the sub-agent page that matches your task.
 - [Swarm](../tools/swarm.md) — Orchestrate concurrent sub-agents from Code Mode scripts with structured results, bounded fan-out, and live progress. Read when: You want a Code Mode script to fan out work across several agents; You need structured child results, decision gates, or first-completion pipelines; You are disabling Swarm or tuning tools.swarm limits; You want to observe collector children in chat.
 - [Tavily](../tools/tavily.md) — Tavily search and extract tools. Read when: You want Tavily-backed web search; You need a Tavily API key; You want Tavily as a web_search provider; You want content extraction from URLs.
