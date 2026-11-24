@@ -21,6 +21,8 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.11.4](../releases/2026.11.4.md) — Fixes for updates, conversations, data recovery and privacy.
 - [v2026.11.5](../releases/2026.11.5.md) — OpenClaw v2026.11.5 release notes by product area.
 - [v2026.11.6](../releases/2026.11.6.md) — Bug fixes and quality-of-life improvements throughout OpenClaw.
+- [v2026.11.7](../releases/2026.11.7.md) — Changes to updates, messaging, models and session reliability.
+- [v2026.11.8](../releases/2026.11.8.md) — Reliability fixes across chats, updates, models, automations, apps, plugins, and the Web UI.
 - [v2026.6.11](../releases/2026.6.11.md) — Reliability fixes for replies, sends, reconnects, model setup, sessions, and safer admin defaults.
 - [v2026.7.1](../releases/2026.7.1.md) — Major Control UI and onboarding overhauls, big iOS, Android, and macOS updates, expanded model support, and substantial Telegram, Slack, Discord, and Apple Messages improvements.
 - [v2026.8.1 (AKA OpenClaw 2.0)](../releases/2026.8.1.md) — A rebuilt web experience, simpler onboarding, stronger memory and session continuity, and a very large reliability pass across OpenClaw.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.8.1: Maintenance changes (part 2 of 8)](../releases/2026.8.1/maintenance-changes-part-2.md)
 - [v2026.8.1: Maintenance changes (part 3 of 8)](../releases/2026.8.1/maintenance-changes-part-3.md)
 - [v2026.8.1: Maintenance changes (part 4 of 8)](../releases/2026.8.1/maintenance-changes-part-4.md)
-- [v2026.8.1: Maintenance changes (part 5 of 8)](../releases/2026.8.1/maintenance-changes-part-5.md)
-- [v2026.8.1: Maintenance changes (part 6 of 8)](../releases/2026.8.1/maintenance-changes-part-6.md)

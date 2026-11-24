@@ -4,7 +4,6 @@ Documentation under `reference/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Session-start measurement](../reference/session-start-measurement.md) — Measure session-start ACK, subscriber-visible text, and tool-start latency on a synthetic busy Gateway. Read when: Measuring session-start or first-token latency.
 - [Silent turns and the memory flush](../reference/session-management-compaction/housekeeping.md) — The NO_REPLY silent-turn contract and the pre-compaction memory flush configuration. Read when: You want to implement memory flushes or silent system turns; Tuning agents.defaults.compaction.memoryFlush.
 - [SOUL.dev template](../reference/templates/SOUL.dev.md) — Dev agent soul (C-3PO). Read when: Using the dev gateway templates; Updating the default dev agent identity.
 - [SOUL.md template](../reference/templates/SOUL.md) — Workspace template for SOUL.md. Read when: Bootstrapping a workspace manually.

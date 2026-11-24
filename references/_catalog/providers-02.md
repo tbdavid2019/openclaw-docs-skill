@@ -4,7 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
-- [Google (Gemini)](../providers/google.md) — Google Gemini setup (AI Studio API key, Vertex AI, optional CLI runtime, and multimodal tools). Read when: You want to use Google Gemini models with OpenClaw; You need Google AI Studio, Vertex AI, or Gemini CLI runtime guidance.
+- [Google (Gemini)](../providers/google.md) — Google Gemini setup (Gemini API key, Vertex AI, optional CLI runtime, and multimodal tools). Read when: You want to use Google Gemini models with OpenClaw; You need Google AI Studio, Vertex AI, or Gemini CLI runtime guidance.
 - [Google (Vertex AI)](../providers/google-vertex.md) — Use Gemini through Google Cloud Vertex AI with Application Default Credentials. Read when: You want Gemini models with Google Cloud project billing; You need to configure Vertex AI credentials for a Gateway.
 - [Gradium](../providers/gradium.md) — Use Gradium text-to-speech in OpenClaw. Read when: You want Gradium for text-to-speech; You need Gradium API key, voice, or directive token configuration.
 - [Groq](../providers/groq.md) — Groq setup (auth + model selection + Whisper transcription). Read when: You want to use Groq with OpenClaw; You need the API key env var or CLI auth choice; You are configuring Whisper audio transcription on Groq.
