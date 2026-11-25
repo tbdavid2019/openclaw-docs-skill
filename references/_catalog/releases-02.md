@@ -4,6 +4,8 @@ Documentation under `releases/`.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [v2026.8.1: Maintenance changes (part 3 of 8)](../releases/2026.8.1/maintenance-changes-part-3.md)
+- [v2026.8.1: Maintenance changes (part 4 of 8)](../releases/2026.8.1/maintenance-changes-part-4.md)
 - [v2026.8.1: Maintenance changes (part 5 of 8)](../releases/2026.8.1/maintenance-changes-part-5.md)
 - [v2026.8.1: Maintenance changes (part 6 of 8)](../releases/2026.8.1/maintenance-changes-part-6.md)
 - [v2026.8.1: Maintenance changes (part 7 of 8)](../releases/2026.8.1/maintenance-changes-part-7.md)

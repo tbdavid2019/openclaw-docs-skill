@@ -4,6 +4,7 @@ Symptom-first troubleshooting and support.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [Sandboxing and memory](../help/faq/sandboxing-and-memory.md) — Sandbox modes, host folder binds, and how agent memory persists. Read when: You are enabling or loosening the sandbox; Memory is not persisting the way you expect.
 - [Scripts](../help/scripts.md) — Repository scripts: purpose, scope, and safety notes. Read when: Running scripts from the repo; Adding or changing scripts under ./scripts.
 - [Security and access control](../help/faq/security-and-access-control.md) — Exposure, prompt injection, third-party skills, pairing, and how much autonomy to grant. Read when: You are exposing OpenClaw to inbound messages; You are judging plugin, skill, or autonomy risk.
 - [Sessions and multiple chats](../help/faq/sessions-and-chats.md) — Fresh sessions, context truncation, full resets, groups, and multi-agent setups. Read when: You are managing sessions, resets, or context limits; You run multiple chats, groups, or bots.

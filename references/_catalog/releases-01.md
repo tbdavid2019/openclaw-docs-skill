@@ -16,6 +16,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.10.8](../releases/2026.10.8.md)
 - [v2026.10.9](../releases/2026.10.9.md) — Security remediations and fixes for updates, database recovery, sessions and model refreshes.
 - [v2026.11.1](../releases/2026.11.1.md) — Patch fixes for updates, conversations, apps and model connections.
+- [v2026.11.10](../releases/2026.11.10.md) — Deep Research with cited sources, the bundled Knowledge memory plugin, browser tab handoff, and improvements across every part of OpenClaw.
 - [v2026.11.2](../releases/2026.11.2.md) — Fixes for updates, scheduled reminders, chat and model connections.
 - [v2026.11.3](../releases/2026.11.3.md) — Fixes for update recovery, backup discovery, privacy and reliability.
 - [v2026.11.4](../releases/2026.11.4.md) — Fixes for updates, conversations, data recovery and privacy.
@@ -23,6 +24,7 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.11.6](../releases/2026.11.6.md) — Bug fixes and quality-of-life improvements throughout OpenClaw.
 - [v2026.11.7](../releases/2026.11.7.md) — Changes to updates, messaging, models and session reliability.
 - [v2026.11.8](../releases/2026.11.8.md) — Reliability fixes across chats, updates, models, automations, apps, plugins, and the Web UI.
+- [v2026.11.9](../releases/2026.11.9.md) — Fixes for provider caching, Tool Search, Claude CLI, ACP replies, headed Chrome screenshots, and security.
 - [v2026.6.11](../releases/2026.6.11.md) — Reliability fixes for replies, sends, reconnects, model setup, sessions, and safer admin defaults.
 - [v2026.7.1](../releases/2026.7.1.md) — Major Control UI and onboarding overhauls, big iOS, Android, and macOS updates, expanded model support, and substantial Telegram, Slack, Discord, and Apple Messages improvements.
 - [v2026.8.1 (AKA OpenClaw 2.0)](../releases/2026.8.1.md) — A rebuilt web experience, simpler onboarding, stronger memory and session continuity, and a very large reliability pass across OpenClaw.
@@ -32,5 +34,3 @@ Open only the entries relevant to the current request. Start with at most three 
 - [v2026.8.1: Maintainer and Internal Changes](../releases/2026.8.1/maintainer-and-internal-changes.md)
 - [v2026.8.1: Maintenance changes (part 1 of 8)](../releases/2026.8.1/maintenance-changes-part-1.md)
 - [v2026.8.1: Maintenance changes (part 2 of 8)](../releases/2026.8.1/maintenance-changes-part-2.md)
-- [v2026.8.1: Maintenance changes (part 3 of 8)](../releases/2026.8.1/maintenance-changes-part-3.md)
-- [v2026.8.1: Maintenance changes (part 4 of 8)](../releases/2026.8.1/maintenance-changes-part-4.md)

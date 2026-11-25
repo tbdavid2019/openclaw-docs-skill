@@ -22,7 +22,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Concepts](_catalog/concepts.md) | Architecture, agents, sessions, memory, models, and routing | 83 |
 | [Diagnostics](_catalog/diagnostics.md) | Diagnostic flags and failure investigation | 1 |
 | [Gateway](_catalog/gateway.md) | Gateway configuration, operations, security, and networking | 162 |
-| [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 42 |
+| [Help](_catalog/help.md) | Symptom-first troubleshooting and support | 43 |
 | [Install](_catalog/install.md) | Installation, updates, migration, deployment, and uninstall | 47 |
 | [Maturity](_catalog/maturity.md) | Documentation under `maturity/` | 2 |
 | [Nodes](_catalog/nodes.md) | Mobile, desktop, and headless node capabilities | 25 |
@@ -31,7 +31,7 @@ Source revision and document count: [SOURCE.json](SOURCE.json).
 | [Providers](_catalog/providers.md) | Model provider authentication and configuration | 104 |
 | [Refactor](_catalog/refactor.md) | Documentation under `refactor/` | 3 |
 | [Reference](_catalog/reference.md) | Documentation under `reference/` | 79 |
-| [Releases](_catalog/releases.md) | Documentation under `releases/` | 55 |
+| [Releases](_catalog/releases.md) | Documentation under `releases/` | 57 |
 | [Screens](_catalog/screens.md) | Documentation under `screens/` | 1 |
 | [Security](_catalog/security.md) | Threat models, hardening, and incident response | 13 |
 | [Specs](_catalog/specs.md) | Documentation under `specs/` | 2 |

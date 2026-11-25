@@ -4,5 +4,5 @@ Documentation under `releases/`.
 
 Choose one section by its title range, then select at most three documents from it.
 
-- [Release notes – v2026.8.1: Maintenance changes (part 4 of 8)](releases-01.md) — 30 documents.
-- [v2026.8.1: Maintenance changes (part 5 of 8) – v2026.9.9](releases-02.md) — 25 documents.
+- [Release notes – v2026.8.1: Maintenance changes (part 2 of 8)](releases-01.md) — 30 documents.
+- [v2026.8.1: Maintenance changes (part 3 of 8) – v2026.9.9](releases-02.md) — 27 documents.
