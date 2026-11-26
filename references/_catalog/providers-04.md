@@ -4,6 +4,7 @@ Model provider authentication and configuration.
 
 Open only the entries relevant to the current request. Start with at most three documents.
 
+- [SenseAudio](../providers/senseaudio.md) — SenseAudio batch speech-to-text for inbound voice notes. Read when: You want SenseAudio speech-to-text for audio attachments; You need the SenseAudio API key env var or audio config path.
 - [SGLang](../providers/sglang.md) — Run OpenClaw with SGLang (OpenAI-compatible self-hosted server). Read when: You want to run OpenClaw against a local SGLang server; You want OpenAI-compatible /v1 endpoints with your own models.
 - [StepFun](../providers/stepfun.md) — Use StepFun models with OpenClaw. Read when: You want StepFun models in OpenClaw; You need StepFun setup guidance.
 - [Synthetic](../providers/synthetic.md) — Use Synthetic's Anthropic-compatible API in OpenClaw. Read when: You want to use Synthetic as a model provider; You need a Synthetic API key or base URL setup.
